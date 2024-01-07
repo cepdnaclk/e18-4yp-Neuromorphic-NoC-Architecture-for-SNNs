@@ -67,8 +67,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 [//]: # ( NOTE: EDIT THIS LINKS WITH YOUR REPO DETAILS )
 
-- [Project Repository]([https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs](https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs))
-- [Project Page]([https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs](https://cepdnaclk.github.io/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/))
+- [Project Repository]((https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs))
+- [Project Page]((https://cepdnaclk.github.io/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/))
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
