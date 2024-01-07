@@ -13,13 +13,13 @@ title: Neuromorphic Network-on-Chip Architecture for Spiking Neural Networks
 
 #### Team
 
-- E/18/379, Thamish Wanduragala, [email](mailto:e18379@eng.pdn.ac.lk)
-- E/18/147, Saadia Jameel, [email](mailto:e18147@eng.pdn.ac.lk)
+- E/18/379, Thamish Wanduragala, [e18379@eng.pdn.ac.lk](mailto:e18379@eng.pdn.ac.lk)
+- E/18/147, Saadia Jameel, [e18147@eng.pdn.ac.lk](mailto:e18147@eng.pdn.ac.lk)
 
 #### Supervisors
 
-- Prof. Roshan G. Ragel, [email](mailto:roshanr@eng.pdn.ac.lk)
-- Dr. Isuru Nawinne, [email](mailto:isurunawinne@eng.pdn.ac.lk)
+- Prof. Roshan G. Ragel, [roshanr@eng.pdn.ac.lk](mailto:roshanr@eng.pdn.ac.lk)
+- Dr. Isuru Nawinne, [isurunawinne@eng.pdn.ac.lk](mailto:isurunawinne@eng.pdn.ac.lk)
 
 #### Table of content
 
@@ -67,8 +67,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 [//]: # ( NOTE: EDIT THIS LINKS WITH YOUR REPO DETAILS )
 
-- [Project Repository]([https://github.com/cepdnaclk/repository-name](https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs))
-- [Project Page]([https://cepdnaclk.github.io/repository-name](https://cepdnaclk.github.io/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/))
+- [Project Repository]([https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs](https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs))
+- [Project Page]([https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs](https://cepdnaclk.github.io/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/))
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
