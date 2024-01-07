@@ -1,7 +1,7 @@
 ___
-# DELETE THIS INSTRUCTIONS AND ADD A SHORT INTRODUCTION ABOUT YOUR PROJECT
+# Neuromorphic Network-on-Chip Architecture for Spiking Neural Networks
 ___
 
-## Please refer the instructions in below URL:
+## Description
 
-https://projects.ce.pdn.ac.lk/docs/how-to-add-a-project
+###This project aims to develop a novel neuromorphic NoC architecture based on RISC-V ISA to support spiking neural network applications, and test it on FPGA.
