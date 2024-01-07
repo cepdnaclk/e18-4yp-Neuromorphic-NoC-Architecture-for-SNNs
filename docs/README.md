@@ -3,24 +3,23 @@ layout: home
 permalink: index.html
 
 # Please update this with your repository name and title
-repository-name: eYY-4yp-project-template
-title:
+repository-name: e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs
+title: Neuromorphic Network-on-Chip Architecture for Spiking Neural Networks
 ---
 
 [comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+# Neuromorphic Network-on-Chip Architecture for Spiking Neural Networks
 
 #### Team
 
-- eNumber, Name, [email](mailto:name@email.com)
-- eNumber, Name, [email](mailto:name@email.com)
-- eNumber, Name, [email](mailto:name@email.com)
+- E/18/379, Thamish Wanduragala, [email](mailto:e18379@eng.pdn.ac.lk)
+- E/18/147, Saadia Jameel, [email](mailto:e18147@eng.pdn.ac.lk)
 
 #### Supervisors
 
-- Name, [email](mailto:name@eng.pdn.ac.lk)
-- Name, [email](mailto:name@eng.pdn.ac.lk)
+- Prof. Roshan G. Ragel, [email](mailto:roshanr@eng.pdn.ac.lk)
+- Dr. Isuru Nawinne, [email](mailto:isurunawinne@eng.pdn.ac.lk)
 
 #### Table of content
 
@@ -68,8 +67,8 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 [//]: # ( NOTE: EDIT THIS LINKS WITH YOUR REPO DETAILS )
 
-- [Project Repository](https://github.com/cepdnaclk/repository-name)
-- [Project Page](https://cepdnaclk.github.io/repository-name)
+- [Project Repository]([https://github.com/cepdnaclk/repository-name](https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs))
+- [Project Page]([https://cepdnaclk.github.io/repository-name](https://cepdnaclk.github.io/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/))
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
