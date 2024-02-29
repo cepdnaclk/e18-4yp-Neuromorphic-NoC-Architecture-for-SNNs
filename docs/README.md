@@ -67,7 +67,9 @@ accelerator hardware units.
 
 ## Related work
 ##A. Spiking Neural Networks
+
 ![Sample Image](./images/snn.png) 
+
 Spiking neural networks fall in the category of artificial neural networks. ANNs are inspired by the brain and imitates its behaviour by modeling the neurons and synapses that you find in a brain. Several layers of neurons connected by synapses make up an ANN. The theoretical basis of ANNs has been around since 1943. SNNs follow more complex design rules and represent a newer variant of ANNs, considered to be a third-generation neural network. It resembles the activities of the brain more closely by incorporating time. Unlike conventional ANNs, which transmit information in propagating cycles, SNNs transmit spikes as events throughout the neural network. A spike is considered a rapid change of voltage that occurs over a short period of time. In the context of the brain, when a synapse receives an action potential or a spike from one of its pre-synaptic neurons, it will transmit the spike to its post synaptic neurons. This transmission leads to an update of the postsynaptic neuron’s membrane potential which is influenced by factors such as the weight of the synapses and other neuron parameters.
 
 ##B. Neuromorphic Architecture Implementations
