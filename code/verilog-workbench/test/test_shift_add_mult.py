@@ -2,7 +2,7 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, Timer
 import random
-import math
+import math 
 from cocotb.handle import RealObject
 from bitstring import BitArray
 # print(BitArray(bin="0b111").int)
