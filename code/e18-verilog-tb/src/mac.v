@@ -93,5 +93,4 @@ module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [127
         endcase
     end
 
-
 endmodule
