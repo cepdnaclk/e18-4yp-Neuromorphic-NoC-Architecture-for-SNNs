@@ -1,0 +1,81 @@
+$date
+	Tue Mar 12 23:06:30 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module testbench $end
+$var wire 1 ! spiked $end
+$var wire 32 " potential_to_mem [31:0] $end
+$var reg 32 # decayed_potential [31:0] $end
+$var reg 4 $ spike_in [3:0] $end
+$var reg 32 % v_threshold [31:0] $end
+$var reg 128 & weight [127:0] $end
+$scope module a1 $end
+$var wire 32 ' decayed_potential [31:0] $end
+$var wire 4 ( spike_in [3:0] $end
+$var wire 32 ) v_threshold [31:0] $end
+$var wire 128 * weight [127:0] $end
+$var wire 1 + spike_adder $end
+$var wire 32 , potential_to_mem [31:0] $end
+$var wire 32 - mac_out [31:0] $end
+$var wire 32 . adder_out [31:0] $end
+$var reg 1 ! spiked $end
+$scope module a1 $end
+$var wire 32 / decayed_potential [31:0] $end
+$var wire 32 0 v_threshold [31:0] $end
+$var wire 1 + spike $end
+$var wire 32 1 potential [31:0] $end
+$var wire 32 2 input_weight [31:0] $end
+$upscope $end
+$scope module m1 $end
+$var wire 4 3 spike_in [3:0] $end
+$var wire 128 4 weight [127:0] $end
+$var reg 128 5 mask [127:0] $end
+$var reg 128 6 mult_ans [127:0] $end
+$var reg 32 7 mult_output [31:0] $end
+$upscope $end
+$scope module r1 $end
+$var wire 32 8 adder_potential [31:0] $end
+$var wire 1 + spiked $end
+$var wire 32 9 v_threshold [31:0] $end
+$var reg 32 : potential_to_mem [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b10100 :
+b1001110 9
+b10100 8
+b0 7
+b0 6
+bx 5
+b1000000 4
+b0 3
+b0 2
+b10100 1
+b1001110 0
+b10100 /
+b10100 .
+b0 -
+b10100 ,
+0+
+b1000000 *
+b1001110 )
+b0 (
+b10100 '
+b1000000 &
+b1001110 %
+b0 $
+b10100 #
+b10100 "
+0!
+$end
