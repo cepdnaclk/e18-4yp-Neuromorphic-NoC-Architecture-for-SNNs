@@ -35,7 +35,7 @@ module spk_processor (
     //output layer mode
     // duplicate of hidden mode without readback of spks
 
-    input wire clk, reset
+    input wire clk, reset 
     );
 
 
