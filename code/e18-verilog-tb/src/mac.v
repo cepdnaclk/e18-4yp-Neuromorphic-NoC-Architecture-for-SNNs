@@ -2,6 +2,8 @@
 // 4 spike inputs 
 // 4 weights corresponding to the synapse
 
+// Needs modification !!!!!
+
 module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [127:0] mult_ans);
 
     reg [127:0] mask;
