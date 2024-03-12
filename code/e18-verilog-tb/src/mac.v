@@ -4,9 +4,11 @@
 
 // Needs modification !!!!!
 
-module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [127:0] mult_ans);
+module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [31:0] mult_output);
 
     reg [127:0] mask;
+    reg [127:0] mult_ans;
+
 
     always @(*) begin 
         case (spike_in) 
@@ -91,6 +93,9 @@ module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [127
             end
             default:    mult_ans <= 4'bx;
         endcase
+
+        
+        mult_output = mult_ans[31:0] + mult_ans[63:32] + mult_ans[95:64] + mult_ans[127:96];
     end
 
 endmodule
