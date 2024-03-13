@@ -2,7 +2,7 @@ module testbench;
 
     reg [3:0] spike_in;
     reg [127:0] weights_in;
-    wire [127:0] result;
+    wire [31:0] result;
 
     mac m1(spike_in, weights_in, result);
 

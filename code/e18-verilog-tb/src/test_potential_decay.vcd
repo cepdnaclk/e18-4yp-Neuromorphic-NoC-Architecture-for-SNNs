@@ -1,0 +1,90 @@
+$date
+	Wed Mar 13 22:15:29 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module test_potential_decay $end
+$var wire 32 ! output_potential [31:0] $end
+$var reg 1 " CLK $end
+$var reg 3 # decay_rate [2:0] $end
+$var reg 32 $ input_potential [31:0] $end
+$scope module potential_decay_1 $end
+$var wire 1 " CLK $end
+$var wire 3 % decay_rate [2:0] $end
+$var wire 32 & membrane_potential [31:0] $end
+$var reg 8 ' adjusted_exponent [7:0] $end
+$var reg 8 ( exponent [7:0] $end
+$var reg 23 ) mantissa [22:0] $end
+$var reg 32 * output_potential_decay [31:0] $end
+$var reg 2 + sign [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 +
+b111111011000000000000000000000 *
+b11000000000000000000000 )
+b10000001 (
+b1111110 '
+b1000000111000000000000000000000 &
+b11 %
+b1000000111000000000000000000000 $
+b11 #
+0"
+b111111011000000000000000000000 !
+$end
+#40
+1"
+#80
+0"
+#120
+1"
+#160
+0"
+#200
+1"
+#240
+0"
+#280
+1"
+#320
+0"
+#360
+1"
+#400
+0"
+#440
+1"
+#480
+0"
+#520
+1"
+#560
+0"
+#600
+1"
+#640
+0"
+#680
+1"
+#720
+0"
+#760
+1"
+#800
+0"
+#840
+1"
+#880
+0"
+#920
+1"
+#960
+0"
+#1000
+1"
