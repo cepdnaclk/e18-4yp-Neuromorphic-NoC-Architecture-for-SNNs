@@ -1,3 +1,6 @@
+`include "mac.v"
+`timescale 1ns/100ps
+
 module testbench;
 
     reg [3:0] spike_in;
@@ -9,7 +12,7 @@ module testbench;
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  spike_in: %b           weights_in: %b              result: %b", spike_in, weights_in, result);
+        $monitor($time, "  spike_in: %b\n           weights_in: %b \n             result: %b\n", spike_in, weights_in, result);
     end
 
     // Observe the timing on gtkwave

@@ -1,0 +1,43 @@
+$date
+	Thu Mar 14 07:06:38 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module testbench $end
+$var wire 32 ! result [31:0] $end
+$var reg 4 " spike_in [3:0] $end
+$var reg 128 # weights_in [127:0] $end
+$scope module m1 $end
+$var wire 4 $ spike_in [3:0] $end
+$var wire 128 % weight [127:0] $end
+$var reg 128 & mask [127:0] $end
+$var reg 128 ' mult_ans [127:0] $end
+$var reg 32 ( mult_output [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 (
+b0 '
+bx &
+b1000000 %
+b0 $
+b1000000 #
+b0 "
+b0 !
+$end
+#30
+b1000101111001001000111111 !
+b1000101111001001000111111 (
+b1000101111001001000111111 '
+b11111111111111111111111111111111 &
+b1000101111001001000111111 #
+b1000101111001001000111111 %
+b1 "
+b1 $
+#60

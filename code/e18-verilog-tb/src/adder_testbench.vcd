@@ -1,0 +1,88 @@
+$date
+	Thu Mar 14 07:24:52 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module adder_testbench $end
+$var wire 1 ! spike $end
+$var wire 32 " potential [31:0] $end
+$var reg 1 # CLK $end
+$var reg 32 $ decayed_potential [31:0] $end
+$var reg 32 % input_weight [31:0] $end
+$var reg 32 & v_threshold [31:0] $end
+$scope module adder_1 $end
+$var wire 32 ' decayed_potential [31:0] $end
+$var wire 32 ( input_weight [31:0] $end
+$var wire 32 ) v_threshold [31:0] $end
+$var wire 1 ! spike $end
+$var wire 32 * potential [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10000001110001100110011001100110 *
+b1000001001000000000000000000000 )
+b1000000111001100110011001100110 (
+b1000000111000000000000000000000 '
+b1000001001000000000000000000000 &
+b1000000111001100110011001100110 %
+b1000000111000000000000000000000 $
+0#
+b10000001110001100110011001100110 "
+1!
+$end
+#40
+1#
+#80
+0#
+#120
+1#
+#160
+0#
+#200
+1#
+#240
+0#
+#280
+1#
+#320
+0#
+#360
+1#
+#400
+0#
+#440
+1#
+#480
+0#
+#520
+1#
+#560
+0#
+#600
+1#
+#640
+0#
+#680
+1#
+#720
+0#
+#760
+1#
+#800
+0#
+#840
+1#
+#880
+0#
+#920
+1#
+#960
+0#
+#1000
+1#
