@@ -22,14 +22,14 @@ module test_potential_decay;
     //assign inputs
     initial begin
         CLK = 1'b0;
-        decay_rate = 3'd3;
+        decay_rate = 3'd4;
         input_potential = 32'b01000000111000000000000000000000;
     end
 
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, " input _potential: %b output_potential: %b", input_potential, output_potential);
+        $monitor($time, " Input Potential: %b\n                     After Potential Decay: %b", input_potential, output_potential);
     end
 
     //invert clock every 4 seconds

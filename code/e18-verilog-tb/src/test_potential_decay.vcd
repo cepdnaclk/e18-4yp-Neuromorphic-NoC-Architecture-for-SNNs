@@ -1,5 +1,5 @@
 $date
-	Wed Mar 13 22:15:29 2024
+	Mon Mar 18 00:23:36 2024
 $end
 $version
 	Icarus Verilog
@@ -16,27 +16,94 @@ $scope module potential_decay_1 $end
 $var wire 1 " CLK $end
 $var wire 3 % decay_rate [2:0] $end
 $var wire 32 & membrane_potential [31:0] $end
-$var reg 8 ' adjusted_exponent [7:0] $end
-$var reg 8 ( exponent [7:0] $end
-$var reg 23 ) mantissa [22:0] $end
-$var reg 32 * output_potential_decay [31:0] $end
-$var reg 2 + sign [1:0] $end
+$var wire 32 ' result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 ( Exception $end
+$var reg 8 ) adjusted_exponent [7:0] $end
+$var reg 8 * exponent [7:0] $end
+$var reg 8 + exponent_divided_by_2 [7:0] $end
+$var reg 8 , exponent_divided_by_4 [7:0] $end
+$var reg 23 - mantissa [22:0] $end
+$var reg 32 . output_potential_decay [31:0] $end
+$var reg 2 / sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 0 AddBar_Sub $end
+$var wire 1 ( Exception $end
+$var wire 32 1 a_operand [31:0] $end
+$var wire 32 2 b_operand [31:0] $end
+$var wire 1 3 operation_sub_addBar $end
+$var wire 1 4 output_sign $end
+$var wire 25 5 subtraction_diff [24:0] $end
+$var wire 31 6 sub_diff [30:0] $end
+$var wire 24 7 significand_sub_complement [23:0] $end
+$var wire 25 8 significand_sub [24:0] $end
+$var wire 24 9 significand_b_add_sub [23:0] $end
+$var wire 24 : significand_b [23:0] $end
+$var wire 25 ; significand_add [24:0] $end
+$var wire 24 < significand_a [23:0] $end
+$var wire 32 = result [31:0] $end
+$var wire 1 > perform $end
+$var wire 32 ? operand_b [31:0] $end
+$var wire 32 @ operand_a [31:0] $end
+$var wire 8 A exponent_sub [7:0] $end
+$var wire 8 B exponent_diff [7:0] $end
+$var wire 8 C exponent_b_add_sub [7:0] $end
+$var wire 31 D add_sum [30:0] $end
+$var wire 1 E Comp_enable $end
+$scope module pe $end
+$var wire 8 F Exponent_a [7:0] $end
+$var wire 25 G significand [24:0] $end
+$var wire 8 H Exponent_sub [7:0] $end
+$var reg 25 I Significand [24:0] $end
+$var reg 5 J shift [4:0] $end
+$upscope $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b0 +
-b111111011000000000000000000000 *
-b11000000000000000000000 )
-b10000001 (
-b1111110 '
+b0 J
+b1001000000000000000000000 I
+b10000000 H
+b111000000000000000000000 G
+b10000000 F
+0E
+b1000000101010000000000000000000 D
+b10000000 C
+b1 B
+b10000000 A
+b1000000011000000000000000000000 @
+b111111111000000000000000000000 ?
+1>
+b1000000101010000000000000000000 =
+b111000000000000000000000 <
+b1010100000000000000000000 ;
+b111000000000000000000000 :
+b11100000000000000000000 9
+b111000000000000000000000 8
+b0 7
+b1000000001000000000000000000000 6
+b1001000000000000000000000 5
+04
+13
+b111111111000000000000000000000 2
+b1000000011000000000000000000000 1
+00
+b0 /
+b1000000111000000000000000000000 .
+b11000000000000000000000 -
+b1111111 ,
+b10000000 +
+b10000001 *
+b10000001 )
+0(
+b1000000101010000000000000000000 '
 b1000000111000000000000000000000 &
-b11 %
+b100 %
 b1000000111000000000000000000000 $
-b11 #
+b100 #
 0"
-b111111011000000000000000000000 !
+b1000000111000000000000000000000 !
 $end
 #40
 1"
