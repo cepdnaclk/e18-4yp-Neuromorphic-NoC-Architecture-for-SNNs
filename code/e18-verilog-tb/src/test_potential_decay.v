@@ -22,7 +22,7 @@ module test_potential_decay;
     //assign inputs
     initial begin
         CLK = 1'b0;
-        decay_rate = 3'd1;
+        decay_rate = 3'd4;
         input_potential = 32'b01000000111000000000000000000000;
     end
 
