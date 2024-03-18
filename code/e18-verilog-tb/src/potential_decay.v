@@ -18,9 +18,11 @@ module potential_decay(
     reg[7:0] exponent_divided_by_2;  //store division by 2
     reg[7:0] exponent_divided_by_4;  //store division by 4
     wire Exception;                             //exception of the addition 
-    wire [31:0] result_divide_by_2_plus_4;   //variable to assign new exponent value        
-
-    Addition_Subtraction Addition_Subtraction_1({sign, exponent_divided_by_2, mantissa}, {sign, exponent_divided_by_4, mantissa}, 1'b0, Exception, result_divide_by_2_plus_4);
+    wire [31:0] result_divide_by_2_plus_4;   //variable to assign new exponent value
+    reg[31:0] number_divided_by_2;
+    reg[31:0] number_divided_by_4;
+    
+    Addition_Subtraction Addition_Subtraction_1(number_divided_by_2, number_divided_by_4, 1'b0, Exception, result_divide_by_2_plus_4);
     
     always @(*) begin
         sign = membrane_potential[31];     
@@ -31,30 +33,38 @@ module potential_decay(
 
             3'd0: begin         //divide by 1
                 adjusted_exponent = exponent;
+                output_potential_decay = {sign, adjusted_exponent, mantissa};
             end
 
             3'd1: begin         //divide by 2
                 adjusted_exponent = exponent-8'd1;
+                output_potential_decay = {sign, adjusted_exponent, mantissa};
             end
 
             3'd2: begin         //divide by 4
                 adjusted_exponent = exponent-8'd2;
+                output_potential_decay = {sign, adjusted_exponent, mantissa};
             end
 
             3'd3: begin         //divide by 8
                 adjusted_exponent = exponent-8'd3;
+                output_potential_decay = {sign, adjusted_exponent, mantissa};
             end
 
             3'd4: begin         //add division by 2 and 4
                 exponent_divided_by_2 = exponent-8'd1;
                 exponent_divided_by_4 = exponent-8'd2;
-                adjusted_exponent = result_divide_by_2_plus_4[30:23];
+                number_divided_by_2 = {sign, exponent_divided_by_2, mantissa};
+                number_divided_by_4 = {sign, exponent_divided_by_4, mantissa};
+                output_potential_decay = result_divide_by_2_plus_4;
             end
 
-            default: adjusted_exponent = exponent;
-        endcase
+            default: begin
+                adjusted_exponent = exponent;
+                output_potential_decay = {sign, adjusted_exponent, mantissa};
+            end
 
-        output_potential_decay = {sign, adjusted_exponent, mantissa};
+        endcase
     end
 
 endmodule
