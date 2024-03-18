@@ -1,48 +1,85 @@
 $date
-	Tue Mar 12 23:06:30 2024
+	Mon Mar 18 16:06:57 2024
 $end
 $version
 	Icarus Verilog
 $end
 $timescale
-	1s
+	100ps
 $end
 $scope module testbench $end
 $var wire 1 ! spiked $end
 $var wire 32 " potential_to_mem [31:0] $end
-$var reg 32 # decayed_potential [31:0] $end
-$var reg 4 $ spike_in [3:0] $end
-$var reg 32 % v_threshold [31:0] $end
-$var reg 128 & weight [127:0] $end
+$var reg 1 # CLK $end
+$var reg 32 $ decayed_potential [31:0] $end
+$var reg 4 % spike_in [3:0] $end
+$var reg 32 & v_threshold [31:0] $end
+$var reg 128 ' weight [127:0] $end
 $scope module a1 $end
-$var wire 32 ' decayed_potential [31:0] $end
-$var wire 4 ( spike_in [3:0] $end
-$var wire 32 ) v_threshold [31:0] $end
-$var wire 128 * weight [127:0] $end
-$var wire 1 + spike_adder $end
-$var wire 32 , potential_to_mem [31:0] $end
-$var wire 32 - mac_out [31:0] $end
-$var wire 32 . adder_out [31:0] $end
+$var wire 1 # CLK $end
+$var wire 32 ( decayed_potential [31:0] $end
+$var wire 4 ) spike_in [3:0] $end
+$var wire 32 * v_threshold [31:0] $end
+$var wire 128 + weight [127:0] $end
+$var wire 1 , spike_adder $end
+$var wire 32 - potential_to_mem [31:0] $end
+$var wire 32 . mac_out [31:0] $end
+$var wire 32 / adder_out [31:0] $end
 $var reg 1 ! spiked $end
 $scope module a1 $end
-$var wire 32 / decayed_potential [31:0] $end
-$var wire 32 0 v_threshold [31:0] $end
-$var wire 1 + spike $end
-$var wire 32 1 potential [31:0] $end
-$var wire 32 2 input_weight [31:0] $end
+$var wire 32 0 decayed_potential [31:0] $end
+$var wire 32 1 v_threshold [31:0] $end
+$var wire 1 , spike $end
+$var wire 32 2 potential [31:0] $end
+$var wire 32 3 input_weight [31:0] $end
 $upscope $end
 $scope module m1 $end
-$var wire 4 3 spike_in [3:0] $end
-$var wire 128 4 weight [127:0] $end
-$var reg 128 5 mask [127:0] $end
-$var reg 128 6 mult_ans [127:0] $end
-$var reg 32 7 mult_output [31:0] $end
+$var wire 1 # CLK $end
+$var wire 4 4 spike_in [3:0] $end
+$var wire 128 5 weight [127:0] $end
+$var reg 128 6 mask [127:0] $end
+$var reg 128 7 mult_ans [127:0] $end
+$var reg 32 8 mult_output [31:0] $end
 $upscope $end
 $scope module r1 $end
-$var wire 32 8 adder_potential [31:0] $end
-$var wire 1 + spiked $end
-$var wire 32 9 v_threshold [31:0] $end
-$var reg 32 : potential_to_mem [31:0] $end
+$var wire 32 9 adder_potential [31:0] $end
+$var wire 1 , spiked $end
+$var wire 32 : v_threshold [31:0] $end
+$var wire 32 ; reset_value [31:0] $end
+$var wire 1 < Exception $end
+$var reg 32 = potential_to_mem [31:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 > AddBar_Sub $end
+$var wire 1 < Exception $end
+$var wire 32 ? a_operand [31:0] $end
+$var wire 32 @ b_operand [31:0] $end
+$var wire 1 A operation_sub_addBar $end
+$var wire 1 B output_sign $end
+$var wire 25 C subtraction_diff [24:0] $end
+$var wire 31 D sub_diff [30:0] $end
+$var wire 24 E significand_sub_complement [23:0] $end
+$var wire 25 F significand_sub [24:0] $end
+$var wire 24 G significand_b_add_sub [23:0] $end
+$var wire 24 H significand_b [23:0] $end
+$var wire 25 I significand_add [24:0] $end
+$var wire 24 J significand_a [23:0] $end
+$var wire 32 K result [31:0] $end
+$var wire 1 L perform $end
+$var wire 32 M operand_b [31:0] $end
+$var wire 32 N operand_a [31:0] $end
+$var wire 8 O exponent_sub [7:0] $end
+$var wire 8 P exponent_diff [7:0] $end
+$var wire 8 Q exponent_b_add_sub [7:0] $end
+$var wire 31 R add_sum [30:0] $end
+$var wire 1 S Comp_enable $end
+$scope module pe $end
+$var wire 8 T Exponent_a [7:0] $end
+$var wire 25 U significand [24:0] $end
+$var wire 8 V Exponent_sub [7:0] $end
+$var reg 25 W Significand [24:0] $end
+$var reg 5 X shift [4:0] $end
+$upscope $end
+$upscope $end
 $upscope $end
 $upscope $end
 $upscope $end
@@ -52,30 +89,118 @@ $dumpall
 $end
 #0
 $dumpvars
-b10100 :
-b1001110 9
-b10100 8
-b0 7
-b0 6
+bx X
+bx W
+bx V
+bx U
+bx T
+xS
+bx R
+bx Q
+bx P
+bx O
+bx N
+bx M
+xL
+bx K
+bx J
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+xB
+xA
+bx @
+bx ?
+1>
+bx =
+x<
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
 bx 5
-b1000000 4
-b0 3
-b0 2
-b10100 1
-b1001110 0
-b10100 /
-b10100 .
-b0 -
-b10100 ,
-0+
-b1000000 *
-b1001110 )
-b0 (
-b10100 '
-b1000000 &
-b1001110 %
-b0 $
-b10100 #
-b10100 "
-0!
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+bx -
+x,
+bx +
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
+bx $
+0#
+bx "
+x!
 $end
+#30
+b10100 $
+b10100 (
+b10100 0
+b1001110 &
+b1001110 *
+b1001110 1
+b1001110 :
+b1001110 @
+b1000000 '
+b1000000 +
+b1000000 5
+b0 %
+b0 )
+b0 4
+#40
+b1110111011010000000000000000000 D
+b11101110 O
+b11101110 V
+b10010 X
+b111010000000000000000000 C
+b111010000000000000000000 W
+b1000000000000000000111010 F
+b1000000000000000000111010 U
+b111111111111111111101100 E
+b0 I
+b11110111011010000000000000000000 ;
+b11110111011010000000000000000000 K
+b10100 G
+b10100 H
+0<
+1B
+0A
+b1001110 J
+b0 R
+1S
+1L
+b0 Q
+b0 P
+b0 T
+b10100 M
+b1001110 N
+0!
+b10100 "
+b10100 -
+b10100 =
+0,
+b10100 /
+b10100 2
+b10100 9
+b10100 ?
+b0 .
+b0 3
+b0 8
+1#
+#80
+0#
+#110
