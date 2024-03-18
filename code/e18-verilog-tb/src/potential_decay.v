@@ -1,5 +1,4 @@
 `timescale 1ns/100ps
-`include "Addition_Subtraction.v"
 //Potential decay for divinding by 1, 2, 4, and 8 only
 
 
