@@ -1,7 +1,8 @@
-#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
-:ivl_version "12.0 (stable)";
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
 :ivl_delay_selection "TYPICAL";
 :vpi_time_precision - 10;
+
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
@@ -14,11 +15,13 @@ v0x15863e700_0 .var "decay_rate", 2 0;
 v0x15863e7b0_0 .var "input_potential", 31 0;
 v0x15863e880_0 .net "output_potential", 31 0, v0x15863e420_0;  1 drivers
 S_0x158623110 .scope module, "potential_decay_1" "potential_decay" 2 12, 3 5 0, S_0x158622fa0;
+
  .timescale -9 -10;
     .port_info 0 /INPUT 1 "CLK";
     .port_info 1 /INPUT 3 "decay_rate";
     .port_info 2 /INPUT 32 "membrane_potential";
     .port_info 3 /OUTPUT 32 "output_potential_decay";
+
 v0x15863dc30_0 .net "CLK", 0 0, v0x15863e660_0;  1 drivers
 v0x15863dce0_0 .net "Exception", 0 0, L_0x15863f760;  1 drivers
 v0x15863dd80_0 .var "adjusted_exponent", 7 0;
@@ -35,12 +38,14 @@ v0x15863e4b0_0 .net "result_divide_by_2_plus_4", 31 0, L_0x158643d80;  1 drivers
 v0x15863e560_0 .var "sign", 1 0;
 E_0x1586246a0 .event posedge, v0x15863dc30_0;
 S_0x158606890 .scope module, "Addition_Subtraction_1" "Addition_Subtraction" 3 24, 4 12 0, S_0x158623110;
+
  .timescale -9 -10;
     .port_info 0 /INPUT 32 "a_operand";
     .port_info 1 /INPUT 32 "b_operand";
     .port_info 2 /INPUT 1 "AddBar_Sub";
     .port_info 3 /OUTPUT 1 "Exception";
     .port_info 4 /OUTPUT 32 "result";
+
 L_0x15863f760 .functor OR 1, L_0x15863f430, L_0x15863f610, C4<0>, C4<0>;
 L_0x15863fc10 .functor XOR 1, L_0x15863fd40, L_0x15863fe80, C4<0>, C4<0>;
 L_0x1586400f0 .functor XOR 1, L_0x15863ff20, L_0x15863fde0, C4<0>, C4<0>;
@@ -245,11 +250,13 @@ L_0x158643880 .concat [ 31 1 0 0], L_0x158642110, L_0x158643bc0;
 L_0x158643920 .functor MUXZ 32, L_0x158643880, L_0x1586437e0, L_0x158643420, C4<>;
 L_0x158643d80 .functor MUXZ 32, L_0x158643920, L_0x160068490, L_0x15863f760, C4<>;
 S_0x158606a00 .scope module, "pe" "priority_encoder" 4 88, 5 10 0, S_0x158606890;
+
  .timescale -9 -10;
     .port_info 0 /INPUT 25 "significand";
     .port_info 1 /INPUT 8 "Exponent_a";
     .port_info 2 /OUTPUT 25 "Significand";
     .port_info 3 /OUTPUT 8 "Exponent_sub";
+
 v0x15862a6f0_0 .net "Exponent_a", 7 0, L_0x1586435b0;  1 drivers
 v0x158639130_0 .net "Exponent_sub", 7 0, L_0x1586431c0;  alias, 1 drivers
 v0x1586391e0_0 .var "Significand", 24 0;
@@ -265,6 +272,7 @@ L_0x1586431c0 .arith/sub 8, L_0x1586435b0, L_0x1586430e0;
 T_0 ;
     %wait E_0x158607bf0;
     %load/vec4 v0x1586394f0_0;
+
     %dup/vec4;
     %pushi/vec4 33554431, 8388607, 25;
     %cmp/x;
@@ -365,6 +373,7 @@ T_0 ;
     %pushi/vec4 16777216, 0, 25;
     %cmp/x;
     %jmp/1 T_0.24, 4;
+
     %load/vec4 v0x1586394f0_0;
     %inv;
     %addi 1, 0, 25;
@@ -593,11 +602,13 @@ T_0.24 ;
     %store/vec4 v0x1586391e0_0, 0, 25;
     %pushi/vec4 24, 0, 5;
     %store/vec4 v0x158639440_0, 0, 5;
+
     %jmp T_0.26;
 T_0.26 ;
     %pop/vec4 1;
     %jmp T_0;
     .thread T_0, $push;
+
     .scope S_0x158623110;
 T_1 ;
     %wait E_0x1586246a0;
@@ -612,6 +623,7 @@ T_1 ;
     %parti/s 23, 0, 2;
     %store/vec4 v0x15863e110_0, 0, 23;
     %load/vec4 v0x15863de30_0;
+
     %dup/vec4;
     %pushi/vec4 0, 0, 3;
     %cmp/u;
@@ -632,6 +644,7 @@ T_1 ;
     %pushi/vec4 4, 0, 3;
     %cmp/u;
     %jmp/1 T_1.4, 6;
+
     %load/vec4 v0x15863dec0_0;
     %store/vec4 v0x15863dd80_0, 0, 8;
     %load/vec4 v0x15863e560_0;
@@ -712,6 +725,7 @@ T_1.4 ;
     %store/vec4 v0x15863e390_0, 0, 32;
     %load/vec4 v0x15863e4b0_0;
     %store/vec4 v0x15863e420_0, 0, 32;
+
     %jmp T_1.6;
 T_1.6 ;
     %pop/vec4 1;
@@ -721,10 +735,12 @@ T_1.6 ;
 T_2 ;
     %vpi_call 2 16 "$dumpfile", "test_potential_decay.vcd" {0 0 0};
     %vpi_call 2 17 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x158622fa0 {0 0 0};
+
     %delay 1000, 0;
     %vpi_call 2 19 "$finish" {0 0 0};
     %end;
     .thread T_2;
+
     .scope S_0x158622fa0;
 T_3 ;
     %pushi/vec4 0, 0, 1;
@@ -746,6 +762,7 @@ T_5 ;
     %load/vec4 v0x15863e660_0;
     %inv;
     %store/vec4 v0x15863e660_0, 0, 1;
+
     %jmp T_5;
     .thread T_5;
 # The file index is used to find the file name in the following table.
