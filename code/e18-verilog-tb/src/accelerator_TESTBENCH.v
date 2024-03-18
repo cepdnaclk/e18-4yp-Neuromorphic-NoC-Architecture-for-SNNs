@@ -15,7 +15,7 @@ module testbench;
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  spike_in: %b             weight: %b              v_threshold: %b     decayed_potential: %b           spiked: %b              potential_to_mem: %b",spike_in, weight, v_threshold, decayed_potential, spiked, potential_to_mem);
+        $monitor($time, "  spike_in: %b             weight: %b              v_threshold: %b     decayed_potential: %b           spiked: %b              potential_to_mem: %b",spike_in, weight, v_threshold, current_potential, spiked, potential_to_mem);
     end
 
     // Observe the timing on gtkwave
