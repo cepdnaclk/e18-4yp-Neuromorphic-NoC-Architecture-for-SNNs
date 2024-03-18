@@ -24,7 +24,7 @@ module potential_decay(
     
     Addition_Subtraction Addition_Subtraction_1(number_divided_by_2, number_divided_by_4, 1'b0, Exception, result_divide_by_2_plus_4);
     
-    always @(*) begin
+    always @(posedge CLK) begin
         sign = membrane_potential[31];     
         exponent = membrane_potential[30:23];    
         mantissa = membrane_potential[22:0]; 
