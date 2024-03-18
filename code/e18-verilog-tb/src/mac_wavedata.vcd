@@ -1,11 +1,11 @@
 $date
-	Thu Mar 14 07:06:38 2024
+	Wed Mar 13 23:09:33 2024
 $end
 $version
 	Icarus Verilog
 $end
 $timescale
-	100ps
+	1s
 $end
 $scope module testbench $end
 $var wire 32 ! result [31:0] $end
@@ -20,6 +20,9 @@ $var reg 32 ( mult_output [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
 #0
 $dumpvars
 b0 (
@@ -31,7 +34,7 @@ b1000000 #
 b0 "
 b0 !
 $end
-#30
+#2
 b1000101111001001000111111 !
 b1000101111001001000111111 (
 b1000101111001001000111111 '
@@ -40,4 +43,21 @@ b1000101111001001000111111 #
 b1000101111001001000111111 %
 b1 "
 b1 $
-#60
+#4
+b0 !
+b0 (
+b0 '
+b1000000 #
+b1000000 %
+b0 "
+b0 $
+#6
+b1000101111001001000111111 !
+b1000101111001001000111111 (
+b1000101111001001000111111 '
+b11111111111111111111111111111111 &
+b1000101111001001000111111 #
+b1000101111001001000111111 %
+b1 "
+b1 $
+#8
