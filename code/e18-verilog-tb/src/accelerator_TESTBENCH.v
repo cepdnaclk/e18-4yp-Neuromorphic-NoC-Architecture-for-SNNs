@@ -28,17 +28,8 @@ module testbench;
     begin 
         spike_in  = 4'd0;
         weight = 128'd64;
-        v_threshold = 32'd1700;
-        decayed_potential = 32'd1894;
-
-        #5
-
-        spike_in  = 4'd4;
-        weight = 128'd64;
-        v_threshold = 32'd1700;
-        decayed_potential = 32'd1020;
-
-        #5
+        v_threshold = 32'd78;
+        decayed_potential = 32'd20;
 
 
         $finish;

@@ -1,0 +1,161 @@
+$date
+	Mon Mar 18 12:36:37 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module test_potential_decay $end
+$var wire 32 ! output_potential [31:0] $end
+$var reg 1 " CLK $end
+$var reg 3 # decay_rate [2:0] $end
+$var reg 32 $ input_potential [31:0] $end
+$scope module potential_decay_1 $end
+$var wire 1 " CLK $end
+$var wire 3 % decay_rate [2:0] $end
+$var wire 32 & membrane_potential [31:0] $end
+$var wire 32 ' result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 ( Exception $end
+$var reg 8 ) adjusted_exponent [7:0] $end
+$var reg 8 * exponent [7:0] $end
+$var reg 8 + exponent_divided_by_2 [7:0] $end
+$var reg 8 , exponent_divided_by_4 [7:0] $end
+$var reg 23 - mantissa [22:0] $end
+$var reg 32 . number_divided_by_2 [31:0] $end
+$var reg 32 / number_divided_by_4 [31:0] $end
+$var reg 32 0 output_potential_decay [31:0] $end
+$var reg 2 1 sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 2 AddBar_Sub $end
+$var wire 1 ( Exception $end
+$var wire 32 3 a_operand [31:0] $end
+$var wire 32 4 b_operand [31:0] $end
+$var wire 1 5 operation_sub_addBar $end
+$var wire 1 6 output_sign $end
+$var wire 25 7 subtraction_diff [24:0] $end
+$var wire 31 8 sub_diff [30:0] $end
+$var wire 24 9 significand_sub_complement [23:0] $end
+$var wire 25 : significand_sub [24:0] $end
+$var wire 24 ; significand_b_add_sub [23:0] $end
+$var wire 24 < significand_b [23:0] $end
+$var wire 25 = significand_add [24:0] $end
+$var wire 24 > significand_a [23:0] $end
+$var wire 32 ? result [31:0] $end
+$var wire 1 @ perform $end
+$var wire 32 A operand_b [31:0] $end
+$var wire 32 B operand_a [31:0] $end
+$var wire 8 C exponent_sub [7:0] $end
+$var wire 8 D exponent_diff [7:0] $end
+$var wire 8 E exponent_b_add_sub [7:0] $end
+$var wire 31 F add_sum [30:0] $end
+$var wire 1 G Comp_enable $end
+$scope module pe $end
+$var wire 8 H Exponent_a [7:0] $end
+$var wire 25 I significand [24:0] $end
+$var wire 8 J Exponent_sub [7:0] $end
+$var reg 25 K Significand [24:0] $end
+$var reg 5 L shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 L
+b1011000000000000000000000 K
+b10000001 J
+b101000000000000000000000 I
+b10000001 H
+0G
+b1000000111100000000000000000000 F
+b10000001 E
+b1 D
+b10000001 C
+b1000000101000000000000000000000 B
+b1000000001000000000000000000000 A
+1@
+b1000000111100000000000000000000 ?
+b101000000000000000000000 >
+b111100000000000000000000 =
+b101000000000000000000000 <
+b10100000000000000000000 ;
+b101000000000000000000000 :
+b0 9
+b1000000111000000000000000000000 8
+b1011000000000000000000000 7
+06
+15
+b1000000001000000000000000000000 4
+b1000000101000000000000000000000 3
+02
+b0 1
+b1000000111100000000000000000000 0
+b1000000001000000000000000000000 /
+b1000000101000000000000000000000 .
+b1000000000000000000000 -
+b10000000 ,
+b10000001 +
+b10000010 *
+bx )
+0(
+b1000000111100000000000000000000 '
+b1000001001000000000000000000000 &
+b100 %
+b1000001001000000000000000000000 $
+b100 #
+0"
+b1000000111100000000000000000000 !
+$end
+#40
+1"
+#80
+0"
+#120
+1"
+#160
+0"
+#200
+1"
+#240
+0"
+#280
+1"
+#320
+0"
+#360
+1"
+#400
+0"
+#440
+1"
+#480
+0"
+#520
+1"
+#560
+0"
+#600
+1"
+#640
+0"
+#680
+1"
+#720
+0"
+#760
+1"
+#800
+0"
+#840
+1"
+#880
+0"
+#920
+1"
+#960
+0"
+#1000
+1"
