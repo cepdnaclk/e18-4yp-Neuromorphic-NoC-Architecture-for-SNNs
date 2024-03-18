@@ -12,7 +12,7 @@ module reset(
             potential_to_mem = adder_potential - v_threshold;
 
         end else
-            assign potential_to_mem = adder_potential;
+            potential_to_mem = adder_potential;
     end
 
 endmodule
