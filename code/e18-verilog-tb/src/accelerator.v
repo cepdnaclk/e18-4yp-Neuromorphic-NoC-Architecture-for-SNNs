@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 module accelerator(
+    input wire CLK,
     input wire [3:0] spike_in,
     input wire [127:0] weight,
     input wire [31:0] v_threshold,
@@ -16,7 +16,7 @@ module accelerator(
         assign spiked= spike_adder;
     end
 
-    mac m1(spike_in, weight, mac_out);
+    mac m1(CLK, spike_in, weight, mac_out);
     // potential_decay p1 ();
     potential_adder a1(v_threshold, mac_out, decayed_potential, adder_out, spike_adder);
     reset r1(adder_out, spike_adder, v_threshold, potential_to_mem);

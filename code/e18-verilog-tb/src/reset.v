@@ -1,4 +1,4 @@
-`timescale 1ns/100ps
+// `timescale 1ns/100ps
 `include "Addition_Subtraction.v"
 
 //reset unit to reset the membrane potential value
