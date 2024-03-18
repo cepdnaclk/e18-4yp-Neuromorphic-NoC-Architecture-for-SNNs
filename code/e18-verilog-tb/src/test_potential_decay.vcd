@@ -1,5 +1,5 @@
 $date
-	Mon Mar 18 00:23:36 2024
+	Mon Mar 18 12:36:37 2024
 $end
 $version
 	Icarus Verilog
@@ -23,38 +23,40 @@ $var reg 8 * exponent [7:0] $end
 $var reg 8 + exponent_divided_by_2 [7:0] $end
 $var reg 8 , exponent_divided_by_4 [7:0] $end
 $var reg 23 - mantissa [22:0] $end
-$var reg 32 . output_potential_decay [31:0] $end
-$var reg 2 / sign [1:0] $end
+$var reg 32 . number_divided_by_2 [31:0] $end
+$var reg 32 / number_divided_by_4 [31:0] $end
+$var reg 32 0 output_potential_decay [31:0] $end
+$var reg 2 1 sign [1:0] $end
 $scope module Addition_Subtraction_1 $end
-$var wire 1 0 AddBar_Sub $end
+$var wire 1 2 AddBar_Sub $end
 $var wire 1 ( Exception $end
-$var wire 32 1 a_operand [31:0] $end
-$var wire 32 2 b_operand [31:0] $end
-$var wire 1 3 operation_sub_addBar $end
-$var wire 1 4 output_sign $end
-$var wire 25 5 subtraction_diff [24:0] $end
-$var wire 31 6 sub_diff [30:0] $end
-$var wire 24 7 significand_sub_complement [23:0] $end
-$var wire 25 8 significand_sub [24:0] $end
-$var wire 24 9 significand_b_add_sub [23:0] $end
-$var wire 24 : significand_b [23:0] $end
-$var wire 25 ; significand_add [24:0] $end
-$var wire 24 < significand_a [23:0] $end
-$var wire 32 = result [31:0] $end
-$var wire 1 > perform $end
-$var wire 32 ? operand_b [31:0] $end
-$var wire 32 @ operand_a [31:0] $end
-$var wire 8 A exponent_sub [7:0] $end
-$var wire 8 B exponent_diff [7:0] $end
-$var wire 8 C exponent_b_add_sub [7:0] $end
-$var wire 31 D add_sum [30:0] $end
-$var wire 1 E Comp_enable $end
+$var wire 32 3 a_operand [31:0] $end
+$var wire 32 4 b_operand [31:0] $end
+$var wire 1 5 operation_sub_addBar $end
+$var wire 1 6 output_sign $end
+$var wire 25 7 subtraction_diff [24:0] $end
+$var wire 31 8 sub_diff [30:0] $end
+$var wire 24 9 significand_sub_complement [23:0] $end
+$var wire 25 : significand_sub [24:0] $end
+$var wire 24 ; significand_b_add_sub [23:0] $end
+$var wire 24 < significand_b [23:0] $end
+$var wire 25 = significand_add [24:0] $end
+$var wire 24 > significand_a [23:0] $end
+$var wire 32 ? result [31:0] $end
+$var wire 1 @ perform $end
+$var wire 32 A operand_b [31:0] $end
+$var wire 32 B operand_a [31:0] $end
+$var wire 8 C exponent_sub [7:0] $end
+$var wire 8 D exponent_diff [7:0] $end
+$var wire 8 E exponent_b_add_sub [7:0] $end
+$var wire 31 F add_sum [30:0] $end
+$var wire 1 G Comp_enable $end
 $scope module pe $end
-$var wire 8 F Exponent_a [7:0] $end
-$var wire 25 G significand [24:0] $end
-$var wire 8 H Exponent_sub [7:0] $end
-$var reg 25 I Significand [24:0] $end
-$var reg 5 J shift [4:0] $end
+$var wire 8 H Exponent_a [7:0] $end
+$var wire 25 I significand [24:0] $end
+$var wire 8 J Exponent_sub [7:0] $end
+$var reg 25 K Significand [24:0] $end
+$var reg 5 L shift [4:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
@@ -62,48 +64,50 @@ $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-b0 J
-b1001000000000000000000000 I
-b10000000 H
-b111000000000000000000000 G
-b10000000 F
-0E
-b1000000101010000000000000000000 D
-b10000000 C
-b1 B
-b10000000 A
-b1000000011000000000000000000000 @
-b111111111000000000000000000000 ?
-1>
-b1000000101010000000000000000000 =
-b111000000000000000000000 <
-b1010100000000000000000000 ;
-b111000000000000000000000 :
-b11100000000000000000000 9
-b111000000000000000000000 8
-b0 7
-b1000000001000000000000000000000 6
-b1001000000000000000000000 5
-04
-13
-b111111111000000000000000000000 2
-b1000000011000000000000000000000 1
-00
-b0 /
-b1000000111000000000000000000000 .
-b11000000000000000000000 -
-b1111111 ,
-b10000000 +
-b10000001 *
-b10000001 )
+b0 L
+b1011000000000000000000000 K
+b10000001 J
+b101000000000000000000000 I
+b10000001 H
+0G
+b1000000111100000000000000000000 F
+b10000001 E
+b1 D
+b10000001 C
+b1000000101000000000000000000000 B
+b1000000001000000000000000000000 A
+1@
+b1000000111100000000000000000000 ?
+b101000000000000000000000 >
+b111100000000000000000000 =
+b101000000000000000000000 <
+b10100000000000000000000 ;
+b101000000000000000000000 :
+b0 9
+b1000000111000000000000000000000 8
+b1011000000000000000000000 7
+06
+15
+b1000000001000000000000000000000 4
+b1000000101000000000000000000000 3
+02
+b0 1
+b1000000111100000000000000000000 0
+b1000000001000000000000000000000 /
+b1000000101000000000000000000000 .
+b1000000000000000000000 -
+b10000000 ,
+b10000001 +
+b10000010 *
+bx )
 0(
-b1000000101010000000000000000000 '
-b1000000111000000000000000000000 &
+b1000000111100000000000000000000 '
+b1000001001000000000000000000000 &
 b100 %
-b1000000111000000000000000000000 $
+b1000001001000000000000000000000 $
 b100 #
 0"
-b1000000111000000000000000000000 !
+b1000000111100000000000000000000 !
 $end
 #40
 1"
