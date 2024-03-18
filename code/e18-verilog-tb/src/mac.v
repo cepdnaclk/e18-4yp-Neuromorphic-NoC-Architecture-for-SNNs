@@ -2,7 +2,8 @@
 // 4 spike inputs 
 // 4 weights corresponding to the synapse
 
-// Needs modification !!!!!
+/*  Floating point addition
+    Moving through the next four connections ?*/
 
 module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [31:0] mult_output);
 
@@ -46,7 +47,7 @@ module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [31:
             end
             4'd7: begin
                 mask = 128'b0;
-                mask[95:0] = 32'd4294967295;   
+                mask[95:0] = 64'd4294967295;   
                 mult_ans <= weight & mask; 
             end
             4'd8: begin
@@ -69,12 +70,12 @@ module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [31:
             4'd11: begin
                 mask = 128'b0;
                 mask[127:96] = 32'd4294967295;  
-                mask[63:0] = 32'd4294967295;
+                mask[63:0] = 64'd4294967295;
                 mult_ans <= weight & mask; 
             end
             4'd12: begin
                 mask = 128'b0;
-                mask[127:64] = 32'd4294967295;
+                mask[127:64] = 64'd4294967295;
                 mult_ans <= weight & mask; 
             end
             4'd13: begin
@@ -85,7 +86,7 @@ module mac(input wire [3:0] spike_in, input wire [127:0] weight, output reg [31:
             end
             4'd14: begin
                 mask = 128'b0;
-                mask[127:32] = 32'd4294967295;
+                mask[127:32] = 96'd4294967295;
                 mult_ans <= weight & mask; 
             end
             4'd15: begin
