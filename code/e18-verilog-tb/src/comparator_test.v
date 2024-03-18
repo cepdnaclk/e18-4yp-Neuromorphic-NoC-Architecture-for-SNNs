@@ -20,8 +20,8 @@ module comparator_test;
 
     //assign inputs
     initial begin
-        a_operand=32'b01000000101000000000000000000000;
-        b_operand=32'b001000001001000000000000000000000;
+        a_operand=32'b01000001001000000000000000000000;
+        b_operand=32'b01000001001000000000000000000000;
     end
 
     // Print the outputs when ever the inputs change
