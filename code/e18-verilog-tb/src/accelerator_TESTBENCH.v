@@ -4,12 +4,13 @@ module testbench;
     reg [3:0] spike_in;
     reg [127:0] weight;
     reg [31:0] v_threshold;
-    reg [31:0] decayed_potential;
+    reg [31:0] current_potential;
+    reg[2:0] decay_rate;
 
     wire spiked;
     wire [31:0] potential_to_mem;
 
-    accelerator a1(CLK, spike_in, weight, v_threshold, decayed_potential, spiked, potential_to_mem);
+    accelerator a1(CLK, spike_in, weight, v_threshold, current_potential,decay_rate, spiked, potential_to_mem);
 
     // Print the outputs when ever the inputs change
     initial
@@ -33,7 +34,8 @@ module testbench;
         spike_in  = 4'd0;
         weight = 128'd64;
         v_threshold = 32'd78;
-        decayed_potential = 32'd20;
+        current_potential = 32'd20;
+        decay_rate = 3'd4;
 
         #8
 
