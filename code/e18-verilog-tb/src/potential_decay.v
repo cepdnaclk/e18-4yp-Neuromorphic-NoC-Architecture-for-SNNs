@@ -1,7 +1,6 @@
 `timescale 1ns/100ps
 //Potential decay for divinding by 1, 2, 4, and 8 only
 
-
 module potential_decay(
 
     input wire CLK,                             //input clock
