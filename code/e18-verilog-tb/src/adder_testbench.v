@@ -1,4 +1,4 @@
-`include "adder.v"
+`include "potential_adder.v"
 `timescale 1ns/100ps
 
 module adder_testbench;
@@ -11,7 +11,7 @@ module adder_testbench;
     wire spike;
 
     //test adder
-    adder adder_1(v_threshold, input_weight, decayed_potential, potential, spike);
+    potential_adder potential_adder_1(v_threshold, input_weight, decayed_potential, potential, spike);
 
     //record on gtkwave
     initial begin
@@ -25,9 +25,9 @@ module adder_testbench;
     initial begin
         CLK = 1'b0;
 
-        v_threshold= 32'b01000001001000000000000000000000;
-        input_weight=32'b01000000111001100110011001100110;
-        decayed_potential=32'b01000000111000000000000000000000;
+        v_threshold= 32'b01000001011100000000000000000000;
+        input_weight=32'b01000000101000000000000000000000;
+        decayed_potential=32'b01000000100000000000000000000000;
     end
 
     // Print the outputs when ever the inputs change
