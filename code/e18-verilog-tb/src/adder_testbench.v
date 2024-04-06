@@ -25,9 +25,9 @@ module adder_testbench;
     initial begin
         CLK = 1'b0;
 
-        v_threshold= 32'b01000001011100000000000000000000;
-        input_weight=32'b01000000101000000000000000000000;
-        decayed_potential=32'b01000000100000000000000000000000;
+        v_threshold= 32'b01000001011110000000000000000000;
+        input_weight=32'b01000001001000000000000000000000;
+        decayed_potential=32'b01000000101100000000000000000000;
     end
 
     // Print the outputs when ever the inputs change

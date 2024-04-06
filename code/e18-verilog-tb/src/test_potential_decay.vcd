@@ -1,7 +1,5 @@
 $date
-
-	Mon Mar 18 19:57:07 2024
-
+	Mon Mar 18 23:55:01 2024
 $end
 $version
 	Icarus Verilog
@@ -64,9 +62,6 @@ $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
-$comment Show the parameter values. $end
-$dumpall
-$end
 #0
 $dumpvars
 bx L
