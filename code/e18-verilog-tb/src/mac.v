@@ -5,113 +5,177 @@
 /*  Floating point addition
     Moving through the next four connections ?*/
 
-module mac(input wire CLK,
-    input wire [3:0] spike_in, 
-    input wire [127:0] weight, 
-    output reg [31:0] mult_output);
+module mac(
+    
+    input wire CLK,                             //input clock
+    input wire start;                           //signal to start the timestep
+    input wire[11:0] source_address,            //source address of 12 bits
+    input wire[159:0] weights_array,            //weights array used during intialization 32x5=160 bits
+    input wire[59:0] source_addresses_array,          //corresponding source address array used during initialization 12x5=60 bits
+    input wire clear,                       //signal to signify the end of the timestep
+    output [31:0] mult_output               //output of 32 bits to the adder
+    );             
 
-    reg [127:0] mask;
-    reg [127:0] mult_ans;
+    reg i;                      //iterate through for the sources addresses
+    reg index;                  //get array index of the connection
+    reg incoming_spikes[0:4];   //note incoming spikes
+    reg spikes[0:4];            //received stored spikes
+    reg[31:0] weights [0:4];    //array to store 5 weights
+    reg[11:0] source_addresses [0:4];    //array to store corresponding 5 source addresses
+    reg break;
 
-    // For floating point addition
-    wire excpetion1, excpetion2, exception3;
-    wire [31:0] add_val1, add_val2, add_val3;
+    always @(weights_array, source_addresses_array) begin
+        //break up the weights
+        weights[0] = weights_array[31:0];
+        weights[1] = weights_array[63:32];
+        weights[2] = weights_array[95:64];
+        weights[3] = weights_array[127:96];
+        weights[4] = weights_array[159:128];
 
+        //break up the source adddresses
+        source_addresses[0] = source_addresses_array[11:0];
+        source_addresses[1] = source_addresses_array[23:12];
+        source_addresses[2] = source_addresses_array[35:24];
+        source_addresses[3] = source_addresses_array[47:36];
+        source_addresses[4] = source_addresses_array[59:48];
+    end
 
-    always @(posedge CLK) begin 
-        case (spike_in) 
-            4'd0:   mult_output = 32'b0;                  // No spikes in any of the 4 branches.
-            4'd1: begin
-                mask = 128'b0;
-                mask[31:0] = 32'd4294967295;   
-                mult_ans = weight & mask; 
+    //when a spike/source address comes in get index and mark the incoming spike array
+    always @(source_address) begin
+
+        //get index by going through the source addresses
+        break = 1'b0;
+        for(i=0; i<5; i=i+1) begin
+            if (source_addresses[i] == source_address) begin
+                index = i;
             end
-            4'd2: begin
-                mask = 128'b0;
-                mask[63:32] = 32'd4294967295;   
-                mult_ans = weight & mask; 
+        end
+
+        incoming_spikes[index] = 1'b1;      //record the incoming spike
+    end
+
+    //when clear signal comes reset read the icnoming spike array and reset it
+    always @(clear) begin
+        case(clear)
+            1'b1: begin
+                for(i=0; i<5; i=i+1) begin      //reset the incoming spikes array
+                    spikes[i] = incoming_spikes[i];     //store the incoming spikes
+                    incoming_spikes[i] = 1'b0;
+                end
             end
-            4'd3: begin
-                mask = 128'b0;
-                mask[63:0] = 32'd4294967295;   
-                mult_ans = weight & mask; 
-            end
-            4'd4: begin
-                mask = 128'b0;
-                mask[95:64] = 32'd4294967295;   
-                mult_ans = weight & mask; 
-            end
-            4'd5: begin
-                mask = 128'b0;
-                mask[31:0] = 32'd4294967295; 
-                mask[95:64] = 32'd4294967295;   
-                mult_ans = weight & mask; 
-            end
-            4'd6: begin
-                mask = 128'b0;
-                mask[95:32] = 32'd4294967295;   
-                mult_ans = weight & mask; 
-            end
-            4'd7: begin
-                mask = 128'b0;
-                mask[95:0] = 64'd4294967295;   
-                mult_ans = weight & mask; 
-            end
-            4'd8: begin
-                mask = 128'b0;
-                mask[127:96] = 32'd4294967295;   
-                mult_ans = weight & mask; 
-            end
-            4'd9: begin
-                mask = 128'b0;
-                mask[127:96] = 32'd4294967295;  
-                mask[31:0] = 32'd4294967295;
-                mult_ans = weight & mask; 
-            end
-            4'd10: begin
-                mask = 128'b0;
-                mask[127:96] = 32'd4294967295;  
-                mask[63:32] = 32'd4294967295;
-                mult_ans = weight & mask; 
-            end
-            4'd11: begin
-                mask = 128'b0;
-                mask[127:96] = 32'd4294967295;  
-                mask[63:0] = 64'd4294967295;
-                mult_ans = weight & mask; 
-            end
-            4'd12: begin
-                mask = 128'b0;
-                mask[127:64] = 64'd4294967295;
-                mult_ans = weight & mask; 
-            end
-            4'd13: begin
-                mask = 128'b0;
-                mask[127:96] = 32'd4294967295;  
-                mask[31:0] = 32'd4294967295;
-                mult_ans = weight & mask; 
-            end
-            4'd14: begin
-                mask = 128'b0;
-                mask[127:32] = 96'd4294967295;
-                mult_ans = weight & mask; 
-            end
-            4'd15: begin
-                mult_ans = weight;
-            end
-            default:    mult_ans = 4'bx;
         endcase
+    end
+
+    //at the begining of the timestep accumulate weights and send to the potential adder unit
+    always @(posedge start) begin
+
+        for(i=0;)
+    end
+
+
+    // reg [127:0] mask;           //mask varibale to mask the weight that needs to be added
+    // reg [127:0] mult_ans;       //weight answer after masking
+    // reg [127:0] weight;         //4 weights at once
+    // // For floating point addition
+    // wire excpetion1, excpetion2, exception3;
+    // wire [31:0] add_val1, add_val2, add_val3;
+
+    //at the beginning of a timestep
+
+    // always @(posedge CLK) begin 
+    //     case (spike_in) 
+    //         4'd0:   mult_output = 32'b0;                  // No spikes in any of the 4 branches.
+    //         4'd1: begin
+    //             mask = 128'b0;
+    //             mask[31:0] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd2: begin
+    //             mask = 128'b0;
+    //             mask[63:32] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd3: begin
+    //             mask = 128'b0;
+    //             mask[63:0] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd4: begin
+    //             mask = 128'b0;
+    //             mask[95:64] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd5: begin
+    //             mask = 128'b0;
+    //             mask[31:0] = 32'd4294967295; 
+    //             mask[95:64] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd6: begin
+    //             mask = 128'b0;
+    //             mask[95:32] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd7: begin
+    //             mask = 128'b0;
+    //             mask[95:0] = 64'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd8: begin
+    //             mask = 128'b0;
+    //             mask[127:96] = 32'd4294967295;   
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd9: begin
+    //             mask = 128'b0;
+    //             mask[127:96] = 32'd4294967295;  
+    //             mask[31:0] = 32'd4294967295;
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd10: begin
+    //             mask = 128'b0;
+    //             mask[127:96] = 32'd4294967295;  
+    //             mask[63:32] = 32'd4294967295;
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd11: begin
+    //             mask = 128'b0;
+    //             mask[127:96] = 32'd4294967295;  
+    //             mask[63:0] = 64'd4294967295;
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd12: begin
+    //             mask = 128'b0;
+    //             mask[127:64] = 64'd4294967295;
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd13: begin
+    //             mask = 128'b0;
+    //             mask[127:96] = 32'd4294967295;  
+    //             mask[31:0] = 32'd4294967295;
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd14: begin
+    //             mask = 128'b0;
+    //             mask[127:32] = 96'd4294967295;
+    //             mult_ans = weight & mask; 
+    //         end
+    //         4'd15: begin
+    //             mult_ans = weight;
+    //         end
+    //         default:    mult_ans = 4'bx;
+    //     endcase
         
-        // mult_output = mult_ans[31:0] + mult_ans[63:32] + mult_ans[95:64] + mult_ans[127:96];
-        // mult_output = add_val3;
-    end
+    //     // mult_output = mult_ans[31:0] + mult_ans[63:32] + mult_ans[95:64] + mult_ans[127:96];
+    //     // mult_output = add_val3;
+    // end
 
-    Addition_Subtraction add1(mult_ans[31:0], mult_ans[63:32], 1'b0, excpetion1, add_val1);
-    Addition_Subtraction add2(add_val1, mult_ans[95:64], 1'b0, excpetion2, add_val2);
-    Addition_Subtraction add3(add_val2, mult_ans[127:96], 1'b0, exception3, add_val3);
+    // Addition_Subtraction add1(mult_ans[31:0], mult_ans[63:32], 1'b0, excpetion1, add_val1);
+    // Addition_Subtraction add2(add_val1, mult_ans[95:64], 1'b0, excpetion2, add_val2);
+    // Addition_Subtraction add3(add_val2, mult_ans[127:96], 1'b0, exception3, add_val3);
 
-    always@(add_val3 or spike_in) begin
-        mult_output = add_val3;
-    end
+    // always@(add_val3 or spike_in) begin
+    //     mult_output = add_val3;
+    // end
 
 endmodule
