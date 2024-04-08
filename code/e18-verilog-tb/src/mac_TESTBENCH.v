@@ -1,7 +1,9 @@
+`timescale 1ns/100ps
+
 module testbench;
 
     reg CLK;
-    reg CLK_count;
+    reg[3:0] CLK_count;
     reg[11:0] neuron_address;
     reg [11:0] source_address;
     reg[159:0] weights_array;
@@ -30,16 +32,30 @@ module testbench;
 
         CLK = 1'b0;
         CLK_count = 0;
+        clear = 1'b0;
         
         //send neuron addresses
         neuron_address = 12'b000000001000;
 
         //send source addresses array first
-        source_addresses_array = {12'b000000000011, 12'b000000000100, 12'b000000000101, 12'b000000000111, 12'b000000000110};
+        source_addresses_array = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
 
         //assign the weights
         weights_array = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
 
+        #40
+        source_address = 12'd3;
+
+        #4
+        source_address = 12'd4;  
+
+        #4
+        source_address = 12'd5;
+
+        #4
+        source_address = 12'd7;       
+
+        #100
         $finish;    
 
     end
@@ -48,12 +64,18 @@ module testbench;
     always
         #4 CLK = ~CLK;
 
+
     always @(posedge CLK) begin
 
-        if(CLK_count==4) begin
+        if(CLK_count==3) begin
             CLK_count=0;
+            clear = 1'b1;
         end else begin
             CLK_count = CLK_count+1;
+        end
+
+        if(CLK_count==1) begin
+            clear = 1'b0;
         end
 
     end

@@ -18,8 +18,8 @@ module mac(
     output reg[31:0] mult_output               //output of 32 bits to the adder
     );             
 
-    reg i;                      //iterate through for the sources addresses
-    reg index;                  //get array index of the connection
+    reg[3:0] i;                      //iterate through for the sources addresses
+    reg[3:0] index;                  //get array index of the connection
     reg incoming_spikes[0:4];   //note incoming spikes
     reg spikes[0:4];            //received stored spikes
     reg[31:0] weights [0:4];    //array to store 5 weights
@@ -35,18 +35,18 @@ module mac(
 
     always @(weights_array, source_addresses_array) begin
         //break up the weights
-        weights[0] = weights_array[31:0];
-        weights[1] = weights_array[63:32];
+        weights[4] = weights_array[31:0];
+        weights[3] = weights_array[63:32];
         weights[2] = weights_array[95:64];
-        weights[3] = weights_array[127:96];
-        weights[4] = weights_array[159:128];
+        weights[1] = weights_array[127:96];
+        weights[0] = weights_array[159:128];
 
         //break up the source adddresses
-        source_addresses[0] = source_addresses_array[11:0];
-        source_addresses[1] = source_addresses_array[23:12];
+        source_addresses[4] = source_addresses_array[11:0];
+        source_addresses[3] = source_addresses_array[23:12];
         source_addresses[2] = source_addresses_array[35:24];
-        source_addresses[3] = source_addresses_array[47:36];
-        source_addresses[4] = source_addresses_array[59:48];
+        source_addresses[1] = source_addresses_array[47:36];
+        source_addresses[0] = source_addresses_array[59:48];
     end
 
     //when a spike/source address comes in get index and mark the incoming spike array
@@ -78,14 +78,27 @@ module mac(
                 //at the begining of the timestep accumulate weights and send to the potential adder unit
                 for(i=0; i<5; i=i+1) begin
                     if(spikes[i] == 1'b1) begin
-                        considered_weight = weights[i];         
-                        accumulated_weight = added_weight;
+                        #1
+                        considered_weight <= weights[i];         
+                        accumulated_weight <= added_weight;
                     end
                 end
-
-                mult_output = accumulated_weight;
             end
         endcase
+    end
+
+    //added weight
+    always @(added_weight) begin
+        mult_output = added_weight;
+    end
+
+
+    initial begin
+        //set incoming spikes array to zeros
+        for(i=0; i<5; i=i+1) begin      
+            spikes[i] = 1'b0;    
+            incoming_spikes[i] = 1'b0;
+        end
     end
 
 
