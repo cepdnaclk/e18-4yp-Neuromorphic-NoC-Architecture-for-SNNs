@@ -6,17 +6,37 @@ module testbench;
     reg[3:0] CLK_count;
     reg[11:0] neuron_address;
     reg [11:0] source_address;
-    reg[159:0] weights_array;
-    reg[59:0] source_addresses_array;
+    reg[11:0] source_addresses[0:9];
+    reg[159:0] weights_arrays[0:9];
+    reg[59:0] source_addresses_arrays[0:9];
     reg clear;
-    wire [31:0] result;
+    reg[11:0] neuron_addresses[0:9];
+    wire [31:0] results[0:9];
+    reg[3:0] index;
 
-    mac m1(CLK, neuron_address, source_address, weights_array, source_addresses_array, clear, result);
+    //generate 10 accumulators
+    genvar i;
+    generate
+        for(i=0; i<10; i=i+1) begin
+            mac m(
+                .CLK(CLK),
+                .neuron_address(neuron_addresses[i]),
+                .source_address(source_addresses[i]),
+                .weights_array(weights_arrays[i]),
+                .source_addresses_array(source_addresses_arrays[i]),
+                .clear(clear),
+                .mult_output(results[i])
+            );
+        end
+
+    endgenerate
+
+    // mac m1(CLK, neuron_address, source_address, weights_array, source_addresses_array, clear, result);
 
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  source_address: %b           neuron_address: %b           result: %b              ", source_address, neuron_address, result);
+        $monitor($time, "  source_address: %b           neuron_address: %b           result: %b              ", source_addresses[0], neuron_addresses[0], results[0]);
     end
 
     // Observe the timing on gtkwave
@@ -33,27 +53,60 @@ module testbench;
         CLK = 1'b0;
         CLK_count = 0;
         clear = 1'b0;
-        
-        //send neuron addresses
-        neuron_address = 12'b000000001000;
+
+        //neuron address
+        neuron_addresses[0] = 12'd0;
+        neuron_addresses[1] = 12'd1;
+        neuron_addresses[2] = 12'd2;
+        neuron_addresses[3] = 12'd3;
+        neuron_addresses[4] = 12'd4;
+        neuron_addresses[5] = 12'd5;
+        neuron_addresses[6] = 12'd6;
+        neuron_addresses[7] = 12'd7;
+        neuron_addresses[8] = 12'd8;
+        neuron_addresses[9] = 12'd9;
 
         //send source addresses array first
-        source_addresses_array = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[0] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[1] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[2] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[3] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[4] = {12'd1, 12'd2, 12'd5, 12'd0, 12'd0};
+        source_addresses_arrays[5] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[6] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[7] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[8] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[9] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
 
         //assign the weights
-        weights_array = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[0] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[1] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[2] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[3] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[4] = {32'h423f47ae, 32'h4109999a, 32'h0, 32'h0, 32'h0};
+        weights_arrays[5] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[6] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[7] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[8] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+
+        // for(index=0; index<9: index=index+1) begin
+            
+        // end
 
         #40
-        source_address = 12'd3;
+        source_addresses[8] = 12'd3;
+        source_addresses[4] = 12'd1;
 
         #4
-        source_address = 12'd4;  
+        source_addresses[8] = 12'd4; 
+        source_addresses[4] = 12'd2; 
 
         #4
-        source_address = 12'd5;
+        source_addresses[8] = 12'd5;
 
         #4
-        source_address = 12'd7;       
+        source_addresses[8] = 12'd7;       
 
         #100
         $finish;    
@@ -64,7 +117,7 @@ module testbench;
     always
         #4 CLK = ~CLK;
 
-
+    //timestep is 4 clockcycles
     always @(posedge CLK) begin
 
         if(CLK_count==3) begin
