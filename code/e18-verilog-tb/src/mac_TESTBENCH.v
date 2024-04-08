@@ -1,16 +1,20 @@
 module testbench;
 
     reg CLK;
-    reg [3:0] spike_in;
-    reg [127:0] weights_in;
+    reg CLK_count;
+    reg[11:0] neuron_address;
+    reg [11:0] source_address;
+    reg[159:0] weights_array;
+    reg[59:0] source_addresses_array;
+    reg clear;
     wire [31:0] result;
 
-    mac m1(CLK, spike_in, weights_in, result);
+    mac m1(CLK, neuron_address, source_address, weights_array, source_addresses_array, clear, result);
 
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  spike_in: %b           weights_in: %b              result: %b", spike_in, weights_in, result);
+        $monitor($time, "  source_address: %b           neuron_address: %b           result: %b              ", source_address, neuron_address, result);
     end
 
     // Observe the timing on gtkwave
@@ -25,39 +29,33 @@ module testbench;
     begin 
 
         CLK = 1'b0;
-        // 0.1, 2, 1.2, 3
-        // 00111101110011001100110011001101
-        // 01000000000000000000000000000000
-        // 00111111100110011001100110011010
-        // 01000000010000000000000000000000
-        weights_in = 128'd82146290175160474081457091226028212224;         // IEEE format 
+        CLK_count = 0;
+        
+        //send neuron addresses
+        neuron_address = 12'b000000001000;
 
-        #3
+        //send source addresses array first
+        source_addresses_array = {12'b000000000011, 12'b000000000100, 12'b000000000101, 12'b000000000111, 12'b000000000110};
 
-        spike_in  = 4'd0;
-        #8
+        //assign the weights
+        weights_array = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
 
-        spike_in  = 4'd1;
-        #8
-
-        spike_in  = 4'd0;
-        #8
-
-        spike_in  = 4'd1;
-        #8
-
-        spike_in  = 4'd1;
-        #8
-
-        spike_in  = 4'd0;
-        #8
-
-        $finish;
+        $finish;    
 
     end
 
     //invert clock every 4 seconds
     always
         #4 CLK = ~CLK;
+
+    always @(posedge CLK) begin
+
+        if(CLK_count==4) begin
+            CLK_count=0;
+        end else begin
+            CLK_count = CLK_count+1;
+        end
+
+    end
 
 endmodule

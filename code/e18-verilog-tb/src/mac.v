@@ -4,16 +4,18 @@
 
 /*  Floating point addition
     Moving through the next four connections ?*/
+`include "Addition_Subtraction.v"
+`timescale 1ns/100ps
 
 module mac(
     
     input wire CLK,                             //input clock
-    input wire start;                           //signal to start the timestep
+    input wire[11:0] neuron_address,            //neuron address
     input wire[11:0] source_address,            //source address of 12 bits
     input wire[159:0] weights_array,            //weights array used during intialization 32x5=160 bits
     input wire[59:0] source_addresses_array,          //corresponding source address array used during initialization 12x5=60 bits
     input wire clear,                       //signal to signify the end of the timestep
-    output [31:0] mult_output               //output of 32 bits to the adder
+    output reg[31:0] mult_output               //output of 32 bits to the adder
     );             
 
     reg i;                      //iterate through for the sources addresses
@@ -23,6 +25,13 @@ module mac(
     reg[31:0] weights [0:4];    //array to store 5 weights
     reg[11:0] source_addresses [0:4];    //array to store corresponding 5 source addresses
     reg break;
+    reg[31:0] accumulated_weight;   //get the accumulated weight
+    reg[31:0] considered_weight;    //weight to be added
+    wire[31:0] added_weight;         //weight
+    wire exception;                 //addition exception
+
+    //addition block to add weights
+    Addition_Subtraction add1(accumulated_weight, considered_weight, 1'b0, excpetion, added_weight);
 
     always @(weights_array, source_addresses_array) begin
         //break up the weights
@@ -62,14 +71,21 @@ module mac(
                     spikes[i] = incoming_spikes[i];     //store the incoming spikes
                     incoming_spikes[i] = 1'b0;
                 end
+
+                accumulated_weight = 32'd0;     //set accumulated value to 0
+                considered_weight = 32'd0;      //weight addition is zero
+
+                //at the begining of the timestep accumulate weights and send to the potential adder unit
+                for(i=0; i<5; i=i+1) begin
+                    if(spikes[i] == 1'b1) begin
+                        considered_weight = weights[i];         
+                        accumulated_weight = added_weight;
+                    end
+                end
+
+                mult_output = accumulated_weight;
             end
         endcase
-    end
-
-    //at the begining of the timestep accumulate weights and send to the potential adder unit
-    always @(posedge start) begin
-
-        for(i=0;)
     end
 
 

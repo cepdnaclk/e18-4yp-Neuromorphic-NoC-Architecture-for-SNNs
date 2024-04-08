@@ -1,5 +1,5 @@
 $date
-	Mon Mar 18 21:29:07 2024
+	Mon Apr  8 13:35:53 2024
 $end
 $version
 	Icarus Verilog
@@ -10,359 +10,109 @@ $end
 $scope module testbench $end
 $var wire 32 ! result [31:0] $end
 $var reg 1 " CLK $end
-$var reg 4 # spike_in [3:0] $end
-$var reg 128 $ weights_in [127:0] $end
+$var reg 1 # CLK_count $end
+$var reg 1 $ clear $end
+$var reg 12 % neuron_address [11:0] $end
+$var reg 12 & source_address [11:0] $end
+$var reg 60 ' source_addresses_array [59:0] $end
+$var reg 160 ( weights_array [159:0] $end
 $scope module m1 $end
 $var wire 1 " CLK $end
-$var wire 4 % spike_in [3:0] $end
-$var wire 128 & weight [127:0] $end
-$var wire 1 ' excpetion2 $end
-$var wire 1 ( excpetion1 $end
-$var wire 1 ) exception3 $end
-$var wire 32 * add_val3 [31:0] $end
-$var wire 32 + add_val2 [31:0] $end
-$var wire 32 , add_val1 [31:0] $end
-$var reg 128 - mask [127:0] $end
-$var reg 128 . mult_ans [127:0] $end
-$var reg 32 / mult_output [31:0] $end
+$var wire 1 $ clear $end
+$var wire 12 ) neuron_address [11:0] $end
+$var wire 12 * source_address [11:0] $end
+$var wire 60 + source_addresses_array [59:0] $end
+$var wire 160 , weights_array [159:0] $end
+$var wire 1 - excpetion $end
+$var wire 32 . added_weight [31:0] $end
+$var reg 32 / accumulated_weight [31:0] $end
+$var reg 1 0 break $end
+$var reg 32 1 considered_weight [31:0] $end
+$var reg 1 2 i $end
+$var reg 1 3 index $end
+$var reg 32 4 mult_output [31:0] $end
 $scope module add1 $end
-$var wire 1 0 AddBar_Sub $end
-$var wire 1 ( Exception $end
-$var wire 32 1 a_operand [31:0] $end
-$var wire 32 2 b_operand [31:0] $end
-$var wire 1 3 operation_sub_addBar $end
-$var wire 1 4 output_sign $end
-$var wire 25 5 subtraction_diff [24:0] $end
-$var wire 31 6 sub_diff [30:0] $end
-$var wire 24 7 significand_sub_complement [23:0] $end
-$var wire 25 8 significand_sub [24:0] $end
-$var wire 24 9 significand_b_add_sub [23:0] $end
-$var wire 24 : significand_b [23:0] $end
-$var wire 25 ; significand_add [24:0] $end
-$var wire 24 < significand_a [23:0] $end
-$var wire 32 = result [31:0] $end
-$var wire 1 > perform $end
-$var wire 32 ? operand_b [31:0] $end
-$var wire 32 @ operand_a [31:0] $end
-$var wire 8 A exponent_sub [7:0] $end
-$var wire 8 B exponent_diff [7:0] $end
-$var wire 8 C exponent_b_add_sub [7:0] $end
-$var wire 31 D add_sum [30:0] $end
-$var wire 1 E Comp_enable $end
+$var wire 1 5 AddBar_Sub $end
+$var wire 1 - Exception $end
+$var wire 32 6 a_operand [31:0] $end
+$var wire 32 7 b_operand [31:0] $end
+$var wire 1 8 operation_sub_addBar $end
+$var wire 1 9 output_sign $end
+$var wire 25 : subtraction_diff [24:0] $end
+$var wire 31 ; sub_diff [30:0] $end
+$var wire 24 < significand_sub_complement [23:0] $end
+$var wire 25 = significand_sub [24:0] $end
+$var wire 24 > significand_b_add_sub [23:0] $end
+$var wire 24 ? significand_b [23:0] $end
+$var wire 25 @ significand_add [24:0] $end
+$var wire 24 A significand_a [23:0] $end
+$var wire 32 B result [31:0] $end
+$var wire 1 C perform $end
+$var wire 32 D operand_b [31:0] $end
+$var wire 32 E operand_a [31:0] $end
+$var wire 8 F exponent_sub [7:0] $end
+$var wire 8 G exponent_diff [7:0] $end
+$var wire 8 H exponent_b_add_sub [7:0] $end
+$var wire 31 I add_sum [30:0] $end
+$var wire 1 J Comp_enable $end
 $scope module pe $end
-$var wire 8 F Exponent_a [7:0] $end
-$var wire 25 G significand [24:0] $end
-$var wire 8 H Exponent_sub [7:0] $end
-$var reg 25 I Significand [24:0] $end
-$var reg 5 J shift [4:0] $end
-$upscope $end
-$upscope $end
-$scope module add2 $end
-$var wire 1 K AddBar_Sub $end
-$var wire 1 ' Exception $end
-$var wire 32 L a_operand [31:0] $end
-$var wire 32 M b_operand [31:0] $end
-$var wire 1 N operation_sub_addBar $end
-$var wire 1 O output_sign $end
-$var wire 25 P subtraction_diff [24:0] $end
-$var wire 31 Q sub_diff [30:0] $end
-$var wire 24 R significand_sub_complement [23:0] $end
-$var wire 25 S significand_sub [24:0] $end
-$var wire 24 T significand_b_add_sub [23:0] $end
-$var wire 24 U significand_b [23:0] $end
-$var wire 25 V significand_add [24:0] $end
-$var wire 24 W significand_a [23:0] $end
-$var wire 32 X result [31:0] $end
-$var wire 1 Y perform $end
-$var wire 32 Z operand_b [31:0] $end
-$var wire 32 [ operand_a [31:0] $end
-$var wire 8 \ exponent_sub [7:0] $end
-$var wire 8 ] exponent_diff [7:0] $end
-$var wire 8 ^ exponent_b_add_sub [7:0] $end
-$var wire 31 _ add_sum [30:0] $end
-$var wire 1 ` Comp_enable $end
-$scope module pe $end
-$var wire 8 a Exponent_a [7:0] $end
-$var wire 25 b significand [24:0] $end
-$var wire 8 c Exponent_sub [7:0] $end
-$var reg 25 d Significand [24:0] $end
-$var reg 5 e shift [4:0] $end
-$upscope $end
-$upscope $end
-$scope module add3 $end
-$var wire 1 f AddBar_Sub $end
-$var wire 1 ) Exception $end
-$var wire 32 g a_operand [31:0] $end
-$var wire 32 h b_operand [31:0] $end
-$var wire 1 i operation_sub_addBar $end
-$var wire 1 j output_sign $end
-$var wire 25 k subtraction_diff [24:0] $end
-$var wire 31 l sub_diff [30:0] $end
-$var wire 24 m significand_sub_complement [23:0] $end
-$var wire 25 n significand_sub [24:0] $end
-$var wire 24 o significand_b_add_sub [23:0] $end
-$var wire 24 p significand_b [23:0] $end
-$var wire 25 q significand_add [24:0] $end
-$var wire 24 r significand_a [23:0] $end
-$var wire 32 s result [31:0] $end
-$var wire 1 t perform $end
-$var wire 32 u operand_b [31:0] $end
-$var wire 32 v operand_a [31:0] $end
-$var wire 8 w exponent_sub [7:0] $end
-$var wire 8 x exponent_diff [7:0] $end
-$var wire 8 y exponent_b_add_sub [7:0] $end
-$var wire 31 z add_sum [30:0] $end
-$var wire 1 { Comp_enable $end
-$scope module pe $end
-$var wire 8 | Exponent_a [7:0] $end
-$var wire 25 } significand [24:0] $end
-$var wire 8 ~ Exponent_sub [7:0] $end
-$var reg 25 !" Significand [24:0] $end
-$var reg 5 "" shift [4:0] $end
+$var wire 8 K Exponent_a [7:0] $end
+$var wire 25 L significand [24:0] $end
+$var wire 8 M Exponent_sub [7:0] $end
+$var reg 25 N Significand [24:0] $end
+$var reg 5 O shift [4:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
-$comment Show the parameter values. $end
-$dumpall
-$end
 #0
 $dumpvars
-bx ""
-bx !"
-bx ~
-bx }
-bx |
-x{
-bx z
-bx y
-bx x
-bx w
-bx v
-bx u
-xt
-bx s
-bx r
-bx q
-bx p
-bx o
-bx n
-bx m
-bx l
-bx k
-xj
-xi
-bx h
-bx g
-0f
-bx e
-bx d
-bx c
-bx b
-bx a
-x`
-bx _
-bx ^
-bx ]
-bx \
-bx [
-bx Z
-xY
-bx X
-bx W
-bx V
-bx U
-bx T
-bx S
-bx R
-bx Q
-bx P
-xO
-xN
+bx O
+bx N
 bx M
 bx L
-0K
-bx J
+bx K
+xJ
 bx I
 bx H
 bx G
 bx F
-xE
+bx E
 bx D
-bx C
+xC
 bx B
 bx A
 bx @
 bx ?
-x>
+bx >
 bx =
 bx <
 bx ;
 bx :
-bx 9
-bx 8
+x9
+x8
 bx 7
 bx 6
-bx 5
-x4
+05
+bx 4
 x3
-bx 2
+x2
 bx 1
-00
+x0
 bx /
 bx .
-bx -
-bx ,
-bx +
+x-
+b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 ,
+b11000000000100000000000101000000000111000000000110 +
 bx *
-x)
-x(
-x'
-b111101110011001100110011001101010000000000000000000000000000000011111110011001100110011001101001000000010000000000000000000000 &
-bx %
-b111101110011001100110011001101010000000000000000000000000000000011111110011001100110011001101001000000010000000000000000000000 $
-bx #
+b1000 )
+b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 (
+b11000000000100000000000101000000000111000000000110 '
+bx &
+b1000 %
+x$
+0#
 0"
 bx !
 $end
-#30
-b0 #
-b0 %
-#40
-b0 !
-b0 /
-1"
-#80
-0"
-#110
-bx !
-bx /
-b1 #
-b1 %
-#120
-b1000000010000000000000000000000 l
-b10000000 w
-b10000000 ~
-b0 ""
-b1010000000000000000000000 k
-b1010000000000000000000000 !"
-b110000000000000000000000 q
-b110000000000000000000000 n
-b110000000000000000000000 }
-b1000000010000000000000000000000 z
-b0 o
-1t
-b10000000 y
-b10000000 x
-b0 p
-b110000000000000000000000 r
-0{
-0)
-b10000000 |
-b0 m
-b1000000010000000000000000000000 Q
-b10000000 \
-b10000000 c
-b0 e
-b1010000000000000000000000 P
-b1010000000000000000000000 d
-b110000000000000000000000 V
-b1000000010000000000000000000000 !
-b1000000010000000000000000000000 /
-b110000000000000000000000 S
-b110000000000000000000000 b
-b1000000010000000000000000000000 _
-b1000000010000000000000000000000 *
-b1000000010000000000000000000000 s
-1i
-b0 T
-1Y
-b10000000 ^
-b10000000 ]
-b0 U
-b110000000000000000000000 W
-0`
-0j
-b0 u
-b1000000010000000000000000000000 v
-b0 R
-0'
-b1000000010000000000000000000000 +
-b1000000010000000000000000000000 X
-b1000000010000000000000000000000 g
-1N
-b10000000 a
-b1000000010000000000000000000000 6
-b10000000 A
-b10000000 H
-b0 J
-b1010000000000000000000000 5
-b1010000000000000000000000 I
-0O
-b110000000000000000000000 8
-b110000000000000000000000 G
-b0 Z
-b1000000010000000000000000000000 [
-b0 7
-b110000000000000000000000 ;
-b1000000010000000000000000000000 D
-b1000000010000000000000000000000 ,
-b1000000010000000000000000000000 =
-b1000000010000000000000000000000 L
-13
-b0 9
-1>
-b10000000 C
-b10000000 B
-b0 :
-0(
-b110000000000000000000000 <
-0E
-04
-b10000000 F
-b0 ?
-b1000000010000000000000000000000 @
-b1000000010000000000000000000000 1
-b0 2
-b0 M
-b0 h
-b1000000010000000000000000000000 .
-b11111111111111111111111111111111 -
-1"
-#160
-0"
-#190
-b0 #
-b0 %
-#200
-b0 !
-b0 /
-1"
-#240
-0"
-#270
-b1000000010000000000000000000000 !
-b1000000010000000000000000000000 /
-b1 #
-b1 %
-#280
-b11111111111111111111111111111111 -
-1"
-#320
-0"
-#360
-b11111111111111111111111111111111 -
-1"
-#400
-0"
-#430
-b0 #
-b0 %
-#440
-b0 !
-b0 /
-1"
-#480
-0"
-#510
