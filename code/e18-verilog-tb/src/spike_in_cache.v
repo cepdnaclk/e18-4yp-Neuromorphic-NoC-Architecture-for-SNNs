@@ -7,7 +7,6 @@
 module spike_in_cache(
     input CLK,
     input[19:0] spike_packet       //incoming spike packet [destination enuron, Source Neuron]
-    output[9:0] spike_information[0:29];     //send out spike information to the mac units
     );
 
     reg number_of_neurons = 10;         //for testing keep number of neurons as 10
