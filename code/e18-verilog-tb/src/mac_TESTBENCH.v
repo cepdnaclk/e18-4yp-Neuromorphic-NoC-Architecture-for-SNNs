@@ -4,15 +4,12 @@ module testbench;
 
     reg CLK;
     reg[3:0] CLK_count;
-    reg[11:0] neuron_address;
-    reg [11:0] source_address;
     reg[11:0] source_addresses[0:9];
     reg[159:0] weights_arrays[0:9];
     reg[59:0] source_addresses_arrays[0:9];
     reg clear;
     reg[11:0] neuron_addresses[0:9];
     wire [31:0] results[0:9];
-    reg[3:0] index;
 
     //generate 10 accumulators
     genvar i;
@@ -36,7 +33,7 @@ module testbench;
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  source_address: %b           neuron_address: %b           result: %b              ", source_addresses[0], neuron_addresses[0], results[0]);
+        $monitor($time, "  source_address: %b           neuron_address: %b           result: %b              ", source_addresses[0], neuron_addresses[0], results[8]);
     end
 
     // Observe the timing on gtkwave
@@ -54,7 +51,7 @@ module testbench;
         CLK_count = 0;
         clear = 1'b0;
 
-        //neuron address
+        //neuron addresses
         neuron_addresses[0] = 12'd0;
         neuron_addresses[1] = 12'd1;
         neuron_addresses[2] = 12'd2;
@@ -89,10 +86,6 @@ module testbench;
         weights_arrays[7] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
         weights_arrays[8] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
         weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-
-        // for(index=0; index<9: index=index+1) begin
-            
-        // end
 
         #40
         source_addresses[8] = 12'd3;

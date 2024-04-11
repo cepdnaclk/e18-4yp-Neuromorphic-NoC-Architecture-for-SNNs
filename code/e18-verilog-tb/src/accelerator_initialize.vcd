@@ -1,0 +1,1212 @@
+$date
+	Thu Apr 11 15:16:25 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	100ps
+$end
+$scope module accelerator_initialize $end
+$var reg 1 ! CLK $end
+$var reg 4 " CLK_count [3:0] $end
+$var reg 1 # clear $end
+$var reg 5 $ decay_rate [4:0] $end
+$scope begin genblk1[0] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 % decay_rate [4:0] $end
+$var wire 32 & membrane_potential_initialization [31:0] $end
+$var wire 12 ' neuron_address_initialization [11:0] $end
+$var wire 32 ( result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 ) Exception $end
+$var reg 8 * adjusted_exponent [7:0] $end
+$var reg 8 + exponent [7:0] $end
+$var reg 8 , exponent_divided_by_2 [7:0] $end
+$var reg 8 - exponent_divided_by_4 [7:0] $end
+$var reg 23 . mantissa [22:0] $end
+$var reg 32 / membrane_potential [31:0] $end
+$var reg 12 0 neuron_address [11:0] $end
+$var reg 32 1 number_divided_by_2 [31:0] $end
+$var reg 32 2 number_divided_by_4 [31:0] $end
+$var reg 32 3 output_potential_decay [31:0] $end
+$var reg 2 4 sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 5 AddBar_Sub $end
+$var wire 1 ) Exception $end
+$var wire 32 6 a_operand [31:0] $end
+$var wire 32 7 b_operand [31:0] $end
+$var wire 1 8 operation_sub_addBar $end
+$var wire 1 9 output_sign $end
+$var wire 25 : subtraction_diff [24:0] $end
+$var wire 31 ; sub_diff [30:0] $end
+$var wire 24 < significand_sub_complement [23:0] $end
+$var wire 25 = significand_sub [24:0] $end
+$var wire 24 > significand_b_add_sub [23:0] $end
+$var wire 24 ? significand_b [23:0] $end
+$var wire 25 @ significand_add [24:0] $end
+$var wire 24 A significand_a [23:0] $end
+$var wire 32 B result [31:0] $end
+$var wire 1 C perform $end
+$var wire 32 D operand_b [31:0] $end
+$var wire 32 E operand_a [31:0] $end
+$var wire 8 F exponent_sub [7:0] $end
+$var wire 8 G exponent_diff [7:0] $end
+$var wire 8 H exponent_b_add_sub [7:0] $end
+$var wire 31 I add_sum [30:0] $end
+$var wire 1 J Comp_enable $end
+$scope module pe $end
+$var wire 8 K Exponent_a [7:0] $end
+$var wire 25 L significand [24:0] $end
+$var wire 8 M Exponent_sub [7:0] $end
+$var reg 25 N Significand [24:0] $end
+$var reg 5 O shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[1] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 P decay_rate [4:0] $end
+$var wire 32 Q membrane_potential_initialization [31:0] $end
+$var wire 12 R neuron_address_initialization [11:0] $end
+$var wire 32 S result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 T Exception $end
+$var reg 8 U adjusted_exponent [7:0] $end
+$var reg 8 V exponent [7:0] $end
+$var reg 8 W exponent_divided_by_2 [7:0] $end
+$var reg 8 X exponent_divided_by_4 [7:0] $end
+$var reg 23 Y mantissa [22:0] $end
+$var reg 32 Z membrane_potential [31:0] $end
+$var reg 12 [ neuron_address [11:0] $end
+$var reg 32 \ number_divided_by_2 [31:0] $end
+$var reg 32 ] number_divided_by_4 [31:0] $end
+$var reg 32 ^ output_potential_decay [31:0] $end
+$var reg 2 _ sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 ` AddBar_Sub $end
+$var wire 1 T Exception $end
+$var wire 32 a a_operand [31:0] $end
+$var wire 32 b b_operand [31:0] $end
+$var wire 1 c operation_sub_addBar $end
+$var wire 1 d output_sign $end
+$var wire 25 e subtraction_diff [24:0] $end
+$var wire 31 f sub_diff [30:0] $end
+$var wire 24 g significand_sub_complement [23:0] $end
+$var wire 25 h significand_sub [24:0] $end
+$var wire 24 i significand_b_add_sub [23:0] $end
+$var wire 24 j significand_b [23:0] $end
+$var wire 25 k significand_add [24:0] $end
+$var wire 24 l significand_a [23:0] $end
+$var wire 32 m result [31:0] $end
+$var wire 1 n perform $end
+$var wire 32 o operand_b [31:0] $end
+$var wire 32 p operand_a [31:0] $end
+$var wire 8 q exponent_sub [7:0] $end
+$var wire 8 r exponent_diff [7:0] $end
+$var wire 8 s exponent_b_add_sub [7:0] $end
+$var wire 31 t add_sum [30:0] $end
+$var wire 1 u Comp_enable $end
+$scope module pe $end
+$var wire 8 v Exponent_a [7:0] $end
+$var wire 25 w significand [24:0] $end
+$var wire 8 x Exponent_sub [7:0] $end
+$var reg 25 y Significand [24:0] $end
+$var reg 5 z shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[2] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 { decay_rate [4:0] $end
+$var wire 32 | membrane_potential_initialization [31:0] $end
+$var wire 12 } neuron_address_initialization [11:0] $end
+$var wire 32 ~ result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 !" Exception $end
+$var reg 8 "" adjusted_exponent [7:0] $end
+$var reg 8 #" exponent [7:0] $end
+$var reg 8 $" exponent_divided_by_2 [7:0] $end
+$var reg 8 %" exponent_divided_by_4 [7:0] $end
+$var reg 23 &" mantissa [22:0] $end
+$var reg 32 '" membrane_potential [31:0] $end
+$var reg 12 (" neuron_address [11:0] $end
+$var reg 32 )" number_divided_by_2 [31:0] $end
+$var reg 32 *" number_divided_by_4 [31:0] $end
+$var reg 32 +" output_potential_decay [31:0] $end
+$var reg 2 ," sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 -" AddBar_Sub $end
+$var wire 1 !" Exception $end
+$var wire 32 ." a_operand [31:0] $end
+$var wire 32 /" b_operand [31:0] $end
+$var wire 1 0" operation_sub_addBar $end
+$var wire 1 1" output_sign $end
+$var wire 25 2" subtraction_diff [24:0] $end
+$var wire 31 3" sub_diff [30:0] $end
+$var wire 24 4" significand_sub_complement [23:0] $end
+$var wire 25 5" significand_sub [24:0] $end
+$var wire 24 6" significand_b_add_sub [23:0] $end
+$var wire 24 7" significand_b [23:0] $end
+$var wire 25 8" significand_add [24:0] $end
+$var wire 24 9" significand_a [23:0] $end
+$var wire 32 :" result [31:0] $end
+$var wire 1 ;" perform $end
+$var wire 32 <" operand_b [31:0] $end
+$var wire 32 =" operand_a [31:0] $end
+$var wire 8 >" exponent_sub [7:0] $end
+$var wire 8 ?" exponent_diff [7:0] $end
+$var wire 8 @" exponent_b_add_sub [7:0] $end
+$var wire 31 A" add_sum [30:0] $end
+$var wire 1 B" Comp_enable $end
+$scope module pe $end
+$var wire 8 C" Exponent_a [7:0] $end
+$var wire 25 D" significand [24:0] $end
+$var wire 8 E" Exponent_sub [7:0] $end
+$var reg 25 F" Significand [24:0] $end
+$var reg 5 G" shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[3] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 H" decay_rate [4:0] $end
+$var wire 32 I" membrane_potential_initialization [31:0] $end
+$var wire 12 J" neuron_address_initialization [11:0] $end
+$var wire 32 K" result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 L" Exception $end
+$var reg 8 M" adjusted_exponent [7:0] $end
+$var reg 8 N" exponent [7:0] $end
+$var reg 8 O" exponent_divided_by_2 [7:0] $end
+$var reg 8 P" exponent_divided_by_4 [7:0] $end
+$var reg 23 Q" mantissa [22:0] $end
+$var reg 32 R" membrane_potential [31:0] $end
+$var reg 12 S" neuron_address [11:0] $end
+$var reg 32 T" number_divided_by_2 [31:0] $end
+$var reg 32 U" number_divided_by_4 [31:0] $end
+$var reg 32 V" output_potential_decay [31:0] $end
+$var reg 2 W" sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 X" AddBar_Sub $end
+$var wire 1 L" Exception $end
+$var wire 32 Y" a_operand [31:0] $end
+$var wire 32 Z" b_operand [31:0] $end
+$var wire 1 [" operation_sub_addBar $end
+$var wire 1 \" output_sign $end
+$var wire 25 ]" subtraction_diff [24:0] $end
+$var wire 31 ^" sub_diff [30:0] $end
+$var wire 24 _" significand_sub_complement [23:0] $end
+$var wire 25 `" significand_sub [24:0] $end
+$var wire 24 a" significand_b_add_sub [23:0] $end
+$var wire 24 b" significand_b [23:0] $end
+$var wire 25 c" significand_add [24:0] $end
+$var wire 24 d" significand_a [23:0] $end
+$var wire 32 e" result [31:0] $end
+$var wire 1 f" perform $end
+$var wire 32 g" operand_b [31:0] $end
+$var wire 32 h" operand_a [31:0] $end
+$var wire 8 i" exponent_sub [7:0] $end
+$var wire 8 j" exponent_diff [7:0] $end
+$var wire 8 k" exponent_b_add_sub [7:0] $end
+$var wire 31 l" add_sum [30:0] $end
+$var wire 1 m" Comp_enable $end
+$scope module pe $end
+$var wire 8 n" Exponent_a [7:0] $end
+$var wire 25 o" significand [24:0] $end
+$var wire 8 p" Exponent_sub [7:0] $end
+$var reg 25 q" Significand [24:0] $end
+$var reg 5 r" shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[4] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 s" decay_rate [4:0] $end
+$var wire 32 t" membrane_potential_initialization [31:0] $end
+$var wire 12 u" neuron_address_initialization [11:0] $end
+$var wire 32 v" result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 w" Exception $end
+$var reg 8 x" adjusted_exponent [7:0] $end
+$var reg 8 y" exponent [7:0] $end
+$var reg 8 z" exponent_divided_by_2 [7:0] $end
+$var reg 8 {" exponent_divided_by_4 [7:0] $end
+$var reg 23 |" mantissa [22:0] $end
+$var reg 32 }" membrane_potential [31:0] $end
+$var reg 12 ~" neuron_address [11:0] $end
+$var reg 32 !# number_divided_by_2 [31:0] $end
+$var reg 32 "# number_divided_by_4 [31:0] $end
+$var reg 32 ## output_potential_decay [31:0] $end
+$var reg 2 $# sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 %# AddBar_Sub $end
+$var wire 1 w" Exception $end
+$var wire 32 &# a_operand [31:0] $end
+$var wire 32 '# b_operand [31:0] $end
+$var wire 1 (# operation_sub_addBar $end
+$var wire 1 )# output_sign $end
+$var wire 25 *# subtraction_diff [24:0] $end
+$var wire 31 +# sub_diff [30:0] $end
+$var wire 24 ,# significand_sub_complement [23:0] $end
+$var wire 25 -# significand_sub [24:0] $end
+$var wire 24 .# significand_b_add_sub [23:0] $end
+$var wire 24 /# significand_b [23:0] $end
+$var wire 25 0# significand_add [24:0] $end
+$var wire 24 1# significand_a [23:0] $end
+$var wire 32 2# result [31:0] $end
+$var wire 1 3# perform $end
+$var wire 32 4# operand_b [31:0] $end
+$var wire 32 5# operand_a [31:0] $end
+$var wire 8 6# exponent_sub [7:0] $end
+$var wire 8 7# exponent_diff [7:0] $end
+$var wire 8 8# exponent_b_add_sub [7:0] $end
+$var wire 31 9# add_sum [30:0] $end
+$var wire 1 :# Comp_enable $end
+$scope module pe $end
+$var wire 8 ;# Exponent_a [7:0] $end
+$var wire 25 <# significand [24:0] $end
+$var wire 8 =# Exponent_sub [7:0] $end
+$var reg 25 ># Significand [24:0] $end
+$var reg 5 ?# shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[5] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 @# decay_rate [4:0] $end
+$var wire 32 A# membrane_potential_initialization [31:0] $end
+$var wire 12 B# neuron_address_initialization [11:0] $end
+$var wire 32 C# result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 D# Exception $end
+$var reg 8 E# adjusted_exponent [7:0] $end
+$var reg 8 F# exponent [7:0] $end
+$var reg 8 G# exponent_divided_by_2 [7:0] $end
+$var reg 8 H# exponent_divided_by_4 [7:0] $end
+$var reg 23 I# mantissa [22:0] $end
+$var reg 32 J# membrane_potential [31:0] $end
+$var reg 12 K# neuron_address [11:0] $end
+$var reg 32 L# number_divided_by_2 [31:0] $end
+$var reg 32 M# number_divided_by_4 [31:0] $end
+$var reg 32 N# output_potential_decay [31:0] $end
+$var reg 2 O# sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 P# AddBar_Sub $end
+$var wire 1 D# Exception $end
+$var wire 32 Q# a_operand [31:0] $end
+$var wire 32 R# b_operand [31:0] $end
+$var wire 1 S# operation_sub_addBar $end
+$var wire 1 T# output_sign $end
+$var wire 25 U# subtraction_diff [24:0] $end
+$var wire 31 V# sub_diff [30:0] $end
+$var wire 24 W# significand_sub_complement [23:0] $end
+$var wire 25 X# significand_sub [24:0] $end
+$var wire 24 Y# significand_b_add_sub [23:0] $end
+$var wire 24 Z# significand_b [23:0] $end
+$var wire 25 [# significand_add [24:0] $end
+$var wire 24 \# significand_a [23:0] $end
+$var wire 32 ]# result [31:0] $end
+$var wire 1 ^# perform $end
+$var wire 32 _# operand_b [31:0] $end
+$var wire 32 `# operand_a [31:0] $end
+$var wire 8 a# exponent_sub [7:0] $end
+$var wire 8 b# exponent_diff [7:0] $end
+$var wire 8 c# exponent_b_add_sub [7:0] $end
+$var wire 31 d# add_sum [30:0] $end
+$var wire 1 e# Comp_enable $end
+$scope module pe $end
+$var wire 8 f# Exponent_a [7:0] $end
+$var wire 25 g# significand [24:0] $end
+$var wire 8 h# Exponent_sub [7:0] $end
+$var reg 25 i# Significand [24:0] $end
+$var reg 5 j# shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[6] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 k# decay_rate [4:0] $end
+$var wire 32 l# membrane_potential_initialization [31:0] $end
+$var wire 12 m# neuron_address_initialization [11:0] $end
+$var wire 32 n# result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 o# Exception $end
+$var reg 8 p# adjusted_exponent [7:0] $end
+$var reg 8 q# exponent [7:0] $end
+$var reg 8 r# exponent_divided_by_2 [7:0] $end
+$var reg 8 s# exponent_divided_by_4 [7:0] $end
+$var reg 23 t# mantissa [22:0] $end
+$var reg 32 u# membrane_potential [31:0] $end
+$var reg 12 v# neuron_address [11:0] $end
+$var reg 32 w# number_divided_by_2 [31:0] $end
+$var reg 32 x# number_divided_by_4 [31:0] $end
+$var reg 32 y# output_potential_decay [31:0] $end
+$var reg 2 z# sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 {# AddBar_Sub $end
+$var wire 1 o# Exception $end
+$var wire 32 |# a_operand [31:0] $end
+$var wire 32 }# b_operand [31:0] $end
+$var wire 1 ~# operation_sub_addBar $end
+$var wire 1 !$ output_sign $end
+$var wire 25 "$ subtraction_diff [24:0] $end
+$var wire 31 #$ sub_diff [30:0] $end
+$var wire 24 $$ significand_sub_complement [23:0] $end
+$var wire 25 %$ significand_sub [24:0] $end
+$var wire 24 &$ significand_b_add_sub [23:0] $end
+$var wire 24 '$ significand_b [23:0] $end
+$var wire 25 ($ significand_add [24:0] $end
+$var wire 24 )$ significand_a [23:0] $end
+$var wire 32 *$ result [31:0] $end
+$var wire 1 +$ perform $end
+$var wire 32 ,$ operand_b [31:0] $end
+$var wire 32 -$ operand_a [31:0] $end
+$var wire 8 .$ exponent_sub [7:0] $end
+$var wire 8 /$ exponent_diff [7:0] $end
+$var wire 8 0$ exponent_b_add_sub [7:0] $end
+$var wire 31 1$ add_sum [30:0] $end
+$var wire 1 2$ Comp_enable $end
+$scope module pe $end
+$var wire 8 3$ Exponent_a [7:0] $end
+$var wire 25 4$ significand [24:0] $end
+$var wire 8 5$ Exponent_sub [7:0] $end
+$var reg 25 6$ Significand [24:0] $end
+$var reg 5 7$ shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[7] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 8$ decay_rate [4:0] $end
+$var wire 32 9$ membrane_potential_initialization [31:0] $end
+$var wire 12 :$ neuron_address_initialization [11:0] $end
+$var wire 32 ;$ result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 <$ Exception $end
+$var reg 8 =$ adjusted_exponent [7:0] $end
+$var reg 8 >$ exponent [7:0] $end
+$var reg 8 ?$ exponent_divided_by_2 [7:0] $end
+$var reg 8 @$ exponent_divided_by_4 [7:0] $end
+$var reg 23 A$ mantissa [22:0] $end
+$var reg 32 B$ membrane_potential [31:0] $end
+$var reg 12 C$ neuron_address [11:0] $end
+$var reg 32 D$ number_divided_by_2 [31:0] $end
+$var reg 32 E$ number_divided_by_4 [31:0] $end
+$var reg 32 F$ output_potential_decay [31:0] $end
+$var reg 2 G$ sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 H$ AddBar_Sub $end
+$var wire 1 <$ Exception $end
+$var wire 32 I$ a_operand [31:0] $end
+$var wire 32 J$ b_operand [31:0] $end
+$var wire 1 K$ operation_sub_addBar $end
+$var wire 1 L$ output_sign $end
+$var wire 25 M$ subtraction_diff [24:0] $end
+$var wire 31 N$ sub_diff [30:0] $end
+$var wire 24 O$ significand_sub_complement [23:0] $end
+$var wire 25 P$ significand_sub [24:0] $end
+$var wire 24 Q$ significand_b_add_sub [23:0] $end
+$var wire 24 R$ significand_b [23:0] $end
+$var wire 25 S$ significand_add [24:0] $end
+$var wire 24 T$ significand_a [23:0] $end
+$var wire 32 U$ result [31:0] $end
+$var wire 1 V$ perform $end
+$var wire 32 W$ operand_b [31:0] $end
+$var wire 32 X$ operand_a [31:0] $end
+$var wire 8 Y$ exponent_sub [7:0] $end
+$var wire 8 Z$ exponent_diff [7:0] $end
+$var wire 8 [$ exponent_b_add_sub [7:0] $end
+$var wire 31 \$ add_sum [30:0] $end
+$var wire 1 ]$ Comp_enable $end
+$scope module pe $end
+$var wire 8 ^$ Exponent_a [7:0] $end
+$var wire 25 _$ significand [24:0] $end
+$var wire 8 `$ Exponent_sub [7:0] $end
+$var reg 25 a$ Significand [24:0] $end
+$var reg 5 b$ shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[8] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 c$ decay_rate [4:0] $end
+$var wire 32 d$ membrane_potential_initialization [31:0] $end
+$var wire 12 e$ neuron_address_initialization [11:0] $end
+$var wire 32 f$ result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 g$ Exception $end
+$var reg 8 h$ adjusted_exponent [7:0] $end
+$var reg 8 i$ exponent [7:0] $end
+$var reg 8 j$ exponent_divided_by_2 [7:0] $end
+$var reg 8 k$ exponent_divided_by_4 [7:0] $end
+$var reg 23 l$ mantissa [22:0] $end
+$var reg 32 m$ membrane_potential [31:0] $end
+$var reg 12 n$ neuron_address [11:0] $end
+$var reg 32 o$ number_divided_by_2 [31:0] $end
+$var reg 32 p$ number_divided_by_4 [31:0] $end
+$var reg 32 q$ output_potential_decay [31:0] $end
+$var reg 2 r$ sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 s$ AddBar_Sub $end
+$var wire 1 g$ Exception $end
+$var wire 32 t$ a_operand [31:0] $end
+$var wire 32 u$ b_operand [31:0] $end
+$var wire 1 v$ operation_sub_addBar $end
+$var wire 1 w$ output_sign $end
+$var wire 25 x$ subtraction_diff [24:0] $end
+$var wire 31 y$ sub_diff [30:0] $end
+$var wire 24 z$ significand_sub_complement [23:0] $end
+$var wire 25 {$ significand_sub [24:0] $end
+$var wire 24 |$ significand_b_add_sub [23:0] $end
+$var wire 24 }$ significand_b [23:0] $end
+$var wire 25 ~$ significand_add [24:0] $end
+$var wire 24 !% significand_a [23:0] $end
+$var wire 32 "% result [31:0] $end
+$var wire 1 #% perform $end
+$var wire 32 $% operand_b [31:0] $end
+$var wire 32 %% operand_a [31:0] $end
+$var wire 8 &% exponent_sub [7:0] $end
+$var wire 8 '% exponent_diff [7:0] $end
+$var wire 8 (% exponent_b_add_sub [7:0] $end
+$var wire 31 )% add_sum [30:0] $end
+$var wire 1 *% Comp_enable $end
+$scope module pe $end
+$var wire 8 +% Exponent_a [7:0] $end
+$var wire 25 ,% significand [24:0] $end
+$var wire 8 -% Exponent_sub [7:0] $end
+$var reg 25 .% Significand [24:0] $end
+$var reg 5 /% shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin genblk1[9] $end
+$scope module pd $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 0% decay_rate [4:0] $end
+$var wire 32 1% membrane_potential_initialization [31:0] $end
+$var wire 12 2% neuron_address_initialization [11:0] $end
+$var wire 32 3% result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 4% Exception $end
+$var reg 8 5% adjusted_exponent [7:0] $end
+$var reg 8 6% exponent [7:0] $end
+$var reg 8 7% exponent_divided_by_2 [7:0] $end
+$var reg 8 8% exponent_divided_by_4 [7:0] $end
+$var reg 23 9% mantissa [22:0] $end
+$var reg 32 :% membrane_potential [31:0] $end
+$var reg 12 ;% neuron_address [11:0] $end
+$var reg 32 <% number_divided_by_2 [31:0] $end
+$var reg 32 =% number_divided_by_4 [31:0] $end
+$var reg 32 >% output_potential_decay [31:0] $end
+$var reg 2 ?% sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 @% AddBar_Sub $end
+$var wire 1 4% Exception $end
+$var wire 32 A% a_operand [31:0] $end
+$var wire 32 B% b_operand [31:0] $end
+$var wire 1 C% operation_sub_addBar $end
+$var wire 1 D% output_sign $end
+$var wire 25 E% subtraction_diff [24:0] $end
+$var wire 31 F% sub_diff [30:0] $end
+$var wire 24 G% significand_sub_complement [23:0] $end
+$var wire 25 H% significand_sub [24:0] $end
+$var wire 24 I% significand_b_add_sub [23:0] $end
+$var wire 24 J% significand_b [23:0] $end
+$var wire 25 K% significand_add [24:0] $end
+$var wire 24 L% significand_a [23:0] $end
+$var wire 32 M% result [31:0] $end
+$var wire 1 N% perform $end
+$var wire 32 O% operand_b [31:0] $end
+$var wire 32 P% operand_a [31:0] $end
+$var wire 8 Q% exponent_sub [7:0] $end
+$var wire 8 R% exponent_diff [7:0] $end
+$var wire 8 S% exponent_b_add_sub [7:0] $end
+$var wire 31 T% add_sum [30:0] $end
+$var wire 1 U% Comp_enable $end
+$scope module pe $end
+$var wire 8 V% Exponent_a [7:0] $end
+$var wire 25 W% significand [24:0] $end
+$var wire 8 X% Exponent_sub [7:0] $end
+$var reg 25 Y% Significand [24:0] $end
+$var reg 5 Z% shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module potential_decay_1 $end
+$var wire 1 ! CLK $end
+$var wire 1 # clear $end
+$var wire 5 [% decay_rate [4:0] $end
+$var wire 32 \% membrane_potential_initialization [31:0] $end
+$var wire 12 ]% neuron_address_initialization [11:0] $end
+$var wire 32 ^% result_divide_by_2_plus_4 [31:0] $end
+$var wire 1 _% Exception $end
+$var reg 8 `% adjusted_exponent [7:0] $end
+$var reg 8 a% exponent [7:0] $end
+$var reg 8 b% exponent_divided_by_2 [7:0] $end
+$var reg 8 c% exponent_divided_by_4 [7:0] $end
+$var reg 23 d% mantissa [22:0] $end
+$var reg 32 e% membrane_potential [31:0] $end
+$var reg 12 f% neuron_address [11:0] $end
+$var reg 32 g% number_divided_by_2 [31:0] $end
+$var reg 32 h% number_divided_by_4 [31:0] $end
+$var reg 32 i% output_potential_decay [31:0] $end
+$var reg 2 j% sign [1:0] $end
+$scope module Addition_Subtraction_1 $end
+$var wire 1 k% AddBar_Sub $end
+$var wire 1 _% Exception $end
+$var wire 32 l% a_operand [31:0] $end
+$var wire 32 m% b_operand [31:0] $end
+$var wire 1 n% operation_sub_addBar $end
+$var wire 1 o% output_sign $end
+$var wire 25 p% subtraction_diff [24:0] $end
+$var wire 31 q% sub_diff [30:0] $end
+$var wire 24 r% significand_sub_complement [23:0] $end
+$var wire 25 s% significand_sub [24:0] $end
+$var wire 24 t% significand_b_add_sub [23:0] $end
+$var wire 24 u% significand_b [23:0] $end
+$var wire 25 v% significand_add [24:0] $end
+$var wire 24 w% significand_a [23:0] $end
+$var wire 32 x% result [31:0] $end
+$var wire 1 y% perform $end
+$var wire 32 z% operand_b [31:0] $end
+$var wire 32 {% operand_a [31:0] $end
+$var wire 8 |% exponent_sub [7:0] $end
+$var wire 8 }% exponent_diff [7:0] $end
+$var wire 8 ~% exponent_b_add_sub [7:0] $end
+$var wire 31 !& add_sum [30:0] $end
+$var wire 1 "& Comp_enable $end
+$scope module pe $end
+$var wire 8 #& Exponent_a [7:0] $end
+$var wire 25 $& significand [24:0] $end
+$var wire 8 %& Exponent_sub [7:0] $end
+$var reg 25 && Significand [24:0] $end
+$var reg 5 '& shift [4:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx '&
+bx &&
+bx %&
+bx $&
+bx #&
+x"&
+bx !&
+bx ~%
+bx }%
+bx |%
+bx {%
+bx z%
+xy%
+bx x%
+bx w%
+bx v%
+bx u%
+bx t%
+bx s%
+bx r%
+bx q%
+bx p%
+xo%
+xn%
+bx m%
+bx l%
+0k%
+bx j%
+bx i%
+bx h%
+bx g%
+b100001010010 f%
+b0 e%
+bx d%
+bx c%
+bx b%
+bx a%
+bx `%
+x_%
+bx ^%
+b0 ]%
+b1000001110111101011100001010010 \%
+b1000 [%
+bx Z%
+bx Y%
+bx X%
+bx W%
+bx V%
+xU%
+bx T%
+bx S%
+bx R%
+bx Q%
+bx P%
+bx O%
+xN%
+bx M%
+bx L%
+bx K%
+bx J%
+bx I%
+bx H%
+bx G%
+bx F%
+bx E%
+xD%
+xC%
+bx B%
+bx A%
+0@%
+bx ?%
+bx >%
+bx =%
+bx <%
+b10001111011 ;%
+b1001 :%
+bx 9%
+bx 8%
+bx 7%
+bx 6%
+bx 5%
+x4%
+bx 3%
+b1001 2%
+b1000001000110100001010001111011 1%
+b1000 0%
+bx /%
+bx .%
+bx -%
+bx ,%
+bx +%
+x*%
+bx )%
+bx (%
+bx '%
+bx &%
+bx %%
+bx $%
+x#%
+bx "%
+bx !%
+bx ~$
+bx }$
+bx |$
+bx {$
+bx z$
+bx y$
+bx x$
+xw$
+xv$
+bx u$
+bx t$
+0s$
+bx r$
+bx q$
+bx p$
+bx o$
+b111000010100 n$
+b1000 m$
+bx l$
+bx k$
+bx j$
+bx i$
+bx h$
+xg$
+bx f$
+b1000 e$
+b1000010100011100010111000010100 d$
+b1000 c$
+bx b$
+bx a$
+bx `$
+bx _$
+bx ^$
+x]$
+bx \$
+bx [$
+bx Z$
+bx Y$
+bx X$
+bx W$
+xV$
+bx U$
+bx T$
+bx S$
+bx R$
+bx Q$
+bx P$
+bx O$
+bx N$
+bx M$
+xL$
+xK$
+bx J$
+bx I$
+0H$
+bx G$
+bx F$
+bx E$
+bx D$
+b10001111011 C$
+b111 B$
+bx A$
+bx @$
+bx ?$
+bx >$
+bx =$
+x<$
+bx ;$
+b111 :$
+b1000010000100100001010001111011 9$
+b1000 8$
+bx 7$
+bx 6$
+bx 5$
+bx 4$
+bx 3$
+x2$
+bx 1$
+bx 0$
+bx /$
+bx .$
+bx -$
+bx ,$
+x+$
+bx *$
+bx )$
+bx ($
+bx '$
+bx &$
+bx %$
+bx $$
+bx #$
+bx "$
+x!$
+x~#
+bx }#
+bx |#
+0{#
+bx z#
+bx y#
+bx x#
+bx w#
+b101110000101 v#
+b110 u#
+bx t#
+bx s#
+bx r#
+bx q#
+bx p#
+xo#
+bx n#
+b110 m#
+b1000001011001011110101110000101 l#
+b1000 k#
+bx j#
+bx i#
+bx h#
+bx g#
+bx f#
+xe#
+bx d#
+bx c#
+bx b#
+bx a#
+bx `#
+bx _#
+x^#
+bx ]#
+bx \#
+bx [#
+bx Z#
+bx Y#
+bx X#
+bx W#
+bx V#
+bx U#
+xT#
+xS#
+bx R#
+bx Q#
+0P#
+bx O#
+bx N#
+bx M#
+bx L#
+b101110000101 K#
+b101 J#
+bx I#
+bx H#
+bx G#
+bx F#
+bx E#
+xD#
+bx C#
+b101 B#
+b1000010100111011110101110000101 A#
+b1000 @#
+bx ?#
+bx >#
+bx =#
+bx <#
+bx ;#
+x:#
+bx 9#
+bx 8#
+bx 7#
+bx 6#
+bx 5#
+bx 4#
+x3#
+bx 2#
+bx 1#
+bx 0#
+bx /#
+bx .#
+bx -#
+bx ,#
+bx +#
+bx *#
+x)#
+x(#
+bx '#
+bx &#
+0%#
+bx $#
+bx ##
+bx "#
+bx !#
+b100001010010 ~"
+b100 }"
+bx |"
+bx {"
+bx z"
+bx y"
+bx x"
+xw"
+bx v"
+b100 u"
+b1000010101011101011100001010010 t"
+b1000 s"
+bx r"
+bx q"
+bx p"
+bx o"
+bx n"
+xm"
+bx l"
+bx k"
+bx j"
+bx i"
+bx h"
+bx g"
+xf"
+bx e"
+bx d"
+bx c"
+bx b"
+bx a"
+bx `"
+bx _"
+bx ^"
+bx ]"
+x\"
+x["
+bx Z"
+bx Y"
+0X"
+bx W"
+bx V"
+bx U"
+bx T"
+b100001010010 S"
+b11 R"
+bx Q"
+bx P"
+bx O"
+bx N"
+bx M"
+xL"
+bx K"
+b11 J"
+b1000010001010001011100001010010 I"
+b1000 H"
+bx G"
+bx F"
+bx E"
+bx D"
+bx C"
+xB"
+bx A"
+bx @"
+bx ?"
+bx >"
+bx ="
+bx <"
+x;"
+bx :"
+bx 9"
+bx 8"
+bx 7"
+bx 6"
+bx 5"
+bx 4"
+bx 3"
+bx 2"
+x1"
+x0"
+bx /"
+bx ."
+0-"
+bx ,"
+bx +"
+bx *"
+bx )"
+b110000101001 ("
+b10 '"
+bx &"
+bx %"
+bx $"
+bx #"
+bx ""
+x!"
+bx ~
+b10 }
+b1000000101101110101110000101001 |
+b1000 {
+bx z
+bx y
+bx x
+bx w
+bx v
+xu
+bx t
+bx s
+bx r
+bx q
+bx p
+bx o
+xn
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+xd
+xc
+bx b
+bx a
+0`
+bx _
+bx ^
+bx ]
+bx \
+b101110000101 [
+b1 Z
+bx Y
+bx X
+bx W
+bx V
+bx U
+xT
+bx S
+b1 R
+b1000010100000000110101110000101 Q
+b1000 P
+bx O
+bx N
+bx M
+bx L
+bx K
+xJ
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+xC
+bx B
+bx A
+bx @
+bx ?
+bx >
+bx =
+bx <
+bx ;
+bx :
+x9
+x8
+bx 7
+bx 6
+05
+bx 4
+bx 3
+bx 2
+bx 1
+b100001010010 0
+b0 /
+bx .
+bx -
+bx ,
+bx +
+bx *
+x)
+bx (
+b0 '
+b1000001110111101011100001010010 &
+b1000 %
+b1000 $
+0#
+b0 "
+0!
+$end
+#40
+b1 "
+1!
+#80
+0!
+#120
+b10 "
+1!
+#160
+0!
+#200
+b11 "
+1!
+#240
+0!
+#280
+b1111110100000000000000000000000 3
+b11111101 *
+b0 .
+b0 +
+b0 4
+b1111110100000000000000000000001 ^
+b11111101 U
+b1 Y
+b0 V
+b0 _
+b1111110100000000000000000000010 +"
+b11111101 ""
+b10 &"
+b0 #"
+b0 ,"
+b1111110100000000000000000000011 V"
+b11111101 M"
+b11 Q"
+b0 N"
+b0 W"
+b1111110100000000000000000000100 ##
+b11111101 x"
+b100 |"
+b0 y"
+b0 $#
+b1111110100000000000000000000101 N#
+b11111101 E#
+b101 I#
+b0 F#
+b0 O#
+b1111110100000000000000000000110 y#
+b11111101 p#
+b110 t#
+b0 q#
+b0 z#
+b1111110100000000000000000000111 F$
+b11111101 =$
+b111 A$
+b0 >$
+b0 G$
+b1111110100000000000000000001000 q$
+b11111101 h$
+b1000 l$
+b0 i$
+b0 r$
+b1111110100000000000000000001001 >%
+b11111101 5%
+b1001 9%
+b0 6%
+b0 ?%
+b1111110100000000000000000000000 i%
+b11111101 `%
+b0 d%
+b0 a%
+b0 j%
+1#
+b0 "
+1!
+#320
+0!
+#360
+0#
+b1 "
+1!
+#400
+0!
+#440
+b10 "
+1!
+#480
+0!
+#520
+b11 "
+1!
+#560
+0!
+#600
+1#
+b0 "
+1!
+#640
+0!
+#680
+0#
+b1 "
+1!
+#720
+0!
+#760
+b10 "
+1!
+#800
+0!
+#840
+b11 "
+1!
+#880
+0!
+#920
+1#
+b0 "
+1!
+#960
+0!
+#1000
+0#
+b1 "
+1!
