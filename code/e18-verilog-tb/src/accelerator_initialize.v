@@ -1,12 +1,14 @@
 `timescale 1ns/100ps
 `include "potential_decay.v"
+`include "mac.v"
+`include "Addition_Subtraction.v"
 
 module accelerator_initialize;
 
     parameter  number_of_neurons=10;                        //initiailize number of neurons
     reg CLK;                                                //clock
     reg clear;                                              //clear to start timestep
-    reg[4:0] decay_rate;                                    //define decay rate
+    reg[3:0] decay_rate;                                    //define decay rate
     reg[3:0] CLK_count;                                     //counter for clocks
 
     reg[11:0] source_addresses[0:number_of_neurons-1];          //write her simulate spike packets by sending source addresses
@@ -19,8 +21,8 @@ module accelerator_initialize;
     wire [31:0] results_potential_decay[0:number_of_neurons-1];   //store results of potential decay
     wire [31:0] results_potential_adder[0:number_of_neurons-1];     //store results of potential adder
 
-    //test membrane potential
-    potential_decay potential_decay_1(CLK,clear,neuron_addresses[0], decay_rate,membrane_potential[0], results_potential_decay[0]);
+    // //test membrane potential
+    // potential_decay potential_decay_1(CLK, clear, neuron_addresses[0], decay_rate, membrane_potential[0], results_potential_decay[0]);
 
     //generate 10 potential decay units
     genvar i;
@@ -35,22 +37,43 @@ module accelerator_initialize;
                 .output_potential_decay(results_potential_decay[i])
             );
         end
-
     endgenerate
+
+    //generate 10 accumulators
+    generate
+        for(i=0; i<10; i=i+1) begin
+            mac m(
+                .CLK(CLK),
+                .neuron_address(neuron_addresses[i]),
+                .source_address(source_addresses[i]),
+                .weights_array(weights_arrays[i]),
+                .source_addresses_array(source_addresses_arrays[i]),
+                .clear(clear),
+                .mult_output(results_mac[i])
+            );
+        end
+    endgenerate
+
 
     // Observe the timing on gtkwave
     initial
     begin
         $dumpfile("accelerator_initialize.vcd");
-        $dumpvars(0,accelerator_initialize);
+        $dumpvars(0, accelerator_initialize);
     end
 
-    //assign inputs
+    // Print the outputs when ever the inputs change
+    initial
+    begin
+        $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                      Source_address: %b\n                     MAC result: %b\n", neuron_addresses[6], membrane_potential[6], decay_rate, results_potential_decay[6], source_addresses[0], results_mac[6]);
+    end
+
+    // //assign inputs
     initial begin
         CLK = 1'b0;
         CLK_count = 0;
         clear = 1'b0;
-        decay_rate = 4'd8;
+        decay_rate = 4'b1000;
 
         //neuron addresses
         neuron_addresses[0] = 12'd0;
@@ -77,14 +100,46 @@ module accelerator_initialize;
         membrane_potential[8] = 32'h428e2e14;
         membrane_potential[9] = 32'h411a147b;
 
+        //send source addresses array first
+        source_addresses_arrays[0] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[1] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[2] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[3] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[4] = {12'd1, 12'd2, 12'd5, 12'd0, 12'd0};
+        source_addresses_arrays[5] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[6] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[7] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[8] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[9] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+
+        //assign the weights
+        weights_arrays[0] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[1] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[2] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[3] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[4] = {32'h423f47ae, 32'h4109999a, 32'h0, 32'h0, 32'h0};
+        weights_arrays[5] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[6] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[7] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[8] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+
+        #40
+        source_addresses[6] = 12'd3;
+        source_addresses[4] = 12'd1;
+
+        #4
+        source_addresses[6] = 12'd4; 
+        source_addresses[4] = 12'd2; 
+
+        #4
+        source_addresses[6] = 12'd5;
+
+        #4
+        source_addresses[4] = 12'd7; 
+
         #100
         $finish;   
-    end
-
-    // Print the outputs when ever the inputs change
-    initial
-    begin
-        $monitor($time, " Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b", membrane_potential[0], decay_rate, results_potential_decay[0]);
     end
 
     //invert clock every 4 seconds
@@ -105,4 +160,5 @@ module accelerator_initialize;
             clear = 1'b0;
         end
     end
+
 endmodule

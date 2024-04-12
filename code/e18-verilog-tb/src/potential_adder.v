@@ -1,29 +1,45 @@
+`include "Addition_Subtraction.v"
+
 module potential_adder(
     input wire [31:0] v_threshold,
     input wire [31:0] input_weight, 
     input wire [31:0] decayed_potential, 
-    output reg [31:0] potential, 
+    output reg [31:0] final_potential, 
     output reg spike);
 
     wire Exception;
     wire [31:0] add_value;
     wire greater;
+    reg [31:0] added_potential
 
     // Addition
     Addition_Subtraction Addition_Subtraction_2(input_weight, decayed_potential, 1'b0, Exception, add_value);
-    comparator comparator_2(potential, v_threshold, greater);
 
+    //subtraction
+    Addition_Subtraction Addition_Subtraction_1(added_potential, v_threshold, 1'b1, Exception, reset_value);
+
+    //compare the added potential to the threshold
+    comparator comparator_2(added_potential, v_threshold, greater);
+
+    //if threshold value reached spiked
     always@(*) begin
-        
-        potential = add_value;
+        added_potential = add_value;
 
         // Compare to see if spiked
         if(greater==1'b1) spike=1'b1;
         else spike=1'b0;    
-    end 
+    end
 
-    // // First add the connection inputs to the decayed potential
-    // assign potential = input_weight + decayed_potential;
-
-
+    //if spiked send spike information to network interface
+    //also send the new reset potential value
+    //if not spiked send the adder potential
+    always@(spike) begin
+        if(spike==1'b1) begin
+            // Reset the potential according to the model
+            // V <- V - Vth
+            final_potential = reset_value;
+        end else begin
+            final_potential = added_potential;
+        end
+    end
 endmodule

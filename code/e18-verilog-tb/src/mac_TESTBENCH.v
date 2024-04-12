@@ -25,7 +25,6 @@ module testbench;
                 .mult_output(results[i])
             );
         end
-
     endgenerate
 
     // mac m1(CLK, neuron_address, source_address, weights_array, source_addresses_array, clear, result);
@@ -37,16 +36,15 @@ module testbench;
     end
 
     // Observe the timing on gtkwave
-    initial
-    begin
+    initial begin
         $dumpfile("mac_wavedata.vcd");
         $dumpvars(0,testbench);
     end
 
-    initial
-    // Assign the inputs
-    begin 
 
+    initial begin 
+        
+        //initialize clock
         CLK = 1'b0;
         CLK_count = 0;
         clear = 1'b0;
