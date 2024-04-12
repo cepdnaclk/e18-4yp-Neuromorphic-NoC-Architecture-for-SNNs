@@ -4,16 +4,19 @@
 module test_potential_decay;
 
     reg CLK;
+    reg clear;
     wire[31:0] output_potential;
     reg[31:0] input_potential;
     reg[2:0] decay_rate;
+    reg[3:0] CLK_count;
+    reg[11:0] neuron_addresses[0:9];
 
     //test membrane potential value 4. Divided by 2 is 2
-    potential_decay potential_decay_1(CLK,decay_rate,input_potential, output_potential);
+    potential_decay potential_decay_1(CLK,clear,decay_rate,input_potential, output_potential);
 
     //record on gtkwave
     initial begin
-        $dumpfile("test_potential_decay.vcd");
+        $dumpfile("potential_decay_test.vcd");
         $dumpvars(0, test_potential_decay);
         #100
         $finish;
@@ -22,6 +25,8 @@ module test_potential_decay;
     //assign inputs
     initial begin
         CLK = 1'b0;
+        CLK_count = 0;
+        clear = 1'b0;
         decay_rate = 3'd1;
         input_potential = 32'b01000001001000000000000000000000;
     end
@@ -35,4 +40,20 @@ module test_potential_decay;
     //invert clock every 4 seconds
     always
         #4 CLK = ~CLK;
+
+    //timestep is 4 clockcycles
+    always @(posedge CLK) begin
+
+        if(CLK_count==3) begin
+            CLK_count=0;
+            clear = 1'b1;
+        end else begin
+            CLK_count = CLK_count+1;
+        end
+
+        if(CLK_count==1) begin
+            clear = 1'b0;
+        end
+    end
+    
 endmodule
