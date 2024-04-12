@@ -2,8 +2,9 @@
 `include "potential_decay.v"
 `include "mac.v"
 `include "Addition_Subtraction.v"
+`include "potential_adder.v"
 
-module accelerator_initialize;
+module testbench;
 
     parameter  number_of_neurons=10;                        //initiailize number of neurons
     reg CLK;                                                //clock
@@ -16,13 +17,12 @@ module accelerator_initialize;
     reg[59:0] source_addresses_arrays[0:number_of_neurons-1];   //initialize connection by writing source addresses to the accumulators
     reg[11:0] neuron_addresses[0:number_of_neurons-1];          //initialize with neuron addresses
     reg[31:0] membrane_potential[0:number_of_neurons-1];        //initialize membrane potential values
+    reg[31:0] v_threshold[0:number_of_neurons-1];              //threshold values
 
-    wire [31:0] results_mac[0:number_of_neurons-1];               //store results from the mac
-    wire [31:0] results_potential_decay[0:number_of_neurons-1];   //store results of potential decay
-    wire [31:0] results_potential_adder[0:number_of_neurons-1];     //store results of potential adder
-
-    // //test membrane potential
-    // potential_decay potential_decay_1(CLK, clear, neuron_addresses[0], decay_rate, membrane_potential[0], results_potential_decay[0]);
+    wire[31:0] results_mac[0:number_of_neurons-1];                 //store results from the mac
+    wire[31:0] results_potential_decay[0:number_of_neurons-1];     //store results of potential decay
+    wire[31:0] final_potential[0:number_of_neurons-1];             //potential form the potential adder
+    wire spike[0:number_of_neurons-1];                              //spike signifier from potential decay
 
     //generate 10 potential decay units
     genvar i;
@@ -34,7 +34,8 @@ module accelerator_initialize;
                 .neuron_address_initialization(neuron_addresses[i]),
                 .decay_rate(decay_rate),
                 .membrane_potential_initialization(membrane_potential[i]),
-                .output_potential_decay(results_potential_decay[i])
+                .output_potential_decay(results_potential_decay[i]),
+                .new_potential(final_potential[i])
             );
         end
     endgenerate
@@ -54,18 +55,33 @@ module accelerator_initialize;
         end
     endgenerate
 
+    //genrate corresponding 10 potential adders
+    generate
+        for(i=0; i<10; i=i+1) begin
+            
+            potential_adder pa(
+                .clear(clear),
+                .v_threshold(v_threshold[i]),
+                .input_weight(results_mac[i]),
+                .decayed_potential(results_potential_decay[i]),
+                .final_potential(final_potential[i]),
+                .spike(spike[i])
+            );
+        end
+    endgenerate
+
 
     // Observe the timing on gtkwave
     initial
     begin
-        $dumpfile("accelerator_initialize.vcd");
-        $dumpvars(0, accelerator_initialize);
+        $dumpfile("testbench.vcd");
+        $dumpvars(0, testbench);
     end
 
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                      Source_address: %b\n                     MAC result: %b\n", neuron_addresses[6], membrane_potential[6], decay_rate, results_potential_decay[6], source_addresses[0], results_mac[6]);
+        $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", neuron_addresses[6], membrane_potential[6], decay_rate, results_potential_decay[6], source_addresses[0], results_mac[6],v_threshold[6],final_potential[6], spike[6]);
     end
 
     // //assign inputs
@@ -73,7 +89,7 @@ module accelerator_initialize;
         CLK = 1'b0;
         CLK_count = 0;
         clear = 1'b0;
-        decay_rate = 4'b1000;
+        decay_rate = 4'b0010;
 
         //neuron addresses
         neuron_addresses[0] = 12'd0;
@@ -86,7 +102,6 @@ module accelerator_initialize;
         neuron_addresses[7] = 12'd7;
         neuron_addresses[8] = 12'd8;
         neuron_addresses[9] = 12'd9;
-
 
         //initial membrane potential values
         membrane_potential[0] = 32'h41deb852;
@@ -124,19 +139,31 @@ module accelerator_initialize;
         weights_arrays[8] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
         weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
 
+        //threshold values
+        v_threshold[0] = 32'h42ac8a3d;
+        v_threshold[1] = 32'h4237851f;
+        v_threshold[2] = 32'h4048f5c3;
+        v_threshold[3] = 32'h42910000;
+        v_threshold[4] = 32'h419d0a3d;
+        v_threshold[5] = 32'h426b28f6;
+        v_threshold[6] = 32'h42700000;
+        v_threshold[7] = 32'h4120cccd;
+        v_threshold[8] = 32'h4215ae14;
+        v_threshold[9] = 32'h4287c7ae;
+
         #40
         source_addresses[6] = 12'd3;
         source_addresses[4] = 12'd1;
 
-        #4
-        source_addresses[6] = 12'd4; 
-        source_addresses[4] = 12'd2; 
+        // #4
+        // source_addresses[6] = 12'd4; 
+        // source_addresses[4] = 12'd2; 
 
-        #4
-        source_addresses[6] = 12'd5;
+        // #4
+        // source_addresses[6] = 12'd5;
 
-        #4
-        source_addresses[4] = 12'd7; 
+        // #4
+        // source_addresses[4] = 12'd7; 
 
         #100
         $finish;   

@@ -7,6 +7,7 @@ module potential_decay(
     input wire[11:0] neuron_address_initialization,            //neuron address
     input wire[3:0] decay_rate,                 //input decay rate,
     input wire[31:0] membrane_potential_initialization,        // membrane_potential
+    input wire[31:0] new_potential,             //input from the potential adder side
     output reg[31:0] output_potential_decay     //output of the new potential value after decay
     );   
     
@@ -31,6 +32,12 @@ module potential_decay(
         neuron_address = neuron_address_initialization;
         membrane_potential = membrane_potential_initialization;
     end
+
+    //when potential adder is done assign to membrane potential
+    always @(new_potential) begin
+        membrane_potential = new_potential;
+    end
+
 
     //clear signal initiate
     always @(clear) begin
