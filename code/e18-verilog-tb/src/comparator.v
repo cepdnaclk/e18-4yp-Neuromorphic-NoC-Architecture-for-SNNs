@@ -16,7 +16,7 @@ module comparator(
     always @(*) begin
 
         sign = result[31];
-
+        
         //if result is positive a is greater than b
         if(sign == 0) greater = 1;
         else greater=0;

@@ -19,7 +19,6 @@ module reset(
             // Reset the potential according to the model
             // V <- V - Vth
             potential_to_mem = reset_value;
-
         end else
             assign potential_to_mem = adder_potential;
     end
