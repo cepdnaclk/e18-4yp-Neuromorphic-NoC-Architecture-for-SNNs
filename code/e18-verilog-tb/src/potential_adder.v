@@ -14,20 +14,18 @@ module potential_adder(
     wire Exception;
     wire [31:0] add_value;
     wire greater;
-    reg [31:0] added_potential;
 
     // Addition
     Addition_Subtraction Addition_Subtraction_2(input_weight, decayed_potential, 1'b0, Exception, add_value);
 
     //subtraction
-    Addition_Subtraction Addition_Subtraction_1(added_potential, v_threshold, 1'b1, Exception, reset_value);
+    Addition_Subtraction Addition_Subtraction_1(add_value, v_threshold, 1'b1, Exception, reset_value);
 
     //compare the added potential to the threshold
-    comparator comparator_2(added_potential, v_threshold, greater);
+    comparator comparator_2(add_value, v_threshold, greater);
 
     //if threshold value reached spiked
-    always@(*) begin
-        added_potential = add_value;
+    always@(reset_value, add_value) begin
 
         // Compare to see if spiked
         if(greater==1'b1) spike=1'b1;
@@ -38,8 +36,12 @@ module potential_adder(
         // V <- V - Vth
             final_potential = reset_value;
         end else begin
-            final_potential = added_potential;
+            final_potential = add_value;
         end  
+    end
+
+    initial begin
+        spike = 1'b0;
     end
 
     //if spiked send spike information to network interface
