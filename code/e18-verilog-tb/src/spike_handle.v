@@ -118,9 +118,9 @@ module spike_handle(
     end
 
 
-    initial
-    begin
-        $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
-    end
+    // initial
+    // begin
+    //     $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
+    // end
 
 endmodule
