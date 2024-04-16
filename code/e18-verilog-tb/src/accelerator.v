@@ -18,6 +18,7 @@ module accelerator(
         assign spiked= spike_adder;
     end
 
+    //initialization
     mac m1(CLK, spike_in, weight, mac_out);
     potential_decay p1 (CLK, decay_rate, current_potential, decayed_potential);
     potential_adder a1(v_threshold, mac_out, decayed_potential, adder_out, spike_adder);
