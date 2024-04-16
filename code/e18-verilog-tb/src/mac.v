@@ -1,5 +1,5 @@
 // MAC unit can process 4 input spikes together
-// 4 spike inputs 
+// 4 spike inputs  
 // 4 weights corresponding to the synapse
 
 /*  Floating point addition
