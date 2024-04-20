@@ -96,31 +96,33 @@ module spike_handle(
     end
 
     //packet generation
-    always @(clear) begin
-        
+    always @(spikes) begin
+        #0.5
         //send out spikes when clear becomes low. For now at least!
-        if(clear==1'b0) begin
-            
+        // if(clear==1'b0) begin
+            check = ~check;
             //if spiked send the source address to the relevant accumulator
             for(i=0; i<=9; i=i+1) begin
                 if(spike_register[i]==1) begin
-                    check = ~check;
+                    
                     for(j=connection_pointer[i]; j<connection_pointer[i+1]; j=j+1) begin
                         packet = #1 {neuron_addresses[i], downstream_connections[j]};
                     end
+
+                    spike_register[i]=0;
                 end
             end
-        end else if(clear==1'b1) begin
-            for(i=0; i<10; i=i+1) begin
-                spike_register[i]=1'b0;
-            end
-        end
+        // end else if(clear==1'b1) begin
+        //     for(i=0; i<10; i=i+1) begin
+        //         spike_register[i]=1'b0;
+        //     end
+        // end
     end
 
 
-    initial
-    begin
-        $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
-    end
+    // initial
+    // begin
+    //     $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
+    // end
 
 endmodule
