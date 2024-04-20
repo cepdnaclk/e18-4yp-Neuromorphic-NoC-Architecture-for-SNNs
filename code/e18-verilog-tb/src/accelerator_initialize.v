@@ -2,7 +2,8 @@
 `include "potential_decay.v"
 `include "mac.v"
 `include "Addition_Subtraction.v"
-`include "potential_adder.v"
+// `include "potential_adder.v"
+// `include "spike_handle.v"
 
 module testbench;
 
@@ -18,11 +19,17 @@ module testbench;
     reg[11:0] neuron_addresses[0:number_of_neurons-1];          //initialize with neuron addresses
     reg[31:0] membrane_potential[0:number_of_neurons-1];        //initialize membrane potential values
     reg[31:0] v_threshold[0:number_of_neurons-1];              //threshold values
+    reg[359:0] downstream_connections_initialization;    //input to initialize the dowanstream connections
+    reg[119:0] neuron_addresses_initialization;                //input to initialize the neruon addresses
+    reg[54:0] connection_pointer_initialization;               //input to initialize the connection pointers
+    reg[11:0] neuron_address;                               //to store the nueron address from the arrived packet
+    reg[11:0] source_address;                               //to store source address from the arrived packet
 
     wire[31:0] results_mac[0:number_of_neurons-1];                 //store results from the mac
     wire[31:0] results_potential_decay[0:number_of_neurons-1];     //store results of potential decay
     wire[31:0] final_potential[0:number_of_neurons-1];             //potential form the potential adder
     wire spike[0:number_of_neurons-1];                              //spike signifier from potential decay
+    wire[23:0] packet;                          //packet containing neuron address and sources address
 
     //generate 10 potential decay units
     genvar i;
@@ -58,7 +65,6 @@ module testbench;
     //genrate corresponding 10 potential adders
     generate
         for(i=0; i<10; i=i+1) begin
-            
             potential_adder pa(
                 .clear(clear),
                 .v_threshold(v_threshold[i]),
@@ -70,6 +76,15 @@ module testbench;
         end
     endgenerate
 
+    spike_handle sp1(
+        .CLK(CLK),
+        .clear(clear),
+        .spikes({spike[0],spike[1],spike[2],spike[3],spike[4],spike[5],spike[6],spike[7],spike[8],spike[9]}),
+        .neuron_addresses_initialization(neuron_addresses_initialization),
+        .connection_pointer_initialization(connection_pointer_initialization),           //input to initialize the connection pointers
+        .downstream_connections_initialization(downstream_connections_initialization),    //input to initialize the dowanstream connections
+        .packet(packet)               //outgoing packet         
+    );
 
     // Observe the timing on gtkwave
     initial
@@ -78,11 +93,11 @@ module testbench;
         $dumpvars(0, testbench);
     end
 
-    // Print the outputs when ever the inputs change
-    initial
-    begin
-        $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", neuron_addresses[6], membrane_potential[6], decay_rate, results_potential_decay[6], source_addresses[0], results_mac[6],v_threshold[6],final_potential[6], spike[6]);
-    end
+    // // Print the outputs when ever the inputs change
+    // initial
+    // begin
+    //     $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", neuron_addresses[0], membrane_potential[0], decay_rate, results_potential_decay[0], source_addresses[0], results_mac[0],v_threshold[0],final_potential[0], spike[0]);
+    // end
 
     // //assign inputs
     initial begin
@@ -103,6 +118,27 @@ module testbench;
         neuron_addresses[8] = 12'd8;
         neuron_addresses[9] = 12'd9;
 
+        //for spike handling module
+        neuron_addresses_initialization = {neuron_addresses[0],neuron_addresses[1],neuron_addresses[2],
+        neuron_addresses[3],neuron_addresses[4],neuron_addresses[5],neuron_addresses[6],neuron_addresses[7],
+        neuron_addresses[8],neuron_addresses[9]};
+
+        //CSR
+        connection_pointer_initialization = {5'd0, 5'd3, 5'd5, 5'd8, 5'd10, 5'd12, 5'd14, 5'd15, 5'd17, 5'd18, 5'd19};
+
+        downstream_connections_initialization = {12'b000000000011, 12'b000000000101, 12'b000000000111, 
+        12'b000000000100, 12'b000000000110,
+        12'b000000000100, 12'b000000000101, 12'b000000000110,
+        12'b000000001000, 12'b000000001001,
+        12'b000000001000, 12'b000000001001,
+        12'b000000001000, 12'b000000001001,
+        12'b000000001001,
+        12'b000000001000, 12'b000000001001,
+        12'b111111111011,
+        12'b111111111100,
+        132'd0};
+
+
         //initial membrane potential values
         membrane_potential[0] = 32'h41deb852;
         membrane_potential[1] = 32'h42806b85;
@@ -116,10 +152,10 @@ module testbench;
         membrane_potential[9] = 32'h411a147b;
 
         //send source addresses array first
-        source_addresses_arrays[0] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[0] = {12'b001111111000, 12'b111111111111, 12'b111111111111, 12'b111111111111, 12'b111111111111};
         source_addresses_arrays[1] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[2] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[3] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[3] = {12'd0, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[4] = {12'd1, 12'd2, 12'd5, 12'd0, 12'd0};
         source_addresses_arrays[5] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[6] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
@@ -140,20 +176,20 @@ module testbench;
         weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
 
         //threshold values
-        v_threshold[0] = 32'h42ac8a3d;
+        v_threshold[0] = 32'h42200000;
         v_threshold[1] = 32'h4237851f;
         v_threshold[2] = 32'h4048f5c3;
         v_threshold[3] = 32'h42910000;
-        v_threshold[4] = 32'h419d0a3d;
+        v_threshold[4] = 32'h43480000;
         v_threshold[5] = 32'h426b28f6;
-        v_threshold[6] = 32'h42700000;
-        v_threshold[7] = 32'h4120cccd;
+        v_threshold[6] = 32'h42200000;
+        v_threshold[7] = 32'h43480000;
         v_threshold[8] = 32'h4215ae14;
         v_threshold[9] = 32'h4287c7ae;
 
         #40
-        source_addresses[6] = 12'd3;
-        source_addresses[4] = 12'd1;
+        source_addresses[0] = 12'b001111111000;
+        // source_addresses[4] = 12'd1;
 
         // #4
         // source_addresses[6] = 12'd4; 
@@ -165,8 +201,16 @@ module testbench;
         // #4
         // source_addresses[4] = 12'd7; 
 
-        #100
+        #200
         $finish;   
+    end
+
+    //when packet arrive from the potential adder send the source address to the relevant mac unit 
+    always @(packet) begin
+        neuron_address = packet[23:12];
+        source_address = packet[11:0];
+
+        source_addresses[source_address] = neuron_address;
     end
 
     //invert clock every 4 seconds
