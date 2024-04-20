@@ -40,6 +40,14 @@ module potential_adder(
         end  
     end
 
+    //reset the spike register
+    always @(clear) begin
+        if(clear==1'b1) begin
+            spike = 1'b0;
+        end
+    end
+
+
     initial begin
         spike = 1'b0;
     end
