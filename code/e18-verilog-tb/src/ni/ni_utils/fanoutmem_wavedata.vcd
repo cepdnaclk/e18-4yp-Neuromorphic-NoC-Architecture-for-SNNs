@@ -1,0 +1,74 @@
+$date
+	Tue Apr  9 05:16:30 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module fanout_TESTBENCH $end
+$var wire 60 ! dest_neuron_address [59:0] $end
+$var parameter 64 " ADDRSIZE $end
+$var parameter 32 # NUM_BITS_ADDR $end
+$var parameter 32 $ NUM_CONNECTIONS $end
+$var reg 12 % source_neuron_address [11:0] $end
+$scope module f1 $end
+$var wire 12 & source_neuron_address [11:0] $end
+$var parameter 64 ' ADDRSIZE $end
+$var parameter 32 ( NEURONS $end
+$var parameter 32 ) NUM_BITS_ADDR $end
+$var parameter 32 * NUM_CONNECTIONS $end
+$var parameter 64 + total_connections $end
+$var reg 60 , dest_neuron_address [59:0] $end
+$var integer 32 - k [31:0] $end
+$scope begin $ivl_for_loop0 $end
+$var integer 32 . i [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1001110001000 +
+b101 *
+b1100 )
+b10000000000 (
+b111100 '
+b101 $
+b1100 #
+b111100 "
+$end
+#0
+$dumpvars
+b11 .
+b11 -
+bx ,
+b0 &
+b0 %
+bx !
+$end
+#1
+b11000000000101000000000111xxxxxxxxxxxxxxxxxxxxxxxx !
+b11000000000101000000000111xxxxxxxxxxxxxxxxxxxxxxxx ,
+#2
+b1000 .
+b11 -
+bx !
+bx ,
+b10 %
+b10 &
+#3
+b100000000000101000000000110xxxxxxxxxxxxxxxxxxxxxxxx !
+b100000000000101000000000110xxxxxxxxxxxxxxxxxxxxxxxx ,
+#5
+b101 .
+b10 -
+bx !
+bx ,
+b1 %
+b1 &
+#6
+b100000000000110xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx !
+b100000000000110xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ,
+#15
