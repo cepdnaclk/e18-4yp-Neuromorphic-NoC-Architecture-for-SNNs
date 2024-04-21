@@ -1,5 +1,3 @@
-
-
 module spike_handle(
     input wire CLK,            //clock
     input wire clear,          //clear to start timestep
@@ -120,9 +118,9 @@ module spike_handle(
     end
 
 
-    // initial
-    // begin
-    //     $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
-    // end
+    initial
+    begin
+        $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
+    end
 
 endmodule
