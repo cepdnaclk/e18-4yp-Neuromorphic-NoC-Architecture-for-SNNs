@@ -4,7 +4,7 @@ ___
 
 ## Description
 
-### This project aims to develop a novel neuromorphic NoC architecture based on RISC-V ISA to support spiking neural network applications, and test it on FPGA.
+### This project aims to develop a novel neuromorphic NoC architecture based on RISC-V ISA to support spiking neural network applications, and test it on an FPGA.
 
 
 Our research presents the design of a scalable and configurable Network-on-Chip (NoC) based on the RISC-V instruction set architecture (ISA) which allows for hardware- level processing of spiking neural networks, and the implementation of the design on a FPGA. RISC-V was chosen as the base ISA since it is not only highly practical and popular, but also completely open source and amenable to custom extensions.
