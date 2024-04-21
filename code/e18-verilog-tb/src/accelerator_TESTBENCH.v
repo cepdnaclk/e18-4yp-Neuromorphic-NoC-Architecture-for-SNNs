@@ -15,7 +15,7 @@ module testbench;
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  spike_in: %b             weight: %b              v_threshold: %b     decayed_potential: %b           spiked: %b              potential_to_mem: %b",spike_in, weight, v_threshold, decayed_potential, spiked, potential_to_mem);
+        $monitor($time, "  spike_in: %b             weight: %b              v_threshold: %b     decayed_potential: %b           spiked: %b              potential_to_mem: %b",spike_in, weight, v_threshold, current_potential, spiked, potential_to_mem);
     end
 
     // Observe the timing on gtkwave
@@ -32,10 +32,16 @@ module testbench;
 
         #3
         spike_in  = 4'd0;
-        weight = 128'd64;
-        v_threshold = 32'd78;
-        current_potential = 32'd20;
-        decay_rate = 3'd4;
+        
+        weight = 128'd82146290175160474081457091226028212224;       // 0.1, 2, 1.2, 3
+                                                                    // 00111101110011001100110011001101
+                                                                    // 01000000000000000000000000000000
+                                                                    // 00111111100110011001100110011010
+                                                                    // 01000000010000000000000000000000
+        
+        v_threshold = 32'd1088841318;                               // 7.2 -> 01000000111001100110011001100110
+        current_potential = 32'd1082130432;                         // 4.0
+        decay_rate = 3'd1;
 
         #8
 

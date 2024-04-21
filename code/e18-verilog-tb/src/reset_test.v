@@ -22,9 +22,9 @@ module reset_test;
 
     //assign inputs
     initial begin
-        adder_potential=32'b01000001001000000000000000000000;
+        adder_potential=32'b01000001011110000000000000000000;
         spiked=1'b1;
-        v_threshold=32'b01000001000100000000000000000000;
+        v_threshold=32'b01000001011110000000000000000000;
     end
 
     // Print the outputs when ever the inputs change
