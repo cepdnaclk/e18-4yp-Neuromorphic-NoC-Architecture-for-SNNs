@@ -53,7 +53,7 @@ The main goal of this research is to optimize the RISC-V processing node network
 ## Related work
 ## A. Spiking Neural Networks
 
-![Sample Image](./images/snn.png) 
+<!--![Sample Image](./images/snn.png) -->
 
 Spiking neural networks fall in the category of artificial neural networks. Several layers of neurons connected by synapses make up an ANN. SNNs follow more complex design rules and represent a newer variant of ANNs, considered to be a third-generation neural network. It resembles the activities of the brain more closely by incorporating time. SNNs transmit spikes as events throughout the neural network. A spike is considered a rapid change of voltage that occurs over a short period of time. When a synapse receives an action potential or a spike from one of its pre-synaptic neurons, it will transmit the spike to its post synaptic neurons. This transmission leads to an update of the postsynaptic neuron’s membrane potential which is influenced by factors such as the weight of the synapses and other neuron parameters.
 
