@@ -23,7 +23,7 @@ module network_interface(
     reg[11:0] neuron_addresses[0:number_of_neurons-1];          //initialize with neuron addresses
     reg[4:0] connection_pointer[0:number_of_neurons];         //point to connection starting point according to CSR
     reg[11:0] downstream_connections[0:(number_of_neurons*3)];  //support 5 connections per neuron
-    reg spike_register[0:number_of_neurons-1];                  //register the spikes
+    reg al[0:number_of_neurons-1];                  //register the spikes
     reg[4:0] i;                                             //index for iteration
     reg[4:0] j;
     reg check=0;
