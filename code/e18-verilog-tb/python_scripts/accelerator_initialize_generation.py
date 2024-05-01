@@ -308,6 +308,13 @@ def generate_verilog_module(num_inputs):
     verilog_code += "\n\n\n"   
     ##################################
 
+    ##################################
+    verilog_code += "    //Inputs\n"
+
+
+    ##################################
+
+
     
     # ###############
     
@@ -346,6 +353,8 @@ with open(verilog_file, "w") as f:
 print(f"Verilog module with {num_inputs} inputs generated in {verilog_file}.")
 
 
-
+with open('code/e18-verilog-tb/python_scripts/zero.txt', 'r') as file: 
+    # Read lines from the file and store them in an array 
+    array_of_lines_1 = file.readlines()
 
 
