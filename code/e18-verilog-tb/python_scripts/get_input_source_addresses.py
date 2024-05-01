@@ -19,14 +19,14 @@ def generate_verilog_module():
             data.append(row)
 
     count = -1
-    start_addr = 1024
+    start_addr = 1023
     for row in data:
         for element in row:
             count = count + 1
+            start_addr = start_addr +1
             print(count, element)
             if (element > 0.75):
                 verilog_code += f"        source_addresses[{count}] = 12'd{start_addr};"
-                start_addr = start_addr +1
                 if (count % 100 == 0):
                     verilog_code += "\n"
 
