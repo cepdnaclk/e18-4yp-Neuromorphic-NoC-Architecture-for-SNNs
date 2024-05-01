@@ -32,7 +32,7 @@ module potential_decay(
         neuron_address = neuron_address_initialization;
         membrane_potential = membrane_potential_initialization;
     end
-
+ 
     //when potential adder is done assign to membrane potential
     always @(new_potential) begin
         membrane_potential = new_potential;
