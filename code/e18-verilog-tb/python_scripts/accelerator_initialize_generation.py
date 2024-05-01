@@ -217,7 +217,7 @@ def generate_verilog_module(num_inputs):
     ##################################
     verilog_code += "    //initial membrane potential values\n"
     for i in range (num_neurons_in_SNN):
-        verilog_code += f"        membrane_potential[{i}] = 32'h00000000;"
+        verilog_code += f"        membrane_potential[{i}] = 32'h3a83126f;"
         if (i % 100 == 0):
             verilog_code += "\n"
     
