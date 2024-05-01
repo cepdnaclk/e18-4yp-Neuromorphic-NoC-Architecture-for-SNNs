@@ -185,12 +185,12 @@ def generate_verilog_module(num_inputs):
     for i in range (num_neurons_in_SNN+1):
         
         if (i <= 783):
-            verilog_code += f"        14'd{200*i}, "
+            verilog_code += f"        18'd{200*i}, "
             if (i % 100 == 0):
                 verilog_code += "\n"
         else:
             val = val +10
-            verilog_code += f"        14'd{val}, "
+            verilog_code += f"        18'd{val}, "
             if (i % 100 == 0):
                 verilog_code += "\n"
     
@@ -266,7 +266,9 @@ def generate_verilog_module(num_inputs):
     verilog_code += "    //Assign the weights\n"
 
     for i in range (0, 784):
+
         verilog_code += f"        weights_arrays[{i}] = {{32'b00111111100000000000000000000000}};"
+
 
     with open('code/e18-verilog-tb/python_scripts/weights1.txt', 'r') as file: 
         # Read lines from the file and store them in an array 
