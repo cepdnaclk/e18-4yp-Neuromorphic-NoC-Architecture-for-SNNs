@@ -7,7 +7,7 @@ def generate_verilog_module():
     topBorder=0
     lowerBorder=0
     number_of_neruons=994+1
-    index_width=14
+    index_width=18
     for i in range (number_of_neruons):
         topBorder = (number_of_neruons*index_width)-1 - (i*index_width);
         lowerBorder = (number_of_neruons*index_width)-index_width - (i*index_width);
