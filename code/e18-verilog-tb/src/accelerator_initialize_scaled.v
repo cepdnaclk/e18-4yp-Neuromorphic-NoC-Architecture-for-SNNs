@@ -1,8 +1,8 @@
 `timescale 1ns/100ps
-`include "potential_decay.v"
-`include "mac.v"
-`include "Addition_Subtraction.v"
-`include "potential_adder.v"
+// `include "potential_decay.v"
+// `include "mac.v"
+// `include "Addition_Subtraction.v"
+// `include "potential_adder.v"
 // `include "network_interface.v"
 
 module testbench;
