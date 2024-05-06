@@ -227,7 +227,7 @@ def generate_verilog_module(num_inputs):
     ##################################
     verilog_code += "    //threshold values\n"
     for i in range (num_neurons_in_SNN):
-        verilog_code += f"        v_threshold[{i}] = 32'h3f800000;"
+        verilog_code += f"        v_threshold[{i}] = 32'h3dcccccd;"
         if (i % 100 == 0):
             verilog_code += "\n"
     
