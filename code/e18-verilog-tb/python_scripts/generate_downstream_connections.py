@@ -7,11 +7,11 @@ def generate_verilog_module():
     topBorder=0
     lowerBorder=0
     number_of_connections_downstream = 200
-    number_of_neurons = 994
+    number_of_neurons = 984
 
-    for i in range (number_of_connections_downstream*number_of_neurons):
-        topBorder = (number_of_connections_downstream*number_of_neurons*12)-1 - (i*12);
-        lowerBorder = (number_of_connections_downstream*number_of_neurons*12)-12 - (i*12);
+    for i in range (158800):
+        topBorder = (1905600)-1 - (i*12);
+        lowerBorder = (1905600)-12 - (i*12);
         verilog_code += f'downstream_connections[{str(i)}]=downstream_connections_initialization[{topBorder}:{lowerBorder}]'+';      '
     
     return verilog_code

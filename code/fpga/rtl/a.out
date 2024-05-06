@@ -1,0 +1,50 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x558f14a35fb0 .scope module, "tb_switches_to_LEDs" "tb_switches_to_LEDs" 2 4;
+ .timescale -6 -9;
+P_0x558f14a36140 .param/l "N" 0 2 10, +C4<00000000000000000000000000000100>;
+v0x558f14a47e90_0 .var "i_switch", 3 0;
+v0x558f14a47f80_0 .net "o_LED", 3 0, L_0x558f14a48050;  1 drivers
+S_0x558f14a361e0 .scope module, "DUT" "switches_to_LEDs" 2 12, 3 1 0, S_0x558f14a35fb0;
+ .timescale -6 -9;
+    .port_info 0 /INPUT 4 "i_switch";
+    .port_info 1 /OUTPUT 4 "o_LED";
+P_0x558f14a36d50 .param/l "N" 0 3 7, +C4<00000000000000000000000000000100>;
+L_0x558f14a48050 .functor BUFZ 4, v0x558f14a47e90_0, C4<0000>, C4<0000>, C4<0000>;
+v0x558f149fccf0_0 .net "i_switch", 3 0, v0x558f14a47e90_0;  1 drivers
+v0x558f14a47d50_0 .net "o_LED", 3 0, L_0x558f14a48050;  alias, 1 drivers
+    .scope S_0x558f14a35fb0;
+T_0 ;
+    %vpi_call 2 20 "$monitor", $time, "i_switch = %b, o_LED = %b", v0x558f14a47e90_0, v0x558f14a47f80_0 {0 0 0};
+    %delay 1000, 0;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x558f14a47e90_0, 0, 4;
+    %delay 1000, 0;
+    %pushi/vec4 4, 0, 4;
+    %store/vec4 v0x558f14a47e90_0, 0, 4;
+    %delay 1000, 0;
+    %pushi/vec4 10, 0, 4;
+    %store/vec4 v0x558f14a47e90_0, 0, 4;
+    %delay 1000, 0;
+    %pushi/vec4 5, 0, 4;
+    %store/vec4 v0x558f14a47e90_0, 0, 4;
+    %delay 1000, 0;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x558f14a47e90_0, 0, 4;
+    %delay 10000, 0;
+    %vpi_call 2 27 "$stop" {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_switches_to_LEDs.v";
+    "./switches_to_LEDs.v";
