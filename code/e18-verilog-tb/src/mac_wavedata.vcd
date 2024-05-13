@@ -1,5 +1,5 @@
 $date
-	Thu Apr 11 15:14:11 2024
+	Tue May  7 15:44:29 2024
 $end
 $version
 	Icarus Verilog
@@ -7,7 +7,7 @@ $end
 $timescale
 	100ps
 $end
-$scope module testbench $end
+$scope module mac_TESTBENCH $end
 $var reg 1 ! CLK $end
 $var reg 4 " CLK_count [3:0] $end
 $var reg 1 # clear $end
@@ -24,9 +24,9 @@ $var wire 32 ) added_weight [31:0] $end
 $var reg 32 * accumulated_weight [31:0] $end
 $var reg 1 + break $end
 $var reg 32 , considered_weight [31:0] $end
-$var reg 4 - i [3:0] $end
-$var reg 4 . index [3:0] $end
-$var reg 32 / mult_output [31:0] $end
+$var reg 32 - mult_output [31:0] $end
+$var integer 32 . i [31:0] $end
+$var integer 32 / index [31:0] $end
 $scope module add1 $end
 $var wire 1 0 AddBar_Sub $end
 $var wire 1 ( Exception $end
@@ -74,9 +74,9 @@ $var wire 32 P added_weight [31:0] $end
 $var reg 32 Q accumulated_weight [31:0] $end
 $var reg 1 R break $end
 $var reg 32 S considered_weight [31:0] $end
-$var reg 4 T i [3:0] $end
-$var reg 4 U index [3:0] $end
-$var reg 32 V mult_output [31:0] $end
+$var reg 32 T mult_output [31:0] $end
+$var integer 32 U i [31:0] $end
+$var integer 32 V index [31:0] $end
 $scope module add1 $end
 $var wire 1 W AddBar_Sub $end
 $var wire 1 O Exception $end
@@ -124,9 +124,9 @@ $var wire 32 w added_weight [31:0] $end
 $var reg 32 x accumulated_weight [31:0] $end
 $var reg 1 y break $end
 $var reg 32 z considered_weight [31:0] $end
-$var reg 4 { i [3:0] $end
-$var reg 4 | index [3:0] $end
-$var reg 32 } mult_output [31:0] $end
+$var reg 32 { mult_output [31:0] $end
+$var integer 32 | i [31:0] $end
+$var integer 32 } index [31:0] $end
 $scope module add1 $end
 $var wire 1 ~ AddBar_Sub $end
 $var wire 1 v Exception $end
@@ -174,9 +174,9 @@ $var wire 32 @" added_weight [31:0] $end
 $var reg 32 A" accumulated_weight [31:0] $end
 $var reg 1 B" break $end
 $var reg 32 C" considered_weight [31:0] $end
-$var reg 4 D" i [3:0] $end
-$var reg 4 E" index [3:0] $end
-$var reg 32 F" mult_output [31:0] $end
+$var reg 32 D" mult_output [31:0] $end
+$var integer 32 E" i [31:0] $end
+$var integer 32 F" index [31:0] $end
 $scope module add1 $end
 $var wire 1 G" AddBar_Sub $end
 $var wire 1 ?" Exception $end
@@ -224,9 +224,9 @@ $var wire 32 g" added_weight [31:0] $end
 $var reg 32 h" accumulated_weight [31:0] $end
 $var reg 1 i" break $end
 $var reg 32 j" considered_weight [31:0] $end
-$var reg 4 k" i [3:0] $end
-$var reg 4 l" index [3:0] $end
-$var reg 32 m" mult_output [31:0] $end
+$var reg 32 k" mult_output [31:0] $end
+$var integer 32 l" i [31:0] $end
+$var integer 32 m" index [31:0] $end
 $scope module add1 $end
 $var wire 1 n" AddBar_Sub $end
 $var wire 1 f" Exception $end
@@ -274,9 +274,9 @@ $var wire 32 0# added_weight [31:0] $end
 $var reg 32 1# accumulated_weight [31:0] $end
 $var reg 1 2# break $end
 $var reg 32 3# considered_weight [31:0] $end
-$var reg 4 4# i [3:0] $end
-$var reg 4 5# index [3:0] $end
-$var reg 32 6# mult_output [31:0] $end
+$var reg 32 4# mult_output [31:0] $end
+$var integer 32 5# i [31:0] $end
+$var integer 32 6# index [31:0] $end
 $scope module add1 $end
 $var wire 1 7# AddBar_Sub $end
 $var wire 1 /# Exception $end
@@ -324,9 +324,9 @@ $var wire 32 W# added_weight [31:0] $end
 $var reg 32 X# accumulated_weight [31:0] $end
 $var reg 1 Y# break $end
 $var reg 32 Z# considered_weight [31:0] $end
-$var reg 4 [# i [3:0] $end
-$var reg 4 \# index [3:0] $end
-$var reg 32 ]# mult_output [31:0] $end
+$var reg 32 [# mult_output [31:0] $end
+$var integer 32 \# i [31:0] $end
+$var integer 32 ]# index [31:0] $end
 $scope module add1 $end
 $var wire 1 ^# AddBar_Sub $end
 $var wire 1 V# Exception $end
@@ -374,9 +374,9 @@ $var wire 32 ~# added_weight [31:0] $end
 $var reg 32 !$ accumulated_weight [31:0] $end
 $var reg 1 "$ break $end
 $var reg 32 #$ considered_weight [31:0] $end
-$var reg 4 $$ i [3:0] $end
-$var reg 4 %$ index [3:0] $end
-$var reg 32 &$ mult_output [31:0] $end
+$var reg 32 $$ mult_output [31:0] $end
+$var integer 32 %$ i [31:0] $end
+$var integer 32 &$ index [31:0] $end
 $scope module add1 $end
 $var wire 1 '$ AddBar_Sub $end
 $var wire 1 }# Exception $end
@@ -424,9 +424,9 @@ $var wire 32 G$ added_weight [31:0] $end
 $var reg 32 H$ accumulated_weight [31:0] $end
 $var reg 1 I$ break $end
 $var reg 32 J$ considered_weight [31:0] $end
-$var reg 4 K$ i [3:0] $end
-$var reg 4 L$ index [3:0] $end
-$var reg 32 M$ mult_output [31:0] $end
+$var reg 32 K$ mult_output [31:0] $end
+$var integer 32 L$ i [31:0] $end
+$var integer 32 M$ index [31:0] $end
 $scope module add1 $end
 $var wire 1 N$ AddBar_Sub $end
 $var wire 1 F$ Exception $end
@@ -474,9 +474,9 @@ $var wire 32 n$ added_weight [31:0] $end
 $var reg 32 o$ accumulated_weight [31:0] $end
 $var reg 1 p$ break $end
 $var reg 32 q$ considered_weight [31:0] $end
-$var reg 4 r$ i [3:0] $end
-$var reg 4 s$ index [3:0] $end
-$var reg 32 t$ mult_output [31:0] $end
+$var reg 32 r$ mult_output [31:0] $end
+$var integer 32 s$ i [31:0] $end
+$var integer 32 t$ index [31:0] $end
 $scope module add1 $end
 $var wire 1 u$ AddBar_Sub $end
 $var wire 1 m$ Exception $end
@@ -543,8 +543,8 @@ bx w$
 bx v$
 0u$
 bx t$
-bx s$
-b101 r$
+b101 s$
+bx r$
 bx q$
 xp$
 bx o$
@@ -582,8 +582,8 @@ bx P$
 bx O$
 0N$
 bx M$
-bx L$
-b101 K$
+b101 L$
+bx K$
 bx J$
 xI$
 bx H$
@@ -621,8 +621,8 @@ bx )$
 bx ($
 0'$
 bx &$
-bx %$
-b101 $$
+b101 %$
+bx $$
 bx #$
 x"$
 bx !$
@@ -660,8 +660,8 @@ bx `#
 bx _#
 0^#
 bx ]#
-bx \#
-b101 [#
+b101 \#
+bx [#
 bx Z#
 xY#
 bx X#
@@ -699,8 +699,8 @@ bx 9#
 bx 8#
 07#
 bx 6#
-bx 5#
-b101 4#
+b101 5#
+bx 4#
 bx 3#
 x2#
 bx 1#
@@ -738,8 +738,8 @@ bx p"
 bx o"
 0n"
 bx m"
-bx l"
-b101 k"
+b101 l"
+bx k"
 bx j"
 xi"
 bx h"
@@ -777,8 +777,8 @@ bx I"
 bx H"
 0G"
 bx F"
-bx E"
-b101 D"
+b101 E"
+bx D"
 bx C"
 xB"
 bx A"
@@ -816,8 +816,8 @@ bx ""
 bx !"
 0~
 bx }
-bx |
-b101 {
+b101 |
+bx {
 bx z
 xy
 bx x
@@ -855,8 +855,8 @@ bx Y
 bx X
 0W
 bx V
-bx U
-b101 T
+b101 U
+bx T
 bx S
 xR
 bx Q
@@ -894,8 +894,8 @@ bx 2
 bx 1
 00
 bx /
-bx .
-b101 -
+b101 .
+bx -
 bx ,
 x+
 bx *
@@ -1006,25 +1006,25 @@ b0 e$
 b0 }$
 b0 .%
 b0 7
-b0 /
+b0 -
 b0 ^
-b0 V
+b0 T
 b0 '"
-b0 }
+b0 {
 b0 N"
-b0 F"
+b0 D"
 b0 u"
-b0 m"
+b0 k"
 b0 >#
-b0 6#
+b0 4#
 b0 e#
-b0 ]#
+b0 [#
 b0 .$
-b0 &$
+b0 $$
 b0 U$
-b0 M$
+b0 K$
 b0 |$
-b0 t$
+b0 r$
 b0 ;
 b0 )
 b0 =
@@ -1199,52 +1199,52 @@ b0 ,
 b0 2
 b0 *
 b0 1
-b101 -
+b101 .
 b0 S
 b0 Y
 b0 Q
 b0 X
-b101 T
+b101 U
 b0 z
 b0 ""
 b0 x
 b0 !"
-b101 {
+b101 |
 b0 C"
 b0 I"
 b0 A"
 b0 H"
-b101 D"
+b101 E"
 b0 j"
 b0 p"
 b0 h"
 b0 o"
-b101 k"
+b101 l"
 b0 3#
 b0 9#
 b0 1#
 b0 8#
-b101 4#
+b101 5#
 b0 Z#
 b0 `#
 b0 X#
 b0 _#
-b101 [#
+b101 \#
 b0 #$
 b0 )$
 b0 !$
 b0 ($
-b101 $$
+b101 %$
 b0 J$
 b0 P$
 b0 H$
 b0 O$
-b101 K$
+b101 L$
 b0 q$
 b0 w$
 b0 o$
 b0 v$
-b101 r$
+b101 s$
 1#
 b0 "
 1!
@@ -1255,54 +1255,54 @@ b0 "
 b1 "
 1!
 #400
-b0 l"
-b101 k"
+b0 m"
+b101 l"
 0i"
-b0 L$
-b101 K$
+b0 M$
+b101 L$
 0I$
 0!
 b1 c"
 b11 C$
 #440
 b10 "
-b1 l"
-b101 k"
-b1 L$
-b101 K$
+b1 m"
+b101 l"
+b1 M$
+b101 L$
 1!
 b10 c"
 b100 C$
 #480
-b10 L$
-b101 K$
+b10 M$
+b101 L$
 0!
 b101 C$
 #520
 b11 "
-b100 L$
-b101 K$
+b100 M$
+b101 L$
 1!
 b111 C$
 #560
 0!
 #600
-b101 -
-b101 T
-b101 {
-b101 D"
-b0 k"
-b101 4#
-b101 [#
-b101 $$
-b0 K$
-b101 r$
+b101 .
+b101 U
+b101 |
+b101 E"
+b0 l"
+b101 5#
+b101 \#
+b101 %$
+b0 L$
+b101 s$
 1#
 b0 "
 1!
 #610
-b1000010001111110100011110101110 m"
-b1000010100100001011001100110011 M$
+b1000010001111110100011110101110 k"
+b1000010100100001011001100110011 K$
 b1010000001011100001010010 s"
 b1010000001011100001010010 )#
 b1000010001111110100011110101110 g"
@@ -1349,11 +1349,11 @@ b1000010001111110100011110101110 j"
 b1000010001111110100011110101110 p"
 b1000010100100001011001100110011 J$
 b1000010100100001011001100110011 P$
-b1 k"
-b1 K$
+b1 l"
+b1 L$
 #620
-b1000010011000011010111000010100 m"
-b1000010101101101000101000111101 M$
+b1000010011000011010111000010100 k"
+b1000010101101101000101000111101 K$
 b1010000001011100001010010 s"
 b1010000001011100001010010 )#
 b1000010011000011010111000010100 g"
@@ -1404,10 +1404,10 @@ b1000010100100001011001100110011 H$
 b1000010100100001011001100110011 O$
 b1000001100101110101110000101001 J$
 b1000001100101110101110000101001 P$
-b101 k"
-b10 K$
+b101 l"
+b10 L$
 #630
-b1000011000011010000011110101101 M$
+b1000011000011010000011110101101 K$
 b1000011000011010000011110101101 G$
 b1000011000011010000011110101101 [$
 b1000011000011010000011110101101 b$
@@ -1429,9 +1429,9 @@ b1000010101101101000101000111101 H$
 b1000010101101101000101000111101 O$
 b1000010010001110000101000111101 J$
 b1000010010001110000101000111101 P$
-b100 K$
+b100 L$
 #640
-b1000011011001000010001111010110 M$
+b1000011011001000010001111010110 K$
 b1011100101111100001010011 S$
 b1011100101111100001010011 g$
 b1000011011001000010001111010110 G$
@@ -1456,7 +1456,7 @@ b1000011000011010000011110101101 H$
 b1000011000011010000011110101101 O$
 b1000010101011100011100001010010 J$
 b1000010101011100011100001010010 P$
-b101 K$
+b101 L$
 0!
 #680
 0#
@@ -1475,8 +1475,8 @@ b11 "
 #880
 0!
 #920
-b0 M$
-b0 m"
+b0 K$
+b0 k"
 b0 S$
 b0 g$
 b0 G$
@@ -1521,20 +1521,20 @@ b0 J$
 b0 P$
 b0 H$
 b0 O$
-b101 K$
+b101 L$
 b0 j"
 b0 p"
 b0 h"
 b0 o"
-b101 k"
-b101 -
-b101 T
-b101 {
-b101 D"
-b101 4#
-b101 [#
-b101 $$
-b101 r$
+b101 l"
+b101 .
+b101 U
+b101 |
+b101 E"
+b101 5#
+b101 \#
+b101 %$
+b101 s$
 1#
 b0 "
 1!
@@ -1557,16 +1557,16 @@ b11 "
 #1200
 0!
 #1240
-b101 K$
-b101 k"
-b101 -
-b101 T
-b101 {
-b101 D"
-b101 4#
-b101 [#
-b101 $$
-b101 r$
+b101 L$
+b101 l"
+b101 .
+b101 U
+b101 |
+b101 E"
+b101 5#
+b101 \#
+b101 %$
+b101 s$
 1#
 b0 "
 1!
