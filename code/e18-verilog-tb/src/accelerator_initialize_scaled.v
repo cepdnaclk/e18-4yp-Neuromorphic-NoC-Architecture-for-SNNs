@@ -35,7 +35,9 @@ module testbench;
     wire[31:0] results_potential_decay[0:number_of_units-1];     //store results of potential decay
     wire[31:0] final_potential[0:number_of_units-1];             //potential form the potential adder
     wire spike[0:number_of_units-1];                              //spike signifier from potential decay
-    wire[23:0] packet;                          //packet containing neuron address and sources address
+    wire[23:0] packet1, packet2, packet3, packet4, packet5, packet6, packet7, packet8, packet9,
+            packet10, packet11, packet12, packet13, packet14, packet15, packet16, packet17, packet18,
+            packet19, packet20, packet21;                          //packet containing neuron address and sources address
 
     //generate 1024 potential decay units
     genvar i;
@@ -100,7 +102,10 @@ module testbench;
         .neuron_addresses_initialization(neuron_addresses_initialization),
         .connection_pointer_initialization(connection_pointer_initialization),           //input to initialize the connection pointers
         .downstream_connections_initialization(downstream_connections_initialization),    //input to initialize the dowanstream connections
-        .packet(packet)
+        .packet1(packet1), .packet2(packet2), .packet3(packet3), .packet4(packet4), .packet5(packet5), .packet6(packet6),
+        .packet7(packet7), .packet8(packet8), .packet9(packet9), .packet10(packet10), .packet11(packet11),
+        .packet12(packet12), .packet13(packet13), .packet14(packet14), .packet15(packet15), .packet16(packet16),
+        .packet17(packet17), .packet18(packet18), .packet19(packet19), .packet20(packet20), .packet21(packet21)
     );
 
     // Observe the timing on gtkwave
@@ -204,18 +209,125 @@ module testbench;
 
         #40
         source_addresses[0] = 12'b001111111000;
+        source_addresses[1] = 12'd3;
 
-        #500
+        #300
         $finish;
 
     end
 
     //when packets arrive from the potential adder send the source address to the relevant mac unit 
-    always @(packet) begin
-        spike_origin = packet[23:12];               // From where the spike came
-        spike_destination = packet[11:0];           // To where it should be sent 
+    // always @(packet1) begin
+    //     spike_origin = packet1[23:12];               // From where the spike came
+    //     spike_destination = packet1[11:0];           // To where it should be sent 
 
-        source_addresses[spike_destination] = spike_origin;      // Trigger the wire of the relevant accumulator
+    //     source_addresses[spike_destination] = spike_origin;      // Trigger the wire of the relevant accumulator
+    // end
+
+    always @(packet1) begin 
+        spike_origin = packet1[23:12];
+        spike_destination = packet1[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet2) begin 
+        spike_origin = packet2[23:12];
+        spike_destination = packet2[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet3) begin 
+        spike_origin = packet3[23:12];
+        spike_destination = packet3[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet4) begin 
+        spike_origin = packet4[23:12];
+        spike_destination = packet4[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet5) begin 
+        spike_origin = packet5[23:12];
+        spike_destination = packet5[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet6) begin 
+        spike_origin = packet6[23:12];
+        spike_destination = packet6[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet7) begin 
+        spike_origin = packet7[23:12];
+        spike_destination = packet7[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet8) begin 
+        spike_origin = packet8[23:12];
+        spike_destination = packet8[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet9) begin 
+        spike_origin = packet9[23:12];
+        spike_destination = packet9[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet10) begin 
+        spike_origin = packet10[23:12];
+        spike_destination = packet10[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet11) begin 
+        spike_origin = packet11[23:12];
+        spike_destination = packet11[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet12) begin 
+        spike_origin = packet12[23:12];
+        spike_destination = packet12[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet13) begin 
+        spike_origin = packet13[23:12];
+        spike_destination = packet13[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet14) begin 
+        spike_origin = packet14[23:12];
+        spike_destination = packet14[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet15) begin 
+        spike_origin = packet15[23:12];
+        spike_destination = packet15[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet16) begin 
+        spike_origin = packet16[23:12];
+        spike_destination = packet16[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet17) begin 
+        spike_origin = packet17[23:12];
+        spike_destination = packet17[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet18) begin 
+        spike_origin = packet18[23:12];
+        spike_destination = packet18[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet19) begin 
+        spike_origin = packet19[23:12];
+        spike_destination = packet19[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet20) begin 
+        spike_origin = packet20[23:12];
+        spike_destination = packet20[11:0];
+        source_addresses[spike_destination] = spike_origin;
+    end
+    always @(packet21) begin 
+        spike_origin = packet21[23:12];
+        spike_destination = packet21[11:0];
+        source_addresses[spike_destination] = spike_origin;
     end
 
     //invert clock every 4 seconds
