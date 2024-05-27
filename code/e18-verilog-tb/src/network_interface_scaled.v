@@ -60,17 +60,7 @@ module network_interface_scaled (
 
     //when the connnection pointers comes
     always @(connection_pointer_initialization) begin
-        connection_pointer[0] = connection_pointer_initialization[54:50];
-        connection_pointer[1] = connection_pointer_initialization[49:45];
-        connection_pointer[2] = connection_pointer_initialization[44:40];
-        connection_pointer[3] = connection_pointer_initialization[39:35];
-        connection_pointer[4] = connection_pointer_initialization[34:30];
-        connection_pointer[5] = connection_pointer_initialization[29:25];
-        connection_pointer[6] = connection_pointer_initialization[24:20];
-        connection_pointer[7] = connection_pointer_initialization[19:15];
-        connection_pointer[8] = connection_pointer_initialization[14:10];
-        connection_pointer[9] = connection_pointer_initialization[9:5];
-        connection_pointer[10] = connection_pointer_initialization[4:0];
+        ou
 
             
     end
