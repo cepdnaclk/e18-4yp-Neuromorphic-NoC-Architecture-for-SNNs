@@ -9,7 +9,7 @@ module Multiplication_tb;
     wire Exception,Overflow,Underflow;
 
     //test adder
-    Multiplication Multiplication(a_operand, b_operand, Exception,Overflow,Underflow, result);
+    Multiplication Multiplication(a_operand, a_operand, Exception,Overflow,Underflow, result);
 
     //record on gtkwave
     initial begin
