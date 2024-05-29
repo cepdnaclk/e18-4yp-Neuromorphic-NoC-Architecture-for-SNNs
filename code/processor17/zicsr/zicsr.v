@@ -2,7 +2,7 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-//By default, al the unkwon labels in a verilog file are defined as wires. This bahaviour is very dangerous. Any typo on the signals name will be not detected.
+//By default, all the unkwon labels in a verilog file are defined as wires. This bahaviour is very dangerous. Any typo on the signals name will be not detected.
 //To solve this, all the verilog files include this command in the beginning:
 //`default_nettype none
 
