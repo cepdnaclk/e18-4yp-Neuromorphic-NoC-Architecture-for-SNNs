@@ -1,30 +1,37 @@
-module main_decoder(op, zero, RegWrite, MemWrite, ResultSrc, ALUSrc, ImmSrc, ALUOp, PCSrc);
+// Copyright 2023 MERL-DSU
 
-    input wire zero;
-    input wire [6:0] op;
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
 
-    output reg RegWrite, MemWrite, ResultSrc, ALUSrc, PCSrc;
-    output reg [1:0] ImmSrc, ALUOp;
+//        http://www.apache.org/licenses/LICENSE-2.0
 
-    //intermediate wires
-    wire branch;
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
 
-    assign RegWrite = ((op == 7'b0000011) | (7'b0110011)) ? 1'b1 : 1'b0;
+module Main_Decoder(Op,RegWrite,ImmSrc,ALUSrc,MemWrite,ResultSrc,Branch,ALUOp);
+    input [6:0]Op;
+    output RegWrite,ALUSrc,MemWrite,ResultSrc,Branch;
+    output [1:0]ImmSrc,ALUOp;
 
-    assign MemWrite = (op == 7'b0100011) ? 1'b1: 1'b0;
-
-    assign ResultSrc = (op == 7'b0000011) ? 1'b1: 1'b0;
-
-    assign ALUSrc = ((op == 7'b0000011) | (7'b0100011)) ? 1'b1 : 1'b0;
-
-    assign branch = (op == 7'b1100011) ? 1'b1: 1'b0;
-
-    assign ImmSrc = (op == 7'b0100011) ? 2'b01:
-                    (op == 7'b1100011) ? 2'b10: 2'b00;
-
-    assign ALUOp =  (op == 7'b0110011) ? 2'b10:
-                    (op == 7'b1100011) ? 2'b01: 2'b00;
-
-    assign PCSrc = zero & branch;
+    assign RegWrite = (Op == 7'b0000011 | Op == 7'b0110011 | Op == 7'b0010011 ) ? 1'b1 :
+                                                              1'b0 ;
+    assign ImmSrc = (Op == 7'b0100011) ? 2'b01 : 
+                    (Op == 7'b1100011) ? 2'b10 :    
+                                         2'b00 ;
+    assign ALUSrc = (Op == 7'b0000011 | Op == 7'b0100011 | Op == 7'b0010011) ? 1'b1 :
+                                                            1'b0 ;
+    assign MemWrite = (Op == 7'b0100011) ? 1'b1 :
+                                           1'b0 ;
+    assign ResultSrc = (Op == 7'b0000011) ? 1'b1 :
+                                            1'b0 ;
+    assign Branch = (Op == 7'b1100011) ? 1'b1 :
+                                         1'b0 ;
+    assign ALUOp = (Op == 7'b0110011) ? 2'b10 :
+                   (Op == 7'b1100011) ? 2'b01 :
+                                        2'b00 ;
 
 endmodule

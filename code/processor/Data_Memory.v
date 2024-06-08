@@ -12,30 +12,26 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-module Instruction_Memory(rst,A,RD);
+module Data_Memory(clk,rst,WE,WD,A,RD);
 
-  input rst;
-  input [31:0]A;
-  output [31:0]RD;
+    input clk,rst,WE;
+    input [31:0]A,WD;
+    output [31:0]RD;
 
-  reg [31:0] mem [1023:0];
-  
-  assign RD = (rst == 1'b0) ? {32{1'b0}} : mem[A[31:2]];
+    reg [31:0] mem [1023:0];
 
-  initial begin
-    $readmemh("memfile.hex",mem);
-  end
+    always @ (posedge clk)
+    begin
+        if(WE)
+            mem[A] <= WD;
+    end
+
+    assign RD = (~rst) ? 32'd0 : mem[A];
+
+    initial begin
+        mem[0] = 32'h00000000;
+        //mem[40] = 32'h00000002;
+    end
 
 
-/*
-  initial begin
-    //mem[0] = 32'hFFC4A303;
-    //mem[1] = 32'h00832383;
-    // mem[0] = 32'h0064A423;
-    // mem[1] = 32'h00B62423;
-    mem[0] = 32'h0062E233;
-    // mem[1] = 32'h00B62423;
-
-  end
-*/
 endmodule

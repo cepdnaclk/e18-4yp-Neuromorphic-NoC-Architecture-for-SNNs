@@ -1,40 +1,37 @@
-//A1- OUT1_ADDRESS
-//A2- OUT2_ADDRESS
-//A3- IN_ADDRESS
+// Copyright 2023 MERL-DSU
 
-//WD- DATA_IN
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
 
-//RD1- DATA_OUT1
-//RD2- DATA_OUT2
+//        http://www.apache.org/licenses/LICENSE-2.0
 
-module registe_file(OUT1_ADDRESS, OUT2_ADDRESS, IN_ADDRESS, DATA_IN, 
-                    WRITE_EN, CLK, RESET, DATA_OUT1, DATA_OUT2);
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
 
-    input [31:0] DATA_IN;
-    input CLK, RESET;
-    input [4:0] OUT1_ADDRESS, OUT2_ADDRESS, IN_ADDRESS;
+module Register_File(clk,rst,WE3,WD3,A1,A2,A3,RD1,RD2);
 
-    output [31:0] DATA_OUT1, DATA_OUT2;
+    input clk,rst,WE3;
+    input [4:0]A1,A2,A3;
+    input [31:0]WD3;
+    output [31:0]RD1,RD2;
 
-    //register file
-    reg [31:0] registers [31:0];
+    reg [31:0] Register [31:0];
 
-    //read functionality
-    assign DATA_OUT1 = (RESET == 1'b0) ? 32'h00000000: registers [OUT1_ADDRESS];
-    assign DATA_OUT2 = (RESET == 1'b0) ? 32'h00000000: registers [OUT2_ADDRESS];
+    always @ (posedge clk)
+    begin
+        if(WE3 & (A3 != 5'h00))
+            Register[A3] <= WD3;
+    end
 
-    integer i;
-    always @(posedge CLK) begin
-        if (RESET == 1'b0) begin
-            for (i = 0; i < 32; i= i+1) begin
-                registers[i] <= 32'h00000000;
-            end
-        end
-        else begin
-            if (WRITE_EN) begin
-                registers [IN_ADDRESS] <= DATA_IN;
-            end
-        end
+    assign RD1 = (rst==1'b0) ? 32'd0 : Register[A1];
+    assign RD2 = (rst==1'b0) ? 32'd0 : Register[A2];
+
+    initial begin
+        Register[0] = 32'h00000000;
     end
 
 endmodule

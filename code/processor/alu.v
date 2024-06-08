@@ -1,64 +1,40 @@
-//ALU with zero extension, flags incorporated, and logic 
+// Copyright 2023 MERL-DSU
 
-module alu (DATA1, DATA2, SELECT, RESULT, Z, N, V, C);
+//    Licensed under the Apache License, Version 2.0 (the "License");
+//    you may not use this file except in compliance with the License.
+//    You may obtain a copy of the License at
 
-    //inputs
-    input [31:0] DATA1, DATA2;
-    input [2:0] SELECT;
+//        http://www.apache.org/licenses/LICENSE-2.0
 
-    //output
-    output reg [31:0] RESULT;
-    output Z, N, V, C; 
+//    Unless required by applicable law or agreed to in writing, software
+//    distributed under the License is distributed on an "AS IS" BASIS,
+//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//    See the License for the specific language governing permissions and
+//    limitations under the License.
 
-    //intermediate wires
-    wire [31:0] data1_and_data2;
-    wire [31:0] data1_or_data2;
-    wire [31:0] not_data2;
+module ALU(A,B,Result,ALUControl,OverFlow,Carry,Zero,Negative);
 
-    //2x1 mux
-    wire [31:0] mux_1;
+    input [31:0]A,B;
+    input [2:0]ALUControl;
+    output Carry,OverFlow,Zero,Negative;
+    output [31:0]Result;
 
-    wire [31:0] sum;
+    wire Cout;
+    wire [31:0]Sum;
 
-    //4x1 mux
-    wire [31:0] mux_2;
-
-    wire [31:0] slt;
-
-    wire c_out;
-
-    //and operation
-    assign data1_and_data2 = DATA1 & DATA2;
-
-    //or operation
-    assign data1_or_data2 = DATA1 | DATA2;
-
-    //not operation
-    assign not_data2 = ~DATA2;
-
-    //ternary operator
-    assign mux_1 = (SELECT[0] == 1'b0) ?  DATA2 : not_data2;
-
-    //add or sub
-    assign {count, sum} = A + mux_1 + SELECT[0];
-
-    //zero extension
-    assign slt = {31'd0,sum[31]};
-
-    //4x1 mux
-    assign mux_2 =  (SELECT[2:0] == 3'b000) ? sum :                              //add
-                    (SELECT[2:0] == 3'b001) ? sum :                              //sub
-                    (SELECT[2:0] == 3'b010) ? data1_and_data2 : 
-                    (SELECT[2:0] == 3'b011) ? data1_or_data2 :
-                    (SELECT[2:0] == 3'b101) ? slt : 32'h00000000;
-
-    assign RESULT = mux_2;
-
-    //flags assignment
-    assign Z = &(~RESULT);  //zero flag
-    assign N = RESULT[31];  //negative flag (if bit is 1)
-    assign C  = c_out & (~SELECT[1]);    //carry flag
-    assign V = (~SELECT[1]) & (DATA1[31] ^ sum[31]) & (~(DATA1[31] ^ DATA2[31] ^ SELECT[0]));    //overflow flag
-
+    assign Sum = (ALUControl[0] == 1'b0) ? A + B :
+                                          (A + ((~B)+1)) ;
+    assign {Cout,Result} = (ALUControl == 3'b000) ? Sum :
+                           (ALUControl == 3'b001) ? Sum :
+                           (ALUControl == 3'b010) ? A & B :
+                           (ALUControl == 3'b011) ? A | B :
+                           (ALUControl == 3'b101) ? {{32{1'b0}},(Sum[31])} :
+                           {33{1'b0}};
+    assign OverFlow = ((Sum[31] ^ A[31]) & 
+                      (~(ALUControl[0] ^ B[31] ^ A[31])) &
+                      (~ALUControl[1]));
+    assign Carry = ((~ALUControl[1]) & Cout);
+    assign Zero = &(~Result);
+    assign Negative = Result[31];
 
 endmodule
