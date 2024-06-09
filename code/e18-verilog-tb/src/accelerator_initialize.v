@@ -1,10 +1,10 @@
 `timescale 1ns/100ps
-`include "potential_decay.v"
-`include "mac.v"
-`include "Addition_Subtraction.v"
-`include "Multiplication.v"
-`include "potential_adder.v"
-`include "network_interface.v"
+// `include "potential_decay.v"
+// `include "mac.v"
+// `include "Addition_Subtraction.v"
+// `include "Multiplication.v"
+// `include "potential_adder.v"
+// `include "network_interface.v"
 
 module testbench;
 
@@ -25,7 +25,8 @@ module testbench;
     reg[54:0] connection_pointer_initialization;               //input to initialize the connection pointers
     reg[11:0] spike_origin;                               //to store the nueron address from the arrived packet
     reg[11:0] spike_destination;                               //to store source address from the arrived packet
-
+    reg[1:0] model;
+    reg[31:0]a, b, c, d, u_initialize;      //for izhikevich model
     wire[31:0] results_mac[0:number_of_neurons-1];                 //store results from the mac
     wire[31:0] results_potential_decay[0:number_of_neurons-1];     //store results of potential decay
     wire[31:0] final_potential[0:number_of_neurons-1];             //potential form the potential adder
@@ -39,6 +40,7 @@ module testbench;
             potential_decay pd(
                 .CLK(CLK),
                 .clear(clear),
+                .model(model),
                 .neuron_address_initialization(neuron_addresses[i]),
                 .decay_rate(decay_rate),
                 .membrane_potential_initialization(membrane_potential[i]),
@@ -71,6 +73,12 @@ module testbench;
                 .v_threshold(v_threshold[i]),
                 .input_weight(results_mac[i]),
                 .decayed_potential(results_potential_decay[i]),
+                .model(model),
+                .a(a),
+                .b(b),
+                .c(c),
+                .d(d),
+                .u_initialize(u_initialize),
                 .final_potential(final_potential[i]),
                 .spike(spike[i])
             );
@@ -122,6 +130,7 @@ module testbench;
         CLK_count = 0;
         clear = 1'b0;
         decay_rate = 4'b0010;
+        model = 2'b00;
 
         //neuron addresses
         neuron_addresses[0] = 12'd0;
@@ -204,6 +213,12 @@ module testbench;
         v_threshold[8] = 32'h4215ae14;
         v_threshold[9] = 32'h4287c7ae;
 
+        a = 32'h4287c7ae;
+        b = 32'h4287c7ae;
+        c = 32'h4287c7ae;
+        d = 32'h4287c7ae;
+        u_initialize = 32'h4287c7ae;
+        
         #40
         source_addresses[0] = 12'b001111111000;
         // source_addresses[4] = 12'd1;
