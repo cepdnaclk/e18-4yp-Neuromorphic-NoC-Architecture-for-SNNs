@@ -1,8 +1,8 @@
 `timescale 1ns/100ps
 
-module testbench;
+module mac_TESTBENCH(CLK, done);
 
-    reg CLK;
+    input reg CLK;
     reg[3:0] CLK_count;
     reg[11:0] source_addresses[0:9];
     reg[159:0] weights_arrays[0:9];
@@ -10,6 +10,7 @@ module testbench;
     reg clear;
     reg[11:0] neuron_addresses[0:9];
     wire [31:0] results[0:9];
+    wire done;
 
     //generate 10 accumulators
     genvar i;
@@ -38,7 +39,7 @@ module testbench;
     // Observe the timing on gtkwave
     initial begin
         $dumpfile("mac_wavedata.vcd");
-        $dumpvars(0,testbench);
+        $dumpvars(0,mac_TESTBENCH);
     end
 
 
@@ -48,6 +49,7 @@ module testbench;
         CLK = 1'b0;
         CLK_count = 0;
         clear = 1'b0;
+        done = 1'b0;
 
         //neuron addresses
         neuron_addresses[0] = 12'd0;
@@ -100,6 +102,7 @@ module testbench;
         source_addresses[8] = 12'd7;       
 
         #100
+        done = 1'b1;
         $finish;    
 
     end

@@ -27,6 +27,8 @@ module network_interface(
     reg[4:0] i;                                             //index for iteration
     reg[4:0] j;
     reg check=0;
+    reg spike_register[0:9];
+    
     //when neuron addresses are initilaized
     always @(neuron_addresses_initialization) begin
         neuron_addresses[0] = neuron_addresses_initialization[119:108];
