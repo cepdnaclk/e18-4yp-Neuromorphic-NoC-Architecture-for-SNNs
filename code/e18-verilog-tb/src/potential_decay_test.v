@@ -1,4 +1,6 @@
 `include "potential_decay.v"
+`include "Addition_Subtraction.v"
+`include "Multiplication.v"
 `timescale 1ns/100ps
 
 module test_potential_decay;
@@ -10,9 +12,10 @@ module test_potential_decay;
     reg[2:0] decay_rate;
     reg[3:0] CLK_count;
     reg[11:0] neuron_addresses[0:9];
+    reg[1:0] model;
 
     //test membrane potential value 4. Divided by 2 is 2
-    potential_decay potential_decay_1(CLK,clear,decay_rate,input_potential, output_potential);
+    potential_decay potential_decay_1(CLK,clear, model, decay_rate,input_potential, output_potential);
 
     //record on gtkwave
     initial begin
@@ -29,6 +32,7 @@ module test_potential_decay;
         clear = 1'b0;
         decay_rate = 3'd1;
         input_potential = 32'b01000001001000000000000000000000;
+        model = 2'b00;
     end
 
     // Print the outputs when ever the inputs change
