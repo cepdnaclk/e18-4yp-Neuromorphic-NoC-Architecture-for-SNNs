@@ -68,7 +68,7 @@ module accelerator (
     wire [2047:0] ns_ac_spk;
     wire [1023:0] ns_neu_u_ien;
     wire [8191:0] neu_ns_u;
-    wire [8191:0] ns_neu_u_in;
+    wire [8191:0] ns_neu_u_in; 
 
     // generate 1024 accumlators
     wire cntrl_ac_reset;
