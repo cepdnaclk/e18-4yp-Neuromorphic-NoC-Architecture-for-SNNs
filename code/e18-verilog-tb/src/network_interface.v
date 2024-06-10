@@ -93,7 +93,7 @@ module network_interface(
     end
 
     //send the spike whenever
-    always @(spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9) begin
+    always @(clear, spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9) begin
         spike_register[0] = spike0;
         spike_register[1] = spike1;
         spike_register[2] = spike2;
@@ -105,17 +105,18 @@ module network_interface(
         spike_register[8] = spike8;
         spike_register[9] = spike9;
 
-        #0.5
-        check = ~check;
-        //if spiked send the source address to the relevant accumulator
-        for(i=0; i<=9; i=i+1) begin
-            if(spike_register[i]==1) begin
-                for(j=connection_pointer[i]; j<connection_pointer[i+1]; j=j+1) begin
-                    packet = #1 {neuron_addresses[i], downstream_connections[j]};
+        if(clear==1'b0) begin
+            #0.5
+            check = ~check;
+            //if spiked send the source address to the relevant accumulator
+            for(i=0; i<=9; i=i+1) begin
+                if(spike_register[i]==1) begin
+                    for(j=connection_pointer[i]; j<connection_pointer[i+1]; j=j+1) begin
+                        packet = #1 {neuron_addresses[i], downstream_connections[j]};
+                    end
+                    spike_register[i]=0;
                 end
-                spike_register[i]=0;
-            end
-            
+            end 
         end
         
     end
