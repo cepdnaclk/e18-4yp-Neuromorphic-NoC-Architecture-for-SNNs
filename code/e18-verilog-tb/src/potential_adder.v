@@ -1,7 +1,7 @@
 // `include "Addition_Subtraction.v"
 `timescale 1ns/100ps
 `include "comparator.v"
-
+ 
 module potential_adder(
     input wire clear,                                              //clear to start timestep
     input wire [31:0] v_threshold,
