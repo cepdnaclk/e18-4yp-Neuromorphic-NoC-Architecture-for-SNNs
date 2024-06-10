@@ -1,5 +1,5 @@
 
-module network_interface_scaled (
+module network_interface_new (
     input wire CLK,            //clock
     input wire clear,          //clear to start timestep
     input wire spike0,
@@ -17,9 +17,22 @@ module network_interface_scaled (
     input wire[neuron_address_initialization_width-1:0] neuron_addresses_initialization,          //input to initialize the neruon addresses
     input wire[connection_pointer_initialization_width-1:0] connection_pointer_initialization,          //input to initialize the connection pointers
     input wire[downstream_connections_initialization_width-1:0] downstream_connections_initialization,    //input to initialize the dowanstream connections
-    output reg[23:0] packet1, packet2, packet3, packet4, packet5, packet6, packet7, packet8, packet9,
-                packet10, packet11, packet12, packet13, packet14, packet15, packet16, packet17, packet18,
-                packet19, packet20, packet21              //outgoing packet
+    
+    output reg[11:0]     spike_out_source0, spike_out_source1,    spike_out_source2,    spike_out_source3,    spike_out_source4,    spike_out_source5,    spike_out_source6,    spike_out_source7,    spike_out_source8,    spike_out_source9,    spike_out_source10,    spike_out_source11,    spike_out_source12,    spike_out_source13,    spike_out_source14,    spike_out_source15,    spike_out_source16,    spike_out_source17,    spike_out_source18,    spike_out_source19,    spike_out_source20,    spike_out_source21,    spike_out_source22,    spike_out_source23,    spike_out_source24,    spike_out_source25,    spike_out_source26,    spike_out_source27,    spike_out_source28,    spike_out_source29,    spike_out_source30,    spike_out_source31,    spike_out_source32,    spike_out_source33,    spike_out_source34,    spike_out_source35,    spike_out_source36,    spike_out_source37,    spike_out_source38,    spike_out_source39,    spike_out_source40,    spike_out_source41,    spike_out_source42,    spike_out_source43,    spike_out_source44,    spike_out_source45,    spike_out_source46,    spike_out_source47,    spike_out_source48,    spike_out_source49,    spike_out_source50,    spike_out_source51,    spike_out_source52,    spike_out_source53,    spike_out_source54,    spike_out_source55,    spike_out_source56,    spike_out_source57,    spike_out_source58,    spike_out_source59,    spike_out_source60,    spike_out_source61,    spike_out_source62,    spike_out_source63,    spike_out_source64,    spike_out_source65,    spike_out_source66,    spike_out_source67,    spike_out_source68,    spike_out_source69,    spike_out_source70,    spike_out_source71,    spike_out_source72,    spike_out_source73,    spike_out_source74,    spike_out_source75,    spike_out_source76,    spike_out_source77,    spike_out_source78,    spike_out_source79,    spike_out_source80,    spike_out_source81,    spike_out_source82,    spike_out_source83,    spike_out_source84,    spike_out_source85,    spike_out_source86,    spike_out_source87,    spike_out_source88,    spike_out_source89,    spike_out_source90,    spike_out_source91,    spike_out_source92,    spike_out_source93,    spike_out_source94,    spike_out_source95,    spike_out_source96,    spike_out_source97,    spike_out_source98,    spike_out_source99,    spike_out_source100,
+    spike_out_source101,    spike_out_source102,    spike_out_source103,    spike_out_source104,    spike_out_source105,    spike_out_source106,    spike_out_source107,    spike_out_source108,    spike_out_source109,    spike_out_source110,    spike_out_source111,    spike_out_source112,    spike_out_source113,    spike_out_source114,    spike_out_source115,    spike_out_source116,    spike_out_source117,    spike_out_source118,    spike_out_source119,    spike_out_source120,    spike_out_source121,    spike_out_source122,    spike_out_source123,    spike_out_source124,    spike_out_source125,    spike_out_source126,    spike_out_source127,    spike_out_source128,    spike_out_source129,    spike_out_source130,    spike_out_source131,    spike_out_source132,    spike_out_source133,    spike_out_source134,    spike_out_source135,    spike_out_source136,    spike_out_source137,    spike_out_source138,    spike_out_source139,    spike_out_source140,    spike_out_source141,    spike_out_source142,    spike_out_source143,    spike_out_source144,    spike_out_source145,    spike_out_source146,    spike_out_source147,    spike_out_source148,    spike_out_source149,    spike_out_source150,    spike_out_source151,    spike_out_source152,    spike_out_source153,    spike_out_source154,    spike_out_source155,    spike_out_source156,    spike_out_source157,    spike_out_source158,    spike_out_source159,    spike_out_source160,    spike_out_source161,    spike_out_source162,    spike_out_source163,    spike_out_source164,    spike_out_source165,    spike_out_source166,    spike_out_source167,    spike_out_source168,    spike_out_source169,    spike_out_source170,    spike_out_source171,    spike_out_source172,    spike_out_source173,    spike_out_source174,    spike_out_source175,    spike_out_source176,    spike_out_source177,    spike_out_source178,    spike_out_source179,    spike_out_source180,    spike_out_source181,    spike_out_source182,    spike_out_source183,    spike_out_source184,    spike_out_source185,    spike_out_source186,    spike_out_source187,    spike_out_source188,    spike_out_source189,    spike_out_source190,    spike_out_source191,    spike_out_source192,    spike_out_source193,    spike_out_source194,    spike_out_source195,    spike_out_source196,    spike_out_source197,    spike_out_source198,    spike_out_source199,    spike_out_source200,
+    spike_out_source201,    spike_out_source202,    spike_out_source203,    spike_out_source204,    spike_out_source205,    spike_out_source206,    spike_out_source207,    spike_out_source208,    spike_out_source209,    spike_out_source210,    spike_out_source211,    spike_out_source212,    spike_out_source213,    spike_out_source214,    spike_out_source215,    spike_out_source216,    spike_out_source217,    spike_out_source218,    spike_out_source219,    spike_out_source220,    spike_out_source221,    spike_out_source222,    spike_out_source223,    spike_out_source224,    spike_out_source225,    spike_out_source226,    spike_out_source227,    spike_out_source228,    spike_out_source229,    spike_out_source230,    spike_out_source231,    spike_out_source232,    spike_out_source233,    spike_out_source234,    spike_out_source235,    spike_out_source236,    spike_out_source237,    spike_out_source238,    spike_out_source239,    spike_out_source240,    spike_out_source241,    spike_out_source242,    spike_out_source243,    spike_out_source244,    spike_out_source245,    spike_out_source246,    spike_out_source247,    spike_out_source248,    spike_out_source249,    spike_out_source250,    spike_out_source251,    spike_out_source252,    spike_out_source253,    spike_out_source254,    spike_out_source255,    spike_out_source256,    spike_out_source257,    spike_out_source258,    spike_out_source259,    spike_out_source260,    spike_out_source261,    spike_out_source262,    spike_out_source263,    spike_out_source264,    spike_out_source265,    spike_out_source266,    spike_out_source267,    spike_out_source268,    spike_out_source269,    spike_out_source270,    spike_out_source271,    spike_out_source272,    spike_out_source273,    spike_out_source274,    spike_out_source275,    spike_out_source276,    spike_out_source277,    spike_out_source278,    spike_out_source279,    spike_out_source280,    spike_out_source281,    spike_out_source282,    spike_out_source283,    spike_out_source284,    spike_out_source285,    spike_out_source286,    spike_out_source287,    spike_out_source288,    spike_out_source289,    spike_out_source290,    spike_out_source291,    spike_out_source292,    spike_out_source293,    spike_out_source294,    spike_out_source295,    spike_out_source296,    spike_out_source297,    spike_out_source298,    spike_out_source299,    spike_out_source300,
+    spike_out_source301,    spike_out_source302,    spike_out_source303,    spike_out_source304,    spike_out_source305,    spike_out_source306,    spike_out_source307,    spike_out_source308,    spike_out_source309,    spike_out_source310,    spike_out_source311,    spike_out_source312,    spike_out_source313,    spike_out_source314,    spike_out_source315,    spike_out_source316,    spike_out_source317,    spike_out_source318,    spike_out_source319,    spike_out_source320,    spike_out_source321,    spike_out_source322,    spike_out_source323,    spike_out_source324,    spike_out_source325,    spike_out_source326,    spike_out_source327,    spike_out_source328,    spike_out_source329,    spike_out_source330,    spike_out_source331,    spike_out_source332,    spike_out_source333,    spike_out_source334,    spike_out_source335,    spike_out_source336,    spike_out_source337,    spike_out_source338,    spike_out_source339,    spike_out_source340,    spike_out_source341,    spike_out_source342,    spike_out_source343,    spike_out_source344,    spike_out_source345,    spike_out_source346,    spike_out_source347,    spike_out_source348,    spike_out_source349,    spike_out_source350,    spike_out_source351,    spike_out_source352,    spike_out_source353,    spike_out_source354,    spike_out_source355,    spike_out_source356,    spike_out_source357,    spike_out_source358,    spike_out_source359,    spike_out_source360,    spike_out_source361,    spike_out_source362,    spike_out_source363,    spike_out_source364,    spike_out_source365,    spike_out_source366,    spike_out_source367,    spike_out_source368,    spike_out_source369,    spike_out_source370,    spike_out_source371,    spike_out_source372,    spike_out_source373,    spike_out_source374,    spike_out_source375,    spike_out_source376,    spike_out_source377,    spike_out_source378,    spike_out_source379,    spike_out_source380,    spike_out_source381,    spike_out_source382,    spike_out_source383,    spike_out_source384,    spike_out_source385,    spike_out_source386,    spike_out_source387,    spike_out_source388,    spike_out_source389,    spike_out_source390,    spike_out_source391,    spike_out_source392,    spike_out_source393,    spike_out_source394,    spike_out_source395,    spike_out_source396,    spike_out_source397,    spike_out_source398,    spike_out_source399,    spike_out_source400,
+    spike_out_source401,    spike_out_source402,    spike_out_source403,    spike_out_source404,    spike_out_source405,    spike_out_source406,    spike_out_source407,    spike_out_source408,    spike_out_source409,    spike_out_source410,    spike_out_source411,    spike_out_source412,    spike_out_source413,    spike_out_source414,    spike_out_source415,    spike_out_source416,    spike_out_source417,    spike_out_source418,    spike_out_source419,    spike_out_source420,    spike_out_source421,    spike_out_source422,    spike_out_source423,    spike_out_source424,    spike_out_source425,    spike_out_source426,    spike_out_source427,    spike_out_source428,    spike_out_source429,    spike_out_source430,    spike_out_source431,    spike_out_source432,    spike_out_source433,    spike_out_source434,    spike_out_source435,    spike_out_source436,    spike_out_source437,    spike_out_source438,    spike_out_source439,    spike_out_source440,    spike_out_source441,    spike_out_source442,    spike_out_source443,    spike_out_source444,    spike_out_source445,    spike_out_source446,    spike_out_source447,    spike_out_source448,    spike_out_source449,    spike_out_source450,    spike_out_source451,    spike_out_source452,    spike_out_source453,    spike_out_source454,    spike_out_source455,    spike_out_source456,    spike_out_source457,    spike_out_source458,    spike_out_source459,    spike_out_source460,    spike_out_source461,    spike_out_source462,    spike_out_source463,    spike_out_source464,    spike_out_source465,    spike_out_source466,    spike_out_source467,    spike_out_source468,    spike_out_source469,    spike_out_source470,    spike_out_source471,    spike_out_source472,    spike_out_source473,    spike_out_source474,    spike_out_source475,    spike_out_source476,    spike_out_source477,    spike_out_source478,    spike_out_source479,    spike_out_source480,    spike_out_source481,    spike_out_source482,    spike_out_source483,    spike_out_source484,    spike_out_source485,    spike_out_source486,    spike_out_source487,    spike_out_source488,    spike_out_source489,    spike_out_source490,    spike_out_source491,    spike_out_source492,    spike_out_source493,    spike_out_source494,    spike_out_source495,    spike_out_source496,    spike_out_source497,    spike_out_source498,    spike_out_source499,    spike_out_source500,
+    spike_out_source501,    spike_out_source502,    spike_out_source503,    spike_out_source504,    spike_out_source505,    spike_out_source506,    spike_out_source507,    spike_out_source508,    spike_out_source509,    spike_out_source510,    spike_out_source511,    spike_out_source512,    spike_out_source513,    spike_out_source514,    spike_out_source515,    spike_out_source516,    spike_out_source517,    spike_out_source518,    spike_out_source519,    spike_out_source520,    spike_out_source521,    spike_out_source522,    spike_out_source523,    spike_out_source524,    spike_out_source525,    spike_out_source526,    spike_out_source527,    spike_out_source528,    spike_out_source529,    spike_out_source530,    spike_out_source531,    spike_out_source532,    spike_out_source533,    spike_out_source534,    spike_out_source535,    spike_out_source536,    spike_out_source537,    spike_out_source538,    spike_out_source539,    spike_out_source540,    spike_out_source541,    spike_out_source542,    spike_out_source543,    spike_out_source544,    spike_out_source545,    spike_out_source546,    spike_out_source547,    spike_out_source548,    spike_out_source549,    spike_out_source550,    spike_out_source551,    spike_out_source552,    spike_out_source553,    spike_out_source554,    spike_out_source555,    spike_out_source556,    spike_out_source557,    spike_out_source558,    spike_out_source559,    spike_out_source560,    spike_out_source561,    spike_out_source562,    spike_out_source563,    spike_out_source564,    spike_out_source565,    spike_out_source566,    spike_out_source567,    spike_out_source568,    spike_out_source569,    spike_out_source570,    spike_out_source571,    spike_out_source572,    spike_out_source573,    spike_out_source574,    spike_out_source575,    spike_out_source576,    spike_out_source577,    spike_out_source578,    spike_out_source579,    spike_out_source580,    spike_out_source581,    spike_out_source582,    spike_out_source583,    spike_out_source584,    spike_out_source585,    spike_out_source586,    spike_out_source587,    spike_out_source588,    spike_out_source589,    spike_out_source590,    spike_out_source591,    spike_out_source592,    spike_out_source593,    spike_out_source594,    spike_out_source595,    spike_out_source596,    spike_out_source597,    spike_out_source598,    spike_out_source599,    spike_out_source600,
+    spike_out_source601,    spike_out_source602,    spike_out_source603,    spike_out_source604,    spike_out_source605,    spike_out_source606,    spike_out_source607,    spike_out_source608,    spike_out_source609,    spike_out_source610,    spike_out_source611,    spike_out_source612,    spike_out_source613,    spike_out_source614,    spike_out_source615,    spike_out_source616,    spike_out_source617,    spike_out_source618,    spike_out_source619,    spike_out_source620,    spike_out_source621,    spike_out_source622,    spike_out_source623,    spike_out_source624,    spike_out_source625,    spike_out_source626,    spike_out_source627,    spike_out_source628,    spike_out_source629,    spike_out_source630,    spike_out_source631,    spike_out_source632,    spike_out_source633,    spike_out_source634,    spike_out_source635,    spike_out_source636,    spike_out_source637,    spike_out_source638,    spike_out_source639,    spike_out_source640,    spike_out_source641,    spike_out_source642,    spike_out_source643,    spike_out_source644,    spike_out_source645,    spike_out_source646,    spike_out_source647,    spike_out_source648,    spike_out_source649,    spike_out_source650,    spike_out_source651,    spike_out_source652,    spike_out_source653,    spike_out_source654,    spike_out_source655,    spike_out_source656,    spike_out_source657,    spike_out_source658,    spike_out_source659,    spike_out_source660,    spike_out_source661,    spike_out_source662,    spike_out_source663,    spike_out_source664,    spike_out_source665,    spike_out_source666,    spike_out_source667,    spike_out_source668,    spike_out_source669,    spike_out_source670,    spike_out_source671,    spike_out_source672,    spike_out_source673,    spike_out_source674,    spike_out_source675,    spike_out_source676,    spike_out_source677,    spike_out_source678,    spike_out_source679,    spike_out_source680,    spike_out_source681,    spike_out_source682,    spike_out_source683,    spike_out_source684,    spike_out_source685,    spike_out_source686,    spike_out_source687,    spike_out_source688,    spike_out_source689,    spike_out_source690,    spike_out_source691,    spike_out_source692,    spike_out_source693,    spike_out_source694,    spike_out_source695,    spike_out_source696,    spike_out_source697,    spike_out_source698,    spike_out_source699,    spike_out_source700,
+    spike_out_source701,    spike_out_source702,    spike_out_source703,    spike_out_source704,    spike_out_source705,    spike_out_source706,    spike_out_source707,    spike_out_source708,    spike_out_source709,    spike_out_source710,    spike_out_source711,    spike_out_source712,    spike_out_source713,    spike_out_source714,    spike_out_source715,    spike_out_source716,    spike_out_source717,    spike_out_source718,    spike_out_source719,    spike_out_source720,    spike_out_source721,    spike_out_source722,    spike_out_source723,    spike_out_source724,    spike_out_source725,    spike_out_source726,    spike_out_source727,    spike_out_source728,    spike_out_source729,    spike_out_source730,    spike_out_source731,    spike_out_source732,    spike_out_source733,    spike_out_source734,    spike_out_source735,    spike_out_source736,    spike_out_source737,    spike_out_source738,    spike_out_source739,    spike_out_source740,    spike_out_source741,    spike_out_source742,    spike_out_source743,    spike_out_source744,    spike_out_source745,    spike_out_source746,    spike_out_source747,    spike_out_source748,    spike_out_source749,    spike_out_source750,    spike_out_source751,    spike_out_source752,    spike_out_source753,    spike_out_source754,    spike_out_source755,    spike_out_source756,    spike_out_source757,    spike_out_source758,    spike_out_source759,    spike_out_source760,    spike_out_source761,    spike_out_source762,    spike_out_source763,    spike_out_source764,    spike_out_source765,    spike_out_source766,    spike_out_source767,    spike_out_source768,    spike_out_source769,    spike_out_source770,    spike_out_source771,    spike_out_source772,    spike_out_source773,    spike_out_source774,    spike_out_source775,    spike_out_source776,    spike_out_source777,    spike_out_source778,    spike_out_source779,    spike_out_source780,    spike_out_source781,    spike_out_source782,    spike_out_source783,    spike_out_source784,    spike_out_source785,    spike_out_source786,    spike_out_source787,    spike_out_source788,    spike_out_source789,    spike_out_source790,    spike_out_source791,    spike_out_source792,    spike_out_source793,    spike_out_source794,    spike_out_source795,    spike_out_source796,    spike_out_source797,    spike_out_source798,    spike_out_source799,    spike_out_source800,
+    spike_out_source801,    spike_out_source802,    spike_out_source803,    spike_out_source804,    spike_out_source805,    spike_out_source806,    spike_out_source807,    spike_out_source808,    spike_out_source809,    spike_out_source810,    spike_out_source811,    spike_out_source812,    spike_out_source813,    spike_out_source814,    spike_out_source815,    spike_out_source816,    spike_out_source817,    spike_out_source818,    spike_out_source819,    spike_out_source820,    spike_out_source821,    spike_out_source822,    spike_out_source823,    spike_out_source824,    spike_out_source825,    spike_out_source826,    spike_out_source827,    spike_out_source828,    spike_out_source829,    spike_out_source830,    spike_out_source831,    spike_out_source832,    spike_out_source833,    spike_out_source834,    spike_out_source835,    spike_out_source836,    spike_out_source837,    spike_out_source838,    spike_out_source839,    spike_out_source840,    spike_out_source841,    spike_out_source842,    spike_out_source843,    spike_out_source844,    spike_out_source845,    spike_out_source846,    spike_out_source847,    spike_out_source848,    spike_out_source849,    spike_out_source850,    spike_out_source851,    spike_out_source852,    spike_out_source853,    spike_out_source854,    spike_out_source855,    spike_out_source856,    spike_out_source857,    spike_out_source858,    spike_out_source859,    spike_out_source860,    spike_out_source861,    spike_out_source862,    spike_out_source863,    spike_out_source864,    spike_out_source865,    spike_out_source866,    spike_out_source867,    spike_out_source868,    spike_out_source869,    spike_out_source870,    spike_out_source871,    spike_out_source872,    spike_out_source873,    spike_out_source874,    spike_out_source875,    spike_out_source876,    spike_out_source877,    spike_out_source878,    spike_out_source879,    spike_out_source880,    spike_out_source881,    spike_out_source882,    spike_out_source883,    spike_out_source884,    spike_out_source885,    spike_out_source886,    spike_out_source887,    spike_out_source888,    spike_out_source889,    spike_out_source890,    spike_out_source891,    spike_out_source892,    spike_out_source893,    spike_out_source894,    spike_out_source895,    spike_out_source896,    spike_out_source897,    spike_out_source898,    spike_out_source899,    spike_out_source900,
+    spike_out_source901,    spike_out_source902,    spike_out_source903,    spike_out_source904,    spike_out_source905,    spike_out_source906,    spike_out_source907,    spike_out_source908,    spike_out_source909,    spike_out_source910,    spike_out_source911,    spike_out_source912,    spike_out_source913,    spike_out_source914,    spike_out_source915,    spike_out_source916,    spike_out_source917,    spike_out_source918,    spike_out_source919,    spike_out_source920,    spike_out_source921,    spike_out_source922,    spike_out_source923,    spike_out_source924,    spike_out_source925,    spike_out_source926,    spike_out_source927,    spike_out_source928,    spike_out_source929,    spike_out_source930,    spike_out_source931,    spike_out_source932,    spike_out_source933,    spike_out_source934,    spike_out_source935,    spike_out_source936,    spike_out_source937,    spike_out_source938,    spike_out_source939,    spike_out_source940,    spike_out_source941,    spike_out_source942,    spike_out_source943,    spike_out_source944,    spike_out_source945,    spike_out_source946,    spike_out_source947,    spike_out_source948,    spike_out_source949,    spike_out_source950,    spike_out_source951,    spike_out_source952,    spike_out_source953,    spike_out_source954,    spike_out_source955,    spike_out_source956,    spike_out_source957,    spike_out_source958,    spike_out_source959,    spike_out_source960,    spike_out_source961,    spike_out_source962,    spike_out_source963,    spike_out_source964,    spike_out_source965,    spike_out_source966,    spike_out_source967,    spike_out_source968,    spike_out_source969,    spike_out_source970,    spike_out_source971,    spike_out_source972,    spike_out_source973,    spike_out_source974,    spike_out_source975,    spike_out_source976,    spike_out_source977,    spike_out_source978,    spike_out_source979,    spike_out_source980,    spike_out_source981,    spike_out_source982,    spike_out_source983,    spike_out_source984,    spike_out_source985,    spike_out_source986,    spike_out_source987,    spike_out_source988,    spike_out_source989,    spike_out_source990,    spike_out_source991,    spike_out_source992,    spike_out_source993,    spike_out_source994,    spike_out_source995,    spike_out_source996,    spike_out_source997,    spike_out_source998,    spike_out_source999,    spike_out_source1000,
+    spike_out_source1001,    spike_out_source1002,    spike_out_source1003,    spike_out_source1004,    spike_out_source1005,    spike_out_source1006,    spike_out_source1007,    spike_out_source1008,    spike_out_source1009,    spike_out_source1010,    spike_out_source1011,    spike_out_source1012,    spike_out_source1013,    spike_out_source1014,    spike_out_source1015,    spike_out_source1016,    spike_out_source1017,    spike_out_source1018,    spike_out_source1019,    spike_out_source1020,    spike_out_source1021,    spike_out_source1022,    spike_out_source1023
+    
+    // output reg[23:0] packet1, packet2, packet3, packet4, packet5, packet6, packet7, packet8, packet9,
+    //             packet10, packet11, packet12, packet13, packet14, packet15, packet16, packet17, packet18,
+    //             packet19, packet20, packet21              //outgoing packet
 );
     parameter number_of_address_bits = 12;
     parameter connection_pointer_initialization_width = (number_of_neurons + 1) * 5;   // 14-> number_of_neurons * number_of_connections_downstream can be represented by 12 bits
@@ -43,6 +56,23 @@ module network_interface_scaled (
 
     reg[18:0] i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21;
     reg[18:0] j1, j2, j3, j4, j5, j6, j7, j8, j9, j10, j11, j12, j13, j14, j15, j16, j17, j18, j19, j20, j21;
+    
+    //1024 incoming spikes buffer
+    reg spike_register[0:1024-1];
+
+    //1024 outgoing spike source information
+    reg[11:0] spike_out_source_array[0:1024-1];
+
+    initial begin
+        #40
+        for(j1 = connection_pointer[0]; j1 < connection_pointer[0+1]; j1= j1+1) begin
+            // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+            //assign to the relevant output wire's array location
+            spike_out_source_array[downstream_connections[j1]] = neuron_addresses[0];
+        end
+
+    end
+    
     //when neuron addresses are initilaized
     always @(neuron_addresses_initialization) begin
              
@@ -58,11 +88,19 @@ module network_interface_scaled (
         neuron_addresses[9] = neuron_addresses_initialization[11:0];
     end
 
-    //when the connnection pointers comes
+    //when the connnection pointers come
     always @(connection_pointer_initialization) begin
-        ou
-
-            
+        connection_pointer[0] = connection_pointer_initialization[54:50];
+        connection_pointer[1] = connection_pointer_initialization[49:45];
+        connection_pointer[2] = connection_pointer_initialization[44:40];
+        connection_pointer[3] = connection_pointer_initialization[39:35];
+        connection_pointer[4] = connection_pointer_initialization[34:30];
+        connection_pointer[5] = connection_pointer_initialization[29:25];
+        connection_pointer[6] = connection_pointer_initialization[24:20];
+        connection_pointer[7] = connection_pointer_initialization[19:15];
+        connection_pointer[8] = connection_pointer_initialization[14:10];
+        connection_pointer[9] = connection_pointer_initialization[9:5];
+        connection_pointer[10] = connection_pointer_initialization[4:0];
     end
 
     //initlize the connections
@@ -100,9 +138,6 @@ module network_interface_scaled (
         downstream_connections[29] = downstream_connections_initialization[11:0];
     end
 
-
-    // 20 units to handle the 1024 incoming spikes so it is faster
-    reg spike_register[0:1024-1];
     // always @(lock1, spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9, spike10, spike11, spike12, spike13, spike14, spike15, spike16, spike17, spike18, spike19, spike20, spike21, spike22, spike23, spike24, spike25, spike26, spike27, spike28, spike29, spike30, spike31, spike32, spike33, spike34, spike35, spike36, spike37, spike38, spike39, spike40, spike41, spike42, spike43, spike44, spike45, spike46, spike47, spike48, spike49, spike50, spike51, spike52, spike53, spike54, spike55, spike56, spike57, spike58, spike59, spike60, spike61, spike62, spike63, spike64, spike65, spike66, spike67, spike68, spike69, spike70, spike71, spike72, spike73, spike74, spike75, spike76, spike77, spike78, spike79, spike80, spike81, spike82, spike83, spike84, spike85, spike86, spike87, spike88, spike89, spike90, spike91, spike92, spike93, spike94, spike95, spike96, spike97, spike98, spike99, spike100, spike101, spike102, spike103, spike104, spike105, spike106, spike107, spike108, spike109, spike110, spike111, spike112, spike113, spike114, spike115, spike116, spike117, spike118, spike119, spike120, spike121, spike122, spike123, spike124, spike125, spike126, spike127, spike128, spike129, spike130, spike131, spike132, spike133, spike134, spike135, spike136, spike137, spike138, spike139, spike140, spike141, spike142, spike143, spike144, spike145, spike146, spike147, spike148, spike149, spike150, spike151, spike152, spike153, spike154, spike155, spike156, spike157, spike158, spike159, spike160, spike161, spike162, spike163, spike164, spike165, spike166, spike167, spike168, spike169, spike170, spike171, spike172, spike173, spike174, spike175, spike176, spike177, spike178, spike179, spike180, spike181, spike182, spike183, spike184, spike185, spike186, spike187, spike188, spike189, spike190, spike191, spike192, spike193, spike194, spike195, spike196, spike197, spike198, spike199, spike200, spike201, spike202, spike203, spike204, spike205, spike206, spike207, spike208, spike209, spike210, spike211, spike212, spike213, spike214, spike215, spike216, spike217, spike218, spike219, spike220, spike221, spike222, spike223, spike224, spike225, spike226, spike227, spike228, spike229, spike230, spike231, spike232, spike233, spike234, spike235, spike236, spike237, spike238, spike239, spike240, spike241, spike242, spike243, spike244, spike245, spike246, spike247, spike248, spike249, spike250, spike251, spike252, spike253, spike254, spike255, spike256, spike257, spike258, spike259, spike260, spike261, spike262, spike263, spike264, spike265, spike266, spike267, spike268, spike269, spike270, spike271, spike272, spike273, spike274, spike275, spike276, spike277, spike278, spike279, spike280, spike281, spike282, spike283, spike284, spike285, spike286, spike287, spike288, spike289, spike290, spike291, spike292, spike293, spike294, spike295, spike296, spike297, spike298, spike299, spike300, spike301, spike302, spike303, spike304, spike305, spike306, spike307, spike308, spike309, spike310, spike311, spike312, spike313, spike314, spike315, spike316, spike317, spike318, spike319, spike320, spike321, spike322, spike323, spike324, spike325, spike326, spike327, spike328, spike329, spike330, spike331, spike332, spike333, spike334, spike335, spike336, spike337, spike338, spike339, spike340, spike341, spike342, spike343, spike344, spike345, spike346, spike347, spike348, spike349, spike350, spike351, spike352, spike353, spike354, spike355, spike356, spike357, spike358, spike359, spike360, spike361, spike362, spike363, spike364, spike365, spike366, spike367, spike368, spike369, spike370, spike371, spike372, spike373, spike374, spike375, spike376, spike377, spike378, spike379, spike380, spike381, spike382, spike383, spike384, spike385, spike386, spike387, spike388, spike389, spike390, spike391, spike392, spike393, spike394, spike395, spike396, spike397, spike398, spike399, spike400, spike401, spike402, spike403, spike404, spike405, spike406, spike407, spike408, spike409, spike410, spike411, spike412, spike413, spike414, spike415, spike416, spike417, spike418, spike419, spike420, spike421, spike422, spike423, spike424, spike425, spike426, spike427, spike428, spike429, spike430, spike431, spike432, spike433, spike434, spike435, spike436, spike437, spike438, spike439, spike440, spike441, spike442, spike443, spike444, spike445, spike446, spike447, spike448, spike449, spike450, spike451, spike452, spike453, spike454, spike455, spike456, spike457, spike458, spike459, spike460, spike461, spike462, spike463, spike464, spike465, spike466, spike467, spike468, spike469, spike470, spike471, spike472, spike473, spike474, spike475, spike476, spike477, spike478, spike479, spike480, spike481, spike482, spike483, spike484, spike485, spike486, spike487, spike488, spike489, spike490, spike491, spike492, spike493, spike494, spike495, spike496, spike497, spike498, spike499, spike500, spike501, spike502, spike503, spike504, spike505, spike506, spike507, spike508, spike509, spike510, spike511, spike512, spike513, spike514, spike515, spike516, spike517, spike518, spike519, spike520, spike521, spike522, spike523, spike524, spike525, spike526, spike527, spike528, spike529, spike530, spike531, spike532, spike533, spike534, spike535, spike536, spike537, spike538, spike539, spike540, spike541, spike542, spike543, spike544, spike545, spike546, spike547, spike548, spike549, spike550, spike551, spike552, spike553, spike554, spike555, spike556, spike557, spike558, spike559, spike560, spike561, spike562, spike563, spike564, spike565, spike566, spike567, spike568, spike569, spike570, spike571, spike572, spike573, spike574, spike575, spike576, spike577, spike578, spike579, spike580, spike581, spike582, spike583, spike584, spike585, spike586, spike587, spike588, spike589, spike590, spike591, spike592, spike593, spike594, spike595, spike596, spike597, spike598, spike599, spike600, spike601, spike602, spike603, spike604, spike605, spike606, spike607, spike608, spike609, spike610, spike611, spike612, spike613, spike614, spike615, spike616, spike617, spike618, spike619, spike620, spike621, spike622, spike623, spike624, spike625, spike626, spike627, spike628, spike629, spike630, spike631, spike632, spike633, spike634, spike635, spike636, spike637, spike638, spike639, spike640, spike641, spike642, spike643, spike644, spike645, spike646, spike647, spike648, spike649, spike650, spike651, spike652, spike653, spike654, spike655, spike656, spike657, spike658, spike659, spike660, spike661, spike662, spike663, spike664, spike665, spike666, spike667, spike668, spike669, spike670, spike671, spike672, spike673, spike674, spike675, spike676, spike677, spike678, spike679, spike680, spike681, spike682, spike683, spike684, spike685, spike686, spike687, spike688, spike689, spike690, spike691, spike692, spike693, spike694, spike695, spike696, spike697, spike698, spike699, spike700, spike701, spike702, spike703, spike704, spike705, spike706, spike707, spike708, spike709, spike710, spike711, spike712, spike713, spike714, spike715, spike716, spike717, spike718, spike719, spike720, spike721, spike722, spike723, spike724, spike725, spike726, spike727, spike728, spike729, spike730, spike731, spike732, spike733, spike734, spike735, spike736, spike737, spike738, spike739, spike740, spike741, spike742, spike743, spike744, spike745, spike746, spike747, spike748, spike749, spike750, spike751, spike752, spike753, spike754, spike755, spike756, spike757, spike758, spike759, spike760, spike761, spike762, spike763, spike764, spike765, spike766, spike767, spike768, spike769, spike770, spike771, spike772, spike773, spike774, spike775, spike776, spike777, spike778, spike779, spike780, spike781, spike782, spike783, spike784, spike785, spike786, spike787, spike788, spike789, spike790, spike791, spike792, spike793, spike794, spike795, spike796, spike797, spike798, spike799, spike800, spike801, spike802, spike803, spike804, spike805, spike806, spike807, spike808, spike809, spike810, spike811, spike812, spike813, spike814, spike815, spike816, spike817, spike818, spike819, spike820, spike821, spike822, spike823, spike824, spike825, spike826, spike827, spike828, spike829, spike830, spike831, spike832, spike833, spike834, spike835, spike836, spike837, spike838, spike839, spike840, spike841, spike842, spike843, spike844, spike845, spike846, spike847, spike848, spike849, spike850, spike851, spike852, spike853, spike854, spike855, spike856, spike857, spike858, spike859, spike860, spike861, spike862, spike863, spike864, spike865, spike866, spike867, spike868, spike869, spike870, spike871, spike872, spike873, spike874, spike875, spike876, spike877, spike878, spike879, spike880, spike881, spike882, spike883, spike884, spike885, spike886, spike887, spike888, spike889, spike890, spike891, spike892, spike893, spike894, spike895, spike896, spike897, spike898, spike899, spike900, spike901, spike902, spike903, spike904, spike905, spike906, spike907, spike908, spike909, spike910, spike911, spike912, spike913, spike914, spike915, spike916, spike917, spike918, spike919, spike920, spike921, spike922, spike923, spike924, spike925, spike926, spike927, spike928, spike929, spike930, spike931, spike932, spike933, spike934, spike935, spike936, spike937, spike938, spike939, spike940, spike941, spike942, spike943, spike944, spike945, spike946, spike947, spike948, spike949, spike950, spike951, spike952, spike953, spike954, spike955, spike956, spike957, spike958, spike959, spike960, spike961, spike962, spike963, spike964, spike965, spike966, spike967, spike968, spike969, spike970, spike971, spike972, spike973, spike974, spike975, spike976, spike977, spike978, spike979, spike980, spike981, spike982, spike983, spike984, spike985, spike986, spike987, spike988, spike989, spike990, spike991, spike992, spike993, spike994, spike995, spike996, spike997, spike998, spike999, spike1000, spike1001, spike1002, spike1003, spike1004, spike1005, spike1006, spike1007, spike1008, spike1009, spike1010, spike1011, spike1012, spike1013, spike1014, spike1015, spike1016, spike1017, spike1018, spike1019, spike1020, spike1021, spike1022, spike1023, clear) begin
     //     spike_register[0] = spike0;
     //     spike_register[1] = spike1;        spike_register[2] = spike2;        spike_register[3] = spike3;        spike_register[4] = spike4;        spike_register[5] = spike5;        spike_register[6] = spike6;        spike_register[7] = spike7;        spike_register[8] = spike8;        spike_register[9] = spike9;        spike_register[10] = spike10;        spike_register[11] = spike11;        spike_register[12] = spike12;        spike_register[13] = spike13;        spike_register[14] = spike14;        spike_register[15] = spike15;        spike_register[16] = spike16;        spike_register[17] = spike17;        spike_register[18] = spike18;        spike_register[19] = spike19;        spike_register[20] = spike20;        spike_register[21] = spike21;        spike_register[22] = spike22;        spike_register[23] = spike23;        spike_register[24] = spike24;        spike_register[25] = spike25;        spike_register[26] = spike26;        spike_register[27] = spike27;        spike_register[28] = spike28;        spike_register[29] = spike29;        spike_register[30] = spike30;        spike_register[31] = spike31;        spike_register[32] = spike32;        spike_register[33] = spike33;        spike_register[34] = spike34;        spike_register[35] = spike35;        spike_register[36] = spike36;        spike_register[37] = spike37;        spike_register[38] = spike38;        spike_register[39] = spike39;        spike_register[40] = spike40;        spike_register[41] = spike41;        spike_register[42] = spike42;        spike_register[43] = spike43;        spike_register[44] = spike44;        spike_register[45] = spike45;        spike_register[46] = spike46;        spike_register[47] = spike47;        spike_register[48] = spike48;        spike_register[49] = spike49;        spike_register[50] = spike50;        spike_register[51] = spike51;        spike_register[52] = spike52;        spike_register[53] = spike53;        spike_register[54] = spike54;        spike_register[55] = spike55;        spike_register[56] = spike56;        spike_register[57] = spike57;        spike_register[58] = spike58;        spike_register[59] = spike59;        spike_register[60] = spike60;        spike_register[61] = spike61;        spike_register[62] = spike62;        spike_register[63] = spike63;        spike_register[64] = spike64;        spike_register[65] = spike65;        spike_register[66] = spike66;        spike_register[67] = spike67;        spike_register[68] = spike68;        spike_register[69] = spike69;        spike_register[70] = spike70;        spike_register[71] = spike71;        spike_register[72] = spike72;        spike_register[73] = spike73;        spike_register[74] = spike74;        spike_register[75] = spike75;        spike_register[76] = spike76;        spike_register[77] = spike77;        spike_register[78] = spike78;        spike_register[79] = spike79;        spike_register[80] = spike80;        spike_register[81] = spike81;        spike_register[82] = spike82;        spike_register[83] = spike83;        spike_register[84] = spike84;        spike_register[85] = spike85;        spike_register[86] = spike86;        spike_register[87] = spike87;        spike_register[88] = spike88;        spike_register[89] = spike89;        spike_register[90] = spike90;        spike_register[91] = spike91;        spike_register[92] = spike92;        spike_register[93] = spike93;        spike_register[94] = spike94;        spike_register[95] = spike95;        spike_register[96] = spike96;        spike_register[97] = spike97;        spike_register[98] = spike98;        spike_register[99] = spike99;        spike_register[100] = spike100;
@@ -145,7 +180,9 @@ module network_interface_scaled (
                 if(spike_register[i1] == 1 && lock1 == 0) begin
                     lock1 = 1;
                     for(j1 = connection_pointer[i1]; j1 < connection_pointer[i1+1]; j1= j1+1) begin
-                        packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+                        // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j1]] = neuron_addresses[i1];
                     end
                     spike_register[i1] = 0;
                     lock1 = 0;
@@ -162,7 +199,9 @@ module network_interface_scaled (
                 if(spike_register[i2] == 1 && lock2 == 0) begin
                     lock2 = 1;
                     for(j2 = connection_pointer[i2]; j2 < connection_pointer[i2+1]; j2= j2+1) begin
-                        packet2 = #0.1 {neuron_addresses[i2], downstream_connections[j2]};
+                        // packet2 = #0.1 {neuron_addresses[i2], downstream_connections[j2]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j2]] = neuron_addresses[i2];
                     end
                     spike_register[i2] = 0;
                     lock2 = 0;
@@ -181,7 +220,9 @@ module network_interface_scaled (
                 if(spike_register[i3] == 1 && lock3 == 0) begin
                     lock3 = 1;
                     for(j3 = connection_pointer[i3]; j3 < connection_pointer[i3+1]; j3= j3+1) begin
-                        packet3 = #0.1 {neuron_addresses[i3], downstream_connections[j3]};
+                        // packet3 = #0.1 {neuron_addresses[i3], downstream_connections[j3]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j3]] = neuron_addresses[i3];
                     end
                     spike_register[i3] = 0;
                     lock3 = 0;
@@ -198,7 +239,9 @@ module network_interface_scaled (
                 if(spike_register[i4] == 1 && lock4 == 0) begin
                     lock4 = 1;
                     for(j4 = connection_pointer[i4]; j4 < connection_pointer[i4+1]; j4= j4+1) begin
-                        packet4 = #0.1 {neuron_addresses[i4], downstream_connections[j4]};
+                        // packet4 = #0.1 {neuron_addresses[i4], downstream_connections[j4]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j4]] = neuron_addresses[i4];
                     end
                     spike_register[i4] = 0;
                     lock4 = 0;
@@ -217,7 +260,9 @@ module network_interface_scaled (
                 if(spike_register[i5] == 1 && lock5 == 0) begin
                     lock5 = 1;
                     for(j5 = connection_pointer[i5]; j5 < connection_pointer[i5+1]; j5= j5+1) begin
-                        packet5 = #0.1 {neuron_addresses[i5], downstream_connections[j5]};
+                        // packet5 = #0.1 {neuron_addresses[i5], downstream_connections[j5]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j5]] = neuron_addresses[i5];
                     end
                     spike_register[i5] = 0;
                     lock5 = 0;
@@ -234,7 +279,9 @@ module network_interface_scaled (
                 if(spike_register[i6] == 1 && lock6 == 0) begin
                     lock6 = 1;
                     for(j6 = connection_pointer[i6]; j6 < connection_pointer[i6+1]; j6= j6+1) begin
-                        packet6 = #0.1 {neuron_addresses[i6], downstream_connections[j6]};
+                        // packet6 = #0.1 {neuron_addresses[i6], downstream_connections[j6]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j6]] = neuron_addresses[i6];
                     end
                     spike_register[i6] = 0;
                     lock6 = 0;
@@ -253,7 +300,9 @@ module network_interface_scaled (
                 if(spike_register[i7] == 1 && lock7 == 0) begin
                     lock7 = 1;
                     for(j7 = connection_pointer[i7]; j7 < connection_pointer[i7+1]; j7= j7+1) begin
-                        packet7 = #0.1 {neuron_addresses[i7], downstream_connections[j7]};
+                        // packet7 = #0.1 {neuron_addresses[i7], downstream_connections[j7]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j7]] = neuron_addresses[i7];
                     end
                     spike_register[i7] = 0;
                     lock7 = 0;
@@ -270,7 +319,9 @@ module network_interface_scaled (
                 if(spike_register[i8] == 1 && lock8 == 0) begin
                     lock8 = 1;
                     for(j8 = connection_pointer[i8]; j8 < connection_pointer[i8+1]; j8= j8+1) begin
-                        packet8 = #0.1 {neuron_addresses[i8], downstream_connections[j8]};
+                        // packet8 = #0.1 {neuron_addresses[i8], downstream_connections[j8]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j8]] = neuron_addresses[i8];
                     end
                     spike_register[i8] = 0;
                     lock8 = 0;
@@ -289,7 +340,9 @@ module network_interface_scaled (
                 if(spike_register[i9] == 1 && lock9 == 0) begin
                     lock9 = 1;
                     for(j9 = connection_pointer[i9]; j9 < connection_pointer[i9+1]; j9= j9+1) begin
-                        packet9 = #0.1 {neuron_addresses[i9], downstream_connections[j9]};
+                        // packet9 = #0.1 {neuron_addresses[i9], downstream_connections[j9]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j9]] = neuron_addresses[i9];
                     end
                     spike_register[i9] = 0;
                     lock9 = 0;
@@ -306,7 +359,9 @@ module network_interface_scaled (
                 if(spike_register[i10] == 1 && lock10 == 0) begin
                     lock10 = 1;
                     for(j10 = connection_pointer[i10]; j10 < connection_pointer[i10+1]; j10= j10+1) begin
-                        packet10 = #0.1 {neuron_addresses[i10], downstream_connections[j10]};
+                        // packet10 = #0.1 {neuron_addresses[i10], downstream_connections[j10]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j10]] = neuron_addresses[i10];
                     end
                     spike_register[i10] = 0;
                     lock10 = 0;
@@ -325,7 +380,9 @@ module network_interface_scaled (
                 if(spike_register[i11] == 1 && lock11 == 0) begin
                     lock11 = 1;
                     for(j11 = connection_pointer[i11]; j11 < connection_pointer[i11+1]; j11= j11+1) begin
-                        packet11 = #0.1 {neuron_addresses[i11], downstream_connections[j11]};
+                        // packet11 = #0.1 {neuron_addresses[i11], downstream_connections[j11]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j11]] = neuron_addresses[i11];
                     end
                     spike_register[i11] = 0;
                     lock11 = 0;
@@ -342,7 +399,9 @@ module network_interface_scaled (
                 if(spike_register[i12] == 1 && lock12 == 0) begin
                     lock12 = 1;
                     for(j12 = connection_pointer[i12]; j12 < connection_pointer[i12+1]; j12= j12+1) begin
-                        packet12 = #0.1 {neuron_addresses[i12], downstream_connections[j12]};
+                        // packet12 = #0.1 {neuron_addresses[i12], downstream_connections[j12]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j12]] = neuron_addresses[i12];
                     end
                     spike_register[i12] = 0;
                     lock12 = 0;
@@ -361,7 +420,9 @@ module network_interface_scaled (
                 if(spike_register[i13] == 1 && lock13 == 0) begin
                     lock13 = 1;
                     for(j13 = connection_pointer[i13]; j13 < connection_pointer[i13+1]; j13= j13+1) begin
-                        packet13 = #0.1 {neuron_addresses[i13], downstream_connections[j13]};
+                        // packet13 = #0.1 {neuron_addresses[i13], downstream_connections[j13]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j13]] = neuron_addresses[i13];
                     end
                     spike_register[i13] = 0;
                     lock13 = 0;
@@ -378,7 +439,9 @@ module network_interface_scaled (
                 if(spike_register[i14] == 1 && lock14 == 0) begin
                     lock14 = 1;
                     for(j14 = connection_pointer[i14]; j14 < connection_pointer[i14+1]; j14= j14+1) begin
-                        packet14 = #0.1 {neuron_addresses[i14], downstream_connections[j14]};
+                        // packet14 = #0.1 {neuron_addresses[i14], downstream_connections[j14]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j14]] = neuron_addresses[i14];
                     end
                     spike_register[i14] = 0;
                     lock14 = 0;
@@ -397,7 +460,9 @@ module network_interface_scaled (
                 if(spike_register[i15] == 1 && lock15 == 0) begin
                     lock15 = 1;
                     for(j15 = connection_pointer[i15]; j15 < connection_pointer[i15+1]; j15= j15+1) begin
-                        packet15 = #0.1 {neuron_addresses[i15], downstream_connections[j15]};
+                        // packet15 = #0.1 {neuron_addresses[i15], downstream_connections[j15]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j15]] = neuron_addresses[i15];
                     end
                     spike_register[i15] = 0;
                     lock15 = 0;
@@ -414,7 +479,9 @@ module network_interface_scaled (
                 if(spike_register[i16] == 1 && lock16 == 0) begin
                     lock16 = 1;
                     for(j16 = connection_pointer[i16]; j16 < connection_pointer[i16+1]; j16= j16+1) begin
-                        packet16 = #0.1 {neuron_addresses[i16], downstream_connections[j16]};
+                        // packet16 = #0.1 {neuron_addresses[i16], downstream_connections[j16]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j16]] = neuron_addresses[i16];
                     end
                     spike_register[i16] = 0;
                     lock16 = 0;
@@ -433,7 +500,10 @@ module network_interface_scaled (
                 if(spike_register[i17] == 1 && lock17 == 0) begin
                     lock17 = 1;
                     for(j17 = connection_pointer[i17]; j17 < connection_pointer[i17+1]; j17= j17+1) begin
-                        packet17 = #0.1 {neuron_addresses[i17], downstream_connections[j17]};
+                        // packet17 = #0.1 {neuron_addresses[i17], downstream_connections[j17]};
+                        // assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j17]] = neuron_addresses[i17];
+                        
                     end
                     spike_register[i17] = 0;
                     lock17 = 0;
@@ -450,7 +520,9 @@ module network_interface_scaled (
                 if(spike_register[i18] == 1 && lock18 == 0) begin
                     lock18 = 1;
                     for(j18 = connection_pointer[i18]; j18 < connection_pointer[i18+1]; j18= j18+1) begin
-                        packet18 = #0.1 {neuron_addresses[i18], downstream_connections[j18]};
+                        // packet18 = #0.1 {neuron_addresses[i18], downstream_connections[j18]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j18]] = neuron_addresses[i18];
                     end
                     spike_register[i18] = 0;
                     lock18 = 0;
@@ -469,7 +541,9 @@ module network_interface_scaled (
                 if(spike_register[i19] == 1 && lock19 == 0) begin
                     lock19 = 1;
                     for(j19 = connection_pointer[i19]; j19 < connection_pointer[i19+1]; j19= j19+1) begin
-                        packet19 = #0.1 {neuron_addresses[i19], downstream_connections[j19]};
+                        // packet19 = #0.1 {neuron_addresses[i19], downstream_connections[j19]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j19]] = neuron_addresses[i19];
                     end
                     spike_register[i19] = 0;
                     lock19 = 0;
@@ -486,7 +560,9 @@ module network_interface_scaled (
                 if(spike_register[i20] == 1 && lock20 == 0) begin
                     lock20 = 1;
                     for(j20 = connection_pointer[i20]; j20 < connection_pointer[i20+1]; j20= j20+1) begin
-                        packet20 = #0.1 {neuron_addresses[i20], downstream_connections[j20]};
+                        // packet20 = #0.1 {neuron_addresses[i20], downstream_connections[j20]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j20]] = neuron_addresses[i20];
                     end
                     spike_register[i20] = 0;
                     lock20 = 0;
@@ -505,7 +581,9 @@ module network_interface_scaled (
                 if(spike_register[i21] == 1 && lock21 == 0) begin
                     lock21 = 1;
                     for(j21 = connection_pointer[i21]; j21 < connection_pointer[i21+1]; j21= j21+1) begin
-                        packet21 = #0.1 {neuron_addresses[i21], downstream_connections[j21]};
+                        // packet21 = #0.1 {neuron_addresses[i21], downstream_connections[j21]};
+                        //assign to the relevant output wire's array location
+                        spike_out_source_array[downstream_connections[j21]] = neuron_addresses[i21];
                     end
                     spike_register[i21] = 0;
                     lock21 = 0;
@@ -513,6 +591,3080 @@ module network_interface_scaled (
             end
         end
 
+    end
+
+    //1024 always blocks to assign values to output ports
+    always @(spike_out_source_array[0]) begin 
+        spike_out_source0 = spike_out_source_array[0];
+    end
+    always @(spike_out_source_array[1]) begin 
+        spike_out_source1 = spike_out_source_array[1];
+    end
+    always @(spike_out_source_array[2]) begin 
+        spike_out_source2 = spike_out_source_array[2];
+    end
+    always @(spike_out_source_array[3]) begin 
+        spike_out_source3 = spike_out_source_array[3];
+    end
+    always @(spike_out_source_array[4]) begin 
+        spike_out_source4 = spike_out_source_array[4];
+    end
+    always @(spike_out_source_array[5]) begin 
+        spike_out_source5 = spike_out_source_array[5];
+    end
+    always @(spike_out_source_array[6]) begin 
+        spike_out_source6 = spike_out_source_array[6];
+    end
+    always @(spike_out_source_array[7]) begin 
+        spike_out_source7 = spike_out_source_array[7];
+    end
+    always @(spike_out_source_array[8]) begin 
+        spike_out_source8 = spike_out_source_array[8];
+    end
+    always @(spike_out_source_array[9]) begin 
+        spike_out_source9 = spike_out_source_array[9];
+    end
+    always @(spike_out_source_array[10]) begin 
+        spike_out_source10 = spike_out_source_array[10];
+    end
+    always @(spike_out_source_array[11]) begin 
+        spike_out_source11 = spike_out_source_array[11];
+    end
+    always @(spike_out_source_array[12]) begin 
+        spike_out_source12 = spike_out_source_array[12];
+    end
+    always @(spike_out_source_array[13]) begin 
+        spike_out_source13 = spike_out_source_array[13];
+    end
+    always @(spike_out_source_array[14]) begin 
+        spike_out_source14 = spike_out_source_array[14];
+    end
+    always @(spike_out_source_array[15]) begin 
+        spike_out_source15 = spike_out_source_array[15];
+    end
+    always @(spike_out_source_array[16]) begin 
+        spike_out_source16 = spike_out_source_array[16];
+    end
+    always @(spike_out_source_array[17]) begin 
+        spike_out_source17 = spike_out_source_array[17];
+    end
+    always @(spike_out_source_array[18]) begin 
+        spike_out_source18 = spike_out_source_array[18];
+    end
+    always @(spike_out_source_array[19]) begin 
+        spike_out_source19 = spike_out_source_array[19];
+    end
+    always @(spike_out_source_array[20]) begin 
+        spike_out_source20 = spike_out_source_array[20];
+    end
+    always @(spike_out_source_array[21]) begin 
+        spike_out_source21 = spike_out_source_array[21];
+    end
+    always @(spike_out_source_array[22]) begin 
+        spike_out_source22 = spike_out_source_array[22];
+    end
+    always @(spike_out_source_array[23]) begin 
+        spike_out_source23 = spike_out_source_array[23];
+    end
+    always @(spike_out_source_array[24]) begin 
+        spike_out_source24 = spike_out_source_array[24];
+    end
+    always @(spike_out_source_array[25]) begin 
+        spike_out_source25 = spike_out_source_array[25];
+    end
+    always @(spike_out_source_array[26]) begin 
+        spike_out_source26 = spike_out_source_array[26];
+    end
+    always @(spike_out_source_array[27]) begin 
+        spike_out_source27 = spike_out_source_array[27];
+    end
+    always @(spike_out_source_array[28]) begin 
+        spike_out_source28 = spike_out_source_array[28];
+    end
+    always @(spike_out_source_array[29]) begin 
+        spike_out_source29 = spike_out_source_array[29];
+    end
+    always @(spike_out_source_array[30]) begin 
+        spike_out_source30 = spike_out_source_array[30];
+    end
+    always @(spike_out_source_array[31]) begin 
+        spike_out_source31 = spike_out_source_array[31];
+    end
+    always @(spike_out_source_array[32]) begin 
+        spike_out_source32 = spike_out_source_array[32];
+    end
+    always @(spike_out_source_array[33]) begin 
+        spike_out_source33 = spike_out_source_array[33];
+    end
+    always @(spike_out_source_array[34]) begin 
+        spike_out_source34 = spike_out_source_array[34];
+    end
+    always @(spike_out_source_array[35]) begin 
+        spike_out_source35 = spike_out_source_array[35];
+    end
+    always @(spike_out_source_array[36]) begin 
+        spike_out_source36 = spike_out_source_array[36];
+    end
+    always @(spike_out_source_array[37]) begin 
+        spike_out_source37 = spike_out_source_array[37];
+    end
+    always @(spike_out_source_array[38]) begin 
+        spike_out_source38 = spike_out_source_array[38];
+    end
+    always @(spike_out_source_array[39]) begin 
+        spike_out_source39 = spike_out_source_array[39];
+    end
+    always @(spike_out_source_array[40]) begin 
+        spike_out_source40 = spike_out_source_array[40];
+    end
+    always @(spike_out_source_array[41]) begin 
+        spike_out_source41 = spike_out_source_array[41];
+    end
+    always @(spike_out_source_array[42]) begin 
+        spike_out_source42 = spike_out_source_array[42];
+    end
+    always @(spike_out_source_array[43]) begin 
+        spike_out_source43 = spike_out_source_array[43];
+    end
+    always @(spike_out_source_array[44]) begin 
+        spike_out_source44 = spike_out_source_array[44];
+    end
+    always @(spike_out_source_array[45]) begin 
+        spike_out_source45 = spike_out_source_array[45];
+    end
+    always @(spike_out_source_array[46]) begin 
+        spike_out_source46 = spike_out_source_array[46];
+    end
+    always @(spike_out_source_array[47]) begin 
+        spike_out_source47 = spike_out_source_array[47];
+    end
+    always @(spike_out_source_array[48]) begin 
+        spike_out_source48 = spike_out_source_array[48];
+    end
+    always @(spike_out_source_array[49]) begin 
+        spike_out_source49 = spike_out_source_array[49];
+    end
+    always @(spike_out_source_array[50]) begin 
+        spike_out_source50 = spike_out_source_array[50];
+    end
+    always @(spike_out_source_array[51]) begin 
+        spike_out_source51 = spike_out_source_array[51];
+    end
+    always @(spike_out_source_array[52]) begin 
+        spike_out_source52 = spike_out_source_array[52];
+    end
+    always @(spike_out_source_array[53]) begin 
+        spike_out_source53 = spike_out_source_array[53];
+    end
+    always @(spike_out_source_array[54]) begin 
+        spike_out_source54 = spike_out_source_array[54];
+    end
+    always @(spike_out_source_array[55]) begin 
+        spike_out_source55 = spike_out_source_array[55];
+    end
+    always @(spike_out_source_array[56]) begin 
+        spike_out_source56 = spike_out_source_array[56];
+    end
+    always @(spike_out_source_array[57]) begin 
+        spike_out_source57 = spike_out_source_array[57];
+    end
+    always @(spike_out_source_array[58]) begin 
+        spike_out_source58 = spike_out_source_array[58];
+    end
+    always @(spike_out_source_array[59]) begin 
+        spike_out_source59 = spike_out_source_array[59];
+    end
+    always @(spike_out_source_array[60]) begin 
+        spike_out_source60 = spike_out_source_array[60];
+    end
+    always @(spike_out_source_array[61]) begin 
+        spike_out_source61 = spike_out_source_array[61];
+    end
+    always @(spike_out_source_array[62]) begin 
+        spike_out_source62 = spike_out_source_array[62];
+    end
+    always @(spike_out_source_array[63]) begin 
+        spike_out_source63 = spike_out_source_array[63];
+    end
+    always @(spike_out_source_array[64]) begin 
+        spike_out_source64 = spike_out_source_array[64];
+    end
+    always @(spike_out_source_array[65]) begin 
+        spike_out_source65 = spike_out_source_array[65];
+    end
+    always @(spike_out_source_array[66]) begin 
+        spike_out_source66 = spike_out_source_array[66];
+    end
+    always @(spike_out_source_array[67]) begin 
+        spike_out_source67 = spike_out_source_array[67];
+    end
+    always @(spike_out_source_array[68]) begin 
+        spike_out_source68 = spike_out_source_array[68];
+    end
+    always @(spike_out_source_array[69]) begin 
+        spike_out_source69 = spike_out_source_array[69];
+    end
+    always @(spike_out_source_array[70]) begin 
+        spike_out_source70 = spike_out_source_array[70];
+    end
+    always @(spike_out_source_array[71]) begin 
+        spike_out_source71 = spike_out_source_array[71];
+    end
+    always @(spike_out_source_array[72]) begin 
+        spike_out_source72 = spike_out_source_array[72];
+    end
+    always @(spike_out_source_array[73]) begin 
+        spike_out_source73 = spike_out_source_array[73];
+    end
+    always @(spike_out_source_array[74]) begin 
+        spike_out_source74 = spike_out_source_array[74];
+    end
+    always @(spike_out_source_array[75]) begin 
+        spike_out_source75 = spike_out_source_array[75];
+    end
+    always @(spike_out_source_array[76]) begin 
+        spike_out_source76 = spike_out_source_array[76];
+    end
+    always @(spike_out_source_array[77]) begin 
+        spike_out_source77 = spike_out_source_array[77];
+    end
+    always @(spike_out_source_array[78]) begin 
+        spike_out_source78 = spike_out_source_array[78];
+    end
+    always @(spike_out_source_array[79]) begin 
+        spike_out_source79 = spike_out_source_array[79];
+    end
+    always @(spike_out_source_array[80]) begin 
+        spike_out_source80 = spike_out_source_array[80];
+    end
+    always @(spike_out_source_array[81]) begin 
+        spike_out_source81 = spike_out_source_array[81];
+    end
+    always @(spike_out_source_array[82]) begin 
+        spike_out_source82 = spike_out_source_array[82];
+    end
+    always @(spike_out_source_array[83]) begin 
+        spike_out_source83 = spike_out_source_array[83];
+    end
+    always @(spike_out_source_array[84]) begin 
+        spike_out_source84 = spike_out_source_array[84];
+    end
+    always @(spike_out_source_array[85]) begin 
+        spike_out_source85 = spike_out_source_array[85];
+    end
+    always @(spike_out_source_array[86]) begin 
+        spike_out_source86 = spike_out_source_array[86];
+    end
+    always @(spike_out_source_array[87]) begin 
+        spike_out_source87 = spike_out_source_array[87];
+    end
+    always @(spike_out_source_array[88]) begin 
+        spike_out_source88 = spike_out_source_array[88];
+    end
+    always @(spike_out_source_array[89]) begin 
+        spike_out_source89 = spike_out_source_array[89];
+    end
+    always @(spike_out_source_array[90]) begin 
+        spike_out_source90 = spike_out_source_array[90];
+    end
+    always @(spike_out_source_array[91]) begin 
+        spike_out_source91 = spike_out_source_array[91];
+    end
+    always @(spike_out_source_array[92]) begin 
+        spike_out_source92 = spike_out_source_array[92];
+    end
+    always @(spike_out_source_array[93]) begin 
+        spike_out_source93 = spike_out_source_array[93];
+    end
+    always @(spike_out_source_array[94]) begin 
+        spike_out_source94 = spike_out_source_array[94];
+    end
+    always @(spike_out_source_array[95]) begin 
+        spike_out_source95 = spike_out_source_array[95];
+    end
+    always @(spike_out_source_array[96]) begin 
+        spike_out_source96 = spike_out_source_array[96];
+    end
+    always @(spike_out_source_array[97]) begin 
+        spike_out_source97 = spike_out_source_array[97];
+    end
+    always @(spike_out_source_array[98]) begin 
+        spike_out_source98 = spike_out_source_array[98];
+    end
+    always @(spike_out_source_array[99]) begin 
+        spike_out_source99 = spike_out_source_array[99];
+    end
+    always @(spike_out_source_array[100]) begin 
+        spike_out_source100 = spike_out_source_array[100];
+    end
+    always @(spike_out_source_array[101]) begin 
+        spike_out_source101 = spike_out_source_array[101];
+    end
+    always @(spike_out_source_array[102]) begin 
+        spike_out_source102 = spike_out_source_array[102];
+    end
+    always @(spike_out_source_array[103]) begin 
+        spike_out_source103 = spike_out_source_array[103];
+    end
+    always @(spike_out_source_array[104]) begin 
+        spike_out_source104 = spike_out_source_array[104];
+    end
+    always @(spike_out_source_array[105]) begin 
+        spike_out_source105 = spike_out_source_array[105];
+    end
+    always @(spike_out_source_array[106]) begin 
+        spike_out_source106 = spike_out_source_array[106];
+    end
+    always @(spike_out_source_array[107]) begin 
+        spike_out_source107 = spike_out_source_array[107];
+    end
+    always @(spike_out_source_array[108]) begin 
+        spike_out_source108 = spike_out_source_array[108];
+    end
+    always @(spike_out_source_array[109]) begin 
+        spike_out_source109 = spike_out_source_array[109];
+    end
+    always @(spike_out_source_array[110]) begin 
+        spike_out_source110 = spike_out_source_array[110];
+    end
+    always @(spike_out_source_array[111]) begin 
+        spike_out_source111 = spike_out_source_array[111];
+    end
+    always @(spike_out_source_array[112]) begin 
+        spike_out_source112 = spike_out_source_array[112];
+    end
+    always @(spike_out_source_array[113]) begin 
+        spike_out_source113 = spike_out_source_array[113];
+    end
+    always @(spike_out_source_array[114]) begin 
+        spike_out_source114 = spike_out_source_array[114];
+    end
+    always @(spike_out_source_array[115]) begin 
+        spike_out_source115 = spike_out_source_array[115];
+    end
+    always @(spike_out_source_array[116]) begin 
+        spike_out_source116 = spike_out_source_array[116];
+    end
+    always @(spike_out_source_array[117]) begin 
+        spike_out_source117 = spike_out_source_array[117];
+    end
+    always @(spike_out_source_array[118]) begin 
+        spike_out_source118 = spike_out_source_array[118];
+    end
+    always @(spike_out_source_array[119]) begin 
+        spike_out_source119 = spike_out_source_array[119];
+    end
+    always @(spike_out_source_array[120]) begin 
+        spike_out_source120 = spike_out_source_array[120];
+    end
+    always @(spike_out_source_array[121]) begin 
+        spike_out_source121 = spike_out_source_array[121];
+    end
+    always @(spike_out_source_array[122]) begin 
+        spike_out_source122 = spike_out_source_array[122];
+    end
+    always @(spike_out_source_array[123]) begin 
+        spike_out_source123 = spike_out_source_array[123];
+    end
+    always @(spike_out_source_array[124]) begin 
+        spike_out_source124 = spike_out_source_array[124];
+    end
+    always @(spike_out_source_array[125]) begin 
+        spike_out_source125 = spike_out_source_array[125];
+    end
+    always @(spike_out_source_array[126]) begin 
+        spike_out_source126 = spike_out_source_array[126];
+    end
+    always @(spike_out_source_array[127]) begin 
+        spike_out_source127 = spike_out_source_array[127];
+    end
+    always @(spike_out_source_array[128]) begin 
+        spike_out_source128 = spike_out_source_array[128];
+    end
+    always @(spike_out_source_array[129]) begin 
+        spike_out_source129 = spike_out_source_array[129];
+    end
+    always @(spike_out_source_array[130]) begin 
+        spike_out_source130 = spike_out_source_array[130];
+    end
+    always @(spike_out_source_array[131]) begin 
+        spike_out_source131 = spike_out_source_array[131];
+    end
+    always @(spike_out_source_array[132]) begin 
+        spike_out_source132 = spike_out_source_array[132];
+    end
+    always @(spike_out_source_array[133]) begin 
+        spike_out_source133 = spike_out_source_array[133];
+    end
+    always @(spike_out_source_array[134]) begin 
+        spike_out_source134 = spike_out_source_array[134];
+    end
+    always @(spike_out_source_array[135]) begin 
+        spike_out_source135 = spike_out_source_array[135];
+    end
+    always @(spike_out_source_array[136]) begin 
+        spike_out_source136 = spike_out_source_array[136];
+    end
+    always @(spike_out_source_array[137]) begin 
+        spike_out_source137 = spike_out_source_array[137];
+    end
+    always @(spike_out_source_array[138]) begin 
+        spike_out_source138 = spike_out_source_array[138];
+    end
+    always @(spike_out_source_array[139]) begin 
+        spike_out_source139 = spike_out_source_array[139];
+    end
+    always @(spike_out_source_array[140]) begin 
+        spike_out_source140 = spike_out_source_array[140];
+    end
+    always @(spike_out_source_array[141]) begin 
+        spike_out_source141 = spike_out_source_array[141];
+    end
+    always @(spike_out_source_array[142]) begin 
+        spike_out_source142 = spike_out_source_array[142];
+    end
+    always @(spike_out_source_array[143]) begin 
+        spike_out_source143 = spike_out_source_array[143];
+    end
+    always @(spike_out_source_array[144]) begin 
+        spike_out_source144 = spike_out_source_array[144];
+    end
+    always @(spike_out_source_array[145]) begin 
+        spike_out_source145 = spike_out_source_array[145];
+    end
+    always @(spike_out_source_array[146]) begin 
+        spike_out_source146 = spike_out_source_array[146];
+    end
+    always @(spike_out_source_array[147]) begin 
+        spike_out_source147 = spike_out_source_array[147];
+    end
+    always @(spike_out_source_array[148]) begin 
+        spike_out_source148 = spike_out_source_array[148];
+    end
+    always @(spike_out_source_array[149]) begin 
+        spike_out_source149 = spike_out_source_array[149];
+    end
+    always @(spike_out_source_array[150]) begin 
+        spike_out_source150 = spike_out_source_array[150];
+    end
+    always @(spike_out_source_array[151]) begin 
+        spike_out_source151 = spike_out_source_array[151];
+    end
+    always @(spike_out_source_array[152]) begin 
+        spike_out_source152 = spike_out_source_array[152];
+    end
+    always @(spike_out_source_array[153]) begin 
+        spike_out_source153 = spike_out_source_array[153];
+    end
+    always @(spike_out_source_array[154]) begin 
+        spike_out_source154 = spike_out_source_array[154];
+    end
+    always @(spike_out_source_array[155]) begin 
+        spike_out_source155 = spike_out_source_array[155];
+    end
+    always @(spike_out_source_array[156]) begin 
+        spike_out_source156 = spike_out_source_array[156];
+    end
+    always @(spike_out_source_array[157]) begin 
+        spike_out_source157 = spike_out_source_array[157];
+    end
+    always @(spike_out_source_array[158]) begin 
+        spike_out_source158 = spike_out_source_array[158];
+    end
+    always @(spike_out_source_array[159]) begin 
+        spike_out_source159 = spike_out_source_array[159];
+    end
+    always @(spike_out_source_array[160]) begin 
+        spike_out_source160 = spike_out_source_array[160];
+    end
+    always @(spike_out_source_array[161]) begin 
+        spike_out_source161 = spike_out_source_array[161];
+    end
+    always @(spike_out_source_array[162]) begin 
+        spike_out_source162 = spike_out_source_array[162];
+    end
+    always @(spike_out_source_array[163]) begin 
+        spike_out_source163 = spike_out_source_array[163];
+    end
+    always @(spike_out_source_array[164]) begin 
+        spike_out_source164 = spike_out_source_array[164];
+    end
+    always @(spike_out_source_array[165]) begin 
+        spike_out_source165 = spike_out_source_array[165];
+    end
+    always @(spike_out_source_array[166]) begin 
+        spike_out_source166 = spike_out_source_array[166];
+    end
+    always @(spike_out_source_array[167]) begin 
+        spike_out_source167 = spike_out_source_array[167];
+    end
+    always @(spike_out_source_array[168]) begin 
+        spike_out_source168 = spike_out_source_array[168];
+    end
+    always @(spike_out_source_array[169]) begin 
+        spike_out_source169 = spike_out_source_array[169];
+    end
+    always @(spike_out_source_array[170]) begin 
+        spike_out_source170 = spike_out_source_array[170];
+    end
+    always @(spike_out_source_array[171]) begin 
+        spike_out_source171 = spike_out_source_array[171];
+    end
+    always @(spike_out_source_array[172]) begin 
+        spike_out_source172 = spike_out_source_array[172];
+    end
+    always @(spike_out_source_array[173]) begin 
+        spike_out_source173 = spike_out_source_array[173];
+    end
+    always @(spike_out_source_array[174]) begin 
+        spike_out_source174 = spike_out_source_array[174];
+    end
+    always @(spike_out_source_array[175]) begin 
+        spike_out_source175 = spike_out_source_array[175];
+    end
+    always @(spike_out_source_array[176]) begin 
+        spike_out_source176 = spike_out_source_array[176];
+    end
+    always @(spike_out_source_array[177]) begin 
+        spike_out_source177 = spike_out_source_array[177];
+    end
+    always @(spike_out_source_array[178]) begin 
+        spike_out_source178 = spike_out_source_array[178];
+    end
+    always @(spike_out_source_array[179]) begin 
+        spike_out_source179 = spike_out_source_array[179];
+    end
+    always @(spike_out_source_array[180]) begin 
+        spike_out_source180 = spike_out_source_array[180];
+    end
+    always @(spike_out_source_array[181]) begin 
+        spike_out_source181 = spike_out_source_array[181];
+    end
+    always @(spike_out_source_array[182]) begin 
+        spike_out_source182 = spike_out_source_array[182];
+    end
+    always @(spike_out_source_array[183]) begin 
+        spike_out_source183 = spike_out_source_array[183];
+    end
+    always @(spike_out_source_array[184]) begin 
+        spike_out_source184 = spike_out_source_array[184];
+    end
+    always @(spike_out_source_array[185]) begin 
+        spike_out_source185 = spike_out_source_array[185];
+    end
+    always @(spike_out_source_array[186]) begin 
+        spike_out_source186 = spike_out_source_array[186];
+    end
+    always @(spike_out_source_array[187]) begin 
+        spike_out_source187 = spike_out_source_array[187];
+    end
+    always @(spike_out_source_array[188]) begin 
+        spike_out_source188 = spike_out_source_array[188];
+    end
+    always @(spike_out_source_array[189]) begin 
+        spike_out_source189 = spike_out_source_array[189];
+    end
+    always @(spike_out_source_array[190]) begin 
+        spike_out_source190 = spike_out_source_array[190];
+    end
+    always @(spike_out_source_array[191]) begin 
+        spike_out_source191 = spike_out_source_array[191];
+    end
+    always @(spike_out_source_array[192]) begin 
+        spike_out_source192 = spike_out_source_array[192];
+    end
+    always @(spike_out_source_array[193]) begin 
+        spike_out_source193 = spike_out_source_array[193];
+    end
+    always @(spike_out_source_array[194]) begin 
+        spike_out_source194 = spike_out_source_array[194];
+    end
+    always @(spike_out_source_array[195]) begin 
+        spike_out_source195 = spike_out_source_array[195];
+    end
+    always @(spike_out_source_array[196]) begin 
+        spike_out_source196 = spike_out_source_array[196];
+    end
+    always @(spike_out_source_array[197]) begin 
+        spike_out_source197 = spike_out_source_array[197];
+    end
+    always @(spike_out_source_array[198]) begin 
+        spike_out_source198 = spike_out_source_array[198];
+    end
+    always @(spike_out_source_array[199]) begin 
+        spike_out_source199 = spike_out_source_array[199];
+    end
+    always @(spike_out_source_array[200]) begin 
+        spike_out_source200 = spike_out_source_array[200];
+    end
+    always @(spike_out_source_array[201]) begin 
+        spike_out_source201 = spike_out_source_array[201];
+    end
+    always @(spike_out_source_array[202]) begin 
+        spike_out_source202 = spike_out_source_array[202];
+    end
+    always @(spike_out_source_array[203]) begin 
+        spike_out_source203 = spike_out_source_array[203];
+    end
+    always @(spike_out_source_array[204]) begin 
+        spike_out_source204 = spike_out_source_array[204];
+    end
+    always @(spike_out_source_array[205]) begin 
+        spike_out_source205 = spike_out_source_array[205];
+    end
+    always @(spike_out_source_array[206]) begin 
+        spike_out_source206 = spike_out_source_array[206];
+    end
+    always @(spike_out_source_array[207]) begin 
+        spike_out_source207 = spike_out_source_array[207];
+    end
+    always @(spike_out_source_array[208]) begin 
+        spike_out_source208 = spike_out_source_array[208];
+    end
+    always @(spike_out_source_array[209]) begin 
+        spike_out_source209 = spike_out_source_array[209];
+    end
+    always @(spike_out_source_array[210]) begin 
+        spike_out_source210 = spike_out_source_array[210];
+    end
+    always @(spike_out_source_array[211]) begin 
+        spike_out_source211 = spike_out_source_array[211];
+    end
+    always @(spike_out_source_array[212]) begin 
+        spike_out_source212 = spike_out_source_array[212];
+    end
+    always @(spike_out_source_array[213]) begin 
+        spike_out_source213 = spike_out_source_array[213];
+    end
+    always @(spike_out_source_array[214]) begin 
+        spike_out_source214 = spike_out_source_array[214];
+    end
+    always @(spike_out_source_array[215]) begin 
+        spike_out_source215 = spike_out_source_array[215];
+    end
+    always @(spike_out_source_array[216]) begin 
+        spike_out_source216 = spike_out_source_array[216];
+    end
+    always @(spike_out_source_array[217]) begin 
+        spike_out_source217 = spike_out_source_array[217];
+    end
+    always @(spike_out_source_array[218]) begin 
+        spike_out_source218 = spike_out_source_array[218];
+    end
+    always @(spike_out_source_array[219]) begin 
+        spike_out_source219 = spike_out_source_array[219];
+    end
+    always @(spike_out_source_array[220]) begin 
+        spike_out_source220 = spike_out_source_array[220];
+    end
+    always @(spike_out_source_array[221]) begin 
+        spike_out_source221 = spike_out_source_array[221];
+    end
+    always @(spike_out_source_array[222]) begin 
+        spike_out_source222 = spike_out_source_array[222];
+    end
+    always @(spike_out_source_array[223]) begin 
+        spike_out_source223 = spike_out_source_array[223];
+    end
+    always @(spike_out_source_array[224]) begin 
+        spike_out_source224 = spike_out_source_array[224];
+    end
+    always @(spike_out_source_array[225]) begin 
+        spike_out_source225 = spike_out_source_array[225];
+    end
+    always @(spike_out_source_array[226]) begin 
+        spike_out_source226 = spike_out_source_array[226];
+    end
+    always @(spike_out_source_array[227]) begin 
+        spike_out_source227 = spike_out_source_array[227];
+    end
+    always @(spike_out_source_array[228]) begin 
+        spike_out_source228 = spike_out_source_array[228];
+    end
+    always @(spike_out_source_array[229]) begin 
+        spike_out_source229 = spike_out_source_array[229];
+    end
+    always @(spike_out_source_array[230]) begin 
+        spike_out_source230 = spike_out_source_array[230];
+    end
+    always @(spike_out_source_array[231]) begin 
+        spike_out_source231 = spike_out_source_array[231];
+    end
+    always @(spike_out_source_array[232]) begin 
+        spike_out_source232 = spike_out_source_array[232];
+    end
+    always @(spike_out_source_array[233]) begin 
+        spike_out_source233 = spike_out_source_array[233];
+    end
+    always @(spike_out_source_array[234]) begin 
+        spike_out_source234 = spike_out_source_array[234];
+    end
+    always @(spike_out_source_array[235]) begin 
+        spike_out_source235 = spike_out_source_array[235];
+    end
+    always @(spike_out_source_array[236]) begin 
+        spike_out_source236 = spike_out_source_array[236];
+    end
+    always @(spike_out_source_array[237]) begin 
+        spike_out_source237 = spike_out_source_array[237];
+    end
+    always @(spike_out_source_array[238]) begin 
+        spike_out_source238 = spike_out_source_array[238];
+    end
+    always @(spike_out_source_array[239]) begin 
+        spike_out_source239 = spike_out_source_array[239];
+    end
+    always @(spike_out_source_array[240]) begin 
+        spike_out_source240 = spike_out_source_array[240];
+    end
+    always @(spike_out_source_array[241]) begin 
+        spike_out_source241 = spike_out_source_array[241];
+    end
+    always @(spike_out_source_array[242]) begin 
+        spike_out_source242 = spike_out_source_array[242];
+    end
+    always @(spike_out_source_array[243]) begin 
+        spike_out_source243 = spike_out_source_array[243];
+    end
+    always @(spike_out_source_array[244]) begin 
+        spike_out_source244 = spike_out_source_array[244];
+    end
+    always @(spike_out_source_array[245]) begin 
+        spike_out_source245 = spike_out_source_array[245];
+    end
+    always @(spike_out_source_array[246]) begin 
+        spike_out_source246 = spike_out_source_array[246];
+    end
+    always @(spike_out_source_array[247]) begin 
+        spike_out_source247 = spike_out_source_array[247];
+    end
+    always @(spike_out_source_array[248]) begin 
+        spike_out_source248 = spike_out_source_array[248];
+    end
+    always @(spike_out_source_array[249]) begin 
+        spike_out_source249 = spike_out_source_array[249];
+    end
+    always @(spike_out_source_array[250]) begin 
+        spike_out_source250 = spike_out_source_array[250];
+    end
+    always @(spike_out_source_array[251]) begin 
+        spike_out_source251 = spike_out_source_array[251];
+    end
+    always @(spike_out_source_array[252]) begin 
+        spike_out_source252 = spike_out_source_array[252];
+    end
+    always @(spike_out_source_array[253]) begin 
+        spike_out_source253 = spike_out_source_array[253];
+    end
+    always @(spike_out_source_array[254]) begin 
+        spike_out_source254 = spike_out_source_array[254];
+    end
+    always @(spike_out_source_array[255]) begin 
+        spike_out_source255 = spike_out_source_array[255];
+    end
+    always @(spike_out_source_array[256]) begin 
+        spike_out_source256 = spike_out_source_array[256];
+    end
+    always @(spike_out_source_array[257]) begin 
+        spike_out_source257 = spike_out_source_array[257];
+    end
+    always @(spike_out_source_array[258]) begin 
+        spike_out_source258 = spike_out_source_array[258];
+    end
+    always @(spike_out_source_array[259]) begin 
+        spike_out_source259 = spike_out_source_array[259];
+    end
+    always @(spike_out_source_array[260]) begin 
+        spike_out_source260 = spike_out_source_array[260];
+    end
+    always @(spike_out_source_array[261]) begin 
+        spike_out_source261 = spike_out_source_array[261];
+    end
+    always @(spike_out_source_array[262]) begin 
+        spike_out_source262 = spike_out_source_array[262];
+    end
+    always @(spike_out_source_array[263]) begin 
+        spike_out_source263 = spike_out_source_array[263];
+    end
+    always @(spike_out_source_array[264]) begin 
+        spike_out_source264 = spike_out_source_array[264];
+    end
+    always @(spike_out_source_array[265]) begin 
+        spike_out_source265 = spike_out_source_array[265];
+    end
+    always @(spike_out_source_array[266]) begin 
+        spike_out_source266 = spike_out_source_array[266];
+    end
+    always @(spike_out_source_array[267]) begin 
+        spike_out_source267 = spike_out_source_array[267];
+    end
+    always @(spike_out_source_array[268]) begin 
+        spike_out_source268 = spike_out_source_array[268];
+    end
+    always @(spike_out_source_array[269]) begin 
+        spike_out_source269 = spike_out_source_array[269];
+    end
+    always @(spike_out_source_array[270]) begin 
+        spike_out_source270 = spike_out_source_array[270];
+    end
+    always @(spike_out_source_array[271]) begin 
+        spike_out_source271 = spike_out_source_array[271];
+    end
+    always @(spike_out_source_array[272]) begin 
+        spike_out_source272 = spike_out_source_array[272];
+    end
+    always @(spike_out_source_array[273]) begin 
+        spike_out_source273 = spike_out_source_array[273];
+    end
+    always @(spike_out_source_array[274]) begin 
+        spike_out_source274 = spike_out_source_array[274];
+    end
+    always @(spike_out_source_array[275]) begin 
+        spike_out_source275 = spike_out_source_array[275];
+    end
+    always @(spike_out_source_array[276]) begin 
+        spike_out_source276 = spike_out_source_array[276];
+    end
+    always @(spike_out_source_array[277]) begin 
+        spike_out_source277 = spike_out_source_array[277];
+    end
+    always @(spike_out_source_array[278]) begin 
+        spike_out_source278 = spike_out_source_array[278];
+    end
+    always @(spike_out_source_array[279]) begin 
+        spike_out_source279 = spike_out_source_array[279];
+    end
+    always @(spike_out_source_array[280]) begin 
+        spike_out_source280 = spike_out_source_array[280];
+    end
+    always @(spike_out_source_array[281]) begin 
+        spike_out_source281 = spike_out_source_array[281];
+    end
+    always @(spike_out_source_array[282]) begin 
+        spike_out_source282 = spike_out_source_array[282];
+    end
+    always @(spike_out_source_array[283]) begin 
+        spike_out_source283 = spike_out_source_array[283];
+    end
+    always @(spike_out_source_array[284]) begin 
+        spike_out_source284 = spike_out_source_array[284];
+    end
+    always @(spike_out_source_array[285]) begin 
+        spike_out_source285 = spike_out_source_array[285];
+    end
+    always @(spike_out_source_array[286]) begin 
+        spike_out_source286 = spike_out_source_array[286];
+    end
+    always @(spike_out_source_array[287]) begin 
+        spike_out_source287 = spike_out_source_array[287];
+    end
+    always @(spike_out_source_array[288]) begin 
+        spike_out_source288 = spike_out_source_array[288];
+    end
+    always @(spike_out_source_array[289]) begin 
+        spike_out_source289 = spike_out_source_array[289];
+    end
+    always @(spike_out_source_array[290]) begin 
+        spike_out_source290 = spike_out_source_array[290];
+    end
+    always @(spike_out_source_array[291]) begin 
+        spike_out_source291 = spike_out_source_array[291];
+    end
+    always @(spike_out_source_array[292]) begin 
+        spike_out_source292 = spike_out_source_array[292];
+    end
+    always @(spike_out_source_array[293]) begin 
+        spike_out_source293 = spike_out_source_array[293];
+    end
+    always @(spike_out_source_array[294]) begin 
+        spike_out_source294 = spike_out_source_array[294];
+    end
+    always @(spike_out_source_array[295]) begin 
+        spike_out_source295 = spike_out_source_array[295];
+    end
+    always @(spike_out_source_array[296]) begin 
+        spike_out_source296 = spike_out_source_array[296];
+    end
+    always @(spike_out_source_array[297]) begin 
+        spike_out_source297 = spike_out_source_array[297];
+    end
+    always @(spike_out_source_array[298]) begin 
+        spike_out_source298 = spike_out_source_array[298];
+    end
+    always @(spike_out_source_array[299]) begin 
+        spike_out_source299 = spike_out_source_array[299];
+    end
+    always @(spike_out_source_array[300]) begin 
+        spike_out_source300 = spike_out_source_array[300];
+    end
+    always @(spike_out_source_array[301]) begin 
+        spike_out_source301 = spike_out_source_array[301];
+    end
+    always @(spike_out_source_array[302]) begin 
+        spike_out_source302 = spike_out_source_array[302];
+    end
+    always @(spike_out_source_array[303]) begin 
+        spike_out_source303 = spike_out_source_array[303];
+    end
+    always @(spike_out_source_array[304]) begin 
+        spike_out_source304 = spike_out_source_array[304];
+    end
+    always @(spike_out_source_array[305]) begin 
+        spike_out_source305 = spike_out_source_array[305];
+    end
+    always @(spike_out_source_array[306]) begin 
+        spike_out_source306 = spike_out_source_array[306];
+    end
+    always @(spike_out_source_array[307]) begin 
+        spike_out_source307 = spike_out_source_array[307];
+    end
+    always @(spike_out_source_array[308]) begin 
+        spike_out_source308 = spike_out_source_array[308];
+    end
+    always @(spike_out_source_array[309]) begin 
+        spike_out_source309 = spike_out_source_array[309];
+    end
+    always @(spike_out_source_array[310]) begin 
+        spike_out_source310 = spike_out_source_array[310];
+    end
+    always @(spike_out_source_array[311]) begin 
+        spike_out_source311 = spike_out_source_array[311];
+    end
+    always @(spike_out_source_array[312]) begin 
+        spike_out_source312 = spike_out_source_array[312];
+    end
+    always @(spike_out_source_array[313]) begin 
+        spike_out_source313 = spike_out_source_array[313];
+    end
+    always @(spike_out_source_array[314]) begin 
+        spike_out_source314 = spike_out_source_array[314];
+    end
+    always @(spike_out_source_array[315]) begin 
+        spike_out_source315 = spike_out_source_array[315];
+    end
+    always @(spike_out_source_array[316]) begin 
+        spike_out_source316 = spike_out_source_array[316];
+    end
+    always @(spike_out_source_array[317]) begin 
+        spike_out_source317 = spike_out_source_array[317];
+    end
+    always @(spike_out_source_array[318]) begin 
+        spike_out_source318 = spike_out_source_array[318];
+    end
+    always @(spike_out_source_array[319]) begin 
+        spike_out_source319 = spike_out_source_array[319];
+    end
+    always @(spike_out_source_array[320]) begin 
+        spike_out_source320 = spike_out_source_array[320];
+    end
+    always @(spike_out_source_array[321]) begin 
+        spike_out_source321 = spike_out_source_array[321];
+    end
+    always @(spike_out_source_array[322]) begin 
+        spike_out_source322 = spike_out_source_array[322];
+    end
+    always @(spike_out_source_array[323]) begin 
+        spike_out_source323 = spike_out_source_array[323];
+    end
+    always @(spike_out_source_array[324]) begin 
+        spike_out_source324 = spike_out_source_array[324];
+    end
+    always @(spike_out_source_array[325]) begin 
+        spike_out_source325 = spike_out_source_array[325];
+    end
+    always @(spike_out_source_array[326]) begin 
+        spike_out_source326 = spike_out_source_array[326];
+    end
+    always @(spike_out_source_array[327]) begin 
+        spike_out_source327 = spike_out_source_array[327];
+    end
+    always @(spike_out_source_array[328]) begin 
+        spike_out_source328 = spike_out_source_array[328];
+    end
+    always @(spike_out_source_array[329]) begin 
+        spike_out_source329 = spike_out_source_array[329];
+    end
+    always @(spike_out_source_array[330]) begin 
+        spike_out_source330 = spike_out_source_array[330];
+    end
+    always @(spike_out_source_array[331]) begin 
+        spike_out_source331 = spike_out_source_array[331];
+    end
+    always @(spike_out_source_array[332]) begin 
+        spike_out_source332 = spike_out_source_array[332];
+    end
+    always @(spike_out_source_array[333]) begin 
+        spike_out_source333 = spike_out_source_array[333];
+    end
+    always @(spike_out_source_array[334]) begin 
+        spike_out_source334 = spike_out_source_array[334];
+    end
+    always @(spike_out_source_array[335]) begin 
+        spike_out_source335 = spike_out_source_array[335];
+    end
+    always @(spike_out_source_array[336]) begin 
+        spike_out_source336 = spike_out_source_array[336];
+    end
+    always @(spike_out_source_array[337]) begin 
+        spike_out_source337 = spike_out_source_array[337];
+    end
+    always @(spike_out_source_array[338]) begin 
+        spike_out_source338 = spike_out_source_array[338];
+    end
+    always @(spike_out_source_array[339]) begin 
+        spike_out_source339 = spike_out_source_array[339];
+    end
+    always @(spike_out_source_array[340]) begin 
+        spike_out_source340 = spike_out_source_array[340];
+    end
+    always @(spike_out_source_array[341]) begin 
+        spike_out_source341 = spike_out_source_array[341];
+    end
+    always @(spike_out_source_array[342]) begin 
+        spike_out_source342 = spike_out_source_array[342];
+    end
+    always @(spike_out_source_array[343]) begin 
+        spike_out_source343 = spike_out_source_array[343];
+    end
+    always @(spike_out_source_array[344]) begin 
+        spike_out_source344 = spike_out_source_array[344];
+    end
+    always @(spike_out_source_array[345]) begin 
+        spike_out_source345 = spike_out_source_array[345];
+    end
+    always @(spike_out_source_array[346]) begin 
+        spike_out_source346 = spike_out_source_array[346];
+    end
+    always @(spike_out_source_array[347]) begin 
+        spike_out_source347 = spike_out_source_array[347];
+    end
+    always @(spike_out_source_array[348]) begin 
+        spike_out_source348 = spike_out_source_array[348];
+    end
+    always @(spike_out_source_array[349]) begin 
+        spike_out_source349 = spike_out_source_array[349];
+    end
+    always @(spike_out_source_array[350]) begin 
+        spike_out_source350 = spike_out_source_array[350];
+    end
+    always @(spike_out_source_array[351]) begin 
+        spike_out_source351 = spike_out_source_array[351];
+    end
+    always @(spike_out_source_array[352]) begin 
+        spike_out_source352 = spike_out_source_array[352];
+    end
+    always @(spike_out_source_array[353]) begin 
+        spike_out_source353 = spike_out_source_array[353];
+    end
+    always @(spike_out_source_array[354]) begin 
+        spike_out_source354 = spike_out_source_array[354];
+    end
+    always @(spike_out_source_array[355]) begin 
+        spike_out_source355 = spike_out_source_array[355];
+    end
+    always @(spike_out_source_array[356]) begin 
+        spike_out_source356 = spike_out_source_array[356];
+    end
+    always @(spike_out_source_array[357]) begin 
+        spike_out_source357 = spike_out_source_array[357];
+    end
+    always @(spike_out_source_array[358]) begin 
+        spike_out_source358 = spike_out_source_array[358];
+    end
+    always @(spike_out_source_array[359]) begin 
+        spike_out_source359 = spike_out_source_array[359];
+    end
+    always @(spike_out_source_array[360]) begin 
+        spike_out_source360 = spike_out_source_array[360];
+    end
+    always @(spike_out_source_array[361]) begin 
+        spike_out_source361 = spike_out_source_array[361];
+    end
+    always @(spike_out_source_array[362]) begin 
+        spike_out_source362 = spike_out_source_array[362];
+    end
+    always @(spike_out_source_array[363]) begin 
+        spike_out_source363 = spike_out_source_array[363];
+    end
+    always @(spike_out_source_array[364]) begin 
+        spike_out_source364 = spike_out_source_array[364];
+    end
+    always @(spike_out_source_array[365]) begin 
+        spike_out_source365 = spike_out_source_array[365];
+    end
+    always @(spike_out_source_array[366]) begin 
+        spike_out_source366 = spike_out_source_array[366];
+    end
+    always @(spike_out_source_array[367]) begin 
+        spike_out_source367 = spike_out_source_array[367];
+    end
+    always @(spike_out_source_array[368]) begin 
+        spike_out_source368 = spike_out_source_array[368];
+    end
+    always @(spike_out_source_array[369]) begin 
+        spike_out_source369 = spike_out_source_array[369];
+    end
+    always @(spike_out_source_array[370]) begin 
+        spike_out_source370 = spike_out_source_array[370];
+    end
+    always @(spike_out_source_array[371]) begin 
+        spike_out_source371 = spike_out_source_array[371];
+    end
+    always @(spike_out_source_array[372]) begin 
+        spike_out_source372 = spike_out_source_array[372];
+    end
+    always @(spike_out_source_array[373]) begin 
+        spike_out_source373 = spike_out_source_array[373];
+    end
+    always @(spike_out_source_array[374]) begin 
+        spike_out_source374 = spike_out_source_array[374];
+    end
+    always @(spike_out_source_array[375]) begin 
+        spike_out_source375 = spike_out_source_array[375];
+    end
+    always @(spike_out_source_array[376]) begin 
+        spike_out_source376 = spike_out_source_array[376];
+    end
+    always @(spike_out_source_array[377]) begin 
+        spike_out_source377 = spike_out_source_array[377];
+    end
+    always @(spike_out_source_array[378]) begin 
+        spike_out_source378 = spike_out_source_array[378];
+    end
+    always @(spike_out_source_array[379]) begin 
+        spike_out_source379 = spike_out_source_array[379];
+    end
+    always @(spike_out_source_array[380]) begin 
+        spike_out_source380 = spike_out_source_array[380];
+    end
+    always @(spike_out_source_array[381]) begin 
+        spike_out_source381 = spike_out_source_array[381];
+    end
+    always @(spike_out_source_array[382]) begin 
+        spike_out_source382 = spike_out_source_array[382];
+    end
+    always @(spike_out_source_array[383]) begin 
+        spike_out_source383 = spike_out_source_array[383];
+    end
+    always @(spike_out_source_array[384]) begin 
+        spike_out_source384 = spike_out_source_array[384];
+    end
+    always @(spike_out_source_array[385]) begin 
+        spike_out_source385 = spike_out_source_array[385];
+    end
+    always @(spike_out_source_array[386]) begin 
+        spike_out_source386 = spike_out_source_array[386];
+    end
+    always @(spike_out_source_array[387]) begin 
+        spike_out_source387 = spike_out_source_array[387];
+    end
+    always @(spike_out_source_array[388]) begin 
+        spike_out_source388 = spike_out_source_array[388];
+    end
+    always @(spike_out_source_array[389]) begin 
+        spike_out_source389 = spike_out_source_array[389];
+    end
+    always @(spike_out_source_array[390]) begin 
+        spike_out_source390 = spike_out_source_array[390];
+    end
+    always @(spike_out_source_array[391]) begin 
+        spike_out_source391 = spike_out_source_array[391];
+    end
+    always @(spike_out_source_array[392]) begin 
+        spike_out_source392 = spike_out_source_array[392];
+    end
+    always @(spike_out_source_array[393]) begin 
+        spike_out_source393 = spike_out_source_array[393];
+    end
+    always @(spike_out_source_array[394]) begin 
+        spike_out_source394 = spike_out_source_array[394];
+    end
+    always @(spike_out_source_array[395]) begin 
+        spike_out_source395 = spike_out_source_array[395];
+    end
+    always @(spike_out_source_array[396]) begin 
+        spike_out_source396 = spike_out_source_array[396];
+    end
+    always @(spike_out_source_array[397]) begin 
+        spike_out_source397 = spike_out_source_array[397];
+    end
+    always @(spike_out_source_array[398]) begin 
+        spike_out_source398 = spike_out_source_array[398];
+    end
+    always @(spike_out_source_array[399]) begin 
+        spike_out_source399 = spike_out_source_array[399];
+    end
+    always @(spike_out_source_array[400]) begin 
+        spike_out_source400 = spike_out_source_array[400];
+    end
+    always @(spike_out_source_array[401]) begin 
+        spike_out_source401 = spike_out_source_array[401];
+    end
+    always @(spike_out_source_array[402]) begin 
+        spike_out_source402 = spike_out_source_array[402];
+    end
+    always @(spike_out_source_array[403]) begin 
+        spike_out_source403 = spike_out_source_array[403];
+    end
+    always @(spike_out_source_array[404]) begin 
+        spike_out_source404 = spike_out_source_array[404];
+    end
+    always @(spike_out_source_array[405]) begin 
+        spike_out_source405 = spike_out_source_array[405];
+    end
+    always @(spike_out_source_array[406]) begin 
+        spike_out_source406 = spike_out_source_array[406];
+    end
+    always @(spike_out_source_array[407]) begin 
+        spike_out_source407 = spike_out_source_array[407];
+    end
+    always @(spike_out_source_array[408]) begin 
+        spike_out_source408 = spike_out_source_array[408];
+    end
+    always @(spike_out_source_array[409]) begin 
+        spike_out_source409 = spike_out_source_array[409];
+    end
+    always @(spike_out_source_array[410]) begin 
+        spike_out_source410 = spike_out_source_array[410];
+    end
+    always @(spike_out_source_array[411]) begin 
+        spike_out_source411 = spike_out_source_array[411];
+    end
+    always @(spike_out_source_array[412]) begin 
+        spike_out_source412 = spike_out_source_array[412];
+    end
+    always @(spike_out_source_array[413]) begin 
+        spike_out_source413 = spike_out_source_array[413];
+    end
+    always @(spike_out_source_array[414]) begin 
+        spike_out_source414 = spike_out_source_array[414];
+    end
+    always @(spike_out_source_array[415]) begin 
+        spike_out_source415 = spike_out_source_array[415];
+    end
+    always @(spike_out_source_array[416]) begin 
+        spike_out_source416 = spike_out_source_array[416];
+    end
+    always @(spike_out_source_array[417]) begin 
+        spike_out_source417 = spike_out_source_array[417];
+    end
+    always @(spike_out_source_array[418]) begin 
+        spike_out_source418 = spike_out_source_array[418];
+    end
+    always @(spike_out_source_array[419]) begin 
+        spike_out_source419 = spike_out_source_array[419];
+    end
+    always @(spike_out_source_array[420]) begin 
+        spike_out_source420 = spike_out_source_array[420];
+    end
+    always @(spike_out_source_array[421]) begin 
+        spike_out_source421 = spike_out_source_array[421];
+    end
+    always @(spike_out_source_array[422]) begin 
+        spike_out_source422 = spike_out_source_array[422];
+    end
+    always @(spike_out_source_array[423]) begin 
+        spike_out_source423 = spike_out_source_array[423];
+    end
+    always @(spike_out_source_array[424]) begin 
+        spike_out_source424 = spike_out_source_array[424];
+    end
+    always @(spike_out_source_array[425]) begin 
+        spike_out_source425 = spike_out_source_array[425];
+    end
+    always @(spike_out_source_array[426]) begin 
+        spike_out_source426 = spike_out_source_array[426];
+    end
+    always @(spike_out_source_array[427]) begin 
+        spike_out_source427 = spike_out_source_array[427];
+    end
+    always @(spike_out_source_array[428]) begin 
+        spike_out_source428 = spike_out_source_array[428];
+    end
+    always @(spike_out_source_array[429]) begin 
+        spike_out_source429 = spike_out_source_array[429];
+    end
+    always @(spike_out_source_array[430]) begin 
+        spike_out_source430 = spike_out_source_array[430];
+    end
+    always @(spike_out_source_array[431]) begin 
+        spike_out_source431 = spike_out_source_array[431];
+    end
+    always @(spike_out_source_array[432]) begin 
+        spike_out_source432 = spike_out_source_array[432];
+    end
+    always @(spike_out_source_array[433]) begin 
+        spike_out_source433 = spike_out_source_array[433];
+    end
+    always @(spike_out_source_array[434]) begin 
+        spike_out_source434 = spike_out_source_array[434];
+    end
+    always @(spike_out_source_array[435]) begin 
+        spike_out_source435 = spike_out_source_array[435];
+    end
+    always @(spike_out_source_array[436]) begin 
+        spike_out_source436 = spike_out_source_array[436];
+    end
+    always @(spike_out_source_array[437]) begin 
+        spike_out_source437 = spike_out_source_array[437];
+    end
+    always @(spike_out_source_array[438]) begin 
+        spike_out_source438 = spike_out_source_array[438];
+    end
+    always @(spike_out_source_array[439]) begin 
+        spike_out_source439 = spike_out_source_array[439];
+    end
+    always @(spike_out_source_array[440]) begin 
+        spike_out_source440 = spike_out_source_array[440];
+    end
+    always @(spike_out_source_array[441]) begin 
+        spike_out_source441 = spike_out_source_array[441];
+    end
+    always @(spike_out_source_array[442]) begin 
+        spike_out_source442 = spike_out_source_array[442];
+    end
+    always @(spike_out_source_array[443]) begin 
+        spike_out_source443 = spike_out_source_array[443];
+    end
+    always @(spike_out_source_array[444]) begin 
+        spike_out_source444 = spike_out_source_array[444];
+    end
+    always @(spike_out_source_array[445]) begin 
+        spike_out_source445 = spike_out_source_array[445];
+    end
+    always @(spike_out_source_array[446]) begin 
+        spike_out_source446 = spike_out_source_array[446];
+    end
+    always @(spike_out_source_array[447]) begin 
+        spike_out_source447 = spike_out_source_array[447];
+    end
+    always @(spike_out_source_array[448]) begin 
+        spike_out_source448 = spike_out_source_array[448];
+    end
+    always @(spike_out_source_array[449]) begin 
+        spike_out_source449 = spike_out_source_array[449];
+    end
+    always @(spike_out_source_array[450]) begin 
+        spike_out_source450 = spike_out_source_array[450];
+    end
+    always @(spike_out_source_array[451]) begin 
+        spike_out_source451 = spike_out_source_array[451];
+    end
+    always @(spike_out_source_array[452]) begin 
+        spike_out_source452 = spike_out_source_array[452];
+    end
+    always @(spike_out_source_array[453]) begin 
+        spike_out_source453 = spike_out_source_array[453];
+    end
+    always @(spike_out_source_array[454]) begin 
+        spike_out_source454 = spike_out_source_array[454];
+    end
+    always @(spike_out_source_array[455]) begin 
+        spike_out_source455 = spike_out_source_array[455];
+    end
+    always @(spike_out_source_array[456]) begin 
+        spike_out_source456 = spike_out_source_array[456];
+    end
+    always @(spike_out_source_array[457]) begin 
+        spike_out_source457 = spike_out_source_array[457];
+    end
+    always @(spike_out_source_array[458]) begin 
+        spike_out_source458 = spike_out_source_array[458];
+    end
+    always @(spike_out_source_array[459]) begin 
+        spike_out_source459 = spike_out_source_array[459];
+    end
+    always @(spike_out_source_array[460]) begin 
+        spike_out_source460 = spike_out_source_array[460];
+    end
+    always @(spike_out_source_array[461]) begin 
+        spike_out_source461 = spike_out_source_array[461];
+    end
+    always @(spike_out_source_array[462]) begin 
+        spike_out_source462 = spike_out_source_array[462];
+    end
+    always @(spike_out_source_array[463]) begin 
+        spike_out_source463 = spike_out_source_array[463];
+    end
+    always @(spike_out_source_array[464]) begin 
+        spike_out_source464 = spike_out_source_array[464];
+    end
+    always @(spike_out_source_array[465]) begin 
+        spike_out_source465 = spike_out_source_array[465];
+    end
+    always @(spike_out_source_array[466]) begin 
+        spike_out_source466 = spike_out_source_array[466];
+    end
+    always @(spike_out_source_array[467]) begin 
+        spike_out_source467 = spike_out_source_array[467];
+    end
+    always @(spike_out_source_array[468]) begin 
+        spike_out_source468 = spike_out_source_array[468];
+    end
+    always @(spike_out_source_array[469]) begin 
+        spike_out_source469 = spike_out_source_array[469];
+    end
+    always @(spike_out_source_array[470]) begin 
+        spike_out_source470 = spike_out_source_array[470];
+    end
+    always @(spike_out_source_array[471]) begin 
+        spike_out_source471 = spike_out_source_array[471];
+    end
+    always @(spike_out_source_array[472]) begin 
+        spike_out_source472 = spike_out_source_array[472];
+    end
+    always @(spike_out_source_array[473]) begin 
+        spike_out_source473 = spike_out_source_array[473];
+    end
+    always @(spike_out_source_array[474]) begin 
+        spike_out_source474 = spike_out_source_array[474];
+    end
+    always @(spike_out_source_array[475]) begin 
+        spike_out_source475 = spike_out_source_array[475];
+    end
+    always @(spike_out_source_array[476]) begin 
+        spike_out_source476 = spike_out_source_array[476];
+    end
+    always @(spike_out_source_array[477]) begin 
+        spike_out_source477 = spike_out_source_array[477];
+    end
+    always @(spike_out_source_array[478]) begin 
+        spike_out_source478 = spike_out_source_array[478];
+    end
+    always @(spike_out_source_array[479]) begin 
+        spike_out_source479 = spike_out_source_array[479];
+    end
+    always @(spike_out_source_array[480]) begin 
+        spike_out_source480 = spike_out_source_array[480];
+    end
+    always @(spike_out_source_array[481]) begin 
+        spike_out_source481 = spike_out_source_array[481];
+    end
+    always @(spike_out_source_array[482]) begin 
+        spike_out_source482 = spike_out_source_array[482];
+    end
+    always @(spike_out_source_array[483]) begin 
+        spike_out_source483 = spike_out_source_array[483];
+    end
+    always @(spike_out_source_array[484]) begin 
+        spike_out_source484 = spike_out_source_array[484];
+    end
+    always @(spike_out_source_array[485]) begin 
+        spike_out_source485 = spike_out_source_array[485];
+    end
+    always @(spike_out_source_array[486]) begin 
+        spike_out_source486 = spike_out_source_array[486];
+    end
+    always @(spike_out_source_array[487]) begin 
+        spike_out_source487 = spike_out_source_array[487];
+    end
+    always @(spike_out_source_array[488]) begin 
+        spike_out_source488 = spike_out_source_array[488];
+    end
+    always @(spike_out_source_array[489]) begin 
+        spike_out_source489 = spike_out_source_array[489];
+    end
+    always @(spike_out_source_array[490]) begin 
+        spike_out_source490 = spike_out_source_array[490];
+    end
+    always @(spike_out_source_array[491]) begin 
+        spike_out_source491 = spike_out_source_array[491];
+    end
+    always @(spike_out_source_array[492]) begin 
+        spike_out_source492 = spike_out_source_array[492];
+    end
+    always @(spike_out_source_array[493]) begin 
+        spike_out_source493 = spike_out_source_array[493];
+    end
+    always @(spike_out_source_array[494]) begin 
+        spike_out_source494 = spike_out_source_array[494];
+    end
+    always @(spike_out_source_array[495]) begin 
+        spike_out_source495 = spike_out_source_array[495];
+    end
+    always @(spike_out_source_array[496]) begin 
+        spike_out_source496 = spike_out_source_array[496];
+    end
+    always @(spike_out_source_array[497]) begin 
+        spike_out_source497 = spike_out_source_array[497];
+    end
+    always @(spike_out_source_array[498]) begin 
+        spike_out_source498 = spike_out_source_array[498];
+    end
+    always @(spike_out_source_array[499]) begin 
+        spike_out_source499 = spike_out_source_array[499];
+    end
+    always @(spike_out_source_array[500]) begin 
+        spike_out_source500 = spike_out_source_array[500];
+    end
+    always @(spike_out_source_array[501]) begin 
+        spike_out_source501 = spike_out_source_array[501];
+    end
+    always @(spike_out_source_array[502]) begin 
+        spike_out_source502 = spike_out_source_array[502];
+    end
+    always @(spike_out_source_array[503]) begin 
+        spike_out_source503 = spike_out_source_array[503];
+    end
+    always @(spike_out_source_array[504]) begin 
+        spike_out_source504 = spike_out_source_array[504];
+    end
+    always @(spike_out_source_array[505]) begin 
+        spike_out_source505 = spike_out_source_array[505];
+    end
+    always @(spike_out_source_array[506]) begin 
+        spike_out_source506 = spike_out_source_array[506];
+    end
+    always @(spike_out_source_array[507]) begin 
+        spike_out_source507 = spike_out_source_array[507];
+    end
+    always @(spike_out_source_array[508]) begin 
+        spike_out_source508 = spike_out_source_array[508];
+    end
+    always @(spike_out_source_array[509]) begin 
+        spike_out_source509 = spike_out_source_array[509];
+    end
+    always @(spike_out_source_array[510]) begin 
+        spike_out_source510 = spike_out_source_array[510];
+    end
+    always @(spike_out_source_array[511]) begin 
+        spike_out_source511 = spike_out_source_array[511];
+    end
+    always @(spike_out_source_array[512]) begin 
+        spike_out_source512 = spike_out_source_array[512];
+    end
+    always @(spike_out_source_array[513]) begin 
+        spike_out_source513 = spike_out_source_array[513];
+    end
+    always @(spike_out_source_array[514]) begin 
+        spike_out_source514 = spike_out_source_array[514];
+    end
+    always @(spike_out_source_array[515]) begin 
+        spike_out_source515 = spike_out_source_array[515];
+    end
+    always @(spike_out_source_array[516]) begin 
+        spike_out_source516 = spike_out_source_array[516];
+    end
+    always @(spike_out_source_array[517]) begin 
+        spike_out_source517 = spike_out_source_array[517];
+    end
+    always @(spike_out_source_array[518]) begin 
+        spike_out_source518 = spike_out_source_array[518];
+    end
+    always @(spike_out_source_array[519]) begin 
+        spike_out_source519 = spike_out_source_array[519];
+    end
+    always @(spike_out_source_array[520]) begin 
+        spike_out_source520 = spike_out_source_array[520];
+    end
+    always @(spike_out_source_array[521]) begin 
+        spike_out_source521 = spike_out_source_array[521];
+    end
+    always @(spike_out_source_array[522]) begin 
+        spike_out_source522 = spike_out_source_array[522];
+    end
+    always @(spike_out_source_array[523]) begin 
+        spike_out_source523 = spike_out_source_array[523];
+    end
+    always @(spike_out_source_array[524]) begin 
+        spike_out_source524 = spike_out_source_array[524];
+    end
+    always @(spike_out_source_array[525]) begin 
+        spike_out_source525 = spike_out_source_array[525];
+    end
+    always @(spike_out_source_array[526]) begin 
+        spike_out_source526 = spike_out_source_array[526];
+    end
+    always @(spike_out_source_array[527]) begin 
+        spike_out_source527 = spike_out_source_array[527];
+    end
+    always @(spike_out_source_array[528]) begin 
+        spike_out_source528 = spike_out_source_array[528];
+    end
+    always @(spike_out_source_array[529]) begin 
+        spike_out_source529 = spike_out_source_array[529];
+    end
+    always @(spike_out_source_array[530]) begin 
+        spike_out_source530 = spike_out_source_array[530];
+    end
+    always @(spike_out_source_array[531]) begin 
+        spike_out_source531 = spike_out_source_array[531];
+    end
+    always @(spike_out_source_array[532]) begin 
+        spike_out_source532 = spike_out_source_array[532];
+    end
+    always @(spike_out_source_array[533]) begin 
+        spike_out_source533 = spike_out_source_array[533];
+    end
+    always @(spike_out_source_array[534]) begin 
+        spike_out_source534 = spike_out_source_array[534];
+    end
+    always @(spike_out_source_array[535]) begin 
+        spike_out_source535 = spike_out_source_array[535];
+    end
+    always @(spike_out_source_array[536]) begin 
+        spike_out_source536 = spike_out_source_array[536];
+    end
+    always @(spike_out_source_array[537]) begin 
+        spike_out_source537 = spike_out_source_array[537];
+    end
+    always @(spike_out_source_array[538]) begin 
+        spike_out_source538 = spike_out_source_array[538];
+    end
+    always @(spike_out_source_array[539]) begin 
+        spike_out_source539 = spike_out_source_array[539];
+    end
+    always @(spike_out_source_array[540]) begin 
+        spike_out_source540 = spike_out_source_array[540];
+    end
+    always @(spike_out_source_array[541]) begin 
+        spike_out_source541 = spike_out_source_array[541];
+    end
+    always @(spike_out_source_array[542]) begin 
+        spike_out_source542 = spike_out_source_array[542];
+    end
+    always @(spike_out_source_array[543]) begin 
+        spike_out_source543 = spike_out_source_array[543];
+    end
+    always @(spike_out_source_array[544]) begin 
+        spike_out_source544 = spike_out_source_array[544];
+    end
+    always @(spike_out_source_array[545]) begin 
+        spike_out_source545 = spike_out_source_array[545];
+    end
+    always @(spike_out_source_array[546]) begin 
+        spike_out_source546 = spike_out_source_array[546];
+    end
+    always @(spike_out_source_array[547]) begin 
+        spike_out_source547 = spike_out_source_array[547];
+    end
+    always @(spike_out_source_array[548]) begin 
+        spike_out_source548 = spike_out_source_array[548];
+    end
+    always @(spike_out_source_array[549]) begin 
+        spike_out_source549 = spike_out_source_array[549];
+    end
+    always @(spike_out_source_array[550]) begin 
+        spike_out_source550 = spike_out_source_array[550];
+    end
+    always @(spike_out_source_array[551]) begin 
+        spike_out_source551 = spike_out_source_array[551];
+    end
+    always @(spike_out_source_array[552]) begin 
+        spike_out_source552 = spike_out_source_array[552];
+    end
+    always @(spike_out_source_array[553]) begin 
+        spike_out_source553 = spike_out_source_array[553];
+    end
+    always @(spike_out_source_array[554]) begin 
+        spike_out_source554 = spike_out_source_array[554];
+    end
+    always @(spike_out_source_array[555]) begin 
+        spike_out_source555 = spike_out_source_array[555];
+    end
+    always @(spike_out_source_array[556]) begin 
+        spike_out_source556 = spike_out_source_array[556];
+    end
+    always @(spike_out_source_array[557]) begin 
+        spike_out_source557 = spike_out_source_array[557];
+    end
+    always @(spike_out_source_array[558]) begin 
+        spike_out_source558 = spike_out_source_array[558];
+    end
+    always @(spike_out_source_array[559]) begin 
+        spike_out_source559 = spike_out_source_array[559];
+    end
+    always @(spike_out_source_array[560]) begin 
+        spike_out_source560 = spike_out_source_array[560];
+    end
+    always @(spike_out_source_array[561]) begin 
+        spike_out_source561 = spike_out_source_array[561];
+    end
+    always @(spike_out_source_array[562]) begin 
+        spike_out_source562 = spike_out_source_array[562];
+    end
+    always @(spike_out_source_array[563]) begin 
+        spike_out_source563 = spike_out_source_array[563];
+    end
+    always @(spike_out_source_array[564]) begin 
+        spike_out_source564 = spike_out_source_array[564];
+    end
+    always @(spike_out_source_array[565]) begin 
+        spike_out_source565 = spike_out_source_array[565];
+    end
+    always @(spike_out_source_array[566]) begin 
+        spike_out_source566 = spike_out_source_array[566];
+    end
+    always @(spike_out_source_array[567]) begin 
+        spike_out_source567 = spike_out_source_array[567];
+    end
+    always @(spike_out_source_array[568]) begin 
+        spike_out_source568 = spike_out_source_array[568];
+    end
+    always @(spike_out_source_array[569]) begin 
+        spike_out_source569 = spike_out_source_array[569];
+    end
+    always @(spike_out_source_array[570]) begin 
+        spike_out_source570 = spike_out_source_array[570];
+    end
+    always @(spike_out_source_array[571]) begin 
+        spike_out_source571 = spike_out_source_array[571];
+    end
+    always @(spike_out_source_array[572]) begin 
+        spike_out_source572 = spike_out_source_array[572];
+    end
+    always @(spike_out_source_array[573]) begin 
+        spike_out_source573 = spike_out_source_array[573];
+    end
+    always @(spike_out_source_array[574]) begin 
+        spike_out_source574 = spike_out_source_array[574];
+    end
+    always @(spike_out_source_array[575]) begin 
+        spike_out_source575 = spike_out_source_array[575];
+    end
+    always @(spike_out_source_array[576]) begin 
+        spike_out_source576 = spike_out_source_array[576];
+    end
+    always @(spike_out_source_array[577]) begin 
+        spike_out_source577 = spike_out_source_array[577];
+    end
+    always @(spike_out_source_array[578]) begin 
+        spike_out_source578 = spike_out_source_array[578];
+    end
+    always @(spike_out_source_array[579]) begin 
+        spike_out_source579 = spike_out_source_array[579];
+    end
+    always @(spike_out_source_array[580]) begin 
+        spike_out_source580 = spike_out_source_array[580];
+    end
+    always @(spike_out_source_array[581]) begin 
+        spike_out_source581 = spike_out_source_array[581];
+    end
+    always @(spike_out_source_array[582]) begin 
+        spike_out_source582 = spike_out_source_array[582];
+    end
+    always @(spike_out_source_array[583]) begin 
+        spike_out_source583 = spike_out_source_array[583];
+    end
+    always @(spike_out_source_array[584]) begin 
+        spike_out_source584 = spike_out_source_array[584];
+    end
+    always @(spike_out_source_array[585]) begin 
+        spike_out_source585 = spike_out_source_array[585];
+    end
+    always @(spike_out_source_array[586]) begin 
+        spike_out_source586 = spike_out_source_array[586];
+    end
+    always @(spike_out_source_array[587]) begin 
+        spike_out_source587 = spike_out_source_array[587];
+    end
+    always @(spike_out_source_array[588]) begin 
+        spike_out_source588 = spike_out_source_array[588];
+    end
+    always @(spike_out_source_array[589]) begin 
+        spike_out_source589 = spike_out_source_array[589];
+    end
+    always @(spike_out_source_array[590]) begin 
+        spike_out_source590 = spike_out_source_array[590];
+    end
+    always @(spike_out_source_array[591]) begin 
+        spike_out_source591 = spike_out_source_array[591];
+    end
+    always @(spike_out_source_array[592]) begin 
+        spike_out_source592 = spike_out_source_array[592];
+    end
+    always @(spike_out_source_array[593]) begin 
+        spike_out_source593 = spike_out_source_array[593];
+    end
+    always @(spike_out_source_array[594]) begin 
+        spike_out_source594 = spike_out_source_array[594];
+    end
+    always @(spike_out_source_array[595]) begin 
+        spike_out_source595 = spike_out_source_array[595];
+    end
+    always @(spike_out_source_array[596]) begin 
+        spike_out_source596 = spike_out_source_array[596];
+    end
+    always @(spike_out_source_array[597]) begin 
+        spike_out_source597 = spike_out_source_array[597];
+    end
+    always @(spike_out_source_array[598]) begin 
+        spike_out_source598 = spike_out_source_array[598];
+    end
+    always @(spike_out_source_array[599]) begin 
+        spike_out_source599 = spike_out_source_array[599];
+    end
+    always @(spike_out_source_array[600]) begin 
+        spike_out_source600 = spike_out_source_array[600];
+    end
+    always @(spike_out_source_array[601]) begin 
+        spike_out_source601 = spike_out_source_array[601];
+    end
+    always @(spike_out_source_array[602]) begin 
+        spike_out_source602 = spike_out_source_array[602];
+    end
+    always @(spike_out_source_array[603]) begin 
+        spike_out_source603 = spike_out_source_array[603];
+    end
+    always @(spike_out_source_array[604]) begin 
+        spike_out_source604 = spike_out_source_array[604];
+    end
+    always @(spike_out_source_array[605]) begin 
+        spike_out_source605 = spike_out_source_array[605];
+    end
+    always @(spike_out_source_array[606]) begin 
+        spike_out_source606 = spike_out_source_array[606];
+    end
+    always @(spike_out_source_array[607]) begin 
+        spike_out_source607 = spike_out_source_array[607];
+    end
+    always @(spike_out_source_array[608]) begin 
+        spike_out_source608 = spike_out_source_array[608];
+    end
+    always @(spike_out_source_array[609]) begin 
+        spike_out_source609 = spike_out_source_array[609];
+    end
+    always @(spike_out_source_array[610]) begin 
+        spike_out_source610 = spike_out_source_array[610];
+    end
+    always @(spike_out_source_array[611]) begin 
+        spike_out_source611 = spike_out_source_array[611];
+    end
+    always @(spike_out_source_array[612]) begin 
+        spike_out_source612 = spike_out_source_array[612];
+    end
+    always @(spike_out_source_array[613]) begin 
+        spike_out_source613 = spike_out_source_array[613];
+    end
+    always @(spike_out_source_array[614]) begin 
+        spike_out_source614 = spike_out_source_array[614];
+    end
+    always @(spike_out_source_array[615]) begin 
+        spike_out_source615 = spike_out_source_array[615];
+    end
+    always @(spike_out_source_array[616]) begin 
+        spike_out_source616 = spike_out_source_array[616];
+    end
+    always @(spike_out_source_array[617]) begin 
+        spike_out_source617 = spike_out_source_array[617];
+    end
+    always @(spike_out_source_array[618]) begin 
+        spike_out_source618 = spike_out_source_array[618];
+    end
+    always @(spike_out_source_array[619]) begin 
+        spike_out_source619 = spike_out_source_array[619];
+    end
+    always @(spike_out_source_array[620]) begin 
+        spike_out_source620 = spike_out_source_array[620];
+    end
+    always @(spike_out_source_array[621]) begin 
+        spike_out_source621 = spike_out_source_array[621];
+    end
+    always @(spike_out_source_array[622]) begin 
+        spike_out_source622 = spike_out_source_array[622];
+    end
+    always @(spike_out_source_array[623]) begin 
+        spike_out_source623 = spike_out_source_array[623];
+    end
+    always @(spike_out_source_array[624]) begin 
+        spike_out_source624 = spike_out_source_array[624];
+    end
+    always @(spike_out_source_array[625]) begin 
+        spike_out_source625 = spike_out_source_array[625];
+    end
+    always @(spike_out_source_array[626]) begin 
+        spike_out_source626 = spike_out_source_array[626];
+    end
+    always @(spike_out_source_array[627]) begin 
+        spike_out_source627 = spike_out_source_array[627];
+    end
+    always @(spike_out_source_array[628]) begin 
+        spike_out_source628 = spike_out_source_array[628];
+    end
+    always @(spike_out_source_array[629]) begin 
+        spike_out_source629 = spike_out_source_array[629];
+    end
+    always @(spike_out_source_array[630]) begin 
+        spike_out_source630 = spike_out_source_array[630];
+    end
+    always @(spike_out_source_array[631]) begin 
+        spike_out_source631 = spike_out_source_array[631];
+    end
+    always @(spike_out_source_array[632]) begin 
+        spike_out_source632 = spike_out_source_array[632];
+    end
+    always @(spike_out_source_array[633]) begin 
+        spike_out_source633 = spike_out_source_array[633];
+    end
+    always @(spike_out_source_array[634]) begin 
+        spike_out_source634 = spike_out_source_array[634];
+    end
+    always @(spike_out_source_array[635]) begin 
+        spike_out_source635 = spike_out_source_array[635];
+    end
+    always @(spike_out_source_array[636]) begin 
+        spike_out_source636 = spike_out_source_array[636];
+    end
+    always @(spike_out_source_array[637]) begin 
+        spike_out_source637 = spike_out_source_array[637];
+    end
+    always @(spike_out_source_array[638]) begin 
+        spike_out_source638 = spike_out_source_array[638];
+    end
+    always @(spike_out_source_array[639]) begin 
+        spike_out_source639 = spike_out_source_array[639];
+    end
+    always @(spike_out_source_array[640]) begin 
+        spike_out_source640 = spike_out_source_array[640];
+    end
+    always @(spike_out_source_array[641]) begin 
+        spike_out_source641 = spike_out_source_array[641];
+    end
+    always @(spike_out_source_array[642]) begin 
+        spike_out_source642 = spike_out_source_array[642];
+    end
+    always @(spike_out_source_array[643]) begin 
+        spike_out_source643 = spike_out_source_array[643];
+    end
+    always @(spike_out_source_array[644]) begin 
+        spike_out_source644 = spike_out_source_array[644];
+    end
+    always @(spike_out_source_array[645]) begin 
+        spike_out_source645 = spike_out_source_array[645];
+    end
+    always @(spike_out_source_array[646]) begin 
+        spike_out_source646 = spike_out_source_array[646];
+    end
+    always @(spike_out_source_array[647]) begin 
+        spike_out_source647 = spike_out_source_array[647];
+    end
+    always @(spike_out_source_array[648]) begin 
+        spike_out_source648 = spike_out_source_array[648];
+    end
+    always @(spike_out_source_array[649]) begin 
+        spike_out_source649 = spike_out_source_array[649];
+    end
+    always @(spike_out_source_array[650]) begin 
+        spike_out_source650 = spike_out_source_array[650];
+    end
+    always @(spike_out_source_array[651]) begin 
+        spike_out_source651 = spike_out_source_array[651];
+    end
+    always @(spike_out_source_array[652]) begin 
+        spike_out_source652 = spike_out_source_array[652];
+    end
+    always @(spike_out_source_array[653]) begin 
+        spike_out_source653 = spike_out_source_array[653];
+    end
+    always @(spike_out_source_array[654]) begin 
+        spike_out_source654 = spike_out_source_array[654];
+    end
+    always @(spike_out_source_array[655]) begin 
+        spike_out_source655 = spike_out_source_array[655];
+    end
+    always @(spike_out_source_array[656]) begin 
+        spike_out_source656 = spike_out_source_array[656];
+    end
+    always @(spike_out_source_array[657]) begin 
+        spike_out_source657 = spike_out_source_array[657];
+    end
+    always @(spike_out_source_array[658]) begin 
+        spike_out_source658 = spike_out_source_array[658];
+    end
+    always @(spike_out_source_array[659]) begin 
+        spike_out_source659 = spike_out_source_array[659];
+    end
+    always @(spike_out_source_array[660]) begin 
+        spike_out_source660 = spike_out_source_array[660];
+    end
+    always @(spike_out_source_array[661]) begin 
+        spike_out_source661 = spike_out_source_array[661];
+    end
+    always @(spike_out_source_array[662]) begin 
+        spike_out_source662 = spike_out_source_array[662];
+    end
+    always @(spike_out_source_array[663]) begin 
+        spike_out_source663 = spike_out_source_array[663];
+    end
+    always @(spike_out_source_array[664]) begin 
+        spike_out_source664 = spike_out_source_array[664];
+    end
+    always @(spike_out_source_array[665]) begin 
+        spike_out_source665 = spike_out_source_array[665];
+    end
+    always @(spike_out_source_array[666]) begin 
+        spike_out_source666 = spike_out_source_array[666];
+    end
+    always @(spike_out_source_array[667]) begin 
+        spike_out_source667 = spike_out_source_array[667];
+    end
+    always @(spike_out_source_array[668]) begin 
+        spike_out_source668 = spike_out_source_array[668];
+    end
+    always @(spike_out_source_array[669]) begin 
+        spike_out_source669 = spike_out_source_array[669];
+    end
+    always @(spike_out_source_array[670]) begin 
+        spike_out_source670 = spike_out_source_array[670];
+    end
+    always @(spike_out_source_array[671]) begin 
+        spike_out_source671 = spike_out_source_array[671];
+    end
+    always @(spike_out_source_array[672]) begin 
+        spike_out_source672 = spike_out_source_array[672];
+    end
+    always @(spike_out_source_array[673]) begin 
+        spike_out_source673 = spike_out_source_array[673];
+    end
+    always @(spike_out_source_array[674]) begin 
+        spike_out_source674 = spike_out_source_array[674];
+    end
+    always @(spike_out_source_array[675]) begin 
+        spike_out_source675 = spike_out_source_array[675];
+    end
+    always @(spike_out_source_array[676]) begin 
+        spike_out_source676 = spike_out_source_array[676];
+    end
+    always @(spike_out_source_array[677]) begin 
+        spike_out_source677 = spike_out_source_array[677];
+    end
+    always @(spike_out_source_array[678]) begin 
+        spike_out_source678 = spike_out_source_array[678];
+    end
+    always @(spike_out_source_array[679]) begin 
+        spike_out_source679 = spike_out_source_array[679];
+    end
+    always @(spike_out_source_array[680]) begin 
+        spike_out_source680 = spike_out_source_array[680];
+    end
+    always @(spike_out_source_array[681]) begin 
+        spike_out_source681 = spike_out_source_array[681];
+    end
+    always @(spike_out_source_array[682]) begin 
+        spike_out_source682 = spike_out_source_array[682];
+    end
+    always @(spike_out_source_array[683]) begin 
+        spike_out_source683 = spike_out_source_array[683];
+    end
+    always @(spike_out_source_array[684]) begin 
+        spike_out_source684 = spike_out_source_array[684];
+    end
+    always @(spike_out_source_array[685]) begin 
+        spike_out_source685 = spike_out_source_array[685];
+    end
+    always @(spike_out_source_array[686]) begin 
+        spike_out_source686 = spike_out_source_array[686];
+    end
+    always @(spike_out_source_array[687]) begin 
+        spike_out_source687 = spike_out_source_array[687];
+    end
+    always @(spike_out_source_array[688]) begin 
+        spike_out_source688 = spike_out_source_array[688];
+    end
+    always @(spike_out_source_array[689]) begin 
+        spike_out_source689 = spike_out_source_array[689];
+    end
+    always @(spike_out_source_array[690]) begin 
+        spike_out_source690 = spike_out_source_array[690];
+    end
+    always @(spike_out_source_array[691]) begin 
+        spike_out_source691 = spike_out_source_array[691];
+    end
+    always @(spike_out_source_array[692]) begin 
+        spike_out_source692 = spike_out_source_array[692];
+    end
+    always @(spike_out_source_array[693]) begin 
+        spike_out_source693 = spike_out_source_array[693];
+    end
+    always @(spike_out_source_array[694]) begin 
+        spike_out_source694 = spike_out_source_array[694];
+    end
+    always @(spike_out_source_array[695]) begin 
+        spike_out_source695 = spike_out_source_array[695];
+    end
+    always @(spike_out_source_array[696]) begin 
+        spike_out_source696 = spike_out_source_array[696];
+    end
+    always @(spike_out_source_array[697]) begin 
+        spike_out_source697 = spike_out_source_array[697];
+    end
+    always @(spike_out_source_array[698]) begin 
+        spike_out_source698 = spike_out_source_array[698];
+    end
+    always @(spike_out_source_array[699]) begin 
+        spike_out_source699 = spike_out_source_array[699];
+    end
+    always @(spike_out_source_array[700]) begin 
+        spike_out_source700 = spike_out_source_array[700];
+    end
+    always @(spike_out_source_array[701]) begin 
+        spike_out_source701 = spike_out_source_array[701];
+    end
+    always @(spike_out_source_array[702]) begin 
+        spike_out_source702 = spike_out_source_array[702];
+    end
+    always @(spike_out_source_array[703]) begin 
+        spike_out_source703 = spike_out_source_array[703];
+    end
+    always @(spike_out_source_array[704]) begin 
+        spike_out_source704 = spike_out_source_array[704];
+    end
+    always @(spike_out_source_array[705]) begin 
+        spike_out_source705 = spike_out_source_array[705];
+    end
+    always @(spike_out_source_array[706]) begin 
+        spike_out_source706 = spike_out_source_array[706];
+    end
+    always @(spike_out_source_array[707]) begin 
+        spike_out_source707 = spike_out_source_array[707];
+    end
+    always @(spike_out_source_array[708]) begin 
+        spike_out_source708 = spike_out_source_array[708];
+    end
+    always @(spike_out_source_array[709]) begin 
+        spike_out_source709 = spike_out_source_array[709];
+    end
+    always @(spike_out_source_array[710]) begin 
+        spike_out_source710 = spike_out_source_array[710];
+    end
+    always @(spike_out_source_array[711]) begin 
+        spike_out_source711 = spike_out_source_array[711];
+    end
+    always @(spike_out_source_array[712]) begin 
+        spike_out_source712 = spike_out_source_array[712];
+    end
+    always @(spike_out_source_array[713]) begin 
+        spike_out_source713 = spike_out_source_array[713];
+    end
+    always @(spike_out_source_array[714]) begin 
+        spike_out_source714 = spike_out_source_array[714];
+    end
+    always @(spike_out_source_array[715]) begin 
+        spike_out_source715 = spike_out_source_array[715];
+    end
+    always @(spike_out_source_array[716]) begin 
+        spike_out_source716 = spike_out_source_array[716];
+    end
+    always @(spike_out_source_array[717]) begin 
+        spike_out_source717 = spike_out_source_array[717];
+    end
+    always @(spike_out_source_array[718]) begin 
+        spike_out_source718 = spike_out_source_array[718];
+    end
+    always @(spike_out_source_array[719]) begin 
+        spike_out_source719 = spike_out_source_array[719];
+    end
+    always @(spike_out_source_array[720]) begin 
+        spike_out_source720 = spike_out_source_array[720];
+    end
+    always @(spike_out_source_array[721]) begin 
+        spike_out_source721 = spike_out_source_array[721];
+    end
+    always @(spike_out_source_array[722]) begin 
+        spike_out_source722 = spike_out_source_array[722];
+    end
+    always @(spike_out_source_array[723]) begin 
+        spike_out_source723 = spike_out_source_array[723];
+    end
+    always @(spike_out_source_array[724]) begin 
+        spike_out_source724 = spike_out_source_array[724];
+    end
+    always @(spike_out_source_array[725]) begin 
+        spike_out_source725 = spike_out_source_array[725];
+    end
+    always @(spike_out_source_array[726]) begin 
+        spike_out_source726 = spike_out_source_array[726];
+    end
+    always @(spike_out_source_array[727]) begin 
+        spike_out_source727 = spike_out_source_array[727];
+    end
+    always @(spike_out_source_array[728]) begin 
+        spike_out_source728 = spike_out_source_array[728];
+    end
+    always @(spike_out_source_array[729]) begin 
+        spike_out_source729 = spike_out_source_array[729];
+    end
+    always @(spike_out_source_array[730]) begin 
+        spike_out_source730 = spike_out_source_array[730];
+    end
+    always @(spike_out_source_array[731]) begin 
+        spike_out_source731 = spike_out_source_array[731];
+    end
+    always @(spike_out_source_array[732]) begin 
+        spike_out_source732 = spike_out_source_array[732];
+    end
+    always @(spike_out_source_array[733]) begin 
+        spike_out_source733 = spike_out_source_array[733];
+    end
+    always @(spike_out_source_array[734]) begin 
+        spike_out_source734 = spike_out_source_array[734];
+    end
+    always @(spike_out_source_array[735]) begin 
+        spike_out_source735 = spike_out_source_array[735];
+    end
+    always @(spike_out_source_array[736]) begin 
+        spike_out_source736 = spike_out_source_array[736];
+    end
+    always @(spike_out_source_array[737]) begin 
+        spike_out_source737 = spike_out_source_array[737];
+    end
+    always @(spike_out_source_array[738]) begin 
+        spike_out_source738 = spike_out_source_array[738];
+    end
+    always @(spike_out_source_array[739]) begin 
+        spike_out_source739 = spike_out_source_array[739];
+    end
+    always @(spike_out_source_array[740]) begin 
+        spike_out_source740 = spike_out_source_array[740];
+    end
+    always @(spike_out_source_array[741]) begin 
+        spike_out_source741 = spike_out_source_array[741];
+    end
+    always @(spike_out_source_array[742]) begin 
+        spike_out_source742 = spike_out_source_array[742];
+    end
+    always @(spike_out_source_array[743]) begin 
+        spike_out_source743 = spike_out_source_array[743];
+    end
+    always @(spike_out_source_array[744]) begin 
+        spike_out_source744 = spike_out_source_array[744];
+    end
+    always @(spike_out_source_array[745]) begin 
+        spike_out_source745 = spike_out_source_array[745];
+    end
+    always @(spike_out_source_array[746]) begin 
+        spike_out_source746 = spike_out_source_array[746];
+    end
+    always @(spike_out_source_array[747]) begin 
+        spike_out_source747 = spike_out_source_array[747];
+    end
+    always @(spike_out_source_array[748]) begin 
+        spike_out_source748 = spike_out_source_array[748];
+    end
+    always @(spike_out_source_array[749]) begin 
+        spike_out_source749 = spike_out_source_array[749];
+    end
+    always @(spike_out_source_array[750]) begin 
+        spike_out_source750 = spike_out_source_array[750];
+    end
+    always @(spike_out_source_array[751]) begin 
+        spike_out_source751 = spike_out_source_array[751];
+    end
+    always @(spike_out_source_array[752]) begin 
+        spike_out_source752 = spike_out_source_array[752];
+    end
+    always @(spike_out_source_array[753]) begin 
+        spike_out_source753 = spike_out_source_array[753];
+    end
+    always @(spike_out_source_array[754]) begin 
+        spike_out_source754 = spike_out_source_array[754];
+    end
+    always @(spike_out_source_array[755]) begin 
+        spike_out_source755 = spike_out_source_array[755];
+    end
+    always @(spike_out_source_array[756]) begin 
+        spike_out_source756 = spike_out_source_array[756];
+    end
+    always @(spike_out_source_array[757]) begin 
+        spike_out_source757 = spike_out_source_array[757];
+    end
+    always @(spike_out_source_array[758]) begin 
+        spike_out_source758 = spike_out_source_array[758];
+    end
+    always @(spike_out_source_array[759]) begin 
+        spike_out_source759 = spike_out_source_array[759];
+    end
+    always @(spike_out_source_array[760]) begin 
+        spike_out_source760 = spike_out_source_array[760];
+    end
+    always @(spike_out_source_array[761]) begin 
+        spike_out_source761 = spike_out_source_array[761];
+    end
+    always @(spike_out_source_array[762]) begin 
+        spike_out_source762 = spike_out_source_array[762];
+    end
+    always @(spike_out_source_array[763]) begin 
+        spike_out_source763 = spike_out_source_array[763];
+    end
+    always @(spike_out_source_array[764]) begin 
+        spike_out_source764 = spike_out_source_array[764];
+    end
+    always @(spike_out_source_array[765]) begin 
+        spike_out_source765 = spike_out_source_array[765];
+    end
+    always @(spike_out_source_array[766]) begin 
+        spike_out_source766 = spike_out_source_array[766];
+    end
+    always @(spike_out_source_array[767]) begin 
+        spike_out_source767 = spike_out_source_array[767];
+    end
+    always @(spike_out_source_array[768]) begin 
+        spike_out_source768 = spike_out_source_array[768];
+    end
+    always @(spike_out_source_array[769]) begin 
+        spike_out_source769 = spike_out_source_array[769];
+    end
+    always @(spike_out_source_array[770]) begin 
+        spike_out_source770 = spike_out_source_array[770];
+    end
+    always @(spike_out_source_array[771]) begin 
+        spike_out_source771 = spike_out_source_array[771];
+    end
+    always @(spike_out_source_array[772]) begin 
+        spike_out_source772 = spike_out_source_array[772];
+    end
+    always @(spike_out_source_array[773]) begin 
+        spike_out_source773 = spike_out_source_array[773];
+    end
+    always @(spike_out_source_array[774]) begin 
+        spike_out_source774 = spike_out_source_array[774];
+    end
+    always @(spike_out_source_array[775]) begin 
+        spike_out_source775 = spike_out_source_array[775];
+    end
+    always @(spike_out_source_array[776]) begin 
+        spike_out_source776 = spike_out_source_array[776];
+    end
+    always @(spike_out_source_array[777]) begin 
+        spike_out_source777 = spike_out_source_array[777];
+    end
+    always @(spike_out_source_array[778]) begin 
+        spike_out_source778 = spike_out_source_array[778];
+    end
+    always @(spike_out_source_array[779]) begin 
+        spike_out_source779 = spike_out_source_array[779];
+    end
+    always @(spike_out_source_array[780]) begin 
+        spike_out_source780 = spike_out_source_array[780];
+    end
+    always @(spike_out_source_array[781]) begin 
+        spike_out_source781 = spike_out_source_array[781];
+    end
+    always @(spike_out_source_array[782]) begin 
+        spike_out_source782 = spike_out_source_array[782];
+    end
+    always @(spike_out_source_array[783]) begin 
+        spike_out_source783 = spike_out_source_array[783];
+    end
+    always @(spike_out_source_array[784]) begin 
+        spike_out_source784 = spike_out_source_array[784];
+    end
+    always @(spike_out_source_array[785]) begin 
+        spike_out_source785 = spike_out_source_array[785];
+    end
+    always @(spike_out_source_array[786]) begin 
+        spike_out_source786 = spike_out_source_array[786];
+    end
+    always @(spike_out_source_array[787]) begin 
+        spike_out_source787 = spike_out_source_array[787];
+    end
+    always @(spike_out_source_array[788]) begin 
+        spike_out_source788 = spike_out_source_array[788];
+    end
+    always @(spike_out_source_array[789]) begin 
+        spike_out_source789 = spike_out_source_array[789];
+    end
+    always @(spike_out_source_array[790]) begin 
+        spike_out_source790 = spike_out_source_array[790];
+    end
+    always @(spike_out_source_array[791]) begin 
+        spike_out_source791 = spike_out_source_array[791];
+    end
+    always @(spike_out_source_array[792]) begin 
+        spike_out_source792 = spike_out_source_array[792];
+    end
+    always @(spike_out_source_array[793]) begin 
+        spike_out_source793 = spike_out_source_array[793];
+    end
+    always @(spike_out_source_array[794]) begin 
+        spike_out_source794 = spike_out_source_array[794];
+    end
+    always @(spike_out_source_array[795]) begin 
+        spike_out_source795 = spike_out_source_array[795];
+    end
+    always @(spike_out_source_array[796]) begin 
+        spike_out_source796 = spike_out_source_array[796];
+    end
+    always @(spike_out_source_array[797]) begin 
+        spike_out_source797 = spike_out_source_array[797];
+    end
+    always @(spike_out_source_array[798]) begin 
+        spike_out_source798 = spike_out_source_array[798];
+    end
+    always @(spike_out_source_array[799]) begin 
+        spike_out_source799 = spike_out_source_array[799];
+    end
+    always @(spike_out_source_array[800]) begin 
+        spike_out_source800 = spike_out_source_array[800];
+    end
+    always @(spike_out_source_array[801]) begin 
+        spike_out_source801 = spike_out_source_array[801];
+    end
+    always @(spike_out_source_array[802]) begin 
+        spike_out_source802 = spike_out_source_array[802];
+    end
+    always @(spike_out_source_array[803]) begin 
+        spike_out_source803 = spike_out_source_array[803];
+    end
+    always @(spike_out_source_array[804]) begin 
+        spike_out_source804 = spike_out_source_array[804];
+    end
+    always @(spike_out_source_array[805]) begin 
+        spike_out_source805 = spike_out_source_array[805];
+    end
+    always @(spike_out_source_array[806]) begin 
+        spike_out_source806 = spike_out_source_array[806];
+    end
+    always @(spike_out_source_array[807]) begin 
+        spike_out_source807 = spike_out_source_array[807];
+    end
+    always @(spike_out_source_array[808]) begin 
+        spike_out_source808 = spike_out_source_array[808];
+    end
+    always @(spike_out_source_array[809]) begin 
+        spike_out_source809 = spike_out_source_array[809];
+    end
+    always @(spike_out_source_array[810]) begin 
+        spike_out_source810 = spike_out_source_array[810];
+    end
+    always @(spike_out_source_array[811]) begin 
+        spike_out_source811 = spike_out_source_array[811];
+    end
+    always @(spike_out_source_array[812]) begin 
+        spike_out_source812 = spike_out_source_array[812];
+    end
+    always @(spike_out_source_array[813]) begin 
+        spike_out_source813 = spike_out_source_array[813];
+    end
+    always @(spike_out_source_array[814]) begin 
+        spike_out_source814 = spike_out_source_array[814];
+    end
+    always @(spike_out_source_array[815]) begin 
+        spike_out_source815 = spike_out_source_array[815];
+    end
+    always @(spike_out_source_array[816]) begin 
+        spike_out_source816 = spike_out_source_array[816];
+    end
+    always @(spike_out_source_array[817]) begin 
+        spike_out_source817 = spike_out_source_array[817];
+    end
+    always @(spike_out_source_array[818]) begin 
+        spike_out_source818 = spike_out_source_array[818];
+    end
+    always @(spike_out_source_array[819]) begin 
+        spike_out_source819 = spike_out_source_array[819];
+    end
+    always @(spike_out_source_array[820]) begin 
+        spike_out_source820 = spike_out_source_array[820];
+    end
+    always @(spike_out_source_array[821]) begin 
+        spike_out_source821 = spike_out_source_array[821];
+    end
+    always @(spike_out_source_array[822]) begin 
+        spike_out_source822 = spike_out_source_array[822];
+    end
+    always @(spike_out_source_array[823]) begin 
+        spike_out_source823 = spike_out_source_array[823];
+    end
+    always @(spike_out_source_array[824]) begin 
+        spike_out_source824 = spike_out_source_array[824];
+    end
+    always @(spike_out_source_array[825]) begin 
+        spike_out_source825 = spike_out_source_array[825];
+    end
+    always @(spike_out_source_array[826]) begin 
+        spike_out_source826 = spike_out_source_array[826];
+    end
+    always @(spike_out_source_array[827]) begin 
+        spike_out_source827 = spike_out_source_array[827];
+    end
+    always @(spike_out_source_array[828]) begin 
+        spike_out_source828 = spike_out_source_array[828];
+    end
+    always @(spike_out_source_array[829]) begin 
+        spike_out_source829 = spike_out_source_array[829];
+    end
+    always @(spike_out_source_array[830]) begin 
+        spike_out_source830 = spike_out_source_array[830];
+    end
+    always @(spike_out_source_array[831]) begin 
+        spike_out_source831 = spike_out_source_array[831];
+    end
+    always @(spike_out_source_array[832]) begin 
+        spike_out_source832 = spike_out_source_array[832];
+    end
+    always @(spike_out_source_array[833]) begin 
+        spike_out_source833 = spike_out_source_array[833];
+    end
+    always @(spike_out_source_array[834]) begin 
+        spike_out_source834 = spike_out_source_array[834];
+    end
+    always @(spike_out_source_array[835]) begin 
+        spike_out_source835 = spike_out_source_array[835];
+    end
+    always @(spike_out_source_array[836]) begin 
+        spike_out_source836 = spike_out_source_array[836];
+    end
+    always @(spike_out_source_array[837]) begin 
+        spike_out_source837 = spike_out_source_array[837];
+    end
+    always @(spike_out_source_array[838]) begin 
+        spike_out_source838 = spike_out_source_array[838];
+    end
+    always @(spike_out_source_array[839]) begin 
+        spike_out_source839 = spike_out_source_array[839];
+    end
+    always @(spike_out_source_array[840]) begin 
+        spike_out_source840 = spike_out_source_array[840];
+    end
+    always @(spike_out_source_array[841]) begin 
+        spike_out_source841 = spike_out_source_array[841];
+    end
+    always @(spike_out_source_array[842]) begin 
+        spike_out_source842 = spike_out_source_array[842];
+    end
+    always @(spike_out_source_array[843]) begin 
+        spike_out_source843 = spike_out_source_array[843];
+    end
+    always @(spike_out_source_array[844]) begin 
+        spike_out_source844 = spike_out_source_array[844];
+    end
+    always @(spike_out_source_array[845]) begin 
+        spike_out_source845 = spike_out_source_array[845];
+    end
+    always @(spike_out_source_array[846]) begin 
+        spike_out_source846 = spike_out_source_array[846];
+    end
+    always @(spike_out_source_array[847]) begin 
+        spike_out_source847 = spike_out_source_array[847];
+    end
+    always @(spike_out_source_array[848]) begin 
+        spike_out_source848 = spike_out_source_array[848];
+    end
+    always @(spike_out_source_array[849]) begin 
+        spike_out_source849 = spike_out_source_array[849];
+    end
+    always @(spike_out_source_array[850]) begin 
+        spike_out_source850 = spike_out_source_array[850];
+    end
+    always @(spike_out_source_array[851]) begin 
+        spike_out_source851 = spike_out_source_array[851];
+    end
+    always @(spike_out_source_array[852]) begin 
+        spike_out_source852 = spike_out_source_array[852];
+    end
+    always @(spike_out_source_array[853]) begin 
+        spike_out_source853 = spike_out_source_array[853];
+    end
+    always @(spike_out_source_array[854]) begin 
+        spike_out_source854 = spike_out_source_array[854];
+    end
+    always @(spike_out_source_array[855]) begin 
+        spike_out_source855 = spike_out_source_array[855];
+    end
+    always @(spike_out_source_array[856]) begin 
+        spike_out_source856 = spike_out_source_array[856];
+    end
+    always @(spike_out_source_array[857]) begin 
+        spike_out_source857 = spike_out_source_array[857];
+    end
+    always @(spike_out_source_array[858]) begin 
+        spike_out_source858 = spike_out_source_array[858];
+    end
+    always @(spike_out_source_array[859]) begin 
+        spike_out_source859 = spike_out_source_array[859];
+    end
+    always @(spike_out_source_array[860]) begin 
+        spike_out_source860 = spike_out_source_array[860];
+    end
+    always @(spike_out_source_array[861]) begin 
+        spike_out_source861 = spike_out_source_array[861];
+    end
+    always @(spike_out_source_array[862]) begin 
+        spike_out_source862 = spike_out_source_array[862];
+    end
+    always @(spike_out_source_array[863]) begin 
+        spike_out_source863 = spike_out_source_array[863];
+    end
+    always @(spike_out_source_array[864]) begin 
+        spike_out_source864 = spike_out_source_array[864];
+    end
+    always @(spike_out_source_array[865]) begin 
+        spike_out_source865 = spike_out_source_array[865];
+    end
+    always @(spike_out_source_array[866]) begin 
+        spike_out_source866 = spike_out_source_array[866];
+    end
+    always @(spike_out_source_array[867]) begin 
+        spike_out_source867 = spike_out_source_array[867];
+    end
+    always @(spike_out_source_array[868]) begin 
+        spike_out_source868 = spike_out_source_array[868];
+    end
+    always @(spike_out_source_array[869]) begin 
+        spike_out_source869 = spike_out_source_array[869];
+    end
+    always @(spike_out_source_array[870]) begin 
+        spike_out_source870 = spike_out_source_array[870];
+    end
+    always @(spike_out_source_array[871]) begin 
+        spike_out_source871 = spike_out_source_array[871];
+    end
+    always @(spike_out_source_array[872]) begin 
+        spike_out_source872 = spike_out_source_array[872];
+    end
+    always @(spike_out_source_array[873]) begin 
+        spike_out_source873 = spike_out_source_array[873];
+    end
+    always @(spike_out_source_array[874]) begin 
+        spike_out_source874 = spike_out_source_array[874];
+    end
+    always @(spike_out_source_array[875]) begin 
+        spike_out_source875 = spike_out_source_array[875];
+    end
+    always @(spike_out_source_array[876]) begin 
+        spike_out_source876 = spike_out_source_array[876];
+    end
+    always @(spike_out_source_array[877]) begin 
+        spike_out_source877 = spike_out_source_array[877];
+    end
+    always @(spike_out_source_array[878]) begin 
+        spike_out_source878 = spike_out_source_array[878];
+    end
+    always @(spike_out_source_array[879]) begin 
+        spike_out_source879 = spike_out_source_array[879];
+    end
+    always @(spike_out_source_array[880]) begin 
+        spike_out_source880 = spike_out_source_array[880];
+    end
+    always @(spike_out_source_array[881]) begin 
+        spike_out_source881 = spike_out_source_array[881];
+    end
+    always @(spike_out_source_array[882]) begin 
+        spike_out_source882 = spike_out_source_array[882];
+    end
+    always @(spike_out_source_array[883]) begin 
+        spike_out_source883 = spike_out_source_array[883];
+    end
+    always @(spike_out_source_array[884]) begin 
+        spike_out_source884 = spike_out_source_array[884];
+    end
+    always @(spike_out_source_array[885]) begin 
+        spike_out_source885 = spike_out_source_array[885];
+    end
+    always @(spike_out_source_array[886]) begin 
+        spike_out_source886 = spike_out_source_array[886];
+    end
+    always @(spike_out_source_array[887]) begin 
+        spike_out_source887 = spike_out_source_array[887];
+    end
+    always @(spike_out_source_array[888]) begin 
+        spike_out_source888 = spike_out_source_array[888];
+    end
+    always @(spike_out_source_array[889]) begin 
+        spike_out_source889 = spike_out_source_array[889];
+    end
+    always @(spike_out_source_array[890]) begin 
+        spike_out_source890 = spike_out_source_array[890];
+    end
+    always @(spike_out_source_array[891]) begin 
+        spike_out_source891 = spike_out_source_array[891];
+    end
+    always @(spike_out_source_array[892]) begin 
+        spike_out_source892 = spike_out_source_array[892];
+    end
+    always @(spike_out_source_array[893]) begin 
+        spike_out_source893 = spike_out_source_array[893];
+    end
+    always @(spike_out_source_array[894]) begin 
+        spike_out_source894 = spike_out_source_array[894];
+    end
+    always @(spike_out_source_array[895]) begin 
+        spike_out_source895 = spike_out_source_array[895];
+    end
+    always @(spike_out_source_array[896]) begin 
+        spike_out_source896 = spike_out_source_array[896];
+    end
+    always @(spike_out_source_array[897]) begin 
+        spike_out_source897 = spike_out_source_array[897];
+    end
+    always @(spike_out_source_array[898]) begin 
+        spike_out_source898 = spike_out_source_array[898];
+    end
+    always @(spike_out_source_array[899]) begin 
+        spike_out_source899 = spike_out_source_array[899];
+    end
+    always @(spike_out_source_array[900]) begin 
+        spike_out_source900 = spike_out_source_array[900];
+    end
+    always @(spike_out_source_array[901]) begin 
+        spike_out_source901 = spike_out_source_array[901];
+    end
+    always @(spike_out_source_array[902]) begin 
+        spike_out_source902 = spike_out_source_array[902];
+    end
+    always @(spike_out_source_array[903]) begin 
+        spike_out_source903 = spike_out_source_array[903];
+    end
+    always @(spike_out_source_array[904]) begin 
+        spike_out_source904 = spike_out_source_array[904];
+    end
+    always @(spike_out_source_array[905]) begin 
+        spike_out_source905 = spike_out_source_array[905];
+    end
+    always @(spike_out_source_array[906]) begin 
+        spike_out_source906 = spike_out_source_array[906];
+    end
+    always @(spike_out_source_array[907]) begin 
+        spike_out_source907 = spike_out_source_array[907];
+    end
+    always @(spike_out_source_array[908]) begin 
+        spike_out_source908 = spike_out_source_array[908];
+    end
+    always @(spike_out_source_array[909]) begin 
+        spike_out_source909 = spike_out_source_array[909];
+    end
+    always @(spike_out_source_array[910]) begin 
+        spike_out_source910 = spike_out_source_array[910];
+    end
+    always @(spike_out_source_array[911]) begin 
+        spike_out_source911 = spike_out_source_array[911];
+    end
+    always @(spike_out_source_array[912]) begin 
+        spike_out_source912 = spike_out_source_array[912];
+    end
+    always @(spike_out_source_array[913]) begin 
+        spike_out_source913 = spike_out_source_array[913];
+    end
+    always @(spike_out_source_array[914]) begin 
+        spike_out_source914 = spike_out_source_array[914];
+    end
+    always @(spike_out_source_array[915]) begin 
+        spike_out_source915 = spike_out_source_array[915];
+    end
+    always @(spike_out_source_array[916]) begin 
+        spike_out_source916 = spike_out_source_array[916];
+    end
+    always @(spike_out_source_array[917]) begin 
+        spike_out_source917 = spike_out_source_array[917];
+    end
+    always @(spike_out_source_array[918]) begin 
+        spike_out_source918 = spike_out_source_array[918];
+    end
+    always @(spike_out_source_array[919]) begin 
+        spike_out_source919 = spike_out_source_array[919];
+    end
+    always @(spike_out_source_array[920]) begin 
+        spike_out_source920 = spike_out_source_array[920];
+    end
+    always @(spike_out_source_array[921]) begin 
+        spike_out_source921 = spike_out_source_array[921];
+    end
+    always @(spike_out_source_array[922]) begin 
+        spike_out_source922 = spike_out_source_array[922];
+    end
+    always @(spike_out_source_array[923]) begin 
+        spike_out_source923 = spike_out_source_array[923];
+    end
+    always @(spike_out_source_array[924]) begin 
+        spike_out_source924 = spike_out_source_array[924];
+    end
+    always @(spike_out_source_array[925]) begin 
+        spike_out_source925 = spike_out_source_array[925];
+    end
+    always @(spike_out_source_array[926]) begin 
+        spike_out_source926 = spike_out_source_array[926];
+    end
+    always @(spike_out_source_array[927]) begin 
+        spike_out_source927 = spike_out_source_array[927];
+    end
+    always @(spike_out_source_array[928]) begin 
+        spike_out_source928 = spike_out_source_array[928];
+    end
+    always @(spike_out_source_array[929]) begin 
+        spike_out_source929 = spike_out_source_array[929];
+    end
+    always @(spike_out_source_array[930]) begin 
+        spike_out_source930 = spike_out_source_array[930];
+    end
+    always @(spike_out_source_array[931]) begin 
+        spike_out_source931 = spike_out_source_array[931];
+    end
+    always @(spike_out_source_array[932]) begin 
+        spike_out_source932 = spike_out_source_array[932];
+    end
+    always @(spike_out_source_array[933]) begin 
+        spike_out_source933 = spike_out_source_array[933];
+    end
+    always @(spike_out_source_array[934]) begin 
+        spike_out_source934 = spike_out_source_array[934];
+    end
+    always @(spike_out_source_array[935]) begin 
+        spike_out_source935 = spike_out_source_array[935];
+    end
+    always @(spike_out_source_array[936]) begin 
+        spike_out_source936 = spike_out_source_array[936];
+    end
+    always @(spike_out_source_array[937]) begin 
+        spike_out_source937 = spike_out_source_array[937];
+    end
+    always @(spike_out_source_array[938]) begin 
+        spike_out_source938 = spike_out_source_array[938];
+    end
+    always @(spike_out_source_array[939]) begin 
+        spike_out_source939 = spike_out_source_array[939];
+    end
+    always @(spike_out_source_array[940]) begin 
+        spike_out_source940 = spike_out_source_array[940];
+    end
+    always @(spike_out_source_array[941]) begin 
+        spike_out_source941 = spike_out_source_array[941];
+    end
+    always @(spike_out_source_array[942]) begin 
+        spike_out_source942 = spike_out_source_array[942];
+    end
+    always @(spike_out_source_array[943]) begin 
+        spike_out_source943 = spike_out_source_array[943];
+    end
+    always @(spike_out_source_array[944]) begin 
+        spike_out_source944 = spike_out_source_array[944];
+    end
+    always @(spike_out_source_array[945]) begin 
+        spike_out_source945 = spike_out_source_array[945];
+    end
+    always @(spike_out_source_array[946]) begin 
+        spike_out_source946 = spike_out_source_array[946];
+    end
+    always @(spike_out_source_array[947]) begin 
+        spike_out_source947 = spike_out_source_array[947];
+    end
+    always @(spike_out_source_array[948]) begin 
+        spike_out_source948 = spike_out_source_array[948];
+    end
+    always @(spike_out_source_array[949]) begin 
+        spike_out_source949 = spike_out_source_array[949];
+    end
+    always @(spike_out_source_array[950]) begin 
+        spike_out_source950 = spike_out_source_array[950];
+    end
+    always @(spike_out_source_array[951]) begin 
+        spike_out_source951 = spike_out_source_array[951];
+    end
+    always @(spike_out_source_array[952]) begin 
+        spike_out_source952 = spike_out_source_array[952];
+    end
+    always @(spike_out_source_array[953]) begin 
+        spike_out_source953 = spike_out_source_array[953];
+    end
+    always @(spike_out_source_array[954]) begin 
+        spike_out_source954 = spike_out_source_array[954];
+    end
+    always @(spike_out_source_array[955]) begin 
+        spike_out_source955 = spike_out_source_array[955];
+    end
+    always @(spike_out_source_array[956]) begin 
+        spike_out_source956 = spike_out_source_array[956];
+    end
+    always @(spike_out_source_array[957]) begin 
+        spike_out_source957 = spike_out_source_array[957];
+    end
+    always @(spike_out_source_array[958]) begin 
+        spike_out_source958 = spike_out_source_array[958];
+    end
+    always @(spike_out_source_array[959]) begin 
+        spike_out_source959 = spike_out_source_array[959];
+    end
+    always @(spike_out_source_array[960]) begin 
+        spike_out_source960 = spike_out_source_array[960];
+    end
+    always @(spike_out_source_array[961]) begin 
+        spike_out_source961 = spike_out_source_array[961];
+    end
+    always @(spike_out_source_array[962]) begin 
+        spike_out_source962 = spike_out_source_array[962];
+    end
+    always @(spike_out_source_array[963]) begin 
+        spike_out_source963 = spike_out_source_array[963];
+    end
+    always @(spike_out_source_array[964]) begin 
+        spike_out_source964 = spike_out_source_array[964];
+    end
+    always @(spike_out_source_array[965]) begin 
+        spike_out_source965 = spike_out_source_array[965];
+    end
+    always @(spike_out_source_array[966]) begin 
+        spike_out_source966 = spike_out_source_array[966];
+    end
+    always @(spike_out_source_array[967]) begin 
+        spike_out_source967 = spike_out_source_array[967];
+    end
+    always @(spike_out_source_array[968]) begin 
+        spike_out_source968 = spike_out_source_array[968];
+    end
+    always @(spike_out_source_array[969]) begin 
+        spike_out_source969 = spike_out_source_array[969];
+    end
+    always @(spike_out_source_array[970]) begin 
+        spike_out_source970 = spike_out_source_array[970];
+    end
+    always @(spike_out_source_array[971]) begin 
+        spike_out_source971 = spike_out_source_array[971];
+    end
+    always @(spike_out_source_array[972]) begin 
+        spike_out_source972 = spike_out_source_array[972];
+    end
+    always @(spike_out_source_array[973]) begin 
+        spike_out_source973 = spike_out_source_array[973];
+    end
+    always @(spike_out_source_array[974]) begin 
+        spike_out_source974 = spike_out_source_array[974];
+    end
+    always @(spike_out_source_array[975]) begin 
+        spike_out_source975 = spike_out_source_array[975];
+    end
+    always @(spike_out_source_array[976]) begin 
+        spike_out_source976 = spike_out_source_array[976];
+    end
+    always @(spike_out_source_array[977]) begin 
+        spike_out_source977 = spike_out_source_array[977];
+    end
+    always @(spike_out_source_array[978]) begin 
+        spike_out_source978 = spike_out_source_array[978];
+    end
+    always @(spike_out_source_array[979]) begin 
+        spike_out_source979 = spike_out_source_array[979];
+    end
+    always @(spike_out_source_array[980]) begin 
+        spike_out_source980 = spike_out_source_array[980];
+    end
+    always @(spike_out_source_array[981]) begin 
+        spike_out_source981 = spike_out_source_array[981];
+    end
+    always @(spike_out_source_array[982]) begin 
+        spike_out_source982 = spike_out_source_array[982];
+    end
+    always @(spike_out_source_array[983]) begin 
+        spike_out_source983 = spike_out_source_array[983];
+    end
+    always @(spike_out_source_array[984]) begin 
+        spike_out_source984 = spike_out_source_array[984];
+    end
+    always @(spike_out_source_array[985]) begin 
+        spike_out_source985 = spike_out_source_array[985];
+    end
+    always @(spike_out_source_array[986]) begin 
+        spike_out_source986 = spike_out_source_array[986];
+    end
+    always @(spike_out_source_array[987]) begin 
+        spike_out_source987 = spike_out_source_array[987];
+    end
+    always @(spike_out_source_array[988]) begin 
+        spike_out_source988 = spike_out_source_array[988];
+    end
+    always @(spike_out_source_array[989]) begin 
+        spike_out_source989 = spike_out_source_array[989];
+    end
+    always @(spike_out_source_array[990]) begin 
+        spike_out_source990 = spike_out_source_array[990];
+    end
+    always @(spike_out_source_array[991]) begin 
+        spike_out_source991 = spike_out_source_array[991];
+    end
+    always @(spike_out_source_array[992]) begin 
+        spike_out_source992 = spike_out_source_array[992];
+    end
+    always @(spike_out_source_array[993]) begin 
+        spike_out_source993 = spike_out_source_array[993];
+    end
+    always @(spike_out_source_array[994]) begin 
+        spike_out_source994 = spike_out_source_array[994];
+    end
+    always @(spike_out_source_array[995]) begin 
+        spike_out_source995 = spike_out_source_array[995];
+    end
+    always @(spike_out_source_array[996]) begin 
+        spike_out_source996 = spike_out_source_array[996];
+    end
+    always @(spike_out_source_array[997]) begin 
+        spike_out_source997 = spike_out_source_array[997];
+    end
+    always @(spike_out_source_array[998]) begin 
+        spike_out_source998 = spike_out_source_array[998];
+    end
+    always @(spike_out_source_array[999]) begin 
+        spike_out_source999 = spike_out_source_array[999];
+    end
+    always @(spike_out_source_array[1000]) begin 
+        spike_out_source1000 = spike_out_source_array[1000];
+    end
+    always @(spike_out_source_array[1001]) begin 
+        spike_out_source1001 = spike_out_source_array[1001];
+    end
+    always @(spike_out_source_array[1002]) begin 
+        spike_out_source1002 = spike_out_source_array[1002];
+    end
+    always @(spike_out_source_array[1003]) begin 
+        spike_out_source1003 = spike_out_source_array[1003];
+    end
+    always @(spike_out_source_array[1004]) begin 
+        spike_out_source1004 = spike_out_source_array[1004];
+    end
+    always @(spike_out_source_array[1005]) begin 
+        spike_out_source1005 = spike_out_source_array[1005];
+    end
+    always @(spike_out_source_array[1006]) begin 
+        spike_out_source1006 = spike_out_source_array[1006];
+    end
+    always @(spike_out_source_array[1007]) begin 
+        spike_out_source1007 = spike_out_source_array[1007];
+    end
+    always @(spike_out_source_array[1008]) begin 
+        spike_out_source1008 = spike_out_source_array[1008];
+    end
+    always @(spike_out_source_array[1009]) begin 
+        spike_out_source1009 = spike_out_source_array[1009];
+    end
+    always @(spike_out_source_array[1010]) begin 
+        spike_out_source1010 = spike_out_source_array[1010];
+    end
+    always @(spike_out_source_array[1011]) begin 
+        spike_out_source1011 = spike_out_source_array[1011];
+    end
+    always @(spike_out_source_array[1012]) begin 
+        spike_out_source1012 = spike_out_source_array[1012];
+    end
+    always @(spike_out_source_array[1013]) begin 
+        spike_out_source1013 = spike_out_source_array[1013];
+    end
+    always @(spike_out_source_array[1014]) begin 
+        spike_out_source1014 = spike_out_source_array[1014];
+    end
+    always @(spike_out_source_array[1015]) begin 
+        spike_out_source1015 = spike_out_source_array[1015];
+    end
+    always @(spike_out_source_array[1016]) begin 
+        spike_out_source1016 = spike_out_source_array[1016];
+    end
+    always @(spike_out_source_array[1017]) begin 
+        spike_out_source1017 = spike_out_source_array[1017];
+    end
+    always @(spike_out_source_array[1018]) begin 
+        spike_out_source1018 = spike_out_source_array[1018];
+    end
+    always @(spike_out_source_array[1019]) begin 
+        spike_out_source1019 = spike_out_source_array[1019];
+    end
+    always @(spike_out_source_array[1020]) begin 
+        spike_out_source1020 = spike_out_source_array[1020];
+    end
+    always @(spike_out_source_array[1021]) begin 
+        spike_out_source1021 = spike_out_source_array[1021];
+    end
+    always @(spike_out_source_array[1022]) begin 
+        spike_out_source1022 = spike_out_source_array[1022];
+    end
+    always @(spike_out_source_array[1023]) begin 
+        spike_out_source1023 = spike_out_source_array[1023];
     end
 
     
