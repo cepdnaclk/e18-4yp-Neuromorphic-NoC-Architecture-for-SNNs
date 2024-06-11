@@ -67,12 +67,14 @@ The [OpenSpike](https://github.com/sfmth/OpenSpike) project by Modaresi, F. et a
 
 ## Methodology
 
-![Sample Image](./images/acccelerator_design.png) 
+![Sample Image](./images/main.png) 
 
 The proposed design consists of RISC-V processing nodes specialised to perform operations required to implement spiking networks. The nodes are interconnected using a network interface attached to each processing node. A routing framework is used to negotiate communication between the nodes. Each processing node is responsible for managing one or more
 logical neurons. The interconnectivity between nodes enables communication between logical neurons that span across multiple nodes. The architecture adopts an event-driven messaging mechanism to effectively emulate the activity of the spiking
 neurons. The motivation for using a RISC-V processing node network lies in the ability to maintain configurability and programmability at the hardware level. This flexibility will be leveraged to support various spiking neuron model
 architectures.
+
+![Sample Image](./images/single_neuron.png) 
 
 Work is underway to develop a RISC-V based system integrated with an accelerator as shown below. The accelerator will perform the intensive task of the continous calculations of potential decaying and along with spike related calculations.
 <!-- ## Experiment Setup and Implementation-->
