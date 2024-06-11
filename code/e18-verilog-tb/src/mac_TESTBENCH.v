@@ -1,8 +1,8 @@
 `timescale 1ns/100ps
 
-module mac_TESTBENCH(CLK, done);
+module mac_TESTBENCH();
 
-    input reg CLK;
+    reg CLK;
     reg[3:0] CLK_count;
     reg[11:0] source_addresses[0:9];
     reg[159:0] weights_arrays[0:9];
@@ -10,7 +10,7 @@ module mac_TESTBENCH(CLK, done);
     reg clear;
     reg[11:0] neuron_addresses[0:9];
     wire [31:0] results[0:9];
-    wire done;
+    reg done;
 
     //generate 10 accumulators
     genvar i;
@@ -91,15 +91,15 @@ module mac_TESTBENCH(CLK, done);
         source_addresses[8] = 12'd3;
         source_addresses[4] = 12'd1;
 
-        #4
-        source_addresses[8] = 12'd4; 
-        source_addresses[4] = 12'd2; 
+        // #4
+        // source_addresses[8] = 12'd4; 
+        // source_addresses[4] = 12'd2;  
 
-        #4
-        source_addresses[8] = 12'd5;
+        // #4
+        // source_addresses[8] = 12'd5;
 
-        #4
-        source_addresses[8] = 12'd7;       
+        // #4
+        // source_addresses[8] = 12'd7;       
 
         #100
         done = 1'b1;
