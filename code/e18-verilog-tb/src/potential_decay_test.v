@@ -84,7 +84,9 @@ module test_potential_decay;
     // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, " Input Potential: %b\n                     After Potential Decay: %b", input_potential, results_potential_decay[0]);
+
+        $monitor($time, " Input Potential: %b\n                     After Potential Decay: %b", input_potential, output_potential_decay);
+
     end
 
     //invert clock every 4 seconds

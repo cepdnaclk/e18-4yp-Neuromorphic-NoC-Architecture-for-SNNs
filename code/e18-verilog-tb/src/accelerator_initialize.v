@@ -32,7 +32,7 @@ module testbench;
     wire[31:0] final_potential[0:number_of_neurons-1];             //potential form the potential adder
     wire spike[0:number_of_neurons-1];                              //spike signifier from potential decay
     wire[23:0] packet;                          //packet containing neuron address and sources address
-
+ 
     //generate 10 potential decay units
     genvar i;
     generate
