@@ -36,7 +36,7 @@ module test_potential_decay;
                 .decay_rate(decay_rate),
                 .membrane_potential_initialization(membrane_potential[i]),
                 .output_potential_decay(results_potential_decay[i]),
-                .new_potential(final_potential[i])
+                .new_potential(results_potential_decay[i])
             );
         end
     endgenerate
@@ -84,7 +84,9 @@ module test_potential_decay;
     // Print the outputs when ever the inputs change
     initial
     begin
+
         $monitor($time, " Input Potential: %b\n                     After Potential Decay: %b", input_potential, output_potential_decay);
+
     end
 
     //invert clock every 4 seconds
