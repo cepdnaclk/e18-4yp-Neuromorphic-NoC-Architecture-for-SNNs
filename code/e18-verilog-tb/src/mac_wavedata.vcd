@@ -1,5 +1,5 @@
 $date
-	Mon Jun 10 17:09:11 2024
+	Thu Jun 13 11:36:45 2024
 $end
 $version
 	Icarus Verilog
@@ -30,8 +30,8 @@ $var parameter 64 / weights_array_width $end
 $var reg 32 0 accumulated_weight [31:0] $end
 $var reg 1 1 break $end
 $var reg 32 2 considered_weight [31:0] $end
-$var reg 32 3 mult_output [31:0] $end
-$var reg 12 4 previous_source_address [11:0] $end
+$var reg 1 3 flip $end
+$var reg 32 4 mult_output [31:0] $end
 $var integer 32 5 i [31:0] $end
 $var integer 32 6 index [31:0] $end
 $scope module add1 $end
@@ -68,559 +68,10 @@ $upscope $end
 $upscope $end
 $upscope $end
 $upscope $end
-$scope begin genblk1[1] $end
-$var parameter 2 R i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 S neuron_address [11:0] $end
-$var wire 12 T source_address [11:0] $end
-$var wire 60 U source_addresses_array [59:0] $end
-$var wire 160 V weights_array [159:0] $end
-$var wire 1 W excpetion $end
-$var wire 32 X added_weight [31:0] $end
-$var parameter 32 Y number_of_address_bits $end
-$var parameter 32 Z number_of_connections $end
-$var parameter 32 [ number_of_units $end
-$var parameter 64 \ weights_array_width $end
-$var reg 32 ] accumulated_weight [31:0] $end
-$var reg 1 ^ break $end
-$var reg 32 _ considered_weight [31:0] $end
-$var reg 32 ` mult_output [31:0] $end
-$var reg 12 a previous_source_address [11:0] $end
-$var integer 32 b i [31:0] $end
-$var integer 32 c index [31:0] $end
-$scope module add1 $end
-$var wire 1 d AddBar_Sub $end
-$var wire 1 W Exception $end
-$var wire 32 e a_operand [31:0] $end
-$var wire 32 f b_operand [31:0] $end
-$var wire 1 g operation_sub_addBar $end
-$var wire 1 h output_sign $end
-$var wire 25 i subtraction_diff [24:0] $end
-$var wire 31 j sub_diff [30:0] $end
-$var wire 24 k significand_sub_complement [23:0] $end
-$var wire 25 l significand_sub [24:0] $end
-$var wire 24 m significand_b_add_sub [23:0] $end
-$var wire 24 n significand_b [23:0] $end
-$var wire 25 o significand_add [24:0] $end
-$var wire 24 p significand_a [23:0] $end
-$var wire 32 q result [31:0] $end
-$var wire 1 r perform $end
-$var wire 32 s operand_b [31:0] $end
-$var wire 32 t operand_a [31:0] $end
-$var wire 8 u exponent_sub [7:0] $end
-$var wire 8 v exponent_diff [7:0] $end
-$var wire 8 w exponent_b_add_sub [7:0] $end
-$var wire 31 x add_sum [30:0] $end
-$var wire 1 y Comp_enable $end
-$scope module pe $end
-$var wire 8 z Exponent_a [7:0] $end
-$var wire 25 { significand [24:0] $end
-$var wire 8 | Exponent_sub [7:0] $end
-$var reg 25 } Significand [24:0] $end
-$var reg 5 ~ shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[2] $end
-$var parameter 3 !" i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 "" neuron_address [11:0] $end
-$var wire 12 #" source_address [11:0] $end
-$var wire 60 $" source_addresses_array [59:0] $end
-$var wire 160 %" weights_array [159:0] $end
-$var wire 1 &" excpetion $end
-$var wire 32 '" added_weight [31:0] $end
-$var parameter 32 (" number_of_address_bits $end
-$var parameter 32 )" number_of_connections $end
-$var parameter 32 *" number_of_units $end
-$var parameter 64 +" weights_array_width $end
-$var reg 32 ," accumulated_weight [31:0] $end
-$var reg 1 -" break $end
-$var reg 32 ." considered_weight [31:0] $end
-$var reg 32 /" mult_output [31:0] $end
-$var reg 12 0" previous_source_address [11:0] $end
-$var integer 32 1" i [31:0] $end
-$var integer 32 2" index [31:0] $end
-$scope module add1 $end
-$var wire 1 3" AddBar_Sub $end
-$var wire 1 &" Exception $end
-$var wire 32 4" a_operand [31:0] $end
-$var wire 32 5" b_operand [31:0] $end
-$var wire 1 6" operation_sub_addBar $end
-$var wire 1 7" output_sign $end
-$var wire 25 8" subtraction_diff [24:0] $end
-$var wire 31 9" sub_diff [30:0] $end
-$var wire 24 :" significand_sub_complement [23:0] $end
-$var wire 25 ;" significand_sub [24:0] $end
-$var wire 24 <" significand_b_add_sub [23:0] $end
-$var wire 24 =" significand_b [23:0] $end
-$var wire 25 >" significand_add [24:0] $end
-$var wire 24 ?" significand_a [23:0] $end
-$var wire 32 @" result [31:0] $end
-$var wire 1 A" perform $end
-$var wire 32 B" operand_b [31:0] $end
-$var wire 32 C" operand_a [31:0] $end
-$var wire 8 D" exponent_sub [7:0] $end
-$var wire 8 E" exponent_diff [7:0] $end
-$var wire 8 F" exponent_b_add_sub [7:0] $end
-$var wire 31 G" add_sum [30:0] $end
-$var wire 1 H" Comp_enable $end
-$scope module pe $end
-$var wire 8 I" Exponent_a [7:0] $end
-$var wire 25 J" significand [24:0] $end
-$var wire 8 K" Exponent_sub [7:0] $end
-$var reg 25 L" Significand [24:0] $end
-$var reg 5 M" shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[3] $end
-$var parameter 3 N" i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 O" neuron_address [11:0] $end
-$var wire 12 P" source_address [11:0] $end
-$var wire 60 Q" source_addresses_array [59:0] $end
-$var wire 160 R" weights_array [159:0] $end
-$var wire 1 S" excpetion $end
-$var wire 32 T" added_weight [31:0] $end
-$var parameter 32 U" number_of_address_bits $end
-$var parameter 32 V" number_of_connections $end
-$var parameter 32 W" number_of_units $end
-$var parameter 64 X" weights_array_width $end
-$var reg 32 Y" accumulated_weight [31:0] $end
-$var reg 1 Z" break $end
-$var reg 32 [" considered_weight [31:0] $end
-$var reg 32 \" mult_output [31:0] $end
-$var reg 12 ]" previous_source_address [11:0] $end
-$var integer 32 ^" i [31:0] $end
-$var integer 32 _" index [31:0] $end
-$scope module add1 $end
-$var wire 1 `" AddBar_Sub $end
-$var wire 1 S" Exception $end
-$var wire 32 a" a_operand [31:0] $end
-$var wire 32 b" b_operand [31:0] $end
-$var wire 1 c" operation_sub_addBar $end
-$var wire 1 d" output_sign $end
-$var wire 25 e" subtraction_diff [24:0] $end
-$var wire 31 f" sub_diff [30:0] $end
-$var wire 24 g" significand_sub_complement [23:0] $end
-$var wire 25 h" significand_sub [24:0] $end
-$var wire 24 i" significand_b_add_sub [23:0] $end
-$var wire 24 j" significand_b [23:0] $end
-$var wire 25 k" significand_add [24:0] $end
-$var wire 24 l" significand_a [23:0] $end
-$var wire 32 m" result [31:0] $end
-$var wire 1 n" perform $end
-$var wire 32 o" operand_b [31:0] $end
-$var wire 32 p" operand_a [31:0] $end
-$var wire 8 q" exponent_sub [7:0] $end
-$var wire 8 r" exponent_diff [7:0] $end
-$var wire 8 s" exponent_b_add_sub [7:0] $end
-$var wire 31 t" add_sum [30:0] $end
-$var wire 1 u" Comp_enable $end
-$scope module pe $end
-$var wire 8 v" Exponent_a [7:0] $end
-$var wire 25 w" significand [24:0] $end
-$var wire 8 x" Exponent_sub [7:0] $end
-$var reg 25 y" Significand [24:0] $end
-$var reg 5 z" shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[4] $end
-$var parameter 4 {" i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 |" neuron_address [11:0] $end
-$var wire 12 }" source_address [11:0] $end
-$var wire 60 ~" source_addresses_array [59:0] $end
-$var wire 160 !# weights_array [159:0] $end
-$var wire 1 "# excpetion $end
-$var wire 32 ## added_weight [31:0] $end
-$var parameter 32 $# number_of_address_bits $end
-$var parameter 32 %# number_of_connections $end
-$var parameter 32 &# number_of_units $end
-$var parameter 64 '# weights_array_width $end
-$var reg 32 (# accumulated_weight [31:0] $end
-$var reg 1 )# break $end
-$var reg 32 *# considered_weight [31:0] $end
-$var reg 32 +# mult_output [31:0] $end
-$var reg 12 ,# previous_source_address [11:0] $end
-$var integer 32 -# i [31:0] $end
-$var integer 32 .# index [31:0] $end
-$scope module add1 $end
-$var wire 1 /# AddBar_Sub $end
-$var wire 1 "# Exception $end
-$var wire 32 0# a_operand [31:0] $end
-$var wire 32 1# b_operand [31:0] $end
-$var wire 1 2# operation_sub_addBar $end
-$var wire 1 3# output_sign $end
-$var wire 25 4# subtraction_diff [24:0] $end
-$var wire 31 5# sub_diff [30:0] $end
-$var wire 24 6# significand_sub_complement [23:0] $end
-$var wire 25 7# significand_sub [24:0] $end
-$var wire 24 8# significand_b_add_sub [23:0] $end
-$var wire 24 9# significand_b [23:0] $end
-$var wire 25 :# significand_add [24:0] $end
-$var wire 24 ;# significand_a [23:0] $end
-$var wire 32 <# result [31:0] $end
-$var wire 1 =# perform $end
-$var wire 32 ># operand_b [31:0] $end
-$var wire 32 ?# operand_a [31:0] $end
-$var wire 8 @# exponent_sub [7:0] $end
-$var wire 8 A# exponent_diff [7:0] $end
-$var wire 8 B# exponent_b_add_sub [7:0] $end
-$var wire 31 C# add_sum [30:0] $end
-$var wire 1 D# Comp_enable $end
-$scope module pe $end
-$var wire 8 E# Exponent_a [7:0] $end
-$var wire 25 F# significand [24:0] $end
-$var wire 8 G# Exponent_sub [7:0] $end
-$var reg 25 H# Significand [24:0] $end
-$var reg 5 I# shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[5] $end
-$var parameter 4 J# i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 K# neuron_address [11:0] $end
-$var wire 12 L# source_address [11:0] $end
-$var wire 60 M# source_addresses_array [59:0] $end
-$var wire 160 N# weights_array [159:0] $end
-$var wire 1 O# excpetion $end
-$var wire 32 P# added_weight [31:0] $end
-$var parameter 32 Q# number_of_address_bits $end
-$var parameter 32 R# number_of_connections $end
-$var parameter 32 S# number_of_units $end
-$var parameter 64 T# weights_array_width $end
-$var reg 32 U# accumulated_weight [31:0] $end
-$var reg 1 V# break $end
-$var reg 32 W# considered_weight [31:0] $end
-$var reg 32 X# mult_output [31:0] $end
-$var reg 12 Y# previous_source_address [11:0] $end
-$var integer 32 Z# i [31:0] $end
-$var integer 32 [# index [31:0] $end
-$scope module add1 $end
-$var wire 1 \# AddBar_Sub $end
-$var wire 1 O# Exception $end
-$var wire 32 ]# a_operand [31:0] $end
-$var wire 32 ^# b_operand [31:0] $end
-$var wire 1 _# operation_sub_addBar $end
-$var wire 1 `# output_sign $end
-$var wire 25 a# subtraction_diff [24:0] $end
-$var wire 31 b# sub_diff [30:0] $end
-$var wire 24 c# significand_sub_complement [23:0] $end
-$var wire 25 d# significand_sub [24:0] $end
-$var wire 24 e# significand_b_add_sub [23:0] $end
-$var wire 24 f# significand_b [23:0] $end
-$var wire 25 g# significand_add [24:0] $end
-$var wire 24 h# significand_a [23:0] $end
-$var wire 32 i# result [31:0] $end
-$var wire 1 j# perform $end
-$var wire 32 k# operand_b [31:0] $end
-$var wire 32 l# operand_a [31:0] $end
-$var wire 8 m# exponent_sub [7:0] $end
-$var wire 8 n# exponent_diff [7:0] $end
-$var wire 8 o# exponent_b_add_sub [7:0] $end
-$var wire 31 p# add_sum [30:0] $end
-$var wire 1 q# Comp_enable $end
-$scope module pe $end
-$var wire 8 r# Exponent_a [7:0] $end
-$var wire 25 s# significand [24:0] $end
-$var wire 8 t# Exponent_sub [7:0] $end
-$var reg 25 u# Significand [24:0] $end
-$var reg 5 v# shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[6] $end
-$var parameter 4 w# i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 x# neuron_address [11:0] $end
-$var wire 12 y# source_address [11:0] $end
-$var wire 60 z# source_addresses_array [59:0] $end
-$var wire 160 {# weights_array [159:0] $end
-$var wire 1 |# excpetion $end
-$var wire 32 }# added_weight [31:0] $end
-$var parameter 32 ~# number_of_address_bits $end
-$var parameter 32 !$ number_of_connections $end
-$var parameter 32 "$ number_of_units $end
-$var parameter 64 #$ weights_array_width $end
-$var reg 32 $$ accumulated_weight [31:0] $end
-$var reg 1 %$ break $end
-$var reg 32 &$ considered_weight [31:0] $end
-$var reg 32 '$ mult_output [31:0] $end
-$var reg 12 ($ previous_source_address [11:0] $end
-$var integer 32 )$ i [31:0] $end
-$var integer 32 *$ index [31:0] $end
-$scope module add1 $end
-$var wire 1 +$ AddBar_Sub $end
-$var wire 1 |# Exception $end
-$var wire 32 ,$ a_operand [31:0] $end
-$var wire 32 -$ b_operand [31:0] $end
-$var wire 1 .$ operation_sub_addBar $end
-$var wire 1 /$ output_sign $end
-$var wire 25 0$ subtraction_diff [24:0] $end
-$var wire 31 1$ sub_diff [30:0] $end
-$var wire 24 2$ significand_sub_complement [23:0] $end
-$var wire 25 3$ significand_sub [24:0] $end
-$var wire 24 4$ significand_b_add_sub [23:0] $end
-$var wire 24 5$ significand_b [23:0] $end
-$var wire 25 6$ significand_add [24:0] $end
-$var wire 24 7$ significand_a [23:0] $end
-$var wire 32 8$ result [31:0] $end
-$var wire 1 9$ perform $end
-$var wire 32 :$ operand_b [31:0] $end
-$var wire 32 ;$ operand_a [31:0] $end
-$var wire 8 <$ exponent_sub [7:0] $end
-$var wire 8 =$ exponent_diff [7:0] $end
-$var wire 8 >$ exponent_b_add_sub [7:0] $end
-$var wire 31 ?$ add_sum [30:0] $end
-$var wire 1 @$ Comp_enable $end
-$scope module pe $end
-$var wire 8 A$ Exponent_a [7:0] $end
-$var wire 25 B$ significand [24:0] $end
-$var wire 8 C$ Exponent_sub [7:0] $end
-$var reg 25 D$ Significand [24:0] $end
-$var reg 5 E$ shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[7] $end
-$var parameter 4 F$ i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 G$ neuron_address [11:0] $end
-$var wire 12 H$ source_address [11:0] $end
-$var wire 60 I$ source_addresses_array [59:0] $end
-$var wire 160 J$ weights_array [159:0] $end
-$var wire 1 K$ excpetion $end
-$var wire 32 L$ added_weight [31:0] $end
-$var parameter 32 M$ number_of_address_bits $end
-$var parameter 32 N$ number_of_connections $end
-$var parameter 32 O$ number_of_units $end
-$var parameter 64 P$ weights_array_width $end
-$var reg 32 Q$ accumulated_weight [31:0] $end
-$var reg 1 R$ break $end
-$var reg 32 S$ considered_weight [31:0] $end
-$var reg 32 T$ mult_output [31:0] $end
-$var reg 12 U$ previous_source_address [11:0] $end
-$var integer 32 V$ i [31:0] $end
-$var integer 32 W$ index [31:0] $end
-$scope module add1 $end
-$var wire 1 X$ AddBar_Sub $end
-$var wire 1 K$ Exception $end
-$var wire 32 Y$ a_operand [31:0] $end
-$var wire 32 Z$ b_operand [31:0] $end
-$var wire 1 [$ operation_sub_addBar $end
-$var wire 1 \$ output_sign $end
-$var wire 25 ]$ subtraction_diff [24:0] $end
-$var wire 31 ^$ sub_diff [30:0] $end
-$var wire 24 _$ significand_sub_complement [23:0] $end
-$var wire 25 `$ significand_sub [24:0] $end
-$var wire 24 a$ significand_b_add_sub [23:0] $end
-$var wire 24 b$ significand_b [23:0] $end
-$var wire 25 c$ significand_add [24:0] $end
-$var wire 24 d$ significand_a [23:0] $end
-$var wire 32 e$ result [31:0] $end
-$var wire 1 f$ perform $end
-$var wire 32 g$ operand_b [31:0] $end
-$var wire 32 h$ operand_a [31:0] $end
-$var wire 8 i$ exponent_sub [7:0] $end
-$var wire 8 j$ exponent_diff [7:0] $end
-$var wire 8 k$ exponent_b_add_sub [7:0] $end
-$var wire 31 l$ add_sum [30:0] $end
-$var wire 1 m$ Comp_enable $end
-$scope module pe $end
-$var wire 8 n$ Exponent_a [7:0] $end
-$var wire 25 o$ significand [24:0] $end
-$var wire 8 p$ Exponent_sub [7:0] $end
-$var reg 25 q$ Significand [24:0] $end
-$var reg 5 r$ shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[8] $end
-$var parameter 5 s$ i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 t$ neuron_address [11:0] $end
-$var wire 12 u$ source_address [11:0] $end
-$var wire 60 v$ source_addresses_array [59:0] $end
-$var wire 160 w$ weights_array [159:0] $end
-$var wire 1 x$ excpetion $end
-$var wire 32 y$ added_weight [31:0] $end
-$var parameter 32 z$ number_of_address_bits $end
-$var parameter 32 {$ number_of_connections $end
-$var parameter 32 |$ number_of_units $end
-$var parameter 64 }$ weights_array_width $end
-$var reg 32 ~$ accumulated_weight [31:0] $end
-$var reg 1 !% break $end
-$var reg 32 "% considered_weight [31:0] $end
-$var reg 32 #% mult_output [31:0] $end
-$var reg 12 $% previous_source_address [11:0] $end
-$var integer 32 %% i [31:0] $end
-$var integer 32 &% index [31:0] $end
-$scope module add1 $end
-$var wire 1 '% AddBar_Sub $end
-$var wire 1 x$ Exception $end
-$var wire 32 (% a_operand [31:0] $end
-$var wire 32 )% b_operand [31:0] $end
-$var wire 1 *% operation_sub_addBar $end
-$var wire 1 +% output_sign $end
-$var wire 25 ,% subtraction_diff [24:0] $end
-$var wire 31 -% sub_diff [30:0] $end
-$var wire 24 .% significand_sub_complement [23:0] $end
-$var wire 25 /% significand_sub [24:0] $end
-$var wire 24 0% significand_b_add_sub [23:0] $end
-$var wire 24 1% significand_b [23:0] $end
-$var wire 25 2% significand_add [24:0] $end
-$var wire 24 3% significand_a [23:0] $end
-$var wire 32 4% result [31:0] $end
-$var wire 1 5% perform $end
-$var wire 32 6% operand_b [31:0] $end
-$var wire 32 7% operand_a [31:0] $end
-$var wire 8 8% exponent_sub [7:0] $end
-$var wire 8 9% exponent_diff [7:0] $end
-$var wire 8 :% exponent_b_add_sub [7:0] $end
-$var wire 31 ;% add_sum [30:0] $end
-$var wire 1 <% Comp_enable $end
-$scope module pe $end
-$var wire 8 =% Exponent_a [7:0] $end
-$var wire 25 >% significand [24:0] $end
-$var wire 8 ?% Exponent_sub [7:0] $end
-$var reg 25 @% Significand [24:0] $end
-$var reg 5 A% shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
-$scope begin genblk1[9] $end
-$var parameter 5 B% i $end
-$scope module m $end
-$var wire 1 ! CLK $end
-$var wire 1 # clear $end
-$var wire 12 C% neuron_address [11:0] $end
-$var wire 12 D% source_address [11:0] $end
-$var wire 60 E% source_addresses_array [59:0] $end
-$var wire 160 F% weights_array [159:0] $end
-$var wire 1 G% excpetion $end
-$var wire 32 H% added_weight [31:0] $end
-$var parameter 32 I% number_of_address_bits $end
-$var parameter 32 J% number_of_connections $end
-$var parameter 32 K% number_of_units $end
-$var parameter 64 L% weights_array_width $end
-$var reg 32 M% accumulated_weight [31:0] $end
-$var reg 1 N% break $end
-$var reg 32 O% considered_weight [31:0] $end
-$var reg 32 P% mult_output [31:0] $end
-$var reg 12 Q% previous_source_address [11:0] $end
-$var integer 32 R% i [31:0] $end
-$var integer 32 S% index [31:0] $end
-$scope module add1 $end
-$var wire 1 T% AddBar_Sub $end
-$var wire 1 G% Exception $end
-$var wire 32 U% a_operand [31:0] $end
-$var wire 32 V% b_operand [31:0] $end
-$var wire 1 W% operation_sub_addBar $end
-$var wire 1 X% output_sign $end
-$var wire 25 Y% subtraction_diff [24:0] $end
-$var wire 31 Z% sub_diff [30:0] $end
-$var wire 24 [% significand_sub_complement [23:0] $end
-$var wire 25 \% significand_sub [24:0] $end
-$var wire 24 ]% significand_b_add_sub [23:0] $end
-$var wire 24 ^% significand_b [23:0] $end
-$var wire 25 _% significand_add [24:0] $end
-$var wire 24 `% significand_a [23:0] $end
-$var wire 32 a% result [31:0] $end
-$var wire 1 b% perform $end
-$var wire 32 c% operand_b [31:0] $end
-$var wire 32 d% operand_a [31:0] $end
-$var wire 8 e% exponent_sub [7:0] $end
-$var wire 8 f% exponent_diff [7:0] $end
-$var wire 8 g% exponent_b_add_sub [7:0] $end
-$var wire 31 h% add_sum [30:0] $end
-$var wire 1 i% Comp_enable $end
-$scope module pe $end
-$var wire 8 j% Exponent_a [7:0] $end
-$var wire 25 k% significand [24:0] $end
-$var wire 8 l% Exponent_sub [7:0] $end
-$var reg 25 m% Significand [24:0] $end
-$var reg 5 n% shift [4:0] $end
-$upscope $end
-$upscope $end
-$upscope $end
-$upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b10100000 L%
-b1010 K%
-b101 J%
-b1100 I%
-b1001 B%
-b10100000 }$
-b1010 |$
-b101 {$
-b1100 z$
-b1000 s$
-b10100000 P$
-b1010 O$
-b101 N$
-b1100 M$
-b111 F$
-b10100000 #$
-b1010 "$
-b101 !$
-b1100 ~#
-b110 w#
-b10100000 T#
-b1010 S#
-b101 R#
-b1100 Q#
-b101 J#
-b10100000 '#
-b1010 &#
-b101 %#
-b1100 $#
-b100 {"
-b10100000 X"
-b1010 W"
-b101 V"
-b1100 U"
-b11 N"
-b10100000 +"
-b1010 *"
-b101 )"
-b1100 ("
-b10 !"
-b10100000 \
-b1010 [
-b101 Z
-b1100 Y
-b1 R
 b10100000 /
 b1010 .
 b101 -
@@ -629,366 +80,6 @@ b0 %
 $end
 #0
 $dumpvars
-bx n%
-bx m%
-bx l%
-bx k%
-bx j%
-xi%
-bx h%
-bx g%
-bx f%
-bx e%
-bx d%
-bx c%
-xb%
-bx a%
-bx `%
-bx _%
-bx ^%
-bx ]%
-bx \%
-bx [%
-bx Z%
-bx Y%
-xX%
-xW%
-bx V%
-bx U%
-0T%
-bx S%
-b101 R%
-bx Q%
-bx P%
-bx O%
-0N%
-bx M%
-bx H%
-xG%
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 F%
-b11000000000100000000000101000000000110000000000111 E%
-bx D%
-b1001 C%
-bx A%
-bx @%
-bx ?%
-bx >%
-bx =%
-x<%
-bx ;%
-bx :%
-bx 9%
-bx 8%
-bx 7%
-bx 6%
-x5%
-bx 4%
-bx 3%
-bx 2%
-bx 1%
-bx 0%
-bx /%
-bx .%
-bx -%
-bx ,%
-x+%
-x*%
-bx )%
-bx (%
-0'%
-bx &%
-b101 %%
-bx $%
-bx #%
-bx "%
-0!%
-bx ~$
-bx y$
-xx$
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 w$
-b11000000000100000000000101000000000110000000000111 v$
-bx u$
-b1000 t$
-bx r$
-bx q$
-bx p$
-bx o$
-bx n$
-xm$
-bx l$
-bx k$
-bx j$
-bx i$
-bx h$
-bx g$
-xf$
-bx e$
-bx d$
-bx c$
-bx b$
-bx a$
-bx `$
-bx _$
-bx ^$
-bx ]$
-x\$
-x[$
-bx Z$
-bx Y$
-0X$
-bx W$
-b101 V$
-bx U$
-bx T$
-bx S$
-0R$
-bx Q$
-bx L$
-xK$
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 J$
-b11000000000100000000000101000000000110000000000111 I$
-bx H$
-b111 G$
-bx E$
-bx D$
-bx C$
-bx B$
-bx A$
-x@$
-bx ?$
-bx >$
-bx =$
-bx <$
-bx ;$
-bx :$
-x9$
-bx 8$
-bx 7$
-bx 6$
-bx 5$
-bx 4$
-bx 3$
-bx 2$
-bx 1$
-bx 0$
-x/$
-x.$
-bx -$
-bx ,$
-0+$
-bx *$
-b101 )$
-bx ($
-bx '$
-bx &$
-0%$
-bx $$
-bx }#
-x|#
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 {#
-b11000000000100000000000101000000000110000000000111 z#
-bx y#
-b110 x#
-bx v#
-bx u#
-bx t#
-bx s#
-bx r#
-xq#
-bx p#
-bx o#
-bx n#
-bx m#
-bx l#
-bx k#
-xj#
-bx i#
-bx h#
-bx g#
-bx f#
-bx e#
-bx d#
-bx c#
-bx b#
-bx a#
-x`#
-x_#
-bx ^#
-bx ]#
-0\#
-bx [#
-b101 Z#
-bx Y#
-bx X#
-bx W#
-0V#
-bx U#
-bx P#
-xO#
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 N#
-b11000000000100000000000101000000000110000000000111 M#
-bx L#
-b101 K#
-bx I#
-bx H#
-bx G#
-bx F#
-bx E#
-xD#
-bx C#
-bx B#
-bx A#
-bx @#
-bx ?#
-bx >#
-x=#
-bx <#
-bx ;#
-bx :#
-bx 9#
-bx 8#
-bx 7#
-bx 6#
-bx 5#
-bx 4#
-x3#
-x2#
-bx 1#
-bx 0#
-0/#
-bx .#
-b101 -#
-bx ,#
-bx +#
-bx *#
-0)#
-bx (#
-bx ##
-x"#
-b100001000111111010001111010111001000001000010011001100110011010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 !#
-b1000000000010000000000101000000000000000000000000 ~"
-bx }"
-b100 |"
-bx z"
-bx y"
-bx x"
-bx w"
-bx v"
-xu"
-bx t"
-bx s"
-bx r"
-bx q"
-bx p"
-bx o"
-xn"
-bx m"
-bx l"
-bx k"
-bx j"
-bx i"
-bx h"
-bx g"
-bx f"
-bx e"
-xd"
-xc"
-bx b"
-bx a"
-0`"
-bx _"
-b101 ^"
-bx ]"
-bx \"
-bx ["
-0Z"
-bx Y"
-bx T"
-xS"
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 R"
-b11000000000100000000000101000000000110000000000111 Q"
-bx P"
-b11 O"
-bx M"
-bx L"
-bx K"
-bx J"
-bx I"
-xH"
-bx G"
-bx F"
-bx E"
-bx D"
-bx C"
-bx B"
-xA"
-bx @"
-bx ?"
-bx >"
-bx ="
-bx <"
-bx ;"
-bx :"
-bx 9"
-bx 8"
-x7"
-x6"
-bx 5"
-bx 4"
-03"
-bx 2"
-b101 1"
-bx 0"
-bx /"
-bx ."
-0-"
-bx ,"
-bx '"
-x&"
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 %"
-b11000000000100000000000101000000000110000000000111 $"
-bx #"
-b10 ""
-bx ~
-bx }
-bx |
-bx {
-bx z
-xy
-bx x
-bx w
-bx v
-bx u
-bx t
-bx s
-xr
-bx q
-bx p
-bx o
-bx n
-bx m
-bx l
-bx k
-bx j
-bx i
-xh
-xg
-bx f
-bx e
-0d
-bx c
-b101 b
-bx a
-bx `
-bx _
-0^
-bx ]
-bx X
-xW
-b100001010010000101100110011001101000001100101110101110000101001010000100100011100001010001111010000000000000000000000000000000001000010101011100011100001010010 V
-b11000000000100000000000101000000000110000000000111 U
-bx T
-b1 S
 bx Q
 bx P
 bx O
@@ -1019,7 +110,7 @@ bx 8
 bx 6
 b101 5
 bx 4
-bx 3
+03
 bx 2
 01
 bx 0
@@ -1056,349 +147,47 @@ b0 O
 b0 Q
 b0 <
 b0 P
-b0 j
-b0 u
-b0 |
-b0 ~
-b0 i
-b0 }
-b0 9"
-b0 D"
-b0 K"
-b0 M"
-b0 8"
-b0 L"
-b0 f"
-b0 q"
-b0 x"
-b0 z"
-b0 e"
-b0 y"
-b0 5#
-b0 @#
-b0 G#
-b0 I#
-b0 4#
-b0 H#
-b0 b#
-b0 m#
-b0 t#
-b0 v#
-b0 a#
-b0 u#
-b0 1$
-b0 <$
-b0 C$
-b0 E$
-b0 0$
-b0 D$
-b0 ^$
-b0 i$
-b0 p$
-b0 r$
-b0 ]$
-b0 q$
-b0 -%
-b0 8%
-b0 ?%
-b0 A%
-b0 ,%
-b0 @%
-b0 Z%
-b0 e%
-b0 l%
-b0 n%
-b0 Y%
-b0 m%
 b0 ?
 b0 N
-b0 l
-b0 {
-b0 ;"
-b0 J"
-b0 h"
-b0 w"
-b0 7#
-b0 F#
-b0 d#
-b0 s#
-b0 3$
-b0 B$
-b0 `$
-b0 o$
-b0 /%
-b0 >%
-b0 \%
-b0 k%
 b0 >
-b0 3
-b0 k
-b0 `
-b0 :"
-b0 /"
-b0 g"
-b0 \"
-b0 6#
-b0 +#
-b0 c#
-b0 X#
-b0 2$
-b0 '$
-b0 _$
-b0 T$
-b0 .%
-b0 #%
-b0 [%
-b0 P%
+b0 4
 b0 B
 b0 +
 b0 D
 1:
-b0 o
-b0 X
-b0 q
-1g
-b0 >"
-b0 '"
-b0 @"
-16"
-b0 k"
-b0 T"
-b0 m"
-1c"
-b0 :#
-b0 ##
-b0 <#
-12#
-b0 g#
-b0 P#
-b0 i#
-1_#
-b0 6$
-b0 }#
-b0 8$
-1.$
-b0 c$
-b0 L$
-b0 e$
-1[$
-b0 2%
-b0 y$
-b0 4%
-1*%
-b0 _%
-b0 H%
-b0 a%
-1W%
 b0 @
 b0 A
 0*
 b0 C
 b0 K
-b0 m
-b0 n
-0W
-b0 p
-b0 x
-b0 <"
-b0 ="
-0&"
-b0 ?"
-b0 G"
-b0 i"
-b0 j"
-0S"
-b0 l"
-b0 t"
-b0 8#
-b0 9#
-0"#
-b0 ;#
-b0 C#
-b0 e#
-b0 f#
-0O#
-b0 h#
-b0 p#
-b0 4$
-b0 5$
-0|#
-b0 7$
-b0 ?$
-b0 a$
-b0 b$
-0K$
-b0 d$
-b0 l$
-b0 0%
-b0 1%
-0x$
-b0 3%
-b0 ;%
-b0 ]%
-b0 ^%
-0G%
-b0 `%
-b0 h%
 0L
 1E
 b0 J
 b0 I
 0;
 b0 M
-0y
-1r
-b0 w
-b0 v
-0h
-b0 z
-0H"
-1A"
-b0 F"
-b0 E"
-07"
-b0 I"
-0u"
-1n"
-b0 s"
-b0 r"
-0d"
-b0 v"
-0D#
-1=#
-b0 B#
-b0 A#
-03#
-b0 E#
-0q#
-1j#
-b0 o#
-b0 n#
-0`#
-b0 r#
-0@$
-19$
-b0 >$
-b0 =$
-0/$
-b0 A$
-0m$
-1f$
-b0 k$
-b0 j$
-0\$
-b0 n$
-0<%
-15%
-b0 :%
-b0 9%
-0+%
-b0 =%
-0i%
-1b%
-b0 g%
-b0 f%
-0X%
-b0 j%
 b0 F
 b0 G
-b0 s
-b0 t
-b0 B"
-b0 C"
-b0 o"
-b0 p"
-b0 >#
-b0 ?#
-b0 k#
-b0 l#
-b0 :$
-b0 ;$
-b0 g$
-b0 h$
-b0 6%
-b0 7%
-b0 c%
-b0 d%
 b0 2
 b0 9
 b0 0
 b0 8
-b0 _
-b0 f
-b0 ]
-b0 e
-b0 ."
-b0 5"
-b0 ,"
-b0 4"
-b0 ["
-b0 b"
-b0 Y"
-b0 a"
-b0 *#
-b0 1#
-b0 (#
-b0 0#
-b0 W#
-b0 ^#
-b0 U#
-b0 ]#
-b0 &$
-b0 -$
-b0 $$
-b0 ,$
-b0 S$
-b0 Z$
-b0 Q$
-b0 Y$
-b0 "%
-b0 )%
-b0 ~$
-b0 (%
-b0 O%
-b0 V%
-b0 M%
-b0 U%
 b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
+13
 1#
 b0 "
 1!
 #320
 0!
 #360
-b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
 0#
 b1 "
 1!
 #400
-b0 .#
-b101 -#
-b1 ,#
-b0 &%
-b101 %%
-b11 $%
+b0 6
+b101 5
 0!
-b1 }"
-b11 u$
+b11 '
 #440
 b10 "
 1!
@@ -1410,32 +199,40 @@ b11 "
 #560
 0!
 #600
-b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
+b0 5
+03
 1#
 b0 "
 1!
+#610
+b1000010100100001011001100110011 4
+b1011011110100110011001101 <
+b1011011110100110011001101 P
+b1000010100100001011001100110011 +
+b1000010100100001011001100110011 D
+b100100001011001100110011 B
+b100100001011001100110011 ?
+b100100001011001100110011 N
+b100100001011001100110011 C
+b1000010100100001011001100110011 K
+b0 @
+b1000010111011110100110011001101 =
+b10000101 H
+b10000101 O
+b10000101 M
+b0 A
+b1000010100100001011001100110011 G
+1L
+b10000101 I
+1E
+b10000101 J
+b0 F
+b1000010100100001011001100110011 2
+b1000010100100001011001100110011 9
+b101 5
 #640
 0!
 #680
-b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
 0#
 b1 "
 1!
@@ -1452,32 +249,35 @@ b11 "
 #880
 0!
 #920
+b0 4
+b0 <
+b0 P
+b0 +
+b0 D
+b0 B
+b0 ?
+b0 N
+b0 C
+b0 K
+0L
+b0 J
+b0 I
+1E
+b0 =
+b0 H
+b0 O
+b0 M
+b0 G
+b0 2
+b0 9
 b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
+13
 1#
 b0 "
 1!
 #960
 0!
 #1000
-b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
 0#
 b1 "
 1!
@@ -1495,31 +295,13 @@ b11 "
 0!
 #1240
 b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
+03
 1#
 b0 "
 1!
 #1280
 0!
 #1320
-b101 5
-b101 b
-b101 1"
-b101 ^"
-b101 -#
-b101 Z#
-b101 )$
-b101 V$
-b101 %%
-b101 R%
 0#
 b1 "
 1!
