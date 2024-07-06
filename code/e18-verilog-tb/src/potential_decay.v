@@ -72,6 +72,10 @@ module potential_decay(
     //izikevich addition without U and I
     Addition_Subtraction Addition_Subtraction_izi_1(izi_first_term, izi_second_term, 1'b0, Exception4, izi_final);
 
+    always @(izi_final) begin
+        output_potential_decay_izhi = izi_final;
+    end
+    
     //clear signal initiate
     always @(clear) begin
 

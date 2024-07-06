@@ -15,7 +15,7 @@ module mac_TESTBENCH();
     //generate 10 accumulators
     genvar i;
     generate
-        for(i=0; i<10; i=i+1) begin
+        for(i=0; i<1; i=i+1) begin
             mac m(
                 .CLK(CLK),
                 .neuron_address(neuron_addresses[i]),
@@ -53,43 +53,43 @@ module mac_TESTBENCH();
 
         //neuron addresses
         neuron_addresses[0] = 12'd0;
-        neuron_addresses[1] = 12'd1;
-        neuron_addresses[2] = 12'd2;
-        neuron_addresses[3] = 12'd3;
-        neuron_addresses[4] = 12'd4;
-        neuron_addresses[5] = 12'd5;
-        neuron_addresses[6] = 12'd6;
-        neuron_addresses[7] = 12'd7;
-        neuron_addresses[8] = 12'd8;
-        neuron_addresses[9] = 12'd9;
+        // neuron_addresses[1] = 12'd1;
+        // neuron_addresses[2] = 12'd2;
+        // neuron_addresses[3] = 12'd3;
+        // neuron_addresses[4] = 12'd4;
+        // neuron_addresses[5] = 12'd5;
+        // neuron_addresses[6] = 12'd6;
+        // neuron_addresses[7] = 12'd7;
+        // neuron_addresses[8] = 12'd8;
+        // neuron_addresses[9] = 12'd9;
 
         //send source addresses array first
         source_addresses_arrays[0] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[1] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[2] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[3] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[4] = {12'd1, 12'd2, 12'd5, 12'd0, 12'd0};
-        source_addresses_arrays[5] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[6] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[7] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[8] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
-        source_addresses_arrays[9] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[1] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[2] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[3] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[4] = {12'd1, 12'd2, 12'd5, 12'd0, 12'd0};
+        // source_addresses_arrays[5] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[6] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[7] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[8] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        // source_addresses_arrays[9] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
 
         //assign the weights
         weights_arrays[0] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[1] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[2] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[3] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[4] = {32'h423f47ae, 32'h4109999a, 32'h0, 32'h0, 32'h0};
-        weights_arrays[5] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[6] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[7] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[8] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
-        weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[1] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[2] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[3] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[4] = {32'h423f47ae, 32'h4109999a, 32'h0, 32'h0, 32'h0};
+        // weights_arrays[5] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[6] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[7] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[8] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
+        // weights_arrays[9] = {32'h4290b333, 32'h41975c29, 32'h42470a3d, 32'h0, 32'h42ae3852};
 
         #40
-        source_addresses[8] = 12'd3;
-        source_addresses[4] = 12'd1;
+        // source_addresses[8] = 12'd3;
+        // source_addresses[4] = 12'd1;
 
         // #4
         // source_addresses[8] = 12'd4; 
@@ -99,7 +99,7 @@ module mac_TESTBENCH();
         // source_addresses[8] = 12'd5;
 
         // #4
-        // source_addresses[8] = 12'd7;       
+        source_addresses[0] = 12'd3;       
 
         #100
         done = 1'b1;

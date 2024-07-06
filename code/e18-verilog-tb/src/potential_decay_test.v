@@ -45,10 +45,10 @@ module test_potential_decay;
     //record on gtkwave
     initial begin
         $dumpfile("potential_decay_test.vcd");
-        $dumpvars(0, test_potential_decay);
+        $dumpvars(0, test_potential_decay); 
         #100
         $finish;
-    end
+    end 
 
     //assign inputs
     initial begin

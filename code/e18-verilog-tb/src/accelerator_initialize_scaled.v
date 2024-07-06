@@ -46,8 +46,36 @@ module testbench;
     //intermediate wires to hold the output of the network interface
     wire[11:0] spike_out_source[0:number_of_units-1];
     
-    //generate 1024 potential decay units
+    // wires and registers needed for the fifo buffers
+    reg rst_n;
+    reg wr_en;
+    reg rd_en;
+    wire [11:0] rd_data [1023:0];
+    wire empty [1023:0];
+    wire full [1023:0];
+
+    // create 1024 FIFO buffers
+    // between the network interface and mac
     genvar i;
+    generate
+        for (i = 0; i < number_of_units; i = i+1) begin
+            async_fifo_copy fifo1 (
+                .rd_clk(clear),
+                .rst_n(rst_n),
+                // .wr_en(~clear),
+                .wr_en(wr_en),
+                .wr_data(spike_out_source[i]),      // send the input from ni to the fifo
+                .rd_en(clear),
+                .rd_data(rd_data[i]),               // send the read source addresses to the mac
+                .empty(empty[i]),
+                .full(full[i])
+            );
+        end
+    endgenerate
+    
+
+
+    //generate 1024 potential decay units
     generate
         for(i=0; i<number_of_units; i=i+1) begin
             potential_decay pd(
@@ -69,7 +97,8 @@ module testbench;
             mac m(
                 .CLK(CLK),
                 .neuron_address(neuron_addresses[i]),
-                .source_address(spike_out_source[i]),
+                // .source_address(spike_out_source[i]),
+                .source_address(rd_data[i]),
                 .weights_array(weights_arrays[i]),
                 .source_addresses_array(source_addresses_arrays[i]),
                 .clear(clear),
@@ -156,6 +185,11 @@ module testbench;
         CLK_count = 0;
         clear = 1'b0;
 
+        // for async fifo
+        rst_n = 0;
+        wr_en = 0;
+        rd_en = 0;
+
         //decay rate for potential decay calculation
         decay_rate = 4'b0010;
 
@@ -204,7 +238,7 @@ module testbench;
         source_addresses_arrays[2] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[3] = {12'd0, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[4] = {12'd1, 12'd2, 12'd5, 12'd0, 12'd0};
-        source_addresses_arrays[5] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
+        source_addresses_arrays[5] = {12'd0, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[6] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[7] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
         source_addresses_arrays[8] = {12'd3, 12'd4, 12'd5, 12'd6, 12'd7};
@@ -244,6 +278,8 @@ module testbench;
         // #40
         // spike_out_source[0] = 12'b001111111000;
         // source_addresses[1] = 12'd3;
+
+        #1 rst_n = 1;
 
         #300
         $finish;
@@ -374,12 +410,18 @@ module testbench;
         if(CLK_count==3) begin
             CLK_count=0;
             clear = 1'b1;
+            wr_en = 0;
         end else begin
             CLK_count = CLK_count+1;
         end
 
+        if(CLK_count == 0) begin
+            wr_en = 1;
+        end
+
         if(CLK_count==1) begin
             clear = 1'b0;
+            // rd_en = 0;
         end
     end
 
