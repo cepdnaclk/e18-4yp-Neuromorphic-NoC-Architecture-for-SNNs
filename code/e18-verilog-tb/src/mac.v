@@ -76,35 +76,48 @@ module mac(
     //when a spike/source address comes in get index and mark the incoming spike array
     always @(flip, source_address) begin
 
+        // if (clear == 1'b1) begin
+        //     for(i=0; i<number_of_connections; i=i+1) begin      //reset the incoming spikes array
+        //         spikes[i] = incoming_spikes[i];     //store the incoming spikes
+        //         incoming_spikes[i] = 1'b0;
+        //     end
+
+        //     accumulated_weight = 32'd0;     //set accumulated value to 0
+        //     considered_weight = 32'd0;      //weight addition is zero
+
+        //     //at the begining of the timestep accumulate weights and send to the potential adder unit
+        //     for(i=0; i<number_of_connections; i=i+1) begin
+        //         if(spikes[i] == 1'b1) begin
+        //             #1
+        //             considered_weight = weights[i];         
+        //             accumulated_weight = added_weight;
+        //         end
+        //     end
+        // end
+
+        // if(clear == 1'b0) begin
+        //     // get index by going through the source addresses
+        //     break = 1'b0;
+        //     for(i=0; i<number_of_connections; i=i+1) begin
+        //         if (source_addresses[i] == source_address) begin
+        //             index = i;
+        //         end
+        //     end
+
+        //     incoming_spikes[index] = 1'b1;      //record the incoming spike
+        // end
+
         if (clear == 1'b1) begin
-            for(i=0; i<number_of_connections; i=i+1) begin      //reset the incoming spikes array
-                spikes[i] = incoming_spikes[i];     //store the incoming spikes
-                incoming_spikes[i] = 1'b0;
-            end
-
             accumulated_weight = 32'd0;     //set accumulated value to 0
-            considered_weight = 32'd0;      //weight addition is zero
-
-            //at the begining of the timestep accumulate weights and send to the potential adder unit
-            for(i=0; i<number_of_connections; i=i+1) begin
-                if(spikes[i] == 1'b1) begin
-                    #1
-                    considered_weight <= weights[i];         
-                    accumulated_weight <= added_weight;
-                end
-            end
-        end
-
-        if(clear == 1'b0) begin
-            // get index by going through the source addresses
+            considered_weight = 32'd0;     
             break = 1'b0;
             for(i=0; i<number_of_connections; i=i+1) begin
                 if (source_addresses[i] == source_address) begin
-                    index = i;
+                    #1
+                    considered_weight = weights[i];         
+                    accumulated_weight = added_weight;
                 end
             end
-
-            incoming_spikes[index] = 1'b1;      //record the incoming spike
         end
         
     end

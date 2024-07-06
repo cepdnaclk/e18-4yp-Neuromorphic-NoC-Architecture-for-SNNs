@@ -1,3 +1,4 @@
+`timescale 1ns/100ps
 
 module network_interface_new (
     input wire CLK,            //clock
@@ -63,15 +64,39 @@ module network_interface_new (
     //1024 outgoing spike source information
     reg[11:0] spike_out_source_array[0:1024-1];
 
+    //Begin the SNN functionality by manually spiking neuron 0. 
+    //Therefater the spiking happens via the SNN automatically. The following is what happens.
+    //3, 5 and 7 spike thereafter
+    //and then 8 and 9 spike
     initial begin
-        #40
+        #36.1
         for(j1 = connection_pointer[0]; j1 < connection_pointer[0+1]; j1= j1+1) begin
             // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
             //assign to the relevant output wire's array location
             spike_out_source_array[downstream_connections[j1]] = neuron_addresses[0];
         end
 
+        // for(j1 = connection_pointer[1]; j1 < connection_pointer[1+1]; j1= j1+1) begin
+        //     // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+        //     //assign to the relevant output wire's array location
+        //     spike_out_source_array[downstream_connections[j1]] = neuron_addresses[1];
+        // end
+
+        // #32.1
+        // for(j1 = connection_pointer[1]; j1 < connection_pointer[1+1]; j1= j1+1) begin
+        //     // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+        //     //assign to the relevant output wire's array location
+        //     spike_out_source_array[downstream_connections[j1]] = neuron_addresses[1];
+        // end
+
     end
+
+    // //create a fifo
+    // async_fifo_copy fifo1 = (
+    //     .rd_clk(clear),
+
+
+    // );
     
     //when neuron addresses are initilaized
     always @(neuron_addresses_initialization) begin
@@ -170,11 +195,13 @@ module network_interface_new (
     //     end
     // end
 
+   
+
     always @(clear, lock1, spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9, spike10, spike11, spike12, spike13, spike14, spike15, spike16, spike17, spike18, spike19, spike20, spike21, spike22, spike23, spike24, spike25, spike26, spike27, spike28, spike29, spike30, spike31, spike32, spike33, spike34, spike35, spike36, spike37, spike38, spike39, spike40, spike41, spike42, spike43, spike44, spike45, spike46, spike47, spike48, spike49) begin
         spike_register[0] = spike0;
 
         spike_register[1] = spike1;        spike_register[2] = spike2;        spike_register[3] = spike3;        spike_register[4] = spike4;        spike_register[5] = spike5;        spike_register[6] = spike6;        spike_register[7] = spike7;        spike_register[8] = spike8;        spike_register[9] = spike9;        spike_register[10] = spike10;        spike_register[11] = spike11;        spike_register[12] = spike12;        spike_register[13] = spike13;        spike_register[14] = spike14;        spike_register[15] = spike15;        spike_register[16] = spike16;        spike_register[17] = spike17;        spike_register[18] = spike18;        spike_register[19] = spike19;        spike_register[20] = spike20;        spike_register[21] = spike21;        spike_register[22] = spike22;        spike_register[23] = spike23;        spike_register[24] = spike24;        spike_register[25] = spike25;        spike_register[26] = spike26;        spike_register[27] = spike27;        spike_register[28] = spike28;        spike_register[29] = spike29;        spike_register[30] = spike30;        spike_register[31] = spike31;        spike_register[32] = spike32;        spike_register[33] = spike33;        spike_register[34] = spike34;        spike_register[35] = spike35;        spike_register[36] = spike36;        spike_register[37] = spike37;        spike_register[38] = spike38;        spike_register[39] = spike39;        spike_register[40] = spike40;        spike_register[41] = spike41;        spike_register[42] = spike42;        spike_register[43] = spike43;        spike_register[44] = spike44;        spike_register[45] = spike45;        spike_register[46] = spike46;        spike_register[47] = spike47;        spike_register[48] = spike48;        spike_register[49] = spike49;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i1 = 0; i1 <=49; i1= i1+1) begin
                 if(spike_register[i1] == 1 && lock1 == 0) begin
@@ -182,7 +209,7 @@ module network_interface_new (
                     for(j1 = connection_pointer[i1]; j1 < connection_pointer[i1+1]; j1= j1+1) begin
                         // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j1]] = neuron_addresses[i1];
+                        #0.1 spike_out_source_array[downstream_connections[j1]] = neuron_addresses[i1];
                     end
                     spike_register[i1] = 0;
                     lock1 = 0;
@@ -193,7 +220,7 @@ module network_interface_new (
     end
     always @(clear, lock2, spike50, spike51, spike52, spike53, spike54, spike55, spike56, spike57, spike58, spike59, spike60, spike61, spike62, spike63, spike64, spike65, spike66, spike67, spike68, spike69, spike70, spike71, spike72, spike73, spike74, spike75, spike76, spike77, spike78, spike79, spike80, spike81, spike82, spike83, spike84, spike85, spike86, spike87, spike88, spike89, spike90, spike91, spike92, spike93, spike94, spike95, spike96, spike97, spike98, spike99) begin
         spike_register[50] = spike50;        spike_register[51] = spike51;        spike_register[52] = spike52;        spike_register[53] = spike53;        spike_register[54] = spike54;        spike_register[55] = spike55;        spike_register[56] = spike56;        spike_register[57] = spike57;        spike_register[58] = spike58;        spike_register[59] = spike59;        spike_register[60] = spike60;        spike_register[61] = spike61;        spike_register[62] = spike62;        spike_register[63] = spike63;        spike_register[64] = spike64;        spike_register[65] = spike65;        spike_register[66] = spike66;        spike_register[67] = spike67;        spike_register[68] = spike68;        spike_register[69] = spike69;        spike_register[70] = spike70;        spike_register[71] = spike71;        spike_register[72] = spike72;        spike_register[73] = spike73;        spike_register[74] = spike74;        spike_register[75] = spike75;        spike_register[76] = spike76;        spike_register[77] = spike77;        spike_register[78] = spike78;        spike_register[79] = spike79;        spike_register[80] = spike80;        spike_register[81] = spike81;        spike_register[82] = spike82;        spike_register[83] = spike83;        spike_register[84] = spike84;        spike_register[85] = spike85;        spike_register[86] = spike86;        spike_register[87] = spike87;        spike_register[88] = spike88;        spike_register[89] = spike89;        spike_register[90] = spike90;        spike_register[91] = spike91;        spike_register[92] = spike92;        spike_register[93] = spike93;        spike_register[94] = spike94;        spike_register[95] = spike95;        spike_register[96] = spike96;        spike_register[97] = spike97;        spike_register[98] = spike98;        spike_register[99] = spike99;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i2 = 50; i2 <=99; i2= i2+1) begin
                 if(spike_register[i2] == 1 && lock2 == 0) begin
@@ -201,7 +228,7 @@ module network_interface_new (
                     for(j2 = connection_pointer[i2]; j2 < connection_pointer[i2+1]; j2= j2+1) begin
                         // packet2 = #0.1 {neuron_addresses[i2], downstream_connections[j2]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j2]] = neuron_addresses[i2];
+                        #0.1 spike_out_source_array[downstream_connections[j2]] = neuron_addresses[i2];
                     end
                     spike_register[i2] = 0;
                     lock2 = 0;
@@ -214,7 +241,7 @@ module network_interface_new (
         spike_register[100] = spike100;
 
         spike_register[101] = spike101;        spike_register[102] = spike102;        spike_register[103] = spike103;        spike_register[104] = spike104;        spike_register[105] = spike105;        spike_register[106] = spike106;        spike_register[107] = spike107;        spike_register[108] = spike108;        spike_register[109] = spike109;        spike_register[110] = spike110;        spike_register[111] = spike111;        spike_register[112] = spike112;        spike_register[113] = spike113;        spike_register[114] = spike114;        spike_register[115] = spike115;        spike_register[116] = spike116;        spike_register[117] = spike117;        spike_register[118] = spike118;        spike_register[119] = spike119;        spike_register[120] = spike120;        spike_register[121] = spike121;        spike_register[122] = spike122;        spike_register[123] = spike123;        spike_register[124] = spike124;        spike_register[125] = spike125;        spike_register[126] = spike126;        spike_register[127] = spike127;        spike_register[128] = spike128;        spike_register[129] = spike129;        spike_register[130] = spike130;        spike_register[131] = spike131;        spike_register[132] = spike132;        spike_register[133] = spike133;        spike_register[134] = spike134;        spike_register[135] = spike135;        spike_register[136] = spike136;        spike_register[137] = spike137;        spike_register[138] = spike138;        spike_register[139] = spike139;        spike_register[140] = spike140;        spike_register[141] = spike141;        spike_register[142] = spike142;        spike_register[143] = spike143;        spike_register[144] = spike144;        spike_register[145] = spike145;        spike_register[146] = spike146;        spike_register[147] = spike147;        spike_register[148] = spike148;        spike_register[149] = spike149;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i3 = 100; i3 <=149; i3= i3+1) begin
                 if(spike_register[i3] == 1 && lock3 == 0) begin
@@ -222,7 +249,7 @@ module network_interface_new (
                     for(j3 = connection_pointer[i3]; j3 < connection_pointer[i3+1]; j3= j3+1) begin
                         // packet3 = #0.1 {neuron_addresses[i3], downstream_connections[j3]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j3]] = neuron_addresses[i3];
+                        #0.1 spike_out_source_array[downstream_connections[j3]] = neuron_addresses[i3];
                     end
                     spike_register[i3] = 0;
                     lock3 = 0;
@@ -233,7 +260,7 @@ module network_interface_new (
     end
     always @(clear, lock4, spike150, spike151, spike152, spike153, spike154, spike155, spike156, spike157, spike158, spike159, spike160, spike161, spike162, spike163, spike164, spike165, spike166, spike167, spike168, spike169, spike170, spike171, spike172, spike173, spike174, spike175, spike176, spike177, spike178, spike179, spike180, spike181, spike182, spike183, spike184, spike185, spike186, spike187, spike188, spike189, spike190, spike191, spike192, spike193, spike194, spike195, spike196, spike197, spike198, spike199) begin
         spike_register[150] = spike150;        spike_register[151] = spike151;        spike_register[152] = spike152;        spike_register[153] = spike153;        spike_register[154] = spike154;        spike_register[155] = spike155;        spike_register[156] = spike156;        spike_register[157] = spike157;        spike_register[158] = spike158;        spike_register[159] = spike159;        spike_register[160] = spike160;        spike_register[161] = spike161;        spike_register[162] = spike162;        spike_register[163] = spike163;        spike_register[164] = spike164;        spike_register[165] = spike165;        spike_register[166] = spike166;        spike_register[167] = spike167;        spike_register[168] = spike168;        spike_register[169] = spike169;        spike_register[170] = spike170;        spike_register[171] = spike171;        spike_register[172] = spike172;        spike_register[173] = spike173;        spike_register[174] = spike174;        spike_register[175] = spike175;        spike_register[176] = spike176;        spike_register[177] = spike177;        spike_register[178] = spike178;        spike_register[179] = spike179;        spike_register[180] = spike180;        spike_register[181] = spike181;        spike_register[182] = spike182;        spike_register[183] = spike183;        spike_register[184] = spike184;        spike_register[185] = spike185;        spike_register[186] = spike186;        spike_register[187] = spike187;        spike_register[188] = spike188;        spike_register[189] = spike189;        spike_register[190] = spike190;        spike_register[191] = spike191;        spike_register[192] = spike192;        spike_register[193] = spike193;        spike_register[194] = spike194;        spike_register[195] = spike195;        spike_register[196] = spike196;        spike_register[197] = spike197;        spike_register[198] = spike198;        spike_register[199] = spike199;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i4 = 150; i4 <=199; i4= i4+1) begin
                 if(spike_register[i4] == 1 && lock4 == 0) begin
@@ -241,7 +268,7 @@ module network_interface_new (
                     for(j4 = connection_pointer[i4]; j4 < connection_pointer[i4+1]; j4= j4+1) begin
                         // packet4 = #0.1 {neuron_addresses[i4], downstream_connections[j4]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j4]] = neuron_addresses[i4];
+                        #0.1 spike_out_source_array[downstream_connections[j4]] = neuron_addresses[i4];
                     end
                     spike_register[i4] = 0;
                     lock4 = 0;
@@ -254,7 +281,7 @@ module network_interface_new (
         spike_register[200] = spike200;
 
         spike_register[201] = spike201;        spike_register[202] = spike202;        spike_register[203] = spike203;        spike_register[204] = spike204;        spike_register[205] = spike205;        spike_register[206] = spike206;        spike_register[207] = spike207;        spike_register[208] = spike208;        spike_register[209] = spike209;        spike_register[210] = spike210;        spike_register[211] = spike211;        spike_register[212] = spike212;        spike_register[213] = spike213;        spike_register[214] = spike214;        spike_register[215] = spike215;        spike_register[216] = spike216;        spike_register[217] = spike217;        spike_register[218] = spike218;        spike_register[219] = spike219;        spike_register[220] = spike220;        spike_register[221] = spike221;        spike_register[222] = spike222;        spike_register[223] = spike223;        spike_register[224] = spike224;        spike_register[225] = spike225;        spike_register[226] = spike226;        spike_register[227] = spike227;        spike_register[228] = spike228;        spike_register[229] = spike229;        spike_register[230] = spike230;        spike_register[231] = spike231;        spike_register[232] = spike232;        spike_register[233] = spike233;        spike_register[234] = spike234;        spike_register[235] = spike235;        spike_register[236] = spike236;        spike_register[237] = spike237;        spike_register[238] = spike238;        spike_register[239] = spike239;        spike_register[240] = spike240;        spike_register[241] = spike241;        spike_register[242] = spike242;        spike_register[243] = spike243;        spike_register[244] = spike244;        spike_register[245] = spike245;        spike_register[246] = spike246;        spike_register[247] = spike247;        spike_register[248] = spike248;        spike_register[249] = spike249;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i5 = 200; i5 <=249; i5= i5+1) begin
                 if(spike_register[i5] == 1 && lock5 == 0) begin
@@ -262,7 +289,7 @@ module network_interface_new (
                     for(j5 = connection_pointer[i5]; j5 < connection_pointer[i5+1]; j5= j5+1) begin
                         // packet5 = #0.1 {neuron_addresses[i5], downstream_connections[j5]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j5]] = neuron_addresses[i5];
+                        #0.1 spike_out_source_array[downstream_connections[j5]] = neuron_addresses[i5];
                     end
                     spike_register[i5] = 0;
                     lock5 = 0;
@@ -273,7 +300,7 @@ module network_interface_new (
     end
     always @(clear, lock6, spike250, spike251, spike252, spike253, spike254, spike255, spike256, spike257, spike258, spike259, spike260, spike261, spike262, spike263, spike264, spike265, spike266, spike267, spike268, spike269, spike270, spike271, spike272, spike273, spike274, spike275, spike276, spike277, spike278, spike279, spike280, spike281, spike282, spike283, spike284, spike285, spike286, spike287, spike288, spike289, spike290, spike291, spike292, spike293, spike294, spike295, spike296, spike297, spike298, spike299) begin
         spike_register[250] = spike250;        spike_register[251] = spike251;        spike_register[252] = spike252;        spike_register[253] = spike253;        spike_register[254] = spike254;        spike_register[255] = spike255;        spike_register[256] = spike256;        spike_register[257] = spike257;        spike_register[258] = spike258;        spike_register[259] = spike259;        spike_register[260] = spike260;        spike_register[261] = spike261;        spike_register[262] = spike262;        spike_register[263] = spike263;        spike_register[264] = spike264;        spike_register[265] = spike265;        spike_register[266] = spike266;        spike_register[267] = spike267;        spike_register[268] = spike268;        spike_register[269] = spike269;        spike_register[270] = spike270;        spike_register[271] = spike271;        spike_register[272] = spike272;        spike_register[273] = spike273;        spike_register[274] = spike274;        spike_register[275] = spike275;        spike_register[276] = spike276;        spike_register[277] = spike277;        spike_register[278] = spike278;        spike_register[279] = spike279;        spike_register[280] = spike280;        spike_register[281] = spike281;        spike_register[282] = spike282;        spike_register[283] = spike283;        spike_register[284] = spike284;        spike_register[285] = spike285;        spike_register[286] = spike286;        spike_register[287] = spike287;        spike_register[288] = spike288;        spike_register[289] = spike289;        spike_register[290] = spike290;        spike_register[291] = spike291;        spike_register[292] = spike292;        spike_register[293] = spike293;        spike_register[294] = spike294;        spike_register[295] = spike295;        spike_register[296] = spike296;        spike_register[297] = spike297;        spike_register[298] = spike298;        spike_register[299] = spike299;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i6 = 250; i6 <=299; i6= i6+1) begin
                 if(spike_register[i6] == 1 && lock6 == 0) begin
@@ -281,7 +308,7 @@ module network_interface_new (
                     for(j6 = connection_pointer[i6]; j6 < connection_pointer[i6+1]; j6= j6+1) begin
                         // packet6 = #0.1 {neuron_addresses[i6], downstream_connections[j6]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j6]] = neuron_addresses[i6];
+                        #0.1 spike_out_source_array[downstream_connections[j6]] = neuron_addresses[i6];
                     end
                     spike_register[i6] = 0;
                     lock6 = 0;
@@ -294,7 +321,7 @@ module network_interface_new (
         spike_register[300] = spike300;
 
         spike_register[301] = spike301;        spike_register[302] = spike302;        spike_register[303] = spike303;        spike_register[304] = spike304;        spike_register[305] = spike305;        spike_register[306] = spike306;        spike_register[307] = spike307;        spike_register[308] = spike308;        spike_register[309] = spike309;        spike_register[310] = spike310;        spike_register[311] = spike311;        spike_register[312] = spike312;        spike_register[313] = spike313;        spike_register[314] = spike314;        spike_register[315] = spike315;        spike_register[316] = spike316;        spike_register[317] = spike317;        spike_register[318] = spike318;        spike_register[319] = spike319;        spike_register[320] = spike320;        spike_register[321] = spike321;        spike_register[322] = spike322;        spike_register[323] = spike323;        spike_register[324] = spike324;        spike_register[325] = spike325;        spike_register[326] = spike326;        spike_register[327] = spike327;        spike_register[328] = spike328;        spike_register[329] = spike329;        spike_register[330] = spike330;        spike_register[331] = spike331;        spike_register[332] = spike332;        spike_register[333] = spike333;        spike_register[334] = spike334;        spike_register[335] = spike335;        spike_register[336] = spike336;        spike_register[337] = spike337;        spike_register[338] = spike338;        spike_register[339] = spike339;        spike_register[340] = spike340;        spike_register[341] = spike341;        spike_register[342] = spike342;        spike_register[343] = spike343;        spike_register[344] = spike344;        spike_register[345] = spike345;        spike_register[346] = spike346;        spike_register[347] = spike347;        spike_register[348] = spike348;        spike_register[349] = spike349;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i7 = 300; i7 <=349; i7= i7+1) begin
                 if(spike_register[i7] == 1 && lock7 == 0) begin
@@ -302,7 +329,7 @@ module network_interface_new (
                     for(j7 = connection_pointer[i7]; j7 < connection_pointer[i7+1]; j7= j7+1) begin
                         // packet7 = #0.1 {neuron_addresses[i7], downstream_connections[j7]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j7]] = neuron_addresses[i7];
+                        #0.1 spike_out_source_array[downstream_connections[j7]] = neuron_addresses[i7];
                     end
                     spike_register[i7] = 0;
                     lock7 = 0;
@@ -313,7 +340,7 @@ module network_interface_new (
     end
     always @(clear, lock8, spike350, spike351, spike352, spike353, spike354, spike355, spike356, spike357, spike358, spike359, spike360, spike361, spike362, spike363, spike364, spike365, spike366, spike367, spike368, spike369, spike370, spike371, spike372, spike373, spike374, spike375, spike376, spike377, spike378, spike379, spike380, spike381, spike382, spike383, spike384, spike385, spike386, spike387, spike388, spike389, spike390, spike391, spike392, spike393, spike394, spike395, spike396, spike397, spike398, spike399) begin
         spike_register[350] = spike350;        spike_register[351] = spike351;        spike_register[352] = spike352;        spike_register[353] = spike353;        spike_register[354] = spike354;        spike_register[355] = spike355;        spike_register[356] = spike356;        spike_register[357] = spike357;        spike_register[358] = spike358;        spike_register[359] = spike359;        spike_register[360] = spike360;        spike_register[361] = spike361;        spike_register[362] = spike362;        spike_register[363] = spike363;        spike_register[364] = spike364;        spike_register[365] = spike365;        spike_register[366] = spike366;        spike_register[367] = spike367;        spike_register[368] = spike368;        spike_register[369] = spike369;        spike_register[370] = spike370;        spike_register[371] = spike371;        spike_register[372] = spike372;        spike_register[373] = spike373;        spike_register[374] = spike374;        spike_register[375] = spike375;        spike_register[376] = spike376;        spike_register[377] = spike377;        spike_register[378] = spike378;        spike_register[379] = spike379;        spike_register[380] = spike380;        spike_register[381] = spike381;        spike_register[382] = spike382;        spike_register[383] = spike383;        spike_register[384] = spike384;        spike_register[385] = spike385;        spike_register[386] = spike386;        spike_register[387] = spike387;        spike_register[388] = spike388;        spike_register[389] = spike389;        spike_register[390] = spike390;        spike_register[391] = spike391;        spike_register[392] = spike392;        spike_register[393] = spike393;        spike_register[394] = spike394;        spike_register[395] = spike395;        spike_register[396] = spike396;        spike_register[397] = spike397;        spike_register[398] = spike398;        spike_register[399] = spike399;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i8 = 350; i8 <=399; i8= i8+1) begin
                 if(spike_register[i8] == 1 && lock8 == 0) begin
@@ -321,7 +348,7 @@ module network_interface_new (
                     for(j8 = connection_pointer[i8]; j8 < connection_pointer[i8+1]; j8= j8+1) begin
                         // packet8 = #0.1 {neuron_addresses[i8], downstream_connections[j8]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j8]] = neuron_addresses[i8];
+                        #0.1 spike_out_source_array[downstream_connections[j8]] = neuron_addresses[i8];
                     end
                     spike_register[i8] = 0;
                     lock8 = 0;
@@ -334,7 +361,7 @@ module network_interface_new (
         spike_register[400] = spike400;
 
         spike_register[401] = spike401;        spike_register[402] = spike402;        spike_register[403] = spike403;        spike_register[404] = spike404;        spike_register[405] = spike405;        spike_register[406] = spike406;        spike_register[407] = spike407;        spike_register[408] = spike408;        spike_register[409] = spike409;        spike_register[410] = spike410;        spike_register[411] = spike411;        spike_register[412] = spike412;        spike_register[413] = spike413;        spike_register[414] = spike414;        spike_register[415] = spike415;        spike_register[416] = spike416;        spike_register[417] = spike417;        spike_register[418] = spike418;        spike_register[419] = spike419;        spike_register[420] = spike420;        spike_register[421] = spike421;        spike_register[422] = spike422;        spike_register[423] = spike423;        spike_register[424] = spike424;        spike_register[425] = spike425;        spike_register[426] = spike426;        spike_register[427] = spike427;        spike_register[428] = spike428;        spike_register[429] = spike429;        spike_register[430] = spike430;        spike_register[431] = spike431;        spike_register[432] = spike432;        spike_register[433] = spike433;        spike_register[434] = spike434;        spike_register[435] = spike435;        spike_register[436] = spike436;        spike_register[437] = spike437;        spike_register[438] = spike438;        spike_register[439] = spike439;        spike_register[440] = spike440;        spike_register[441] = spike441;        spike_register[442] = spike442;        spike_register[443] = spike443;        spike_register[444] = spike444;        spike_register[445] = spike445;        spike_register[446] = spike446;        spike_register[447] = spike447;        spike_register[448] = spike448;        spike_register[449] = spike449;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i9 = 400; i9 <=449; i9= i9+1) begin
                 if(spike_register[i9] == 1 && lock9 == 0) begin
@@ -342,7 +369,7 @@ module network_interface_new (
                     for(j9 = connection_pointer[i9]; j9 < connection_pointer[i9+1]; j9= j9+1) begin
                         // packet9 = #0.1 {neuron_addresses[i9], downstream_connections[j9]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j9]] = neuron_addresses[i9];
+                        #0.1 spike_out_source_array[downstream_connections[j9]] = neuron_addresses[i9];
                     end
                     spike_register[i9] = 0;
                     lock9 = 0;
@@ -353,7 +380,7 @@ module network_interface_new (
     end
     always @(clear, lock10, spike450, spike451, spike452, spike453, spike454, spike455, spike456, spike457, spike458, spike459, spike460, spike461, spike462, spike463, spike464, spike465, spike466, spike467, spike468, spike469, spike470, spike471, spike472, spike473, spike474, spike475, spike476, spike477, spike478, spike479, spike480, spike481, spike482, spike483, spike484, spike485, spike486, spike487, spike488, spike489, spike490, spike491, spike492, spike493, spike494, spike495, spike496, spike497, spike498, spike499) begin
         spike_register[450] = spike450;        spike_register[451] = spike451;        spike_register[452] = spike452;        spike_register[453] = spike453;        spike_register[454] = spike454;        spike_register[455] = spike455;        spike_register[456] = spike456;        spike_register[457] = spike457;        spike_register[458] = spike458;        spike_register[459] = spike459;        spike_register[460] = spike460;        spike_register[461] = spike461;        spike_register[462] = spike462;        spike_register[463] = spike463;        spike_register[464] = spike464;        spike_register[465] = spike465;        spike_register[466] = spike466;        spike_register[467] = spike467;        spike_register[468] = spike468;        spike_register[469] = spike469;        spike_register[470] = spike470;        spike_register[471] = spike471;        spike_register[472] = spike472;        spike_register[473] = spike473;        spike_register[474] = spike474;        spike_register[475] = spike475;        spike_register[476] = spike476;        spike_register[477] = spike477;        spike_register[478] = spike478;        spike_register[479] = spike479;        spike_register[480] = spike480;        spike_register[481] = spike481;        spike_register[482] = spike482;        spike_register[483] = spike483;        spike_register[484] = spike484;        spike_register[485] = spike485;        spike_register[486] = spike486;        spike_register[487] = spike487;        spike_register[488] = spike488;        spike_register[489] = spike489;        spike_register[490] = spike490;        spike_register[491] = spike491;        spike_register[492] = spike492;        spike_register[493] = spike493;        spike_register[494] = spike494;        spike_register[495] = spike495;        spike_register[496] = spike496;        spike_register[497] = spike497;        spike_register[498] = spike498;        spike_register[499] = spike499;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i10 = 450; i10 <=499; i10= i10+1) begin
                 if(spike_register[i10] == 1 && lock10 == 0) begin
@@ -361,7 +388,7 @@ module network_interface_new (
                     for(j10 = connection_pointer[i10]; j10 < connection_pointer[i10+1]; j10= j10+1) begin
                         // packet10 = #0.1 {neuron_addresses[i10], downstream_connections[j10]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j10]] = neuron_addresses[i10];
+                        #0.1 spike_out_source_array[downstream_connections[j10]] = neuron_addresses[i10];
                     end
                     spike_register[i10] = 0;
                     lock10 = 0;
@@ -374,7 +401,7 @@ module network_interface_new (
         spike_register[500] = spike500;
 
         spike_register[501] = spike501;        spike_register[502] = spike502;        spike_register[503] = spike503;        spike_register[504] = spike504;        spike_register[505] = spike505;        spike_register[506] = spike506;        spike_register[507] = spike507;        spike_register[508] = spike508;        spike_register[509] = spike509;        spike_register[510] = spike510;        spike_register[511] = spike511;        spike_register[512] = spike512;        spike_register[513] = spike513;        spike_register[514] = spike514;        spike_register[515] = spike515;        spike_register[516] = spike516;        spike_register[517] = spike517;        spike_register[518] = spike518;        spike_register[519] = spike519;        spike_register[520] = spike520;        spike_register[521] = spike521;        spike_register[522] = spike522;        spike_register[523] = spike523;        spike_register[524] = spike524;        spike_register[525] = spike525;        spike_register[526] = spike526;        spike_register[527] = spike527;        spike_register[528] = spike528;        spike_register[529] = spike529;        spike_register[530] = spike530;        spike_register[531] = spike531;        spike_register[532] = spike532;        spike_register[533] = spike533;        spike_register[534] = spike534;        spike_register[535] = spike535;        spike_register[536] = spike536;        spike_register[537] = spike537;        spike_register[538] = spike538;        spike_register[539] = spike539;        spike_register[540] = spike540;        spike_register[541] = spike541;        spike_register[542] = spike542;        spike_register[543] = spike543;        spike_register[544] = spike544;        spike_register[545] = spike545;        spike_register[546] = spike546;        spike_register[547] = spike547;        spike_register[548] = spike548;        spike_register[549] = spike549;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i11 = 500; i11 <=549; i11= i11+1) begin
                 if(spike_register[i11] == 1 && lock11 == 0) begin
@@ -382,7 +409,7 @@ module network_interface_new (
                     for(j11 = connection_pointer[i11]; j11 < connection_pointer[i11+1]; j11= j11+1) begin
                         // packet11 = #0.1 {neuron_addresses[i11], downstream_connections[j11]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j11]] = neuron_addresses[i11];
+                        #0.1 spike_out_source_array[downstream_connections[j11]] = neuron_addresses[i11];
                     end
                     spike_register[i11] = 0;
                     lock11 = 0;
@@ -393,7 +420,7 @@ module network_interface_new (
     end
     always @(clear, lock12, spike550, spike551, spike552, spike553, spike554, spike555, spike556, spike557, spike558, spike559, spike560, spike561, spike562, spike563, spike564, spike565, spike566, spike567, spike568, spike569, spike570, spike571, spike572, spike573, spike574, spike575, spike576, spike577, spike578, spike579, spike580, spike581, spike582, spike583, spike584, spike585, spike586, spike587, spike588, spike589, spike590, spike591, spike592, spike593, spike594, spike595, spike596, spike597, spike598, spike599) begin
         spike_register[550] = spike550;        spike_register[551] = spike551;        spike_register[552] = spike552;        spike_register[553] = spike553;        spike_register[554] = spike554;        spike_register[555] = spike555;        spike_register[556] = spike556;        spike_register[557] = spike557;        spike_register[558] = spike558;        spike_register[559] = spike559;        spike_register[560] = spike560;        spike_register[561] = spike561;        spike_register[562] = spike562;        spike_register[563] = spike563;        spike_register[564] = spike564;        spike_register[565] = spike565;        spike_register[566] = spike566;        spike_register[567] = spike567;        spike_register[568] = spike568;        spike_register[569] = spike569;        spike_register[570] = spike570;        spike_register[571] = spike571;        spike_register[572] = spike572;        spike_register[573] = spike573;        spike_register[574] = spike574;        spike_register[575] = spike575;        spike_register[576] = spike576;        spike_register[577] = spike577;        spike_register[578] = spike578;        spike_register[579] = spike579;        spike_register[580] = spike580;        spike_register[581] = spike581;        spike_register[582] = spike582;        spike_register[583] = spike583;        spike_register[584] = spike584;        spike_register[585] = spike585;        spike_register[586] = spike586;        spike_register[587] = spike587;        spike_register[588] = spike588;        spike_register[589] = spike589;        spike_register[590] = spike590;        spike_register[591] = spike591;        spike_register[592] = spike592;        spike_register[593] = spike593;        spike_register[594] = spike594;        spike_register[595] = spike595;        spike_register[596] = spike596;        spike_register[597] = spike597;        spike_register[598] = spike598;        spike_register[599] = spike599;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i12 = 550; i12 <=599; i12= i12+1) begin
                 if(spike_register[i12] == 1 && lock12 == 0) begin
@@ -401,7 +428,7 @@ module network_interface_new (
                     for(j12 = connection_pointer[i12]; j12 < connection_pointer[i12+1]; j12= j12+1) begin
                         // packet12 = #0.1 {neuron_addresses[i12], downstream_connections[j12]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j12]] = neuron_addresses[i12];
+                        #0.1 spike_out_source_array[downstream_connections[j12]] = neuron_addresses[i12];
                     end
                     spike_register[i12] = 0;
                     lock12 = 0;
@@ -414,7 +441,7 @@ module network_interface_new (
         spike_register[600] = spike600;
 
         spike_register[601] = spike601;        spike_register[602] = spike602;        spike_register[603] = spike603;        spike_register[604] = spike604;        spike_register[605] = spike605;        spike_register[606] = spike606;        spike_register[607] = spike607;        spike_register[608] = spike608;        spike_register[609] = spike609;        spike_register[610] = spike610;        spike_register[611] = spike611;        spike_register[612] = spike612;        spike_register[613] = spike613;        spike_register[614] = spike614;        spike_register[615] = spike615;        spike_register[616] = spike616;        spike_register[617] = spike617;        spike_register[618] = spike618;        spike_register[619] = spike619;        spike_register[620] = spike620;        spike_register[621] = spike621;        spike_register[622] = spike622;        spike_register[623] = spike623;        spike_register[624] = spike624;        spike_register[625] = spike625;        spike_register[626] = spike626;        spike_register[627] = spike627;        spike_register[628] = spike628;        spike_register[629] = spike629;        spike_register[630] = spike630;        spike_register[631] = spike631;        spike_register[632] = spike632;        spike_register[633] = spike633;        spike_register[634] = spike634;        spike_register[635] = spike635;        spike_register[636] = spike636;        spike_register[637] = spike637;        spike_register[638] = spike638;        spike_register[639] = spike639;        spike_register[640] = spike640;        spike_register[641] = spike641;        spike_register[642] = spike642;        spike_register[643] = spike643;        spike_register[644] = spike644;        spike_register[645] = spike645;        spike_register[646] = spike646;        spike_register[647] = spike647;        spike_register[648] = spike648;        spike_register[649] = spike649;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i13 = 600; i13 <=649; i13= i13+1) begin
                 if(spike_register[i13] == 1 && lock13 == 0) begin
@@ -422,7 +449,7 @@ module network_interface_new (
                     for(j13 = connection_pointer[i13]; j13 < connection_pointer[i13+1]; j13= j13+1) begin
                         // packet13 = #0.1 {neuron_addresses[i13], downstream_connections[j13]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j13]] = neuron_addresses[i13];
+                        #0.1 spike_out_source_array[downstream_connections[j13]] = neuron_addresses[i13];
                     end
                     spike_register[i13] = 0;
                     lock13 = 0;
@@ -433,7 +460,7 @@ module network_interface_new (
     end
     always @(clear, lock14, spike650, spike651, spike652, spike653, spike654, spike655, spike656, spike657, spike658, spike659, spike660, spike661, spike662, spike663, spike664, spike665, spike666, spike667, spike668, spike669, spike670, spike671, spike672, spike673, spike674, spike675, spike676, spike677, spike678, spike679, spike680, spike681, spike682, spike683, spike684, spike685, spike686, spike687, spike688, spike689, spike690, spike691, spike692, spike693, spike694, spike695, spike696, spike697, spike698, spike699) begin
         spike_register[650] = spike650;        spike_register[651] = spike651;        spike_register[652] = spike652;        spike_register[653] = spike653;        spike_register[654] = spike654;        spike_register[655] = spike655;        spike_register[656] = spike656;        spike_register[657] = spike657;        spike_register[658] = spike658;        spike_register[659] = spike659;        spike_register[660] = spike660;        spike_register[661] = spike661;        spike_register[662] = spike662;        spike_register[663] = spike663;        spike_register[664] = spike664;        spike_register[665] = spike665;        spike_register[666] = spike666;        spike_register[667] = spike667;        spike_register[668] = spike668;        spike_register[669] = spike669;        spike_register[670] = spike670;        spike_register[671] = spike671;        spike_register[672] = spike672;        spike_register[673] = spike673;        spike_register[674] = spike674;        spike_register[675] = spike675;        spike_register[676] = spike676;        spike_register[677] = spike677;        spike_register[678] = spike678;        spike_register[679] = spike679;        spike_register[680] = spike680;        spike_register[681] = spike681;        spike_register[682] = spike682;        spike_register[683] = spike683;        spike_register[684] = spike684;        spike_register[685] = spike685;        spike_register[686] = spike686;        spike_register[687] = spike687;        spike_register[688] = spike688;        spike_register[689] = spike689;        spike_register[690] = spike690;        spike_register[691] = spike691;        spike_register[692] = spike692;        spike_register[693] = spike693;        spike_register[694] = spike694;        spike_register[695] = spike695;        spike_register[696] = spike696;        spike_register[697] = spike697;        spike_register[698] = spike698;        spike_register[699] = spike699;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i14 = 650; i14 <=699; i14= i14+1) begin
                 if(spike_register[i14] == 1 && lock14 == 0) begin
@@ -441,7 +468,7 @@ module network_interface_new (
                     for(j14 = connection_pointer[i14]; j14 < connection_pointer[i14+1]; j14= j14+1) begin
                         // packet14 = #0.1 {neuron_addresses[i14], downstream_connections[j14]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j14]] = neuron_addresses[i14];
+                        #0.1 spike_out_source_array[downstream_connections[j14]] = neuron_addresses[i14];
                     end
                     spike_register[i14] = 0;
                     lock14 = 0;
@@ -454,7 +481,7 @@ module network_interface_new (
         spike_register[700] = spike700;
 
         spike_register[701] = spike701;        spike_register[702] = spike702;        spike_register[703] = spike703;        spike_register[704] = spike704;        spike_register[705] = spike705;        spike_register[706] = spike706;        spike_register[707] = spike707;        spike_register[708] = spike708;        spike_register[709] = spike709;        spike_register[710] = spike710;        spike_register[711] = spike711;        spike_register[712] = spike712;        spike_register[713] = spike713;        spike_register[714] = spike714;        spike_register[715] = spike715;        spike_register[716] = spike716;        spike_register[717] = spike717;        spike_register[718] = spike718;        spike_register[719] = spike719;        spike_register[720] = spike720;        spike_register[721] = spike721;        spike_register[722] = spike722;        spike_register[723] = spike723;        spike_register[724] = spike724;        spike_register[725] = spike725;        spike_register[726] = spike726;        spike_register[727] = spike727;        spike_register[728] = spike728;        spike_register[729] = spike729;        spike_register[730] = spike730;        spike_register[731] = spike731;        spike_register[732] = spike732;        spike_register[733] = spike733;        spike_register[734] = spike734;        spike_register[735] = spike735;        spike_register[736] = spike736;        spike_register[737] = spike737;        spike_register[738] = spike738;        spike_register[739] = spike739;        spike_register[740] = spike740;        spike_register[741] = spike741;        spike_register[742] = spike742;        spike_register[743] = spike743;        spike_register[744] = spike744;        spike_register[745] = spike745;        spike_register[746] = spike746;        spike_register[747] = spike747;        spike_register[748] = spike748;        spike_register[749] = spike749;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i15 = 700; i15 <=749; i15= i15+1) begin
                 if(spike_register[i15] == 1 && lock15 == 0) begin
@@ -462,7 +489,7 @@ module network_interface_new (
                     for(j15 = connection_pointer[i15]; j15 < connection_pointer[i15+1]; j15= j15+1) begin
                         // packet15 = #0.1 {neuron_addresses[i15], downstream_connections[j15]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j15]] = neuron_addresses[i15];
+                        #0.1 spike_out_source_array[downstream_connections[j15]] = neuron_addresses[i15];
                     end
                     spike_register[i15] = 0;
                     lock15 = 0;
@@ -473,7 +500,7 @@ module network_interface_new (
     end
     always @(clear, lock16, spike750, spike751, spike752, spike753, spike754, spike755, spike756, spike757, spike758, spike759, spike760, spike761, spike762, spike763, spike764, spike765, spike766, spike767, spike768, spike769, spike770, spike771, spike772, spike773, spike774, spike775, spike776, spike777, spike778, spike779, spike780, spike781, spike782, spike783, spike784, spike785, spike786, spike787, spike788, spike789, spike790, spike791, spike792, spike793, spike794, spike795, spike796, spike797, spike798, spike799) begin
         spike_register[750] = spike750;        spike_register[751] = spike751;        spike_register[752] = spike752;        spike_register[753] = spike753;        spike_register[754] = spike754;        spike_register[755] = spike755;        spike_register[756] = spike756;        spike_register[757] = spike757;        spike_register[758] = spike758;        spike_register[759] = spike759;        spike_register[760] = spike760;        spike_register[761] = spike761;        spike_register[762] = spike762;        spike_register[763] = spike763;        spike_register[764] = spike764;        spike_register[765] = spike765;        spike_register[766] = spike766;        spike_register[767] = spike767;        spike_register[768] = spike768;        spike_register[769] = spike769;        spike_register[770] = spike770;        spike_register[771] = spike771;        spike_register[772] = spike772;        spike_register[773] = spike773;        spike_register[774] = spike774;        spike_register[775] = spike775;        spike_register[776] = spike776;        spike_register[777] = spike777;        spike_register[778] = spike778;        spike_register[779] = spike779;        spike_register[780] = spike780;        spike_register[781] = spike781;        spike_register[782] = spike782;        spike_register[783] = spike783;        spike_register[784] = spike784;        spike_register[785] = spike785;        spike_register[786] = spike786;        spike_register[787] = spike787;        spike_register[788] = spike788;        spike_register[789] = spike789;        spike_register[790] = spike790;        spike_register[791] = spike791;        spike_register[792] = spike792;        spike_register[793] = spike793;        spike_register[794] = spike794;        spike_register[795] = spike795;        spike_register[796] = spike796;        spike_register[797] = spike797;        spike_register[798] = spike798;        spike_register[799] = spike799;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i16 = 750; i16 <=799; i16= i16+1) begin
                 if(spike_register[i16] == 1 && lock16 == 0) begin
@@ -481,7 +508,7 @@ module network_interface_new (
                     for(j16 = connection_pointer[i16]; j16 < connection_pointer[i16+1]; j16= j16+1) begin
                         // packet16 = #0.1 {neuron_addresses[i16], downstream_connections[j16]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j16]] = neuron_addresses[i16];
+                        #0.1 spike_out_source_array[downstream_connections[j16]] = neuron_addresses[i16];
                     end
                     spike_register[i16] = 0;
                     lock16 = 0;
@@ -494,7 +521,7 @@ module network_interface_new (
         spike_register[800] = spike800;
 
         spike_register[801] = spike801;        spike_register[802] = spike802;        spike_register[803] = spike803;        spike_register[804] = spike804;        spike_register[805] = spike805;        spike_register[806] = spike806;        spike_register[807] = spike807;        spike_register[808] = spike808;        spike_register[809] = spike809;        spike_register[810] = spike810;        spike_register[811] = spike811;        spike_register[812] = spike812;        spike_register[813] = spike813;        spike_register[814] = spike814;        spike_register[815] = spike815;        spike_register[816] = spike816;        spike_register[817] = spike817;        spike_register[818] = spike818;        spike_register[819] = spike819;        spike_register[820] = spike820;        spike_register[821] = spike821;        spike_register[822] = spike822;        spike_register[823] = spike823;        spike_register[824] = spike824;        spike_register[825] = spike825;        spike_register[826] = spike826;        spike_register[827] = spike827;        spike_register[828] = spike828;        spike_register[829] = spike829;        spike_register[830] = spike830;        spike_register[831] = spike831;        spike_register[832] = spike832;        spike_register[833] = spike833;        spike_register[834] = spike834;        spike_register[835] = spike835;        spike_register[836] = spike836;        spike_register[837] = spike837;        spike_register[838] = spike838;        spike_register[839] = spike839;        spike_register[840] = spike840;        spike_register[841] = spike841;        spike_register[842] = spike842;        spike_register[843] = spike843;        spike_register[844] = spike844;        spike_register[845] = spike845;        spike_register[846] = spike846;        spike_register[847] = spike847;        spike_register[848] = spike848;        spike_register[849] = spike849;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i17 = 800; i17 <=849; i17= i17+1) begin
                 if(spike_register[i17] == 1 && lock17 == 0) begin
@@ -502,7 +529,7 @@ module network_interface_new (
                     for(j17 = connection_pointer[i17]; j17 < connection_pointer[i17+1]; j17= j17+1) begin
                         // packet17 = #0.1 {neuron_addresses[i17], downstream_connections[j17]};
                         // assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j17]] = neuron_addresses[i17];
+                        #0.1 spike_out_source_array[downstream_connections[j17]] = neuron_addresses[i17];
                         
                     end
                     spike_register[i17] = 0;
@@ -514,7 +541,7 @@ module network_interface_new (
     end
     always @(clear, lock18, spike850, spike851, spike852, spike853, spike854, spike855, spike856, spike857, spike858, spike859, spike860, spike861, spike862, spike863, spike864, spike865, spike866, spike867, spike868, spike869, spike870, spike871, spike872, spike873, spike874, spike875, spike876, spike877, spike878, spike879, spike880, spike881, spike882, spike883, spike884, spike885, spike886, spike887, spike888, spike889, spike890, spike891, spike892, spike893, spike894, spike895, spike896, spike897, spike898, spike899) begin
         spike_register[850] = spike850;        spike_register[851] = spike851;        spike_register[852] = spike852;        spike_register[853] = spike853;        spike_register[854] = spike854;        spike_register[855] = spike855;        spike_register[856] = spike856;        spike_register[857] = spike857;        spike_register[858] = spike858;        spike_register[859] = spike859;        spike_register[860] = spike860;        spike_register[861] = spike861;        spike_register[862] = spike862;        spike_register[863] = spike863;        spike_register[864] = spike864;        spike_register[865] = spike865;        spike_register[866] = spike866;        spike_register[867] = spike867;        spike_register[868] = spike868;        spike_register[869] = spike869;        spike_register[870] = spike870;        spike_register[871] = spike871;        spike_register[872] = spike872;        spike_register[873] = spike873;        spike_register[874] = spike874;        spike_register[875] = spike875;        spike_register[876] = spike876;        spike_register[877] = spike877;        spike_register[878] = spike878;        spike_register[879] = spike879;        spike_register[880] = spike880;        spike_register[881] = spike881;        spike_register[882] = spike882;        spike_register[883] = spike883;        spike_register[884] = spike884;        spike_register[885] = spike885;        spike_register[886] = spike886;        spike_register[887] = spike887;        spike_register[888] = spike888;        spike_register[889] = spike889;        spike_register[890] = spike890;        spike_register[891] = spike891;        spike_register[892] = spike892;        spike_register[893] = spike893;        spike_register[894] = spike894;        spike_register[895] = spike895;        spike_register[896] = spike896;        spike_register[897] = spike897;        spike_register[898] = spike898;        spike_register[899] = spike899;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i18 = 850; i18 <=899; i18= i18+1) begin
                 if(spike_register[i18] == 1 && lock18 == 0) begin
@@ -522,7 +549,7 @@ module network_interface_new (
                     for(j18 = connection_pointer[i18]; j18 < connection_pointer[i18+1]; j18= j18+1) begin
                         // packet18 = #0.1 {neuron_addresses[i18], downstream_connections[j18]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j18]] = neuron_addresses[i18];
+                        #0.1 spike_out_source_array[downstream_connections[j18]] = neuron_addresses[i18];
                     end
                     spike_register[i18] = 0;
                     lock18 = 0;
@@ -535,7 +562,7 @@ module network_interface_new (
         spike_register[900] = spike900;
 
         spike_register[901] = spike901;        spike_register[902] = spike902;        spike_register[903] = spike903;        spike_register[904] = spike904;        spike_register[905] = spike905;        spike_register[906] = spike906;        spike_register[907] = spike907;        spike_register[908] = spike908;        spike_register[909] = spike909;        spike_register[910] = spike910;        spike_register[911] = spike911;        spike_register[912] = spike912;        spike_register[913] = spike913;        spike_register[914] = spike914;        spike_register[915] = spike915;        spike_register[916] = spike916;        spike_register[917] = spike917;        spike_register[918] = spike918;        spike_register[919] = spike919;        spike_register[920] = spike920;        spike_register[921] = spike921;        spike_register[922] = spike922;        spike_register[923] = spike923;        spike_register[924] = spike924;        spike_register[925] = spike925;        spike_register[926] = spike926;        spike_register[927] = spike927;        spike_register[928] = spike928;        spike_register[929] = spike929;        spike_register[930] = spike930;        spike_register[931] = spike931;        spike_register[932] = spike932;        spike_register[933] = spike933;        spike_register[934] = spike934;        spike_register[935] = spike935;        spike_register[936] = spike936;        spike_register[937] = spike937;        spike_register[938] = spike938;        spike_register[939] = spike939;        spike_register[940] = spike940;        spike_register[941] = spike941;        spike_register[942] = spike942;        spike_register[943] = spike943;        spike_register[944] = spike944;        spike_register[945] = spike945;        spike_register[946] = spike946;        spike_register[947] = spike947;        spike_register[948] = spike948;        spike_register[949] = spike949;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i19 = 900; i19 <=949; i19= i19+1) begin
                 if(spike_register[i19] == 1 && lock19 == 0) begin
@@ -543,7 +570,7 @@ module network_interface_new (
                     for(j19 = connection_pointer[i19]; j19 < connection_pointer[i19+1]; j19= j19+1) begin
                         // packet19 = #0.1 {neuron_addresses[i19], downstream_connections[j19]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j19]] = neuron_addresses[i19];
+                        #0.1 spike_out_source_array[downstream_connections[j19]] = neuron_addresses[i19];
                     end
                     spike_register[i19] = 0;
                     lock19 = 0;
@@ -554,7 +581,7 @@ module network_interface_new (
     end
     always @(clear, lock20, spike950, spike951, spike952, spike953, spike954, spike955, spike956, spike957, spike958, spike959, spike960, spike961, spike962, spike963, spike964, spike965, spike966, spike967, spike968, spike969, spike970, spike971, spike972, spike973, spike974, spike975, spike976, spike977, spike978, spike979, spike980, spike981, spike982, spike983, spike984, spike985, spike986, spike987, spike988, spike989, spike990, spike991, spike992, spike993, spike994, spike995, spike996, spike997, spike998, spike999) begin
         spike_register[950] = spike950;        spike_register[951] = spike951;        spike_register[952] = spike952;        spike_register[953] = spike953;        spike_register[954] = spike954;        spike_register[955] = spike955;        spike_register[956] = spike956;        spike_register[957] = spike957;        spike_register[958] = spike958;        spike_register[959] = spike959;        spike_register[960] = spike960;        spike_register[961] = spike961;        spike_register[962] = spike962;        spike_register[963] = spike963;        spike_register[964] = spike964;        spike_register[965] = spike965;        spike_register[966] = spike966;        spike_register[967] = spike967;        spike_register[968] = spike968;        spike_register[969] = spike969;        spike_register[970] = spike970;        spike_register[971] = spike971;        spike_register[972] = spike972;        spike_register[973] = spike973;        spike_register[974] = spike974;        spike_register[975] = spike975;        spike_register[976] = spike976;        spike_register[977] = spike977;        spike_register[978] = spike978;        spike_register[979] = spike979;        spike_register[980] = spike980;        spike_register[981] = spike981;        spike_register[982] = spike982;        spike_register[983] = spike983;        spike_register[984] = spike984;        spike_register[985] = spike985;        spike_register[986] = spike986;        spike_register[987] = spike987;        spike_register[988] = spike988;        spike_register[989] = spike989;        spike_register[990] = spike990;        spike_register[991] = spike991;        spike_register[992] = spike992;        spike_register[993] = spike993;        spike_register[994] = spike994;        spike_register[995] = spike995;        spike_register[996] = spike996;        spike_register[997] = spike997;        spike_register[998] = spike998;        spike_register[999] = spike999;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i20 = 950; i20 <=999; i20= i20+1) begin
                 if(spike_register[i20] == 1 && lock20 == 0) begin
@@ -562,7 +589,7 @@ module network_interface_new (
                     for(j20 = connection_pointer[i20]; j20 < connection_pointer[i20+1]; j20= j20+1) begin
                         // packet20 = #0.1 {neuron_addresses[i20], downstream_connections[j20]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j20]] = neuron_addresses[i20];
+                        #0.1 spike_out_source_array[downstream_connections[j20]] = neuron_addresses[i20];
                     end
                     spike_register[i20] = 0;
                     lock20 = 0;
@@ -575,7 +602,7 @@ module network_interface_new (
         spike_register[1000] = spike1000;
 
         spike_register[1001] = spike1001;        spike_register[1002] = spike1002;        spike_register[1003] = spike1003;        spike_register[1004] = spike1004;        spike_register[1005] = spike1005;        spike_register[1006] = spike1006;        spike_register[1007] = spike1007;        spike_register[1008] = spike1008;        spike_register[1009] = spike1009;        spike_register[1010] = spike1010;        spike_register[1011] = spike1011;        spike_register[1012] = spike1012;        spike_register[1013] = spike1013;        spike_register[1014] = spike1014;        spike_register[1015] = spike1015;        spike_register[1016] = spike1016;        spike_register[1017] = spike1017;        spike_register[1018] = spike1018;        spike_register[1019] = spike1019;        spike_register[1020] = spike1020;        spike_register[1021] = spike1021;        spike_register[1022] = spike1022;        spike_register[1023] = spike1023;
-        #0.5
+        // #0.5
         if(clear == 1'b0) begin
             for(i21 = 1000; i21 <=1049; i21= i21+1) begin
                 if(spike_register[i21] == 1 && lock21 == 0) begin
@@ -583,7 +610,7 @@ module network_interface_new (
                     for(j21 = connection_pointer[i21]; j21 < connection_pointer[i21+1]; j21= j21+1) begin
                         // packet21 = #0.1 {neuron_addresses[i21], downstream_connections[j21]};
                         //assign to the relevant output wire's array location
-                        spike_out_source_array[downstream_connections[j21]] = neuron_addresses[i21];
+                        #0.1 spike_out_source_array[downstream_connections[j21]] = neuron_addresses[i21];
                     end
                     spike_register[i21] = 0;
                     lock21 = 0;
@@ -3665,6 +3692,1034 @@ module network_interface_new (
     end
     always @(spike_out_source_array[1023]) begin 
         spike_out_source1023 = spike_out_source_array[1023];
+    end
+
+    // Reset the source address output port of the network interface. 
+    always @ (posedge clear) begin
+        spike_out_source_array[0] =12'hxx;
+        spike_out_source_array[1] =12'hxx;
+        spike_out_source_array[2] =12'hxx;
+        spike_out_source_array[3] =12'hxx;
+        spike_out_source_array[4] =12'hxx;
+        spike_out_source_array[5] =12'hxx;
+        spike_out_source_array[6] =12'hxx;
+        spike_out_source_array[7] =12'hxx;
+        spike_out_source_array[8] =12'hxx;
+        spike_out_source_array[9] =12'hxx;
+        spike_out_source_array[10] =12'hxx;
+        spike_out_source_array[11] =12'hxx;
+        spike_out_source_array[12] =12'hxx;
+        spike_out_source_array[13] =12'hxx;
+        spike_out_source_array[14] =12'hxx;
+        spike_out_source_array[15] =12'hxx;
+        spike_out_source_array[16] =12'hxx;
+        spike_out_source_array[17] =12'hxx;
+        spike_out_source_array[18] =12'hxx;
+        spike_out_source_array[19] =12'hxx;
+        spike_out_source_array[20] =12'hxx;
+        spike_out_source_array[21] =12'hxx;
+        spike_out_source_array[22] =12'hxx;
+        spike_out_source_array[23] =12'hxx;
+        spike_out_source_array[24] =12'hxx;
+        spike_out_source_array[25] =12'hxx;
+        spike_out_source_array[26] =12'hxx;
+        spike_out_source_array[27] =12'hxx;
+        spike_out_source_array[28] =12'hxx;
+        spike_out_source_array[29] =12'hxx;
+        spike_out_source_array[30] =12'hxx;
+        spike_out_source_array[31] =12'hxx;
+        spike_out_source_array[32] =12'hxx;
+        spike_out_source_array[33] =12'hxx;
+        spike_out_source_array[34] =12'hxx;
+        spike_out_source_array[35] =12'hxx;
+        spike_out_source_array[36] =12'hxx;
+        spike_out_source_array[37] =12'hxx;
+        spike_out_source_array[38] =12'hxx;
+        spike_out_source_array[39] =12'hxx;
+        spike_out_source_array[40] =12'hxx;
+        spike_out_source_array[41] =12'hxx;
+        spike_out_source_array[42] =12'hxx;
+        spike_out_source_array[43] =12'hxx;
+        spike_out_source_array[44] =12'hxx;
+        spike_out_source_array[45] =12'hxx;
+        spike_out_source_array[46] =12'hxx;
+        spike_out_source_array[47] =12'hxx;
+        spike_out_source_array[48] =12'hxx;
+        spike_out_source_array[49] =12'hxx;
+        spike_out_source_array[50] =12'hxx;
+        spike_out_source_array[51] =12'hxx;
+        spike_out_source_array[52] =12'hxx;
+        spike_out_source_array[53] =12'hxx;
+        spike_out_source_array[54] =12'hxx;
+        spike_out_source_array[55] =12'hxx;
+        spike_out_source_array[56] =12'hxx;
+        spike_out_source_array[57] =12'hxx;
+        spike_out_source_array[58] =12'hxx;
+        spike_out_source_array[59] =12'hxx;
+        spike_out_source_array[60] =12'hxx;
+        spike_out_source_array[61] =12'hxx;
+        spike_out_source_array[62] =12'hxx;
+        spike_out_source_array[63] =12'hxx;
+        spike_out_source_array[64] =12'hxx;
+        spike_out_source_array[65] =12'hxx;
+        spike_out_source_array[66] =12'hxx;
+        spike_out_source_array[67] =12'hxx;
+        spike_out_source_array[68] =12'hxx;
+        spike_out_source_array[69] =12'hxx;
+        spike_out_source_array[70] =12'hxx;
+        spike_out_source_array[71] =12'hxx;
+        spike_out_source_array[72] =12'hxx;
+        spike_out_source_array[73] =12'hxx;
+        spike_out_source_array[74] =12'hxx;
+        spike_out_source_array[75] =12'hxx;
+        spike_out_source_array[76] =12'hxx;
+        spike_out_source_array[77] =12'hxx;
+        spike_out_source_array[78] =12'hxx;
+        spike_out_source_array[79] =12'hxx;
+        spike_out_source_array[80] =12'hxx;
+        spike_out_source_array[81] =12'hxx;
+        spike_out_source_array[82] =12'hxx;
+        spike_out_source_array[83] =12'hxx;
+        spike_out_source_array[84] =12'hxx;
+        spike_out_source_array[85] =12'hxx;
+        spike_out_source_array[86] =12'hxx;
+        spike_out_source_array[87] =12'hxx;
+        spike_out_source_array[88] =12'hxx;
+        spike_out_source_array[89] =12'hxx;
+        spike_out_source_array[90] =12'hxx;
+        spike_out_source_array[91] =12'hxx;
+        spike_out_source_array[92] =12'hxx;
+        spike_out_source_array[93] =12'hxx;
+        spike_out_source_array[94] =12'hxx;
+        spike_out_source_array[95] =12'hxx;
+        spike_out_source_array[96] =12'hxx;
+        spike_out_source_array[97] =12'hxx;
+        spike_out_source_array[98] =12'hxx;
+        spike_out_source_array[99] =12'hxx;
+        spike_out_source_array[100] =12'hxx;
+        spike_out_source_array[101] =12'hxx;
+        spike_out_source_array[102] =12'hxx;
+        spike_out_source_array[103] =12'hxx;
+        spike_out_source_array[104] =12'hxx;
+        spike_out_source_array[105] =12'hxx;
+        spike_out_source_array[106] =12'hxx;
+        spike_out_source_array[107] =12'hxx;
+        spike_out_source_array[108] =12'hxx;
+        spike_out_source_array[109] =12'hxx;
+        spike_out_source_array[110] =12'hxx;
+        spike_out_source_array[111] =12'hxx;
+        spike_out_source_array[112] =12'hxx;
+        spike_out_source_array[113] =12'hxx;
+        spike_out_source_array[114] =12'hxx;
+        spike_out_source_array[115] =12'hxx;
+        spike_out_source_array[116] =12'hxx;
+        spike_out_source_array[117] =12'hxx;
+        spike_out_source_array[118] =12'hxx;
+        spike_out_source_array[119] =12'hxx;
+        spike_out_source_array[120] =12'hxx;
+        spike_out_source_array[121] =12'hxx;
+        spike_out_source_array[122] =12'hxx;
+        spike_out_source_array[123] =12'hxx;
+        spike_out_source_array[124] =12'hxx;
+        spike_out_source_array[125] =12'hxx;
+        spike_out_source_array[126] =12'hxx;
+        spike_out_source_array[127] =12'hxx;
+        spike_out_source_array[128] =12'hxx;
+        spike_out_source_array[129] =12'hxx;
+        spike_out_source_array[130] =12'hxx;
+        spike_out_source_array[131] =12'hxx;
+        spike_out_source_array[132] =12'hxx;
+        spike_out_source_array[133] =12'hxx;
+        spike_out_source_array[134] =12'hxx;
+        spike_out_source_array[135] =12'hxx;
+        spike_out_source_array[136] =12'hxx;
+        spike_out_source_array[137] =12'hxx;
+        spike_out_source_array[138] =12'hxx;
+        spike_out_source_array[139] =12'hxx;
+        spike_out_source_array[140] =12'hxx;
+        spike_out_source_array[141] =12'hxx;
+        spike_out_source_array[142] =12'hxx;
+        spike_out_source_array[143] =12'hxx;
+        spike_out_source_array[144] =12'hxx;
+        spike_out_source_array[145] =12'hxx;
+        spike_out_source_array[146] =12'hxx;
+        spike_out_source_array[147] =12'hxx;
+        spike_out_source_array[148] =12'hxx;
+        spike_out_source_array[149] =12'hxx;
+        spike_out_source_array[150] =12'hxx;
+        spike_out_source_array[151] =12'hxx;
+        spike_out_source_array[152] =12'hxx;
+        spike_out_source_array[153] =12'hxx;
+        spike_out_source_array[154] =12'hxx;
+        spike_out_source_array[155] =12'hxx;
+        spike_out_source_array[156] =12'hxx;
+        spike_out_source_array[157] =12'hxx;
+        spike_out_source_array[158] =12'hxx;
+        spike_out_source_array[159] =12'hxx;
+        spike_out_source_array[160] =12'hxx;
+        spike_out_source_array[161] =12'hxx;
+        spike_out_source_array[162] =12'hxx;
+        spike_out_source_array[163] =12'hxx;
+        spike_out_source_array[164] =12'hxx;
+        spike_out_source_array[165] =12'hxx;
+        spike_out_source_array[166] =12'hxx;
+        spike_out_source_array[167] =12'hxx;
+        spike_out_source_array[168] =12'hxx;
+        spike_out_source_array[169] =12'hxx;
+        spike_out_source_array[170] =12'hxx;
+        spike_out_source_array[171] =12'hxx;
+        spike_out_source_array[172] =12'hxx;
+        spike_out_source_array[173] =12'hxx;
+        spike_out_source_array[174] =12'hxx;
+        spike_out_source_array[175] =12'hxx;
+        spike_out_source_array[176] =12'hxx;
+        spike_out_source_array[177] =12'hxx;
+        spike_out_source_array[178] =12'hxx;
+        spike_out_source_array[179] =12'hxx;
+        spike_out_source_array[180] =12'hxx;
+        spike_out_source_array[181] =12'hxx;
+        spike_out_source_array[182] =12'hxx;
+        spike_out_source_array[183] =12'hxx;
+        spike_out_source_array[184] =12'hxx;
+        spike_out_source_array[185] =12'hxx;
+        spike_out_source_array[186] =12'hxx;
+        spike_out_source_array[187] =12'hxx;
+        spike_out_source_array[188] =12'hxx;
+        spike_out_source_array[189] =12'hxx;
+        spike_out_source_array[190] =12'hxx;
+        spike_out_source_array[191] =12'hxx;
+        spike_out_source_array[192] =12'hxx;
+        spike_out_source_array[193] =12'hxx;
+        spike_out_source_array[194] =12'hxx;
+        spike_out_source_array[195] =12'hxx;
+        spike_out_source_array[196] =12'hxx;
+        spike_out_source_array[197] =12'hxx;
+        spike_out_source_array[198] =12'hxx;
+        spike_out_source_array[199] =12'hxx;
+        spike_out_source_array[200] =12'hxx;
+        spike_out_source_array[201] =12'hxx;
+        spike_out_source_array[202] =12'hxx;
+        spike_out_source_array[203] =12'hxx;
+        spike_out_source_array[204] =12'hxx;
+        spike_out_source_array[205] =12'hxx;
+        spike_out_source_array[206] =12'hxx;
+        spike_out_source_array[207] =12'hxx;
+        spike_out_source_array[208] =12'hxx;
+        spike_out_source_array[209] =12'hxx;
+        spike_out_source_array[210] =12'hxx;
+        spike_out_source_array[211] =12'hxx;
+        spike_out_source_array[212] =12'hxx;
+        spike_out_source_array[213] =12'hxx;
+        spike_out_source_array[214] =12'hxx;
+        spike_out_source_array[215] =12'hxx;
+        spike_out_source_array[216] =12'hxx;
+        spike_out_source_array[217] =12'hxx;
+        spike_out_source_array[218] =12'hxx;
+        spike_out_source_array[219] =12'hxx;
+        spike_out_source_array[220] =12'hxx;
+        spike_out_source_array[221] =12'hxx;
+        spike_out_source_array[222] =12'hxx;
+        spike_out_source_array[223] =12'hxx;
+        spike_out_source_array[224] =12'hxx;
+        spike_out_source_array[225] =12'hxx;
+        spike_out_source_array[226] =12'hxx;
+        spike_out_source_array[227] =12'hxx;
+        spike_out_source_array[228] =12'hxx;
+        spike_out_source_array[229] =12'hxx;
+        spike_out_source_array[230] =12'hxx;
+        spike_out_source_array[231] =12'hxx;
+        spike_out_source_array[232] =12'hxx;
+        spike_out_source_array[233] =12'hxx;
+        spike_out_source_array[234] =12'hxx;
+        spike_out_source_array[235] =12'hxx;
+        spike_out_source_array[236] =12'hxx;
+        spike_out_source_array[237] =12'hxx;
+        spike_out_source_array[238] =12'hxx;
+        spike_out_source_array[239] =12'hxx;
+        spike_out_source_array[240] =12'hxx;
+        spike_out_source_array[241] =12'hxx;
+        spike_out_source_array[242] =12'hxx;
+        spike_out_source_array[243] =12'hxx;
+        spike_out_source_array[244] =12'hxx;
+        spike_out_source_array[245] =12'hxx;
+        spike_out_source_array[246] =12'hxx;
+        spike_out_source_array[247] =12'hxx;
+        spike_out_source_array[248] =12'hxx;
+        spike_out_source_array[249] =12'hxx;
+        spike_out_source_array[250] =12'hxx;
+        spike_out_source_array[251] =12'hxx;
+        spike_out_source_array[252] =12'hxx;
+        spike_out_source_array[253] =12'hxx;
+        spike_out_source_array[254] =12'hxx;
+        spike_out_source_array[255] =12'hxx;
+        spike_out_source_array[256] =12'hxx;
+        spike_out_source_array[257] =12'hxx;
+        spike_out_source_array[258] =12'hxx;
+        spike_out_source_array[259] =12'hxx;
+        spike_out_source_array[260] =12'hxx;
+        spike_out_source_array[261] =12'hxx;
+        spike_out_source_array[262] =12'hxx;
+        spike_out_source_array[263] =12'hxx;
+        spike_out_source_array[264] =12'hxx;
+        spike_out_source_array[265] =12'hxx;
+        spike_out_source_array[266] =12'hxx;
+        spike_out_source_array[267] =12'hxx;
+        spike_out_source_array[268] =12'hxx;
+        spike_out_source_array[269] =12'hxx;
+        spike_out_source_array[270] =12'hxx;
+        spike_out_source_array[271] =12'hxx;
+        spike_out_source_array[272] =12'hxx;
+        spike_out_source_array[273] =12'hxx;
+        spike_out_source_array[274] =12'hxx;
+        spike_out_source_array[275] =12'hxx;
+        spike_out_source_array[276] =12'hxx;
+        spike_out_source_array[277] =12'hxx;
+        spike_out_source_array[278] =12'hxx;
+        spike_out_source_array[279] =12'hxx;
+        spike_out_source_array[280] =12'hxx;
+        spike_out_source_array[281] =12'hxx;
+        spike_out_source_array[282] =12'hxx;
+        spike_out_source_array[283] =12'hxx;
+        spike_out_source_array[284] =12'hxx;
+        spike_out_source_array[285] =12'hxx;
+        spike_out_source_array[286] =12'hxx;
+        spike_out_source_array[287] =12'hxx;
+        spike_out_source_array[288] =12'hxx;
+        spike_out_source_array[289] =12'hxx;
+        spike_out_source_array[290] =12'hxx;
+        spike_out_source_array[291] =12'hxx;
+        spike_out_source_array[292] =12'hxx;
+        spike_out_source_array[293] =12'hxx;
+        spike_out_source_array[294] =12'hxx;
+        spike_out_source_array[295] =12'hxx;
+        spike_out_source_array[296] =12'hxx;
+        spike_out_source_array[297] =12'hxx;
+        spike_out_source_array[298] =12'hxx;
+        spike_out_source_array[299] =12'hxx;
+        spike_out_source_array[300] =12'hxx;
+        spike_out_source_array[301] =12'hxx;
+        spike_out_source_array[302] =12'hxx;
+        spike_out_source_array[303] =12'hxx;
+        spike_out_source_array[304] =12'hxx;
+        spike_out_source_array[305] =12'hxx;
+        spike_out_source_array[306] =12'hxx;
+        spike_out_source_array[307] =12'hxx;
+        spike_out_source_array[308] =12'hxx;
+        spike_out_source_array[309] =12'hxx;
+        spike_out_source_array[310] =12'hxx;
+        spike_out_source_array[311] =12'hxx;
+        spike_out_source_array[312] =12'hxx;
+        spike_out_source_array[313] =12'hxx;
+        spike_out_source_array[314] =12'hxx;
+        spike_out_source_array[315] =12'hxx;
+        spike_out_source_array[316] =12'hxx;
+        spike_out_source_array[317] =12'hxx;
+        spike_out_source_array[318] =12'hxx;
+        spike_out_source_array[319] =12'hxx;
+        spike_out_source_array[320] =12'hxx;
+        spike_out_source_array[321] =12'hxx;
+        spike_out_source_array[322] =12'hxx;
+        spike_out_source_array[323] =12'hxx;
+        spike_out_source_array[324] =12'hxx;
+        spike_out_source_array[325] =12'hxx;
+        spike_out_source_array[326] =12'hxx;
+        spike_out_source_array[327] =12'hxx;
+        spike_out_source_array[328] =12'hxx;
+        spike_out_source_array[329] =12'hxx;
+        spike_out_source_array[330] =12'hxx;
+        spike_out_source_array[331] =12'hxx;
+        spike_out_source_array[332] =12'hxx;
+        spike_out_source_array[333] =12'hxx;
+        spike_out_source_array[334] =12'hxx;
+        spike_out_source_array[335] =12'hxx;
+        spike_out_source_array[336] =12'hxx;
+        spike_out_source_array[337] =12'hxx;
+        spike_out_source_array[338] =12'hxx;
+        spike_out_source_array[339] =12'hxx;
+        spike_out_source_array[340] =12'hxx;
+        spike_out_source_array[341] =12'hxx;
+        spike_out_source_array[342] =12'hxx;
+        spike_out_source_array[343] =12'hxx;
+        spike_out_source_array[344] =12'hxx;
+        spike_out_source_array[345] =12'hxx;
+        spike_out_source_array[346] =12'hxx;
+        spike_out_source_array[347] =12'hxx;
+        spike_out_source_array[348] =12'hxx;
+        spike_out_source_array[349] =12'hxx;
+        spike_out_source_array[350] =12'hxx;
+        spike_out_source_array[351] =12'hxx;
+        spike_out_source_array[352] =12'hxx;
+        spike_out_source_array[353] =12'hxx;
+        spike_out_source_array[354] =12'hxx;
+        spike_out_source_array[355] =12'hxx;
+        spike_out_source_array[356] =12'hxx;
+        spike_out_source_array[357] =12'hxx;
+        spike_out_source_array[358] =12'hxx;
+        spike_out_source_array[359] =12'hxx;
+        spike_out_source_array[360] =12'hxx;
+        spike_out_source_array[361] =12'hxx;
+        spike_out_source_array[362] =12'hxx;
+        spike_out_source_array[363] =12'hxx;
+        spike_out_source_array[364] =12'hxx;
+        spike_out_source_array[365] =12'hxx;
+        spike_out_source_array[366] =12'hxx;
+        spike_out_source_array[367] =12'hxx;
+        spike_out_source_array[368] =12'hxx;
+        spike_out_source_array[369] =12'hxx;
+        spike_out_source_array[370] =12'hxx;
+        spike_out_source_array[371] =12'hxx;
+        spike_out_source_array[372] =12'hxx;
+        spike_out_source_array[373] =12'hxx;
+        spike_out_source_array[374] =12'hxx;
+        spike_out_source_array[375] =12'hxx;
+        spike_out_source_array[376] =12'hxx;
+        spike_out_source_array[377] =12'hxx;
+        spike_out_source_array[378] =12'hxx;
+        spike_out_source_array[379] =12'hxx;
+        spike_out_source_array[380] =12'hxx;
+        spike_out_source_array[381] =12'hxx;
+        spike_out_source_array[382] =12'hxx;
+        spike_out_source_array[383] =12'hxx;
+        spike_out_source_array[384] =12'hxx;
+        spike_out_source_array[385] =12'hxx;
+        spike_out_source_array[386] =12'hxx;
+        spike_out_source_array[387] =12'hxx;
+        spike_out_source_array[388] =12'hxx;
+        spike_out_source_array[389] =12'hxx;
+        spike_out_source_array[390] =12'hxx;
+        spike_out_source_array[391] =12'hxx;
+        spike_out_source_array[392] =12'hxx;
+        spike_out_source_array[393] =12'hxx;
+        spike_out_source_array[394] =12'hxx;
+        spike_out_source_array[395] =12'hxx;
+        spike_out_source_array[396] =12'hxx;
+        spike_out_source_array[397] =12'hxx;
+        spike_out_source_array[398] =12'hxx;
+        spike_out_source_array[399] =12'hxx;
+        spike_out_source_array[400] =12'hxx;
+        spike_out_source_array[401] =12'hxx;
+        spike_out_source_array[402] =12'hxx;
+        spike_out_source_array[403] =12'hxx;
+        spike_out_source_array[404] =12'hxx;
+        spike_out_source_array[405] =12'hxx;
+        spike_out_source_array[406] =12'hxx;
+        spike_out_source_array[407] =12'hxx;
+        spike_out_source_array[408] =12'hxx;
+        spike_out_source_array[409] =12'hxx;
+        spike_out_source_array[410] =12'hxx;
+        spike_out_source_array[411] =12'hxx;
+        spike_out_source_array[412] =12'hxx;
+        spike_out_source_array[413] =12'hxx;
+        spike_out_source_array[414] =12'hxx;
+        spike_out_source_array[415] =12'hxx;
+        spike_out_source_array[416] =12'hxx;
+        spike_out_source_array[417] =12'hxx;
+        spike_out_source_array[418] =12'hxx;
+        spike_out_source_array[419] =12'hxx;
+        spike_out_source_array[420] =12'hxx;
+        spike_out_source_array[421] =12'hxx;
+        spike_out_source_array[422] =12'hxx;
+        spike_out_source_array[423] =12'hxx;
+        spike_out_source_array[424] =12'hxx;
+        spike_out_source_array[425] =12'hxx;
+        spike_out_source_array[426] =12'hxx;
+        spike_out_source_array[427] =12'hxx;
+        spike_out_source_array[428] =12'hxx;
+        spike_out_source_array[429] =12'hxx;
+        spike_out_source_array[430] =12'hxx;
+        spike_out_source_array[431] =12'hxx;
+        spike_out_source_array[432] =12'hxx;
+        spike_out_source_array[433] =12'hxx;
+        spike_out_source_array[434] =12'hxx;
+        spike_out_source_array[435] =12'hxx;
+        spike_out_source_array[436] =12'hxx;
+        spike_out_source_array[437] =12'hxx;
+        spike_out_source_array[438] =12'hxx;
+        spike_out_source_array[439] =12'hxx;
+        spike_out_source_array[440] =12'hxx;
+        spike_out_source_array[441] =12'hxx;
+        spike_out_source_array[442] =12'hxx;
+        spike_out_source_array[443] =12'hxx;
+        spike_out_source_array[444] =12'hxx;
+        spike_out_source_array[445] =12'hxx;
+        spike_out_source_array[446] =12'hxx;
+        spike_out_source_array[447] =12'hxx;
+        spike_out_source_array[448] =12'hxx;
+        spike_out_source_array[449] =12'hxx;
+        spike_out_source_array[450] =12'hxx;
+        spike_out_source_array[451] =12'hxx;
+        spike_out_source_array[452] =12'hxx;
+        spike_out_source_array[453] =12'hxx;
+        spike_out_source_array[454] =12'hxx;
+        spike_out_source_array[455] =12'hxx;
+        spike_out_source_array[456] =12'hxx;
+        spike_out_source_array[457] =12'hxx;
+        spike_out_source_array[458] =12'hxx;
+        spike_out_source_array[459] =12'hxx;
+        spike_out_source_array[460] =12'hxx;
+        spike_out_source_array[461] =12'hxx;
+        spike_out_source_array[462] =12'hxx;
+        spike_out_source_array[463] =12'hxx;
+        spike_out_source_array[464] =12'hxx;
+        spike_out_source_array[465] =12'hxx;
+        spike_out_source_array[466] =12'hxx;
+        spike_out_source_array[467] =12'hxx;
+        spike_out_source_array[468] =12'hxx;
+        spike_out_source_array[469] =12'hxx;
+        spike_out_source_array[470] =12'hxx;
+        spike_out_source_array[471] =12'hxx;
+        spike_out_source_array[472] =12'hxx;
+        spike_out_source_array[473] =12'hxx;
+        spike_out_source_array[474] =12'hxx;
+        spike_out_source_array[475] =12'hxx;
+        spike_out_source_array[476] =12'hxx;
+        spike_out_source_array[477] =12'hxx;
+        spike_out_source_array[478] =12'hxx;
+        spike_out_source_array[479] =12'hxx;
+        spike_out_source_array[480] =12'hxx;
+        spike_out_source_array[481] =12'hxx;
+        spike_out_source_array[482] =12'hxx;
+        spike_out_source_array[483] =12'hxx;
+        spike_out_source_array[484] =12'hxx;
+        spike_out_source_array[485] =12'hxx;
+        spike_out_source_array[486] =12'hxx;
+        spike_out_source_array[487] =12'hxx;
+        spike_out_source_array[488] =12'hxx;
+        spike_out_source_array[489] =12'hxx;
+        spike_out_source_array[490] =12'hxx;
+        spike_out_source_array[491] =12'hxx;
+        spike_out_source_array[492] =12'hxx;
+        spike_out_source_array[493] =12'hxx;
+        spike_out_source_array[494] =12'hxx;
+        spike_out_source_array[495] =12'hxx;
+        spike_out_source_array[496] =12'hxx;
+        spike_out_source_array[497] =12'hxx;
+        spike_out_source_array[498] =12'hxx;
+        spike_out_source_array[499] =12'hxx;
+        spike_out_source_array[500] =12'hxx;
+        spike_out_source_array[501] =12'hxx;
+        spike_out_source_array[502] =12'hxx;
+        spike_out_source_array[503] =12'hxx;
+        spike_out_source_array[504] =12'hxx;
+        spike_out_source_array[505] =12'hxx;
+        spike_out_source_array[506] =12'hxx;
+        spike_out_source_array[507] =12'hxx;
+        spike_out_source_array[508] =12'hxx;
+        spike_out_source_array[509] =12'hxx;
+        spike_out_source_array[510] =12'hxx;
+        spike_out_source_array[511] =12'hxx;
+        spike_out_source_array[512] =12'hxx;
+        spike_out_source_array[513] =12'hxx;
+        spike_out_source_array[514] =12'hxx;
+        spike_out_source_array[515] =12'hxx;
+        spike_out_source_array[516] =12'hxx;
+        spike_out_source_array[517] =12'hxx;
+        spike_out_source_array[518] =12'hxx;
+        spike_out_source_array[519] =12'hxx;
+        spike_out_source_array[520] =12'hxx;
+        spike_out_source_array[521] =12'hxx;
+        spike_out_source_array[522] =12'hxx;
+        spike_out_source_array[523] =12'hxx;
+        spike_out_source_array[524] =12'hxx;
+        spike_out_source_array[525] =12'hxx;
+        spike_out_source_array[526] =12'hxx;
+        spike_out_source_array[527] =12'hxx;
+        spike_out_source_array[528] =12'hxx;
+        spike_out_source_array[529] =12'hxx;
+        spike_out_source_array[530] =12'hxx;
+        spike_out_source_array[531] =12'hxx;
+        spike_out_source_array[532] =12'hxx;
+        spike_out_source_array[533] =12'hxx;
+        spike_out_source_array[534] =12'hxx;
+        spike_out_source_array[535] =12'hxx;
+        spike_out_source_array[536] =12'hxx;
+        spike_out_source_array[537] =12'hxx;
+        spike_out_source_array[538] =12'hxx;
+        spike_out_source_array[539] =12'hxx;
+        spike_out_source_array[540] =12'hxx;
+        spike_out_source_array[541] =12'hxx;
+        spike_out_source_array[542] =12'hxx;
+        spike_out_source_array[543] =12'hxx;
+        spike_out_source_array[544] =12'hxx;
+        spike_out_source_array[545] =12'hxx;
+        spike_out_source_array[546] =12'hxx;
+        spike_out_source_array[547] =12'hxx;
+        spike_out_source_array[548] =12'hxx;
+        spike_out_source_array[549] =12'hxx;
+        spike_out_source_array[550] =12'hxx;
+        spike_out_source_array[551] =12'hxx;
+        spike_out_source_array[552] =12'hxx;
+        spike_out_source_array[553] =12'hxx;
+        spike_out_source_array[554] =12'hxx;
+        spike_out_source_array[555] =12'hxx;
+        spike_out_source_array[556] =12'hxx;
+        spike_out_source_array[557] =12'hxx;
+        spike_out_source_array[558] =12'hxx;
+        spike_out_source_array[559] =12'hxx;
+        spike_out_source_array[560] =12'hxx;
+        spike_out_source_array[561] =12'hxx;
+        spike_out_source_array[562] =12'hxx;
+        spike_out_source_array[563] =12'hxx;
+        spike_out_source_array[564] =12'hxx;
+        spike_out_source_array[565] =12'hxx;
+        spike_out_source_array[566] =12'hxx;
+        spike_out_source_array[567] =12'hxx;
+        spike_out_source_array[568] =12'hxx;
+        spike_out_source_array[569] =12'hxx;
+        spike_out_source_array[570] =12'hxx;
+        spike_out_source_array[571] =12'hxx;
+        spike_out_source_array[572] =12'hxx;
+        spike_out_source_array[573] =12'hxx;
+        spike_out_source_array[574] =12'hxx;
+        spike_out_source_array[575] =12'hxx;
+        spike_out_source_array[576] =12'hxx;
+        spike_out_source_array[577] =12'hxx;
+        spike_out_source_array[578] =12'hxx;
+        spike_out_source_array[579] =12'hxx;
+        spike_out_source_array[580] =12'hxx;
+        spike_out_source_array[581] =12'hxx;
+        spike_out_source_array[582] =12'hxx;
+        spike_out_source_array[583] =12'hxx;
+        spike_out_source_array[584] =12'hxx;
+        spike_out_source_array[585] =12'hxx;
+        spike_out_source_array[586] =12'hxx;
+        spike_out_source_array[587] =12'hxx;
+        spike_out_source_array[588] =12'hxx;
+        spike_out_source_array[589] =12'hxx;
+        spike_out_source_array[590] =12'hxx;
+        spike_out_source_array[591] =12'hxx;
+        spike_out_source_array[592] =12'hxx;
+        spike_out_source_array[593] =12'hxx;
+        spike_out_source_array[594] =12'hxx;
+        spike_out_source_array[595] =12'hxx;
+        spike_out_source_array[596] =12'hxx;
+        spike_out_source_array[597] =12'hxx;
+        spike_out_source_array[598] =12'hxx;
+        spike_out_source_array[599] =12'hxx;
+        spike_out_source_array[600] =12'hxx;
+        spike_out_source_array[601] =12'hxx;
+        spike_out_source_array[602] =12'hxx;
+        spike_out_source_array[603] =12'hxx;
+        spike_out_source_array[604] =12'hxx;
+        spike_out_source_array[605] =12'hxx;
+        spike_out_source_array[606] =12'hxx;
+        spike_out_source_array[607] =12'hxx;
+        spike_out_source_array[608] =12'hxx;
+        spike_out_source_array[609] =12'hxx;
+        spike_out_source_array[610] =12'hxx;
+        spike_out_source_array[611] =12'hxx;
+        spike_out_source_array[612] =12'hxx;
+        spike_out_source_array[613] =12'hxx;
+        spike_out_source_array[614] =12'hxx;
+        spike_out_source_array[615] =12'hxx;
+        spike_out_source_array[616] =12'hxx;
+        spike_out_source_array[617] =12'hxx;
+        spike_out_source_array[618] =12'hxx;
+        spike_out_source_array[619] =12'hxx;
+        spike_out_source_array[620] =12'hxx;
+        spike_out_source_array[621] =12'hxx;
+        spike_out_source_array[622] =12'hxx;
+        spike_out_source_array[623] =12'hxx;
+        spike_out_source_array[624] =12'hxx;
+        spike_out_source_array[625] =12'hxx;
+        spike_out_source_array[626] =12'hxx;
+        spike_out_source_array[627] =12'hxx;
+        spike_out_source_array[628] =12'hxx;
+        spike_out_source_array[629] =12'hxx;
+        spike_out_source_array[630] =12'hxx;
+        spike_out_source_array[631] =12'hxx;
+        spike_out_source_array[632] =12'hxx;
+        spike_out_source_array[633] =12'hxx;
+        spike_out_source_array[634] =12'hxx;
+        spike_out_source_array[635] =12'hxx;
+        spike_out_source_array[636] =12'hxx;
+        spike_out_source_array[637] =12'hxx;
+        spike_out_source_array[638] =12'hxx;
+        spike_out_source_array[639] =12'hxx;
+        spike_out_source_array[640] =12'hxx;
+        spike_out_source_array[641] =12'hxx;
+        spike_out_source_array[642] =12'hxx;
+        spike_out_source_array[643] =12'hxx;
+        spike_out_source_array[644] =12'hxx;
+        spike_out_source_array[645] =12'hxx;
+        spike_out_source_array[646] =12'hxx;
+        spike_out_source_array[647] =12'hxx;
+        spike_out_source_array[648] =12'hxx;
+        spike_out_source_array[649] =12'hxx;
+        spike_out_source_array[650] =12'hxx;
+        spike_out_source_array[651] =12'hxx;
+        spike_out_source_array[652] =12'hxx;
+        spike_out_source_array[653] =12'hxx;
+        spike_out_source_array[654] =12'hxx;
+        spike_out_source_array[655] =12'hxx;
+        spike_out_source_array[656] =12'hxx;
+        spike_out_source_array[657] =12'hxx;
+        spike_out_source_array[658] =12'hxx;
+        spike_out_source_array[659] =12'hxx;
+        spike_out_source_array[660] =12'hxx;
+        spike_out_source_array[661] =12'hxx;
+        spike_out_source_array[662] =12'hxx;
+        spike_out_source_array[663] =12'hxx;
+        spike_out_source_array[664] =12'hxx;
+        spike_out_source_array[665] =12'hxx;
+        spike_out_source_array[666] =12'hxx;
+        spike_out_source_array[667] =12'hxx;
+        spike_out_source_array[668] =12'hxx;
+        spike_out_source_array[669] =12'hxx;
+        spike_out_source_array[670] =12'hxx;
+        spike_out_source_array[671] =12'hxx;
+        spike_out_source_array[672] =12'hxx;
+        spike_out_source_array[673] =12'hxx;
+        spike_out_source_array[674] =12'hxx;
+        spike_out_source_array[675] =12'hxx;
+        spike_out_source_array[676] =12'hxx;
+        spike_out_source_array[677] =12'hxx;
+        spike_out_source_array[678] =12'hxx;
+        spike_out_source_array[679] =12'hxx;
+        spike_out_source_array[680] =12'hxx;
+        spike_out_source_array[681] =12'hxx;
+        spike_out_source_array[682] =12'hxx;
+        spike_out_source_array[683] =12'hxx;
+        spike_out_source_array[684] =12'hxx;
+        spike_out_source_array[685] =12'hxx;
+        spike_out_source_array[686] =12'hxx;
+        spike_out_source_array[687] =12'hxx;
+        spike_out_source_array[688] =12'hxx;
+        spike_out_source_array[689] =12'hxx;
+        spike_out_source_array[690] =12'hxx;
+        spike_out_source_array[691] =12'hxx;
+        spike_out_source_array[692] =12'hxx;
+        spike_out_source_array[693] =12'hxx;
+        spike_out_source_array[694] =12'hxx;
+        spike_out_source_array[695] =12'hxx;
+        spike_out_source_array[696] =12'hxx;
+        spike_out_source_array[697] =12'hxx;
+        spike_out_source_array[698] =12'hxx;
+        spike_out_source_array[699] =12'hxx;
+        spike_out_source_array[700] =12'hxx;
+        spike_out_source_array[701] =12'hxx;
+        spike_out_source_array[702] =12'hxx;
+        spike_out_source_array[703] =12'hxx;
+        spike_out_source_array[704] =12'hxx;
+        spike_out_source_array[705] =12'hxx;
+        spike_out_source_array[706] =12'hxx;
+        spike_out_source_array[707] =12'hxx;
+        spike_out_source_array[708] =12'hxx;
+        spike_out_source_array[709] =12'hxx;
+        spike_out_source_array[710] =12'hxx;
+        spike_out_source_array[711] =12'hxx;
+        spike_out_source_array[712] =12'hxx;
+        spike_out_source_array[713] =12'hxx;
+        spike_out_source_array[714] =12'hxx;
+        spike_out_source_array[715] =12'hxx;
+        spike_out_source_array[716] =12'hxx;
+        spike_out_source_array[717] =12'hxx;
+        spike_out_source_array[718] =12'hxx;
+        spike_out_source_array[719] =12'hxx;
+        spike_out_source_array[720] =12'hxx;
+        spike_out_source_array[721] =12'hxx;
+        spike_out_source_array[722] =12'hxx;
+        spike_out_source_array[723] =12'hxx;
+        spike_out_source_array[724] =12'hxx;
+        spike_out_source_array[725] =12'hxx;
+        spike_out_source_array[726] =12'hxx;
+        spike_out_source_array[727] =12'hxx;
+        spike_out_source_array[728] =12'hxx;
+        spike_out_source_array[729] =12'hxx;
+        spike_out_source_array[730] =12'hxx;
+        spike_out_source_array[731] =12'hxx;
+        spike_out_source_array[732] =12'hxx;
+        spike_out_source_array[733] =12'hxx;
+        spike_out_source_array[734] =12'hxx;
+        spike_out_source_array[735] =12'hxx;
+        spike_out_source_array[736] =12'hxx;
+        spike_out_source_array[737] =12'hxx;
+        spike_out_source_array[738] =12'hxx;
+        spike_out_source_array[739] =12'hxx;
+        spike_out_source_array[740] =12'hxx;
+        spike_out_source_array[741] =12'hxx;
+        spike_out_source_array[742] =12'hxx;
+        spike_out_source_array[743] =12'hxx;
+        spike_out_source_array[744] =12'hxx;
+        spike_out_source_array[745] =12'hxx;
+        spike_out_source_array[746] =12'hxx;
+        spike_out_source_array[747] =12'hxx;
+        spike_out_source_array[748] =12'hxx;
+        spike_out_source_array[749] =12'hxx;
+        spike_out_source_array[750] =12'hxx;
+        spike_out_source_array[751] =12'hxx;
+        spike_out_source_array[752] =12'hxx;
+        spike_out_source_array[753] =12'hxx;
+        spike_out_source_array[754] =12'hxx;
+        spike_out_source_array[755] =12'hxx;
+        spike_out_source_array[756] =12'hxx;
+        spike_out_source_array[757] =12'hxx;
+        spike_out_source_array[758] =12'hxx;
+        spike_out_source_array[759] =12'hxx;
+        spike_out_source_array[760] =12'hxx;
+        spike_out_source_array[761] =12'hxx;
+        spike_out_source_array[762] =12'hxx;
+        spike_out_source_array[763] =12'hxx;
+        spike_out_source_array[764] =12'hxx;
+        spike_out_source_array[765] =12'hxx;
+        spike_out_source_array[766] =12'hxx;
+        spike_out_source_array[767] =12'hxx;
+        spike_out_source_array[768] =12'hxx;
+        spike_out_source_array[769] =12'hxx;
+        spike_out_source_array[770] =12'hxx;
+        spike_out_source_array[771] =12'hxx;
+        spike_out_source_array[772] =12'hxx;
+        spike_out_source_array[773] =12'hxx;
+        spike_out_source_array[774] =12'hxx;
+        spike_out_source_array[775] =12'hxx;
+        spike_out_source_array[776] =12'hxx;
+        spike_out_source_array[777] =12'hxx;
+        spike_out_source_array[778] =12'hxx;
+        spike_out_source_array[779] =12'hxx;
+        spike_out_source_array[780] =12'hxx;
+        spike_out_source_array[781] =12'hxx;
+        spike_out_source_array[782] =12'hxx;
+        spike_out_source_array[783] =12'hxx;
+        spike_out_source_array[784] =12'hxx;
+        spike_out_source_array[785] =12'hxx;
+        spike_out_source_array[786] =12'hxx;
+        spike_out_source_array[787] =12'hxx;
+        spike_out_source_array[788] =12'hxx;
+        spike_out_source_array[789] =12'hxx;
+        spike_out_source_array[790] =12'hxx;
+        spike_out_source_array[791] =12'hxx;
+        spike_out_source_array[792] =12'hxx;
+        spike_out_source_array[793] =12'hxx;
+        spike_out_source_array[794] =12'hxx;
+        spike_out_source_array[795] =12'hxx;
+        spike_out_source_array[796] =12'hxx;
+        spike_out_source_array[797] =12'hxx;
+        spike_out_source_array[798] =12'hxx;
+        spike_out_source_array[799] =12'hxx;
+        spike_out_source_array[800] =12'hxx;
+        spike_out_source_array[801] =12'hxx;
+        spike_out_source_array[802] =12'hxx;
+        spike_out_source_array[803] =12'hxx;
+        spike_out_source_array[804] =12'hxx;
+        spike_out_source_array[805] =12'hxx;
+        spike_out_source_array[806] =12'hxx;
+        spike_out_source_array[807] =12'hxx;
+        spike_out_source_array[808] =12'hxx;
+        spike_out_source_array[809] =12'hxx;
+        spike_out_source_array[810] =12'hxx;
+        spike_out_source_array[811] =12'hxx;
+        spike_out_source_array[812] =12'hxx;
+        spike_out_source_array[813] =12'hxx;
+        spike_out_source_array[814] =12'hxx;
+        spike_out_source_array[815] =12'hxx;
+        spike_out_source_array[816] =12'hxx;
+        spike_out_source_array[817] =12'hxx;
+        spike_out_source_array[818] =12'hxx;
+        spike_out_source_array[819] =12'hxx;
+        spike_out_source_array[820] =12'hxx;
+        spike_out_source_array[821] =12'hxx;
+        spike_out_source_array[822] =12'hxx;
+        spike_out_source_array[823] =12'hxx;
+        spike_out_source_array[824] =12'hxx;
+        spike_out_source_array[825] =12'hxx;
+        spike_out_source_array[826] =12'hxx;
+        spike_out_source_array[827] =12'hxx;
+        spike_out_source_array[828] =12'hxx;
+        spike_out_source_array[829] =12'hxx;
+        spike_out_source_array[830] =12'hxx;
+        spike_out_source_array[831] =12'hxx;
+        spike_out_source_array[832] =12'hxx;
+        spike_out_source_array[833] =12'hxx;
+        spike_out_source_array[834] =12'hxx;
+        spike_out_source_array[835] =12'hxx;
+        spike_out_source_array[836] =12'hxx;
+        spike_out_source_array[837] =12'hxx;
+        spike_out_source_array[838] =12'hxx;
+        spike_out_source_array[839] =12'hxx;
+        spike_out_source_array[840] =12'hxx;
+        spike_out_source_array[841] =12'hxx;
+        spike_out_source_array[842] =12'hxx;
+        spike_out_source_array[843] =12'hxx;
+        spike_out_source_array[844] =12'hxx;
+        spike_out_source_array[845] =12'hxx;
+        spike_out_source_array[846] =12'hxx;
+        spike_out_source_array[847] =12'hxx;
+        spike_out_source_array[848] =12'hxx;
+        spike_out_source_array[849] =12'hxx;
+        spike_out_source_array[850] =12'hxx;
+        spike_out_source_array[851] =12'hxx;
+        spike_out_source_array[852] =12'hxx;
+        spike_out_source_array[853] =12'hxx;
+        spike_out_source_array[854] =12'hxx;
+        spike_out_source_array[855] =12'hxx;
+        spike_out_source_array[856] =12'hxx;
+        spike_out_source_array[857] =12'hxx;
+        spike_out_source_array[858] =12'hxx;
+        spike_out_source_array[859] =12'hxx;
+        spike_out_source_array[860] =12'hxx;
+        spike_out_source_array[861] =12'hxx;
+        spike_out_source_array[862] =12'hxx;
+        spike_out_source_array[863] =12'hxx;
+        spike_out_source_array[864] =12'hxx;
+        spike_out_source_array[865] =12'hxx;
+        spike_out_source_array[866] =12'hxx;
+        spike_out_source_array[867] =12'hxx;
+        spike_out_source_array[868] =12'hxx;
+        spike_out_source_array[869] =12'hxx;
+        spike_out_source_array[870] =12'hxx;
+        spike_out_source_array[871] =12'hxx;
+        spike_out_source_array[872] =12'hxx;
+        spike_out_source_array[873] =12'hxx;
+        spike_out_source_array[874] =12'hxx;
+        spike_out_source_array[875] =12'hxx;
+        spike_out_source_array[876] =12'hxx;
+        spike_out_source_array[877] =12'hxx;
+        spike_out_source_array[878] =12'hxx;
+        spike_out_source_array[879] =12'hxx;
+        spike_out_source_array[880] =12'hxx;
+        spike_out_source_array[881] =12'hxx;
+        spike_out_source_array[882] =12'hxx;
+        spike_out_source_array[883] =12'hxx;
+        spike_out_source_array[884] =12'hxx;
+        spike_out_source_array[885] =12'hxx;
+        spike_out_source_array[886] =12'hxx;
+        spike_out_source_array[887] =12'hxx;
+        spike_out_source_array[888] =12'hxx;
+        spike_out_source_array[889] =12'hxx;
+        spike_out_source_array[890] =12'hxx;
+        spike_out_source_array[891] =12'hxx;
+        spike_out_source_array[892] =12'hxx;
+        spike_out_source_array[893] =12'hxx;
+        spike_out_source_array[894] =12'hxx;
+        spike_out_source_array[895] =12'hxx;
+        spike_out_source_array[896] =12'hxx;
+        spike_out_source_array[897] =12'hxx;
+        spike_out_source_array[898] =12'hxx;
+        spike_out_source_array[899] =12'hxx;
+        spike_out_source_array[900] =12'hxx;
+        spike_out_source_array[901] =12'hxx;
+        spike_out_source_array[902] =12'hxx;
+        spike_out_source_array[903] =12'hxx;
+        spike_out_source_array[904] =12'hxx;
+        spike_out_source_array[905] =12'hxx;
+        spike_out_source_array[906] =12'hxx;
+        spike_out_source_array[907] =12'hxx;
+        spike_out_source_array[908] =12'hxx;
+        spike_out_source_array[909] =12'hxx;
+        spike_out_source_array[910] =12'hxx;
+        spike_out_source_array[911] =12'hxx;
+        spike_out_source_array[912] =12'hxx;
+        spike_out_source_array[913] =12'hxx;
+        spike_out_source_array[914] =12'hxx;
+        spike_out_source_array[915] =12'hxx;
+        spike_out_source_array[916] =12'hxx;
+        spike_out_source_array[917] =12'hxx;
+        spike_out_source_array[918] =12'hxx;
+        spike_out_source_array[919] =12'hxx;
+        spike_out_source_array[920] =12'hxx;
+        spike_out_source_array[921] =12'hxx;
+        spike_out_source_array[922] =12'hxx;
+        spike_out_source_array[923] =12'hxx;
+        spike_out_source_array[924] =12'hxx;
+        spike_out_source_array[925] =12'hxx;
+        spike_out_source_array[926] =12'hxx;
+        spike_out_source_array[927] =12'hxx;
+        spike_out_source_array[928] =12'hxx;
+        spike_out_source_array[929] =12'hxx;
+        spike_out_source_array[930] =12'hxx;
+        spike_out_source_array[931] =12'hxx;
+        spike_out_source_array[932] =12'hxx;
+        spike_out_source_array[933] =12'hxx;
+        spike_out_source_array[934] =12'hxx;
+        spike_out_source_array[935] =12'hxx;
+        spike_out_source_array[936] =12'hxx;
+        spike_out_source_array[937] =12'hxx;
+        spike_out_source_array[938] =12'hxx;
+        spike_out_source_array[939] =12'hxx;
+        spike_out_source_array[940] =12'hxx;
+        spike_out_source_array[941] =12'hxx;
+        spike_out_source_array[942] =12'hxx;
+        spike_out_source_array[943] =12'hxx;
+        spike_out_source_array[944] =12'hxx;
+        spike_out_source_array[945] =12'hxx;
+        spike_out_source_array[946] =12'hxx;
+        spike_out_source_array[947] =12'hxx;
+        spike_out_source_array[948] =12'hxx;
+        spike_out_source_array[949] =12'hxx;
+        spike_out_source_array[950] =12'hxx;
+        spike_out_source_array[951] =12'hxx;
+        spike_out_source_array[952] =12'hxx;
+        spike_out_source_array[953] =12'hxx;
+        spike_out_source_array[954] =12'hxx;
+        spike_out_source_array[955] =12'hxx;
+        spike_out_source_array[956] =12'hxx;
+        spike_out_source_array[957] =12'hxx;
+        spike_out_source_array[958] =12'hxx;
+        spike_out_source_array[959] =12'hxx;
+        spike_out_source_array[960] =12'hxx;
+        spike_out_source_array[961] =12'hxx;
+        spike_out_source_array[962] =12'hxx;
+        spike_out_source_array[963] =12'hxx;
+        spike_out_source_array[964] =12'hxx;
+        spike_out_source_array[965] =12'hxx;
+        spike_out_source_array[966] =12'hxx;
+        spike_out_source_array[967] =12'hxx;
+        spike_out_source_array[968] =12'hxx;
+        spike_out_source_array[969] =12'hxx;
+        spike_out_source_array[970] =12'hxx;
+        spike_out_source_array[971] =12'hxx;
+        spike_out_source_array[972] =12'hxx;
+        spike_out_source_array[973] =12'hxx;
+        spike_out_source_array[974] =12'hxx;
+        spike_out_source_array[975] =12'hxx;
+        spike_out_source_array[976] =12'hxx;
+        spike_out_source_array[977] =12'hxx;
+        spike_out_source_array[978] =12'hxx;
+        spike_out_source_array[979] =12'hxx;
+        spike_out_source_array[980] =12'hxx;
+        spike_out_source_array[981] =12'hxx;
+        spike_out_source_array[982] =12'hxx;
+        spike_out_source_array[983] =12'hxx;
+        spike_out_source_array[984] =12'hxx;
+        spike_out_source_array[985] =12'hxx;
+        spike_out_source_array[986] =12'hxx;
+        spike_out_source_array[987] =12'hxx;
+        spike_out_source_array[988] =12'hxx;
+        spike_out_source_array[989] =12'hxx;
+        spike_out_source_array[990] =12'hxx;
+        spike_out_source_array[991] =12'hxx;
+        spike_out_source_array[992] =12'hxx;
+        spike_out_source_array[993] =12'hxx;
+        spike_out_source_array[994] =12'hxx;
+        spike_out_source_array[995] =12'hxx;
+        spike_out_source_array[996] =12'hxx;
+        spike_out_source_array[997] =12'hxx;
+        spike_out_source_array[998] =12'hxx;
+        spike_out_source_array[999] =12'hxx;
+        spike_out_source_array[1000] =12'hxx;
+        spike_out_source_array[1001] =12'hxx;
+        spike_out_source_array[1002] =12'hxx;
+        spike_out_source_array[1003] =12'hxx;
+        spike_out_source_array[1004] =12'hxx;
+        spike_out_source_array[1005] =12'hxx;
+        spike_out_source_array[1006] =12'hxx;
+        spike_out_source_array[1007] =12'hxx;
+        spike_out_source_array[1008] =12'hxx;
+        spike_out_source_array[1009] =12'hxx;
+        spike_out_source_array[1010] =12'hxx;
+        spike_out_source_array[1011] =12'hxx;
+        spike_out_source_array[1012] =12'hxx;
+        spike_out_source_array[1013] =12'hxx;
+        spike_out_source_array[1014] =12'hxx;
+        spike_out_source_array[1015] =12'hxx;
+        spike_out_source_array[1016] =12'hxx;
+        spike_out_source_array[1017] =12'hxx;
+        spike_out_source_array[1018] =12'hxx;
+        spike_out_source_array[1019] =12'hxx;
+        spike_out_source_array[1020] =12'hxx;
+        spike_out_source_array[1021] =12'hxx;
+        spike_out_source_array[1022] =12'hxx;
+        spike_out_source_array[1023] =12'hxx;
     end
 
     
