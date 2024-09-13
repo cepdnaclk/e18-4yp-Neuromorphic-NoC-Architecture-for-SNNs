@@ -76,12 +76,29 @@ architectures.
 
 ![Sample Image](./images/single_neruon.png) 
 
-Work is underway to develop a RISC-V based system integrated with an accelerator as shown below. The accelerator will perform the intensive task of the continous calculations of potential decaying and along with spike related calculations.
-<!-- ## Experiment Setup and Implementation-->
+## Experiment Setup and Implementation
+Once the architecture was completed and tested via simulation, it was implemented on an FPGA device, specifically the DE2-115 by Altera. To confirm the implementation, a small-scale SNN was tested on the device.
+![Sample Image](./images/small__snn.png) 
 
-<!-- ## Results and Analysis -->
+In terms of the number of neurons that can be simulated on the design, we have restricted it to 1,024. This was done with the aim of efficiently supporting this number of neurons in terms of power and time. An SNN with 994 neurons was successfully simulated on the design for the purpose of MNIST classification.
+
+Additionally, an architectural experiment was conducted to differentiate the benefits of using multiple FIFO (First In, First Out) buffers at the output side of the neuron interconnect, as shown in the design view. The objective of the experiment was to observe the difference in operating frequency between using a single FIFO buffer and dedicated FIFO buffers from the neuron interconnect to the neurons. Using the results of this experiment, we were able to find the right balance between resource usage and time efficiency. 
+
+## Results and Analysis
+
+The below video shows the simualtion of the SNN shown above in the experiment section. It can be seen that the spike resolution is taking place which is mapped on to the red LEDs of the FPGA device. 
+
+https://user-images.githubusercontent.com/73468096/204227892-e27bf4dd-a8cb-4a1b-a134-60695b556d3e.mp4
+
+The resuts of having a single FIFO buffer and dedicated FIFO buffers can be seen in the grpah below.
+
+![Sample Image](./images/fifo.png) 
+
+It can be observed that the operating frequency declines sharply as the number of neurons increases when a single FIFO buffer is placed at the output of the network interconnect leading to the accumulator units. Conversely, with dedicated FIFO buffers for each accumulator unit, the frequency remains relatively stable, showing only minor variations within a certain range. This stability is attributed to the absence of bottlenecks as the system scales.
 
 <!--## Conclusion-->
+In conclusion, it can be said that while there are designs that facilitate large-scale architectures, there is a scarcity of designs that fully exploit programming flexibility. By targeting small-scale SNNs, our design introduces great flexibility through a combination of the general-purpose RISC-V processor and the accelerator. Although the design does not match the scale of other large-scale architectures, it is optimized for applications that rely on small-scale SNNs, prioritizing performance and low power consumption.
+
 
 <!-- ## Publications-->
 [//]: # "Note: Uncomment each once you uploaded the files to the repository"
