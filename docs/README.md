@@ -78,11 +78,13 @@ architectures.
 
 ## Experiment Setup and Implementation
 Once the architecture was completed and tested via simulation, it was implemented on an FPGA device, specifically the DE2-115 by Altera. To confirm the implementation, a small-scale SNN was tested on the device.
-![Sample Image](./images/small__snn.png) 
+![Sample Image](./images/small_snn.png) 
 
 In terms of the number of neurons that can be simulated on the design, we have restricted it to 1,024. This was done with the aim of efficiently supporting this number of neurons in terms of power and time. An SNN with 994 neurons was successfully simulated on the design for the purpose of MNIST classification.
 
-Additionally, an architectural experiment was conducted to differentiate the benefits of using multiple FIFO (First In, First Out) buffers at the output side of the neuron interconnect, as shown in the design view. The objective of the experiment was to observe the difference in operating frequency between using a single FIFO buffer and dedicated FIFO buffers from the neuron interconnect to the neurons. Using the results of this experiment, we were able to find the right balance between resource usage and time efficiency. 
+Additionally, an architectural experiment was conducted to differentiate the benefits of using multiple FIFO (First In, First Out) buffers at the output side of the neuron interconnect, as shown in the design view. The objective of the experiment was to observe the difference in operating frequency between using a single FIFO buffer and dedicated FIFO buffers from the neuron interconnect to the neurons. Using the results of this experiment, we were able to find the right balance between resource usage and time efficiency. The circuit made for the timing analysis is shown below. 
+
+![Sample Image](./images/fifo_circuit.png) 
 
 ## Results and Analysis
 
