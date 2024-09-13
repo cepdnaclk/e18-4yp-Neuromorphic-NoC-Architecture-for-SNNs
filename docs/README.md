@@ -90,7 +90,9 @@ Additionally, an architectural experiment was conducted to differentiate the ben
 
 The below video shows the simualtion of the SNN shown above in the experiment section. It can be seen that the spike resolution is taking place which is mapped on to the red LEDs of the FPGA device. 
 
-https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/raw/main/docs/images/fpga_demo.mp4
+<video width="320" height="240" controls loop="" muted="" autoplay=""> 
+  <source src="https://github.com/cepdnaclk/e18-4yp-Neuromorphic-NoC-Architecture-for-SNNs/raw/main/docs/images/fpga_demo.mp4">
+</video>
 
 The resuts of having a single FIFO buffer and dedicated FIFO buffers can be seen in the graph below.
 
