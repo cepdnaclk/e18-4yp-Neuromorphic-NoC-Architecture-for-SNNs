@@ -86,6 +86,10 @@ def generate_verilog_module(num_inputs):
 
         verilog_code += f"j{i}, "
     verilog_code += verilog_code[:-2] +";\n"
+
+    # generate 1024 lines of spike_out_source_array = unknown
+    for i in range (1024):
+        verilog_code += f"    spike_out_source_array[{i}] =12'hxx;\n"
     
 
     # # Generate logic for output
@@ -102,7 +106,9 @@ num_inputs = 1024
 verilog_code = generate_verilog_module(num_inputs)
 
 # Write the Verilog code to a file
-verilog_file = "code/e18-verilog-tb/src/temp.v"
+# verilog_file = "code/e18-verilog-tb/src/temp.v"
+verilog_file = "src/temp.v"
+
 with open(verilog_file, "w") as f:
     f.write(verilog_code)
 

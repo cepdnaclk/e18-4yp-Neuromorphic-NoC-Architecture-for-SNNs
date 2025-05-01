@@ -1,132 +1,265 @@
 
-
-module network_interface(
+module network_interface (
     input wire CLK,            //clock
     input wire clear,          //clear to start timestep
-    input wire spike0,    //1 bit wire to get spike information from each of the adders 
-    input wire spike1,
-    input wire spike2,
-    input wire spike3,
-    input wire spike4,
-    input wire spike5,
-    input wire spike6,
-    input wire spike7,
-    input wire spike8,
-    input wire spike9,
-    input wire[119:0] neuron_addresses_initialization,          //input to initialize the neruon addresses
-    input wire[54:0] connection_pointer_initialization,          //input to initialize the connection pointers
-    input wire[359:0] downstream_connections_initialization,    //input to initialize the dowanstream connections
-    output reg[23:0] packet               //outgoing packet         
-    );
+    input wire spike0,
+    input wire spike1,    input wire spike2,    input wire spike3,    input wire spike4,    
+    input wire spike5,    input wire spike6,    input wire spike7,    input wire spike8,    
+    input wire spike9, 
+    input wire[neuron_address_initialization_width-1:0] neuron_addresses_initialization,          //input to initialize the neruon addresses
+    input wire[connection_pointer_initialization_width-1:0] connection_pointer_initialization,          //input to initialize the connection pointers
+    input wire[downstream_connections_initialization_width-1:0] downstream_connections_initialization,    //input to initialize the dowanstream connections
+    
+    output reg[11:0] spike_out_source0, spike_out_source1,    spike_out_source2,    spike_out_source3,    spike_out_source4,    spike_out_source5,    spike_out_source6,    spike_out_source7,    spike_out_source8,    spike_out_source9
+);
+    parameter number_of_address_bits = 12;
+    parameter connection_pointer_initialization_width = (number_of_neurons + 1) * 5;   // 14-> number_of_neurons * number_of_connections_downstream can be represented by 12 bits
+    parameter number_of_neurons= 10;
+    parameter number_of_connections_downstream = 3;
+    parameter downstream_connections_initialization_width = number_of_address_bits * number_of_connections_downstream * number_of_neurons;
+    parameter neuron_address_initialization_width = number_of_address_bits * number_of_neurons;
 
-    parameter  number_of_neurons=10;                            //number of neurons
+    // Lock for the variable "packet"
+    reg [0:0] lock1 = 0;              
+
     reg[11:0] neuron_addresses[0:number_of_neurons-1];          //initialize with neuron addresses
-    reg[4:0] connection_pointer[0:number_of_neurons];         //point to connection starting point according to CSR
-    reg[11:0] downstream_connections[0:(number_of_neurons*3)];  //support 5 connections per neuron
+    reg[13:0] connection_pointer[0:number_of_neurons];         //point to connection starting point according to CSR
+    reg[11:0] downstream_connections[0:(number_of_neurons*number_of_connections_downstream)];  //support 5 connections per neuron
     reg al[0:number_of_neurons-1];                  //register the spikes
-    reg[4:0] i;                                             //index for iteration
-    reg[4:0] j;
-    reg check=0;
-    reg spike_register[0:9];
+    // reg[18:0] i;                                             //index for iteration
+    // reg[18:0] j;
+
+    reg[18:0] i1;
+    reg[18:0] j0, j1, j2, j3, j4, j5, j6, j7, j8, j9;
+    
+    //10 incoming spikes buffer
+    reg spike_register[0:10-1];
+
+    //10 outgoing spike source information
+    reg[11:0] spike_out_source_array[0:10-1];
+
+    //Begin the SNN functionality by manually spiking neuron 0. 
+    //Therefater the spiking happens via the SNN automatically. The following is what happens.
+    //3, 5 and 7 spike,
+    //and then 8 and 9 spike
+    // initial begin
+    //     #40
+    //     for(j1 = connection_pointer[0]; j1 < connection_pointer[0+1]; j1= j1+1) begin
+    //         // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+    //         //assign to the relevant output wire's array location
+    //         spike_out_source_array[downstream_connections[j1]] = neuron_addresses[0];
+    //     end
+
+    // end
     
     //when neuron addresses are initilaized
-    always @(neuron_addresses_initialization) begin
-        neuron_addresses[0] = neuron_addresses_initialization[119:108];
-        neuron_addresses[1] = neuron_addresses_initialization[107:96];
-        neuron_addresses[2] = neuron_addresses_initialization[95:84];
-        neuron_addresses[3] = neuron_addresses_initialization[83:72];
-        neuron_addresses[4] = neuron_addresses_initialization[71:60];
-        neuron_addresses[5] = neuron_addresses_initialization[59:48];
-        neuron_addresses[6] = neuron_addresses_initialization[47:36];
-        neuron_addresses[7] = neuron_addresses_initialization[35:24];
-        neuron_addresses[8] = neuron_addresses_initialization[23:12];
-        neuron_addresses[9] = neuron_addresses_initialization[11:0];
-    end
-
-    //when the connnection pointers come
-    always @(connection_pointer_initialization) begin
-        connection_pointer[0] = connection_pointer_initialization[54:50];
-        connection_pointer[1] = connection_pointer_initialization[49:45];
-        connection_pointer[2] = connection_pointer_initialization[44:40];
-        connection_pointer[3] = connection_pointer_initialization[39:35];
-        connection_pointer[4] = connection_pointer_initialization[34:30];
-        connection_pointer[5] = connection_pointer_initialization[29:25];
-        connection_pointer[6] = connection_pointer_initialization[24:20];
-        connection_pointer[7] = connection_pointer_initialization[19:15];
-        connection_pointer[8] = connection_pointer_initialization[14:10];
-        connection_pointer[9] = connection_pointer_initialization[9:5];
-        connection_pointer[10] = connection_pointer_initialization[4:0];
-    end
-
-    //initlize the connections
-    always @(downstream_connections_initialization) begin
-        downstream_connections[0] = downstream_connections_initialization[359:348];
-        downstream_connections[1] = downstream_connections_initialization[347:336];
-        downstream_connections[2] = downstream_connections_initialization[335:324];
-        downstream_connections[3] = downstream_connections_initialization[323:312];
-        downstream_connections[4] = downstream_connections_initialization[311:300];
-        downstream_connections[5] = downstream_connections_initialization[299:288];
-        downstream_connections[6] = downstream_connections_initialization[287:276];
-        downstream_connections[7] = downstream_connections_initialization[275:264];
-        downstream_connections[8] = downstream_connections_initialization[263:252];
-        downstream_connections[9] = downstream_connections_initialization[251:240];
-        downstream_connections[10] = downstream_connections_initialization[239:228];
-        downstream_connections[11] = downstream_connections_initialization[227:216];
-        downstream_connections[12] = downstream_connections_initialization[215:204];
-        downstream_connections[13] = downstream_connections_initialization[203:192];
-        downstream_connections[14] = downstream_connections_initialization[191:180];
-        downstream_connections[15] = downstream_connections_initialization[179:168];
-        downstream_connections[16] = downstream_connections_initialization[167:156];
-        downstream_connections[17] = downstream_connections_initialization[155:144];
-        downstream_connections[18] = downstream_connections_initialization[143:132];
-        downstream_connections[19] = downstream_connections_initialization[131:120];
-        downstream_connections[20] = downstream_connections_initialization[119:108];
-        downstream_connections[21] = downstream_connections_initialization[107:96];
-        downstream_connections[22] = downstream_connections_initialization[95:84];
-        downstream_connections[23] = downstream_connections_initialization[83:72];
-        downstream_connections[24] = downstream_connections_initialization[71:60];
-        downstream_connections[25] = downstream_connections_initialization[59:48];
-        downstream_connections[26] = downstream_connections_initialization[47:36];
-        downstream_connections[27] = downstream_connections_initialization[35:24];
-        downstream_connections[28] = downstream_connections_initialization[23:12];
-        downstream_connections[29] = downstream_connections_initialization[11:0];
-    end
-
-    //send the spike whenever
-    always @(clear, spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9) begin
-        spike_register[0] = spike0;
-        spike_register[1] = spike1;
-        spike_register[2] = spike2;
-        spike_register[3] = spike3;
-        spike_register[4] = spike4;
-        spike_register[5] = spike5;
-        spike_register[6] = spike6;
-        spike_register[7] = spike7;
-        spike_register[8] = spike8;
-        spike_register[9] = spike9;
-
-        if(clear==1'b0) begin
-            #0.5
-            check = ~check;
-            //if spiked send the source address to the relevant accumulator
-            for(i=0; i<=9; i=i+1) begin
-                if(spike_register[i]==1) begin
-                    for(j=connection_pointer[i]; j<connection_pointer[i+1]; j=j+1) begin
-                        packet = #1 {neuron_addresses[i], downstream_connections[j]};
-                    end
-                    spike_register[i]=0;
-                end
-            end 
-        end
-        
-    end
-
-    
-
-
     initial
     begin
-        $monitor($time, " Spike Handle connection_pointer: %b\n", connection_pointer[0]);
+             
+        neuron_addresses[0] = 12'd0;
+        neuron_addresses[1] = 12'd1;
+        neuron_addresses[2] = 12'd2;
+        neuron_addresses[3] = 12'd3;
+        neuron_addresses[4] = 12'd4;
+        neuron_addresses[5] = 12'd5;
+        neuron_addresses[6] = 12'd6;
+        neuron_addresses[7] = 12'd7;
+        neuron_addresses[8] = 12'd8;
+        neuron_addresses[9] = 12'd9;
+    
+        connection_pointer[0] = 5'd0;;
+        connection_pointer[1] = 5'd3;
+        connection_pointer[2] = 5'd5;
+        connection_pointer[3] = 5'd8;
+        connection_pointer[4] = 5'd10;
+        connection_pointer[5] = 5'd12;
+        connection_pointer[6] = 5'd14;
+        connection_pointer[7] = 5'd15;
+        connection_pointer[8] = 5'd17;
+        connection_pointer[9] = 5'd18;
+        connection_pointer[10] = 5'd19;
+
+        downstream_connections[0] = 12'b000000000011;
+        downstream_connections[1] = 12'b000000000101;
+        downstream_connections[2] = 12'b000000000111;
+        downstream_connections[3] = 12'b000000000100;
+        downstream_connections[4] = 12'b000000000110;
+        downstream_connections[5] = 12'b000000000100;
+        downstream_connections[6] = 12'b000000000101;
+        downstream_connections[7] = 12'b000000000110;
+        downstream_connections[8] = 12'b000000001000;
+        downstream_connections[9] = 12'b000000001001;
+        downstream_connections[10] = 12'b000000001000;
+        downstream_connections[11] = 12'b000000001001;
+        downstream_connections[12] = 12'b000000001000;
+        downstream_connections[13] = 12'b000000001001;
+        downstream_connections[14] = 12'b000000001001;
+        downstream_connections[15] = 12'b000000001000;
+        downstream_connections[16] = 12'b000000001001;
+        downstream_connections[17] = 12'b111111111011;
+        downstream_connections[18] = 12'b111111111100;
+        downstream_connections[19] = 12'd0;
+        downstream_connections[20] = 12'd0;
+        downstream_connections[21] = 12'd0;
+        downstream_connections[22] = 12'd0;
+        downstream_connections[23] = 12'd0;
+        downstream_connections[24] = 12'd0;
+        downstream_connections[25] = 12'd0;
+        downstream_connections[26] = 12'd0;
+        downstream_connections[27] = 12'd0;
+        downstream_connections[28] = 12'd0;
+        downstream_connections[29] = 12'd0;
+		  
+				/*output0 = downstream_connections[0][0];
+				output1 = downstream_connections[0][1];
+				output2 = downstream_connections[0][2];
+				output3 = downstream_connections[0][3];
+				output4 = downstream_connections[0][4];
+				output5 = downstream_connections[0][5];
+				output6 = downstream_connections[0][6];
+				output7 = downstream_connections[0][7];
+				output8 = downstream_connections[0][8];
+				output9 = downstream_connections[0][9];*/
     end
 
+    // always @(clear, lock1, spike0) begin
+    //     spike_register[0] = spike0;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[0] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j0 = 0; j0 < 25; j0= j0+1) begin                          
+    //                 if (j0 >= connection_pointer[0] && j0 < connection_pointer[0+1]) begin
+    //                     spike_out_source_array[downstream_connections[j0]] = neuron_addresses[0];
+    //                 end            
+    //             end
+    //             spike_register[0] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    // always @(clear, lock1, spike1) begin
+    //     spike_register[1] = spike1;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[1] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j1 = 0; j1 < 25; j1= j1+1) begin                          
+    //                 if (j1 >= connection_pointer[1] && j1 < connection_pointer[1+1]) begin
+    //                     spike_out_source_array[downstream_connections[j1]] = neuron_addresses[1];
+    //                 end            
+    //             end
+    //             spike_register[1] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    // always @(clear, lock1, spike2) begin
+    //     spike_register[2] = spike2;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[2] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j2 = 0; j2 < 25; j2= j2+1) begin                          
+    //                 if (j2 >= connection_pointer[2] && j2 < connection_pointer[2+1]) begin
+    //                     spike_out_source_array[downstream_connections[j2]] = neuron_addresses[2];
+    //                 end            
+    //             end
+    //             spike_register[2] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    // always @(clear, lock1, spike3) begin
+    //     spike_register[3] = spike3;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[3] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j3 = 0; j3 < 25; j3= j3+1) begin                          
+    //                 if (j3 >= connection_pointer[3] && j3 < connection_pointer[3+1]) begin
+    //                     spike_out_source_array[downstream_connections[j3]] = neuron_addresses[3];
+    //                 end            
+    //             end
+    //             spike_register[3] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    always @(clear, lock1, spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9) begin
+		  
+        spike_register[0] = spike0;
+
+        spike_register[1] = spike1;        spike_register[2] = spike2;        
+        spike_register[3] = spike3;        spike_register[4] = spike4;        
+        spike_register[5] = spike5;        spike_register[6] = spike6;        
+        spike_register[7] = spike7;        spike_register[8] = spike8;        
+        spike_register[9] = spike9;
+        //output3 = spike_register[3];
+        if(clear == 1'b0) begin
+            for(i1 = 0; i1 <=9; i1= i1+1) begin
+                if(spike_register[i1] == 1 && lock1 == 0) begin
+                    lock1 = 1;
+                    for(j4 = 0; j4 < 25; j4= j4+1) begin
+						  
+                        // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
+                        //assign to the relevant output wire's array location
+								/*if(j1 == connection_pointer[i1+1]) begin 
+									j1 = 25;
+								end else */
+								
+								if (j4 >= connection_pointer[i1] && j4 < connection_pointer[i1+1]) begin
+									spike_out_source_array[downstream_connections[j4]] = neuron_addresses[i1];
+								end
+								 
+                    end
+                    spike_register[i1] = 0;
+                    lock1 = 0;
+                end
+            end
+        end
+
+    end
+
+    //1024 always blocks to assign values to output ports
+    always @(spike_out_source_array[0]) begin 
+        spike_out_source0 = spike_out_source_array[0];
+    end
+    always @(spike_out_source_array[1]) begin 
+        spike_out_source1 = spike_out_source_array[1];
+    end
+    always @(spike_out_source_array[2]) begin 
+        spike_out_source2 = spike_out_source_array[2];
+    end
+    always @(spike_out_source_array[3]) begin 
+        spike_out_source3 = spike_out_source_array[3];
+    end
+    always @(spike_out_source_array[4]) begin 
+        spike_out_source4 = spike_out_source_array[4];
+    end
+    always @(spike_out_source_array[5]) begin 
+        spike_out_source5 = spike_out_source_array[5];
+    end
+    always @(spike_out_source_array[6]) begin 
+        spike_out_source6 = spike_out_source_array[6];
+    end
+    always @(spike_out_source_array[7]) begin 
+        spike_out_source7 = spike_out_source_array[7];
+    end
+    always @(spike_out_source_array[8], clear) begin 
+	 
+		  if (clear == 1) begin
+				spike_out_source8 = 12'd0;
+		  end else begin 
+				spike_out_source8 = spike_out_source_array[8];
+		  end
+    end
+    always @(spike_out_source_array[9], clear) begin 
+        if (clear == 1) begin
+				spike_out_source9 = 12'd0;
+		  end else begin 
+				spike_out_source9 = spike_out_source_array[9];
+		  end
+    end
+    
 endmodule

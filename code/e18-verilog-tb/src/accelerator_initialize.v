@@ -5,10 +5,12 @@
 // `include "Multiplication.v"
 // `include "potential_adder.v"
 // `include "network_interface.v"
+// `include "comparator.v"
+// `include "accelerator_initialize.v"
 
 module testbench;
 
-    parameter number_of_neurons=10;                        //initiailize number of neurons
+    parameter number_of_neurons=10;                         //initiailize number of neurons
     reg CLK;                                                //clock
     reg clear;                                              //clear to start timestep
     reg[3:0] decay_rate;                                    //define decay rate
@@ -20,19 +22,22 @@ module testbench;
     reg[11:0] neuron_addresses[0:number_of_neurons-1];          //initialize with neuron addresses
     reg[31:0] membrane_potential[0:number_of_neurons-1];        //initialize membrane potential values
     reg[31:0] v_threshold[0:number_of_neurons-1];               //threshold values
-    reg[359:0] downstream_connections_initialization;    //input to initialize the dowanstream connections
-    reg[119:0] neuron_addresses_initialization;                //input to initialize the neruon addresses
-    reg[54:0] connection_pointer_initialization;               //input to initialize the connection pointers
-    reg[11:0] spike_origin;                               //to store the nueron address from the arrived packet
-    reg[11:0] spike_destination;                               //to store source address from the arrived packet
+    reg[359:0] downstream_connections_initialization;           //input to initialize the dowanstream connections
+    reg[119:0] neuron_addresses_initialization;                 //input to initialize the neruon addresses
+    reg[54:0] connection_pointer_initialization;                //input to initialize the connection pointers
+    reg[11:0] spike_origin;                                     //to store the nueron address from the arrived packet
+    reg[11:0] spike_destination;                                //to store source address from the arrived packet
     reg[1:0] model;
-    reg[31:0]a, b, c, d, u_initialize;      //for izhikevich model
+    reg[31:0]a, b, c, d, u_initialize;                             //for izhikevich model
     wire[31:0] results_mac[0:number_of_neurons-1];                 //store results from the mac
     wire[31:0] results_potential_decay[0:number_of_neurons-1];     //store results of potential decay
     wire[31:0] final_potential[0:number_of_neurons-1];             //potential form the potential adder
     wire spike[0:number_of_neurons-1];                              //spike signifier from potential decay
-    wire[23:0] packet;                          //packet containing neuron address and sources address
- 
+    //wire[23:0] packet;                          //packet containing neuron address and sources address
+    wire[11:0] spike_out_source0, spike_out_source1, spike_out_source2, spike_out_source3,
+    spike_out_source4, spike_out_source5, spike_out_source6, spike_out_source7, spike_out_source8,
+    spike_out_source9;
+
     //generate 10 potential decay units
     genvar i;
     generate
@@ -65,7 +70,7 @@ module testbench;
         end
     endgenerate
 
-    //genrate corresponding 10 potential adders
+    //generate corresponding 10 potential adders
     generate
         for(i=0; i<10; i=i+1) begin
             potential_adder pa(
@@ -102,7 +107,19 @@ module testbench;
         .neuron_addresses_initialization(neuron_addresses_initialization),
         .connection_pointer_initialization(connection_pointer_initialization),           //input to initialize the connection pointers
         .downstream_connections_initialization(downstream_connections_initialization),    //input to initialize the dowanstream connections
-        .packet(packet)               //outgoing packet         
+        .spike_out_source0(spike_out_source0),
+        .spike_out_source1(spike_out_source1),
+        .spike_out_source2(spike_out_source2),
+        .spike_out_source3(spike_out_source3),
+        .spike_out_source4(spike_out_source4),
+        .spike_out_source5(spike_out_source5),
+        .spike_out_source6(spike_out_source6),
+        .spike_out_source7(spike_out_source7),
+        .spike_out_source8(spike_out_source8),
+        .spike_out_source9(spike_out_source9)
+
+        
+        //.packet(packet)               //outgoing packet         
     );
 
     // Observe the timing on gtkwave
@@ -115,14 +132,14 @@ module testbench;
     // // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", neuron_addresses[0], membrane_potential[0], decay_rate, results_potential_decay[0], source_addresses[0], results_mac[0],v_threshold[0],final_potential[0], spike[0]);
+        $monitor($time, "       clear: %b\n            Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", clear, neuron_addresses[0], membrane_potential[0], decay_rate, results_potential_decay[0], source_addresses[0], results_mac[0],v_threshold[0],final_potential[0], spike[0]);
     end
 
-    // Observe the timing on gtkwave
-    initial begin
-        $dumpfile("accelerator_wavedata.vcd");
-        $dumpvars(0,testbench);
-    end
+    // // Observe the timing on gtkwave
+    // initial begin
+    //     $dumpfile("accelerator_wavedata.vcd");
+    //     $dumpvars(0,testbench);
+    // end
 
     // //assign inputs
     initial begin
@@ -238,11 +255,52 @@ module testbench;
     end
 
     //when packets arrive from the potential adder send the source address to the relevant mac unit 
-    always @(packet) begin
-        spike_origin = packet[23:12];               // From where the spike came
-        spike_destination = packet[11:0];           // To where it should be sent 
+    // always @(packet) begin
+    //     spike_origin = packet[23:12];               // From where the spike came
+    //     spike_destination = packet[11:0];           // To where it should be sent 
 
-        source_addresses[spike_destination] = spike_origin;      // Trigger the wire of the relevant accumulator
+    //     source_addresses[spike_destination] = spike_origin;      // Trigger the wire of the relevant accumulator
+    // end
+
+    //when a packet is ready to be sent at a partiular output, send it to the relevant mac unit
+    always @(spike_out_source0) begin
+        source_addresses[0] = spike_out_source0;
+    end
+
+    always @(spike_out_source1) begin
+        source_addresses[1] = spike_out_source1;
+    end
+
+    always @(spike_out_source2) begin
+        source_addresses[2] = spike_out_source2;
+    end
+
+    always @(spike_out_source3) begin
+        source_addresses[3] = spike_out_source3;
+    end
+
+    always @(spike_out_source4) begin
+        source_addresses[4] = spike_out_source4;
+    end
+
+    always @(spike_out_source5) begin
+        source_addresses[5] = spike_out_source5;
+    end
+
+    always @(spike_out_source6) begin
+        source_addresses[6] = spike_out_source6;
+    end
+
+    always @(spike_out_source7) begin
+        source_addresses[7] = spike_out_source7;
+    end
+
+    always @(spike_out_source8) begin
+        source_addresses[8] = spike_out_source8;
+    end
+
+    always @(spike_out_source9) begin
+        source_addresses[9] = spike_out_source9;
     end
 
     //invert clock every 4 seconds

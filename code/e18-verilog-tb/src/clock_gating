@@ -1,0 +1,127 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 10;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x148805e90 .scope module, "clock_gating_tb" "clock_gating_tb" 2 3;
+ .timescale -9 -10;
+v0x148817fc0_0 .var "clk", 0 0;
+v0x148818070_0 .var "en_r", 0 0;
+v0x148818100_0 .var "en_w", 0 0;
+v0x1488181b0_0 .net "read_clock", 0 0, L_0x148818600;  1 drivers
+v0x148818260_0 .net "write_clock", 0 0, L_0x148818510;  1 drivers
+E_0x1488074a0 .event posedge, v0x148807560_0;
+S_0x148805b80 .scope module, "test" "clock_gating" 2 8, 3 1 0, S_0x148805e90;
+ .timescale -9 -10;
+    .port_info 0 /INPUT 1 "en_w";
+    .port_info 1 /INPUT 1 "en_r";
+    .port_info 2 /INPUT 1 "clk";
+    .port_info 3 /OUTPUT 1 "write_clock";
+    .port_info 4 /OUTPUT 1 "read_clock";
+L_0x148818330 .functor AND 1, v0x148818100_0, v0x148817fc0_0, C4<1>, C4<1>;
+L_0x148818460 .functor AND 1, v0x148818070_0, v0x148817fc0_0, C4<1>, C4<1>;
+L_0x148818510 .functor BUFZ 1, L_0x148818330, C4<0>, C4<0>, C4<0>;
+L_0x148818600 .functor BUFZ 1, L_0x148818460, C4<0>, C4<0>, C4<0>;
+v0x148807560_0 .net "clk", 0 0, v0x148817fc0_0;  1 drivers
+v0x148817b50_0 .net "en_r", 0 0, v0x148818070_0;  1 drivers
+v0x148817bf0_0 .net "en_w", 0 0, v0x148818100_0;  1 drivers
+v0x148817c80_0 .net "read", 0 0, L_0x148818460;  1 drivers
+v0x148817d20_0 .net "read_clock", 0 0, L_0x148818600;  alias, 1 drivers
+v0x148817e00_0 .net "write", 0 0, L_0x148818330;  1 drivers
+v0x148817ea0_0 .net "write_clock", 0 0, L_0x148818510;  alias, 1 drivers
+    .scope S_0x148805e90;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x148817fc0_0, 0, 1;
+    %vpi_call 2 12 "$dumpfile", "clock_gating.vcd" {0 0 0};
+    %vpi_call 2 13 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x148805e90 {0 0 0};
+    %delay 3000000, 0;
+    %vpi_call 2 15 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x148805e90;
+T_1 ;
+    %delay 40, 0;
+    %load/vec4 v0x148817fc0_0;
+    %inv;
+    %store/vec4 v0x148817fc0_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x148805e90;
+T_2 ;
+T_2.0 ;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x148818070_0, 0, 1;
+    %pushi/vec4 1024, 0, 32;
+T_2.1 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_2.2, 5;
+    %jmp/1 T_2.2, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x1488074a0;
+    %jmp T_2.1;
+T_2.2 ;
+    %pop/vec4 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x148818070_0, 0, 1;
+    %pushi/vec4 1124, 0, 32;
+T_2.3 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_2.4, 5;
+    %jmp/1 T_2.4, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x1488074a0;
+    %jmp T_2.3;
+T_2.4 ;
+    %pop/vec4 1;
+    %jmp T_2.0;
+    %end;
+    .thread T_2;
+    .scope S_0x148805e90;
+T_3 ;
+T_3.0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x148818100_0, 0, 1;
+    %pushi/vec4 1124, 0, 32;
+T_3.1 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_3.2, 5;
+    %jmp/1 T_3.2, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x1488074a0;
+    %jmp T_3.1;
+T_3.2 ;
+    %pop/vec4 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x148818100_0, 0, 1;
+    %pushi/vec4 1024, 0, 32;
+T_3.3 %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/s;
+    %jmp/1xz T_3.4, 5;
+    %jmp/1 T_3.4, 4;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %wait E_0x1488074a0;
+    %jmp T_3.3;
+T_3.4 ;
+    %pop/vec4 1;
+    %jmp T_3.0;
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "clock_gating_tb.v";
+    "clock_gating.v";
