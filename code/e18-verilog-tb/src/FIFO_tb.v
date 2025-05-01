@@ -1,99 +1,137 @@
-//--------------DESCRIPTION--------------
-// This is a testbench for the FIFO module.
-// The testbench generates random data and writes it to the FIFO, 
-// then reads it back and compares the results.
-//---------------------------------------
-
 `timescale 1ns/1ps
 
 module FIFO_tb;
 
-    parameter DSIZE = 8; // Data bus size
-    parameter ASIZE = 3; // Address bus size
-    parameter DEPTH = 1 << ASIZE; // Depth of the FIFO memory
+    parameter DSIZE = 12;           // 12 bit data
+    parameter ASIZE = 10;           // 10 bits to represented 1024 address locations
+    parameter DEPTH = 1 << ASIZE;
 
-    reg [DSIZE-1:0] wdata;   // Input data
-    wire [DSIZE-1:0] rdata;  // Output data
-    wire wfull, rempty;      // Write full and read empty signals
-    reg winc, rinc, wclk, rclk, wrst_n, rrst_n; // Write and read signals
+    reg [DSIZE-1:0] wdata;
+    wire [DSIZE-1:0] rdata;
+    wire wfull, rempty;
+    reg winc, rinc, wrst_n, rrst_n;
 
+    // for the read and write gated clocks
+    reg clk, en_w, en_r;
+    wire write_clock, read_clock;
+
+    integer i;
+    integer seed = 1;
+
+    // Clock toggling
+    initial clk = 0;
+    always #5 clk = ~clk;
+
+    // Instantiate clock gating
+    clock_gating gater (
+        .clk(clk),
+        .en_w(en_w),
+        .en_r(en_r),
+        .write_clock(write_clock),
+        .read_clock(read_clock)
+    );
+
+    // Instantiate FIFO
     FIFO #(DSIZE, ASIZE) fifo (
-        .rdata(rdata), 
+        .rdata(rdata),
         .wdata(wdata),
         .wfull(wfull),
         .rempty(rempty),
-        .winc(winc), 
-        .rinc(rinc), 
-        .wclk(wclk), 
-        .rclk(rclk), 
-        .wrst_n(wrst_n), 
+        .winc(winc),
+        .rinc(rinc),
+        .wclk(write_clock),
+        .rclk(read_clock),
+        .wrst_n(wrst_n),
         .rrst_n(rrst_n)
     );
 
-    integer i=0;
-    integer seed = 1;
-
-    // Read and write clock in loop
-    always #5 wclk = ~wclk;    // faster writing
-    always #10 rclk = ~rclk;   // slower reading
-
-    // Observe the timing on gtkwave
-    initial
-    begin
-        $dumpfile("async_fifo_testbench.vcd");
-        $dumpvars(0, FIFO_tb);
-    end
-    
+    // Toggle enable signals
     initial begin
-        // Initialize all signals
-        wclk = 0;
-        rclk = 0;
-        wrst_n = 1;     // Active low reset
-        rrst_n = 1;     // Active low reset
+        forever begin
+            en_r = 1;
+            repeat (2048) @(posedge clk);
+            en_r = 0;
+            repeat (2148) @(posedge clk);
+        end
+    end
+
+    initial begin
+        forever begin
+            en_w = 0;
+            repeat (2148) @(posedge clk);
+            en_w = 1;
+            repeat (2048) @(posedge clk);
+        end
+    end
+
+    // Write on posedge of write_clock
+    task write_data(input integer count);
+        begin
+            for (i = 0; i < count; i = i + 1) begin
+                @(posedge write_clock);
+                wdata = $random(seed) % 256;                // Job of the NI
+                winc = 1;
+                @(posedge write_clock);
+                winc = 0;
+            end
+        end
+    endtask
+
+    // Read on posedge of read_clock
+    task read_data(input integer count);
+        begin
+            for (i = 0; i < count; i = i + 1) begin
+                @(posedge read_clock);
+                rinc = 1;
+                @(posedge read_clock);
+                rinc = 0;
+            end
+        end
+    endtask
+
+    // Simulation
+    initial begin
+        $dumpfile("async_fifo.vcd");
+        $dumpvars(0, FIFO_tb);
+
+        // Initialize
+        wrst_n = 1;
+        rrst_n = 1;
         winc = 0;
         rinc = 0;
         wdata = 0;
 
-        // Reset the FIFO
-        #40 wrst_n = 0; rrst_n = 0;
-        #40 wrst_n = 1; rrst_n = 1;
+        // Reset
+        #20 wrst_n = 0; rrst_n = 0;
+        #20 wrst_n = 1; rrst_n = 1;
 
-        // TEST CASE 1: Write data and read it back
-        rinc = 1;
-        for (i = 0; i < 10; i = i + 1) begin
-            wdata = $random(seed) % 256;
-            winc = 1;
-            #10;
-            winc = 0;
-            #10;
-        end
+        // // Test Case 1: Normal write and read
+        // fork
+        //     write_data(10);
+        //     read_data(10);
+        // join
 
-        // TEST CASE 2: Write data to make FIFO full and try to write more data
-        rinc = 0;
-        winc = 1;
-        for (i = 0; i < DEPTH + 3; i = i + 1) begin
-            wdata = $random(seed) % 256;
-            #10;
-        end
+        // Test Case 2: Fill FIFO and attempt overflow
+        write_data(DEPTH);
+        // Test Case 3: Read all + attempt underflow
+        read_data(DEPTH);
 
-        // TEST CASE 3: Read data from empty FIFO and try to read more data
-        winc = 0;
-        rinc = 1;
-        for (i = 0; i < DEPTH + 3; i = i + 1) begin
-            #20;
-        end
+        // Test Case 2: Fill FIFO and attempt overflow
+        write_data(DEPTH);
+        // Test Case 3: Read all + attempt underflow
+        read_data(DEPTH);
 
-        $finish;
+        // // Test Case 2: Fill FIFO and attempt overflow
+        // write_data(DEPTH);
+        // // Test Case 3: Read all + attempt underflow
+        // read_data(DEPTH);
+
+        // // Test Case 2: Fill FIFO and attempt overflow
+        // write_data(DEPTH);
+        // // Test Case 3: Read all + attempt underflow
+        // read_data(DEPTH);
+
+        #100000 $finish;
     end
 
 endmodule
-
-//----------------------------EXPLANATION-----------------------------------------------
-// The testbench for the FIFO module generates random data and writes it to the FIFO,
-// then reads it back and compares the results. The testbench includes three test cases:
-// 1. Write data and read it back.
-// 2. Write data to make the FIFO full and try to write more data.
-// 3. Read data from an empty FIFO and try to read more data. The testbench uses
-// clock signals for writing and reading, and includes reset signals to initialize
-// the FIFO. The testbench finishes after running the test cases.
-//--------------------------------------------------------------------------------------

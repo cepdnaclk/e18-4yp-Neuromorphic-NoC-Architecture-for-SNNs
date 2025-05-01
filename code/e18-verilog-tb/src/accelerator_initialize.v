@@ -5,6 +5,8 @@
 // `include "Multiplication.v"
 // `include "potential_adder.v"
 // `include "network_interface.v"
+// `include "comparator.v"
+// `include "accelerator_initialize.v"
 
 module testbench;
 
@@ -130,14 +132,14 @@ module testbench;
     // // Print the outputs when ever the inputs change
     initial
     begin
-        $monitor($time, "  Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", neuron_addresses[0], membrane_potential[0], decay_rate, results_potential_decay[0], source_addresses[0], results_mac[0],v_threshold[0],final_potential[0], spike[0]);
+        $monitor($time, "       clear: %b\n            Neuron_address: %b\n                     Membrane Potential: %b\n                     Decay Rate: %d\n                     After Potential Decay: %b\n                     Source_address: %b\n                     MAC result: %b\n                     Threshold: %b\n                     Output Potential: %b\n                     Spiked:%b", clear, neuron_addresses[0], membrane_potential[0], decay_rate, results_potential_decay[0], source_addresses[0], results_mac[0],v_threshold[0],final_potential[0], spike[0]);
     end
 
-    // Observe the timing on gtkwave
-    initial begin
-        $dumpfile("accelerator_wavedata.vcd");
-        $dumpvars(0,testbench);
-    end
+    // // Observe the timing on gtkwave
+    // initial begin
+    //     $dumpfile("accelerator_wavedata.vcd");
+    //     $dumpvars(0,testbench);
+    // end
 
     // //assign inputs
     initial begin

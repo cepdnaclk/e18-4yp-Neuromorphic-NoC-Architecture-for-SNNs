@@ -30,7 +30,7 @@ module network_interface (
     // reg[18:0] j;
 
     reg[18:0] i1;
-    reg[18:0] j1;
+    reg[18:0] j0, j1, j2, j3, j4, j5, j6, j7, j8, j9;
     
     //10 incoming spikes buffer
     reg spike_register[0:10-1];
@@ -122,6 +122,70 @@ module network_interface (
 				output9 = downstream_connections[0][9];*/
     end
 
+    // always @(clear, lock1, spike0) begin
+    //     spike_register[0] = spike0;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[0] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j0 = 0; j0 < 25; j0= j0+1) begin                          
+    //                 if (j0 >= connection_pointer[0] && j0 < connection_pointer[0+1]) begin
+    //                     spike_out_source_array[downstream_connections[j0]] = neuron_addresses[0];
+    //                 end            
+    //             end
+    //             spike_register[0] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    // always @(clear, lock1, spike1) begin
+    //     spike_register[1] = spike1;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[1] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j1 = 0; j1 < 25; j1= j1+1) begin                          
+    //                 if (j1 >= connection_pointer[1] && j1 < connection_pointer[1+1]) begin
+    //                     spike_out_source_array[downstream_connections[j1]] = neuron_addresses[1];
+    //                 end            
+    //             end
+    //             spike_register[1] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    // always @(clear, lock1, spike2) begin
+    //     spike_register[2] = spike2;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[2] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j2 = 0; j2 < 25; j2= j2+1) begin                          
+    //                 if (j2 >= connection_pointer[2] && j2 < connection_pointer[2+1]) begin
+    //                     spike_out_source_array[downstream_connections[j2]] = neuron_addresses[2];
+    //                 end            
+    //             end
+    //             spike_register[2] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
+    // always @(clear, lock1, spike3) begin
+    //     spike_register[3] = spike3;
+    //     if(clear == 1'b0) begin
+    //         if(spike_register[3] == 1 && lock1 == 0) begin
+    //             lock1 = 1;
+    //             for(j3 = 0; j3 < 25; j3= j3+1) begin                          
+    //                 if (j3 >= connection_pointer[3] && j3 < connection_pointer[3+1]) begin
+    //                     spike_out_source_array[downstream_connections[j3]] = neuron_addresses[3];
+    //                 end            
+    //             end
+    //             spike_register[3] = 0;
+    //             lock1 = 0;   
+    //         end
+    //     end
+    // end
+
     always @(clear, lock1, spike0, spike1, spike2, spike3, spike4, spike5, spike6, spike7, spike8, spike9) begin
 		  
         spike_register[0] = spike0;
@@ -136,7 +200,7 @@ module network_interface (
             for(i1 = 0; i1 <=9; i1= i1+1) begin
                 if(spike_register[i1] == 1 && lock1 == 0) begin
                     lock1 = 1;
-                    for(j1 = 0; j1 < 25; j1= j1+1) begin
+                    for(j4 = 0; j4 < 25; j4= j4+1) begin
 						  
                         // packet1 = #0.1 {neuron_addresses[i1], downstream_connections[j1]};
                         //assign to the relevant output wire's array location
@@ -144,8 +208,8 @@ module network_interface (
 									j1 = 25;
 								end else */
 								
-								if (j1 >= connection_pointer[i1] && j1 < connection_pointer[i1+1]) begin
-									spike_out_source_array[downstream_connections[j1]] = neuron_addresses[i1];
+								if (j4 >= connection_pointer[i1] && j4 < connection_pointer[i1+1]) begin
+									spike_out_source_array[downstream_connections[j4]] = neuron_addresses[i1];
 								end
 								 
                     end
