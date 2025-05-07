@@ -308,7 +308,7 @@ module testbench;
         #4 CLK = ~CLK;
 
     //timestep is 4 clockcycles
-    always @(posedge CLK) begin
+    always @(negedge CLK) begin
 
         if(CLK_count==3) begin
             CLK_count=0;
